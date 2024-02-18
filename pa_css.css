@@ -23,5 +23,207 @@
 .st-emoji-fieldset[data-rid="9"] li::after {background-position:-256px 0} 
 /* banana */ 
 .st-emoji-fieldset[data-rid="11"] li::after {background-position:0 0} 
-.sunbar label, body#msg #lastslider, body#user #lastslider, .menuwrap em[onclick="location.href='https://www.forumcommunity.net/?act=modforum&cid=655790'"], #loading .skin_tbl::before, a.similar, a.print, .topic .title.top, .at-branding-logo span, .at-branding-icon, .tabs.bottom, .mods, .subs, #board .board .when, .side_topics .who a:hover::after, #search .title.bottom a:hover::after, #board .stats .mainbg .users a:hover::after, #board .stats .mainbg .groups dd a:hover::after, #msg li.notification-link, #user #home, #msg #home, #search #home, #msg .post p, #msg .menuwrap .left .menu:nth-of-type(2)::after, #user .menuwrap .left .menu:nth-of-type(2)::after, #search .menuwrap .left .menu:nth-of-type(2)::after, #notifications-mode #notifications-option-dropdown img, #notifications-modal .plus-button::after, #board .usersrecord span::before, #board .stats .bottom .usersrecord span, #board .stats .bottom .lastreg dt, #board .stats #monthly_visits > span:first-child, #board .stats #top > span:first-child, #forum .board .when, .big_list.noresults::before, .forum .zz .ffav_lastpost-detalis .who span, .forum .who span, #emojifood li:nth-of-type(63), #msg .post td a::before, #login #home, #login #pa_slideshow, #login #lastslider, #login .parent, #msg .forum .mainbg::before, .post .points em::before, .popup.pop_points br, .popup span.points_up, .popup span.points_down, .cs-modal .st-emoji-fieldset legend, .cs-modal .st-emoji-delete, #online .online .title.bottom, #box_input3, .error.no_search_results #home, .error.no_search_results #pa_slideshow, .error.no_search_results .parent, .error.no_search_results #lastslider, .guest.error #pa_slideshow, .guest.error .parent, .guest.error #lastslider, .cs-modal.st-emoji-modal.st-emoji-post-modal.st-emoji-regular-order.cs-modal-visible .cs-modal-footer, .cs-modal.st-emoji-modal.st-emoji-post-modal.st-emoji-regular-order.cs-modal-fading.cs-modal-fadeout .cs-modal-footer, .cs-modal.st-emoji-modal.st-emoji-post-modal.st-emoji-regular-order.cs-modal-fading.cs-modal-fadein .cs-modal-footer, .profile-favs, .profile-lastforum, .profile-lang, .profile .tabs, .profile .st-emoji.st-emoji-profile.st-emoji-desktop, .profile .u_status, .profile-title, .profile-location, #send .send .sunbar, .board .where span, .board .who span, #board .stats .zz .male::before, #board .stats .zz .female::before, .article .points_pos::before, .article .points_neg::before, .forum .xx, .group .title.top .cc::before, .groups dd a .moderatore, .tag .tsep, .post.post_queue .u_status, .post.post_queue .u_group, .post.post_queue .u_posts, .post.post_queue .nick, li.submenu.alternative::before, .submenu li::before, .menu ul li .fa, .cp .big_list::before, .mback_left, .topic .mback_right, .fast.send .skin_tbl::before, .forum .darkbar, .title.top, #msg #pa_slideshow, #msg .parent, #user #pa_slideshow, #user .parent, #search #pa_slideshow, #search .parent, #search #lastslider, .members .bb div::before, .ui-resizable-e, .ui-resizable-s, .ui-icon-gripsmall-diagonal-se, .cs-btn.cs-btn-outer-blue, .menu.st-emoji-notice.st-emoji-notice-desktop ul, .at-icon.at-icon-facebook g, .box_offline .u_status, .box_anonimo .u_status, .ip_address dd::before, .ip_address dd::after, .code_top b, .spoiler .code_top::before, #emojirecents strong, .article .top .who span, .article .top .replies span, .article .top .views span, .article .top .when > span:first-child, .article .top .tags dd, .title2.bottom .when span:first-child, .title2.bottom .d_year, .side_profile, .side_stats .left, .side_online .left, .side_topics .when span, .side_topics .who span, .topic-separator:first-child, #board .stats .aa, #board .stats .bottom .zz > div:first-child br, #board .lastreg:nth-of-type(2)::before, .pages2::before, .pages2::after, .cp b.info::before, .cp b.info::after, .lastarticles .topic > span br, .lastarticles .when span, .lastarticles .left > a, .tag .minus, .tag .plus, .fancyborder small, #blog .board .when, .guest.error.no_view_topic .nav, .guest.error.no_permission .nav, .cs-modal .st-emoji-notice-item::before, span.img-title, #msg .menuwrap .left .menu:nth-of-type(3)::after, .fancytop, #online .nick a::before, img#i_privacy, .guest .menuwrap li:first-child, .btn-social img, .menuwrap .left .menu:nth-of-type(3) strong, .send .mback, .fast.send .sunbar, .fast.send.alternative br, #msg .post .when span::before, .ffb_wone_widget .ffb_wone_bar, .ffb_wone_widget.aperto .ffb_wone_bar, .mback .mdesc::before, #board.guest .off.res .who, #board.guest .on.res .who, .quote .quote .quote, .quote .quote .quote_top, .ffb_embedlink div+div a:last-child, .bottomborder + br, .u_status dt, .br_status, #output ul + br, .color ul + br, .a2a_kit.a2a_kit_size_16.a2a_default_style, #send #loading .skin_tbl + br, .profile-gender, .profile-search, .profile-bday, .mobile-icon a > *, #search .menuwrap .left li.menu:first-child, #msg .menuwrap .left li.menu:first-child, #f_up:not(#user #f_up, #search #f_up, #msg #f_up), .scroll-element, #msg .nav li + li, .menuwrap li:not(.menudef .menuwrap li, .menualt .menuwrap li, #search .menuwrap li, #user .menuwrap li, #msg .menuwrap li), #emojipeople li:nth-of-type(n+135):nth-of-type(-n+158) {display:none!important}
+.sunbar label, body#msg #lastslider, body#user #lastslider, .menuwrap em[onclick="location.href='https://www.forumcommunity.net/?act=modforum&cid=655790'"], #loading .skin_tbl::before, a.similar, a.print, .topic .title.top, .at-branding-logo span, .at-branding-icon, .tabs.bottom, .mods, .subs, #board .board .when, .side_topics .who a:hover::after, #search .title.bottom a:hover::after, #board .stats .mainbg .users a:hover::after, #board .stats .mainbg .groups dd a:hover::after, #msg li.notification-link, #user #home, #msg #home, #search #home, #msg .post p, #msg .menuwrap .left .menu:nth-of-type(2)::after, #user .menuwrap .left .menu:nth-of-type(2)::after, #search .menuwrap .left .menu:nth-of-type(2)::after, #notifications-mode #notifications-option-dropdown img, #notifications-modal .plus-button::after, #board .usersrecord span::before, #board .stats .bottom .usersrecord span, #board .stats .bottom .lastreg dt, #board .stats #monthly_visits > span:first-child, #board .stats #top > span:first-child, #forum .board .when, .big_list.noresults::before, .forum .zz .ffav_lastpost-detalis .who span, .forum .who span, #emojifood li:nth-of-type(63), #msg .post td a::before, #login #home, #login #pa_slideshow, #login #lastslider, #login .parent, #msg .forum .mainbg::before, .post .points em::before, .popup.pop_points br, .popup span.points_up, .popup span.points_down, .cs-modal .st-emoji-fieldset legend, .cs-modal .st-emoji-delete, #online .online .title.bottom, #box_input3, .error.no_search_results #home, .error.no_search_results #pa_slideshow, .error.no_search_results .parent, .error.no_search_results #lastslider, .guest.error #pa_slideshow, .guest.error .parent, .guest.error #lastslider, .cs-modal.st-emoji-modal.st-emoji-post-modal.st-emoji-regular-order.cs-modal-visible .cs-modal-footer, .cs-modal.st-emoji-modal.st-emoji-post-modal.st-emoji-regular-order.cs-modal-fading.cs-modal-fadeout .cs-modal-footer, .cs-modal.st-emoji-modal.st-emoji-post-modal.st-emoji-regular-order.cs-modal-fading.cs-modal-fadein .cs-modal-footer, .profile-favs, .profile-lastforum, .profile-lang, .profile .tabs, .profile .st-emoji.st-emoji-profile.st-emoji-desktop, .profile .u_status, .profile-title, .profile-location, #send .send .sunbar, .board .where span, .board .who span, #board .stats .zz .male::before, #board .stats .zz .female::before, .article .points_pos::before, .article .points_neg::before, .forum .xx, .group .title.top .cc::before, .groups dd a .moderatore, .tag .tsep, .post.post_queue .u_status, .post.post_queue .u_group, .post.post_queue .u_posts, .post.post_queue .nick, li.submenu.alternative::before, .submenu li::before, .menu ul li .fa, .cp .big_list::before, .mback_left, .topic .mback_right, .fast.send .skin_tbl::before, .forum .darkbar, .title.top, #msg #pa_slideshow, #msg .parent, #user #pa_slideshow, #user .parent, #search #pa_slideshow, #search .parent, #search #lastslider, .members .bb div::before, .ui-resizable-e, .ui-resizable-s, .ui-icon-gripsmall-diagonal-se, .cs-btn.cs-btn-outer-blue, .menu.st-emoji-notice.st-emoji-notice-desktop ul, .at-icon.at-icon-facebook g, .box_offline .u_status, .box_anonimo .u_status, .ip_address dd::before, .ip_address dd::after, .code_top b, .spoiler .code_top::before, #emojirecents strong, .article .top .who span, .article .top .replies span, .article .top .views span, .article .top .when > span:first-child, .article .top .tags dd, .title2.bottom .when span:first-child, .title2.bottom .d_year, .side_profile, .side_stats .left, .side_online .left, .side_topics .when span, .side_topics .who span, .topic-separator:first-child, #board .stats .aa, #board .stats .bottom .zz > div:first-child br, #board .lastreg:nth-of-type(2)::before, .pages2::before, .pages2::after, .cp b.info::before, .cp b.info::after, .lastarticles .topic > span br, .lastarticles .when span, .lastarticles .left > a, .tag .minus, .tag .plus, .fancyborder small, #blog .board .when, .guest.error.no_view_topic .nav, .guest.error.no_permission .nav, .cs-modal .st-emoji-notice-item::before, span.img-title, #msg .menuwrap .left .menu:nth-of-type(3)::after, .fancytop, #online .nick a::before, img#i_privacy, .guest .menuwrap li:first-child, .btn-social img, .menuwrap .left .menu:nth-of-type(3) strong, .send .mback, .fast.send .sunbar, .fast.send.alternative br, #msg .post .when span::before, .ffb_wone_widget .ffb_wone_bar, .ffb_wone_widget.aperto .ffb_wone_bar, .mback .mdesc::before, #board.guest .off.res .who, #board.guest .on.res .who, .quote .quote .quote, .quote .quote .quote_top, .ffb_embedlink div+div a:last-child, .bottomborder + br, .u_status dt, .br_status, #output ul + br, .color ul + br, .a2a_kit.a2a_kit_size_16.a2a_default_style, #send #loading .skin_tbl + br, .profile-gender, .profile-search, .profile-bday, .mobile-icon a > *, #search .menuwrap .left li.menu:first-child, #msg .menuwrap .left li.menu:first-child, #f_up:not(#user #f_up, #search #f_up, #msg #f_up), .scroll-element, #msg .nav li + li, .menuwrap li:not(.menudef .menuwrap li, .menualt .menuwrap li, #search .menuwrap li, #user .menuwrap li, #msg .menuwrap li), #emojipeople li:nth-of-type(n+135):nth-of-type(-n+158), .emoji_tab_list ul li:nth-of-type(11), #emoticons2, .send img[title="Apre una finestra di scelta del colore"], #imgur_icon, #user img[title="Apre una finestra di scelta del colore"], .send img[title="Apre una finestra per generare codice html"], #user img[title="Apre una finestra per generare codice html"], .codebuttons[accesskey="r"], .emoji_container img:not([width]):not([height])[src^="https://img.forumfree.net/html/emoticons/new"]:not(img[src="https://img.forumfree.net/html/emoticons/new/flame.svg"]) {display:none!important}
 #emojipeople ul li a {background:url("https://upload.forumfree.net/i/fc11517378/sprites/emojipeople.png"); background-size:4422px 22px; height:22px; width:22px}
+.e1a-grinning, img[alt="=)"], img[data-emoticon="=)"] {background-position:-3608px 0} 
+.e1a-grin {background-position:-3630px 0} 
+.e1a-joy, img[alt="^U^"], img[data-emoticon="^U^"] {background-position:-3300px 0} 
+.e1a-rofl, img[alt=":XD:"], img[data-emoticon=":XD:"], img[src="https://img.forumfree.net/html/emoticons/new/rotfl.svg"] {background-position:-924px 0} 
+img[src="https://img.forumfree.net/html/emoticons/new/rotfl.svg"], img[alt=":sick:"] {box-sizing:border-box; height:22px; padding-left:22px; width:22px} 
+.e1a-smiley, img[alt=":D"] {background-position:-1276px 0} 
+.e1a-smile {background-position:-1320px 0} 
+.e1a-sweat_smile {background-position:-1298px 0} 
+.e1a-frowning2, .e1a-frowning2:hover {background-position:-2178px 0} 
+.e1a-laughing, img[alt="X)"], img[data-emoticon="X)"], img[alt=":lol:"] {background-position:-1342px 0} 
+.e1a-wink, img[alt=";)"] {background-position:-1892px 0} 
+.e1a-blush, img[alt="*^^*"], img[data-emoticon="*^^*"], img[alt="^_^"], img:not([width]):not([height])[src="https://img.forumfree.net/html/emoticons/new/happy.svg"] {background-position:-1364px 0} 
+.e1a-yum {background-position:-2970px 0} 
+.e1a-sunglasses {background-position:-1386px 0} 
+.e1a-heart_eyes, img[alt="3_3"], img[data-emoticon="3_3"] {background-position:-1210px 0} 
+.e1a-kissing_heart, img[alt=":*:"], img[data-emoticon=":*:"], img[src="https://img.forumfree.net/html/emoticons/new/kiss.svg"] {background-position:-3014px 0} 
+.e1a-kissing {background-position:-3960px 0} 
+.e1a-kissing_closed_eyes {background-position:-3982px 0} 
+.e1a-kissing_smiling_eyes {background-position:-4004px 0} 
+.e1a-relaxed {background-position:-1826px 0} 
+.e1a-slight_smile, img[alt=":)"] {background-position:-1144px 0} 
+.e1a-hugging {background-position:-3784px 0} 
+.e1a-thinking, img[alt=":=/:"], img[data-emoticon=":=/:"] {background-position:-1474px 0} 
+.e1a-neutral_face, img[alt=":|"], img[data-emoticon=":|"] {background-position:-242px 0} 
+.e1a-expressionless, img[alt="=_="], img[data-emoticon="=_="] {background-position:-2860px 0} 
+.e1a-open_mouth, img[alt=":o:"] {background-position:-3146px 0} 
+.e1a-no_mouth, img[alt=":?"], img[data-emoticon=":?"] {background-position:-3190px 0} 
+.e1a-rolling_eyes {background-position:-3212px 0} 
+.e1a-smirk {background-position:-1408px 0} 
+.e1a-persevere, img[src="https://img.forumfree.net/html/emoticons/new/squint.svg"] {background-position:-418px 0} 
+.e1a-zipper_mouth {background-position:-2068px 0} 
+.e1a-hushed {background-position:-3806px 0} 
+.e1a-sleepy {background-position:-1078px 0} 
+.e1a-tired_face, img[alt=":D:"], img[data-emoticon=":D:"] {background-position:-1540px 0} 
+.e1a-sleeping {background-position:-2112px 0} 
+.e1a-relieved {background-position:-814px 0} 
+.e1a-nerd {background-position:-220px 0} 
+.e1a-stuck_out_tongue, img[alt=":P"] {background-position:-3234px 0} 
+.e1a-stuck_out_tongue_winking_eye, img[src="https://img.forumfree.net/html/emoticons/new/blep.svg"] {background-position:-3278px 0} 
+.e1a-stuck_out_tongue_closed_eyes, img[alt=":XP:"], img[data-emoticon=":XP:"] {background-position:-3256px 0} 
+.e1a-drooling_face {background-position:-2816px 0} 
+.e1a-unamused {background-position:-1650px 0} 
+.e1a-disappointed_relieved {background-position:-2728px 0} 
+.e1a-sweat {background-position:-3036px 0} 
+.e1a-pensive, img[src="https://img.forumfree.net/html/emoticons/new/sad.svg"] {background-position:-396px 0} 
+.e1a-confused {background-position:-2574px 0} 
+.e1a-upside_down, img[alt="(:"], img[data-emoticon="(:"] {background-position:-1628px 0} 
+.e1a-money_mouth {background-position:-2156px 0} 
+.e1a-astonished {background-position:-2134px 0} 
+.e1a-slight_frown {background-position:-1122px 0} 
+.e1a-confounded, img[src="https://img.forumfree.net/html/emoticons/new/doh.svg"] {background-position:-2552px 0} 
+.e1a-disappointed {background-position:-2750px 0} 
+.e1a-skull {background-position:-1034px 0} 
+.e1a-worried {background-position:-2046px 0} 
+.e1a-triumph {background-position:-3102px 0} 
+.e1a-cry, img[alt=":cry:"] {background-position:-2662px 0} 
+.e1a-sob, img[src="https://img.forumfree.net/html/emoticons/new/bigcry.svg"] {background-position:-4092px 0} 
+.e1a-frowning {background-position:-3476px 0} 
+.e1a-anguished {background-position:-2200px 0} 
+.e1a-fearful {background-position:-3366px 0} 
+.e1a-weary {background-position:-1738px 0} 
+.e1a-grimacing {background-position:-3564px 0} 
+.e1a-cold_sweat {background-position:-3168px 0} 
+.e1a-scream {background-position:-2992px 0} 
+.e1a-flushed {background-position:-3432px 0} 
+.e1a-dizzy_face {background-position:-2772px 0} 
+.e1a-rage {background-position:-594px 0} 
+.e1a-angry {background-position:-4400px 0} 
+.e1a-innocent {background-position:-1232px 0} 
+.e1a-cowboy {background-position:-3058px 0} 
+.e1a-clown {background-position:-2530px 0} 
+.e1a-lying_face {background-position:-4114px 0} 
+.e1a-mask {background-position:-3124px 0} 
+.e1a-thermometer_face {background-position:-3322px 0} 
+.e1a-head_bandage {background-position:-3080px 0} 
+.e1a-nauseated_face, img[alt=":sick:"] {background-position:-176px 0} 
+.e1a-sneezing_face {background-position:-1430px 0} 
+.e1a-smiling_imp {background-position:-1254px 0} 
+.e1a-imp {background-position:-3828px 0} 
+.e1a-no_good {background-position:-4246px 0} 
+.e1a-face_palm {background-position:-4202px 0} 
+.e1a-shrug {background-position:0 0} 
+.e1a-man_dancing {background-position:-4180px 0} 
+.e1a-dancers {background-position:-2024px 0} 
+.e1a-muscle {background-position:-3410px 0} 
+.e1a-point_left {background-position:-1782px 0} 
+.e1a-point_right {background-position:-1804px 0} 
+.e1a-point_up {background-position:-1870px 0} 
+.e1a-point_up_2 {background-position:-1848px 0} 
+.e1a-middle_finger {background-position:-836px 0} 
+.e1a-alien {background-position:-2882px 0} 
+.e1a-poop {background-position:-506px 0} 
+.e1a-point_down {background-position:-1760px 0} 
+.e1a-v {background-position:-1672px 0} 
+.e1a-fingers_crossed {background-position:-3718px 0} 
+.e1a-metal {background-position:-1012px 0} 
+.e1a-vulcan {background-position:-792px 0} 
+.e1a-call_me {background-position:-2420px 0} 
+.e1a-hand_splayed {background-position:-770px 0} 
+.e1a-raised_hand {background-position:-748px 0} 
+.e1a-ok_hand {background-position:-286px 0} 
+.e1a-thumbsup, img[alt=":b:"], img[data-emoticon=":b:"] {background-position:-1518px 0} 
+.e1a-thumbsdown, img[alt=":p:"], img[data-emoticon=":p:"] {background-position:-1496px 0} 
+.e1a-fist {background-position:-726px 0} 
+.e1a-punch {background-position:-3388px 0} 
+.e1a-left_facing_fist {background-position:-4048px 0} 
+.e1a-raised_back_of_hand {background-position:-704px 0} 
+.e1a-wave {background-position:-1694px 0} 
+.e1a-clap {background-position:-2486px 0} 
+.e1a-right_facing_fist {background-position:-858px 0} 
+.e1a-writing_hand {background-position:-2090px 0} 
+.e1a-open_hands {background-position:-352px 0} 
+.e1a-raised_hands {background-position:-440px 0} 
+.e1a-pray {background-position:-484px 0} 
+.e1a-handshake {background-position:-3696px 0} 
+.e1a-ear {background-position:-2838px 0} 
+.e1a-nose {background-position:-264px 0} 
+.e1a-eyes {background-position:-2948px 0} 
+.e1a-eye {background-position:-2904px 0} 
+.e1a-kiss {background-position:-4026px 0} 
+.e1a-crown {background-position:-2618px 0} 
+.e1a-zzz {background-position:-1056px 0} 
+.e1a-japanese_ogre {background-position:-3872px 0} 
+.e1a-japanese_goblin {background-position:-3850px 0} 
+.e1a-ghost {background-position:-3498px 0} 
+.e1a-robot {background-position:-902px 0} 
+.e1a-smiley_cat {background-position:-1188px 0} 
+.e1a-smile_cat {background-position:-3586px 0} 
+.e1a-joy_cat {background-position:-2442px 0} 
+.e1a-heart_eyes_cat {background-position:-1166px 0} 
+.e1a-smirk_cat {background-position:-2464px 0} 
+.e1a-kissing_cat {background-position:-3938px 0} 
+.e1a-scream_cat {background-position:-1716px 0} 
+.e1a-crying_cat_face {background-position:-2640px 0} 
+.e1a-pouting_cat {background-position:-572px 0} 
+.e1a-boy {background-position:-2310px 0} 
+.e1a-girl {background-position:-3520px 0} 
+.e1a-man {background-position:-4136px 0} 
+.e1a-woman {background-position:-1914px 0} 
+.e1a-older_man {background-position:-308px 0} 
+.e1a-older_woman {background-position:-330px 0} 
+.e1a-baby {background-position:-2244px 0} 
+.e1a-angel {background-position:-2266px 0} 
+.e1a-cop {background-position:-528px 0} 
+.e1a-spy {background-position:-1100px 0} 
+.e1a-guardsman {background-position:-3652px 0} 
+.e1a-construction_worker {background-position:-2596px 0} 
+.e1a-man_with_turban {background-position:-88px 0} 
+.e1a-person_with_blond_hair {background-position:-462px 0} 
+.e1a-santa {background-position:-3344px 0} 
+.e1a-mrs_claus {background-position:-110px 0} 
+.e1a-princess {background-position:-660px 0} 
+.e1a-prince {background-position:-638px 0} 
+.e1a-bride_with_veil {background-position:-2332px 0} 
+.e1a-man_in_tuxedo {background-position:-4334px 0} 
+.e1a-pregnant_woman {background-position:-616px 0} 
+.e1a-man_with_gua_pi_mao {background-position:-66px 0} 
+.e1a-person_frowning {background-position:-4224px 0} 
+.e1a-person_with_pouting_face {background-position:-4356px 0} 
+.e1a-ok_woman {background-position:-4268px 0} 
+.e1a-information_desk_person {background-position:-44px 0} 
+.e1a-raising_hand {background-position:-4378px 0} 
+.e1a-bow {background-position:-4158px 0} 
+.e1a-massage {background-position:-4290px 0} 
+.e1a-haircut {background-position:-4312px 0} 
+.e1a-walking {background-position:-374px 0} 
+.e1a-runner {background-position:-946px 0} 
+.e1a-dancer {background-position:-2684px 0} 
+.e1a-speaking_head {background-position:-1452px 0} 
+.e1a-bust_in_silhouette {background-position:-2376px 0} 
+.e1a-busts_in_silhouette {background-position:-2398px 0} 
+.e1a-selfie {background-position:-990px 0} 
+.e1a-nail_care {background-position:-154px 0} 
+.e1a-footprints {background-position:-3454px 0} 
+.e1a-tongue {background-position:-1562px 0} 
+.e1a-lips {background-position:-132px 0} 
+.e1a-eyeglasses {background-position:-2926px 0} 
+.e1a-dark_sunglasses {background-position:-2706px 0} 
+.e1a-necktie {background-position:-198px 0} 
+.e1a-shirt {background-position:-1606px 0} 
+.e1a-jeans {background-position:-3894px 0} 
+.e1a-dress {background-position:-2794px 0} 
+.e1a-kimono {background-position:-3916px 0} 
+.e1a-bikini {background-position:-2288px 0} 
+.e1a-womans_clothes {background-position:-1958px 0} 
+.e1a-purse {background-position:-682px 0} 
+.e1a-handbag {background-position:-3674px 0} 
+.e1a-pouch {background-position:-550px 0} 
+.e1a-school_satchel {background-position:-968px 0} 
+.e1a-mans_shoe {background-position:-22px 0} 
+.e1a-athletic_shoe {background-position:-2222px 0} 
+.e1a-high_heel {background-position:-3762px 0} 
+.e1a-sandal {background-position:-2002px 0} 
+.e1a-boot {background-position:-1936px 0} 
+.e1a-womans_hat {background-position:-1980px 0} 
+.e1a-tophat {background-position:-1584px 0} 
+.e1a-mortar_board {background-position:-3542px 0} 
+.e1a-helmet_with_cross {background-position:-3740px 0} 
+.e1a-lipstick {background-position:-4070px 0} 
+.e1a-ring {background-position:-880px 0} 
+.e1a-closed_umbrella {background-position:-2508px 0} 
+.e1a-briefcase {background-position:-2354px 0}
