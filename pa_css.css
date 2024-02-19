@@ -1,3 +1,4 @@
+.textinput, .forminput, .codebuttons, option, input, button, optgroup, textarea, .footer span:first-child, .nickname {font-family:quicksand!important}
 input[type="checkbox"], input[type="radio"] {appearance:none; background:none; border:none; font-size:.813rem; line-height:.813rem; outline-style:none; padding: 0; width: 16px} 
 .forminput[id="DST"], .forminput[value="yes"] {background:none; border:none; border-radius: 0; padding: 0; text-align:center} 
 input[type="checkbox"]::before, input[type="radio"]::before {content:'\f111'} 
