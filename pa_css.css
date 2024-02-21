@@ -57,132 +57,133 @@ img[src="https://img.forumfree.net/home/img/flag-pt.png"] {background-position:-
 .emoji_tab_list ul li:nth-child(10)::before {content:'\e2ff'}
 .e1a-grinning, img[alt="=)"], img[data-emoticon="=)"], .e1a-grin, .e1a-joy, img[alt="^U^"], img[data-emoticon="^U^"], .e1a-rofl, img[alt=":XD:"], img[data-emoticon=":XD:"], img[src="https://img.forumfree.net/html/emoticons/new/rotfl.svg"], img[src="https://img.forumfree.net/html/emoticons/new/rotfl.svg"], img[alt=":sick:"], .e1a-smiley, img[alt=":D"], .e1a-smile, .e1a-sweat_smile, .e1a-frowning2, .e1a-frowning2:hover, .e1a-laughing, img[alt="X)"], img[data-emoticon="X)"], img[alt=":lol:"], .e1a-wink, img[alt=";)"], .e1a-blush, img[alt="*^^*"], img[data-emoticon="*^^*"], img[alt="^_^"], img:not([width]):not([height])[src="https://img.forumfree.net/html/emoticons/new/happy.svg"], .e1a-yum, .e1a-sunglasses, .e1a-heart_eyes, img[alt="3_3"], img[data-emoticon="3_3"], .e1a-kissing_heart, img[alt=":*:"], img[data-emoticon=":*:"], img[src="https://img.forumfree.net/html/emoticons/new/kiss.svg"], .e1a-kissing, .e1a-kissing_closed_eyes, .e1a-kissing_smiling_eyes, .e1a-relaxed, .e1a-slight_smile, img[alt=":)"], .e1a-hugging, .e1a-thinking, img[alt=":=/:"], img[data-emoticon=":=/:"], .e1a-neutral_face, img[alt=":|"], img[data-emoticon=":|"], .e1a-expressionless, img[alt="=_="], img[data-emoticon="=_="], .e1a-open_mouth, img[alt=":o:"], .e1a-no_mouth, img[alt=":?"], img[data-emoticon=":?"], .e1a-rolling_eyes, .e1a-smirk, .e1a-persevere, img[src="https://img.forumfree.net/html/emoticons/new/squint.svg"], .e1a-zipper_mouth, .e1a-hushed, .e1a-sleepy, .e1a-tired_face, img[alt=":D:"], img[data-emoticon=":D:"], .e1a-sleeping, .e1a-relieved, .e1a-nerd, .e1a-stuck_out_tongue, img[alt=":P"], .e1a-stuck_out_tongue_winking_eye, img[src="https://img.forumfree.net/html/emoticons/new/blep.svg"], .e1a-stuck_out_tongue_closed_eyes, img[alt=":XP:"], img[data-emoticon=":XP:"], .e1a-drooling_face, .e1a-unamused, .e1a-disappointed_relieved, .e1a-sweat, .e1a-pensive, img[src="https://img.forumfree.net/html/emoticons/new/sad.svg"], .e1a-confused, .e1a-upside_down, img[alt="(:"], img[data-emoticon="(:"], .e1a-money_mouth, .e1a-astonished, .e1a-slight_frown, .e1a-confounded, img[src="https://img.forumfree.net/html/emoticons/new/doh.svg"], .e1a-disappointed, .e1a-skull, .e1a-worried, .e1a-triumph, .e1a-cry, img[alt=":cry:"], .e1a-sob, img[src="https://img.forumfree.net/html/emoticons/new/bigcry.svg"], .e1a-frowning, .e1a-anguished, .e1a-fearful, .e1a-weary, .e1a-grimacing, .e1a-cold_sweat, .e1a-scream, .e1a-flushed, .e1a-dizzy_face, .e1a-rage, .e1a-angry, .e1a-innocent, .e1a-cowboy, .e1a-clown, .e1a-lying_face, .e1a-mask, .e1a-thermometer_face, .e1a-head_bandage, .e1a-nauseated_face, img[alt=":sick:"], .e1a-sneezing_face, .e1a-smiling_imp, .e1a-imp, .e1a-no_good, .e1a-face_palm, .e1a-shrug, .e1a-man_dancing, .e1a-dancers, .e1a-muscle, .e1a-point_left, .e1a-point_right, .e1a-point_up, .e1a-point_up_2, .e1a-middle_finger, .e1a-alien, .e1a-poop, .e1a-point_down, .e1a-v, .e1a-fingers_crossed, .e1a-metal, .e1a-vulcan, .e1a-call_me, .e1a-hand_splayed, .e1a-raised_hand, .e1a-ok_hand, .e1a-thumbsup, img[alt=":b:"], img[data-emoticon=":b:"], .e1a-thumbsdown, img[alt=":p:"], img[data-emoticon=":p:"], .e1a-fist, .e1a-punch, .e1a-left_facing_fist, .e1a-raised_back_of_hand, .e1a-wave, .e1a-clap, .e1a-right_facing_fist, .e1a-writing_hand, .e1a-open_hands, .e1a-raised_hands, .e1a-pray, .e1a-handshake, .e1a-ear, .e1a-nose, .e1a-eyes, .e1a-eye, .e1a-kiss, .e1a-crown, .e1a-zzz, .e1a-japanese_ogre, .e1a-japanese_goblin, .e1a-ghost, .e1a-robot, .e1a-smiley_cat, .e1a-smile_cat, .e1a-joy_cat, .e1a-heart_eyes_cat, .e1a-smirk_cat, .e1a-kissing_cat, .e1a-scream_cat, .e1a-crying_cat_face, .e1a-pouting_cat, .e1a-boy, .e1a-girl, .e1a-man, .e1a-woman, .e1a-older_man, .e1a-older_woman, .e1a-baby, .e1a-angel, .e1a-cop, .e1a-spy, .e1a-guardsman, .e1a-construction_worker, .e1a-man_with_turban, .e1a-person_with_blond_hair, .e1a-santa, .e1a-mrs_claus, .e1a-princess, .e1a-prince, .e1a-bride_with_veil, .e1a-man_in_tuxedo, .e1a-pregnant_woman, .e1a-man_with_gua_pi_mao, .e1a-person_frowning, .e1a-person_with_pouting_face, .e1a-ok_woman, .e1a-information_desk_person, .e1a-raising_hand, .e1a-bow, .e1a-massage, .e1a-haircut, .e1a-walking, .e1a-runner, .e1a-dancer, .e1a-speaking_head, .e1a-bust_in_silhouette, .e1a-busts_in_silhouette, .e1a-selfie, .e1a-nail_care, .e1a-footprints, .e1a-tongue, .e1a-lips, .e1a-eyeglasses, .e1a-dark_sunglasses, .e1a-necktie, .e1a-shirt, .e1a-jeans, .e1a-dress, .e1a-kimono, .e1a-bikini, .e1a-womans_clothes, .e1a-purse, .e1a-handbag, .e1a-pouch, .e1a-school_satchel, .e1a-mans_shoe, .e1a-athletic_shoe, .e1a-high_heel, .e1a-sandal, .e1a-boot, .e1a-womans_hat, .e1a-tophat, .e1a-mortar_board, .e1a-helmet_with_cross, .e1a-lipstick, .e1a-ring, .e1a-closed_umbrella, .e1a-briefcase
  {background:url("https://res.cloudinary.com/dbdf6gwgo/image/upload/v1708463693/forum/Sprites/emojipeople_bd6cgo.png")!important; background-size:4422px 22px!important; color:transparent; height:22px!important; width:22px!important}
-.e1a-grinning, img[alt="=)"], img[data-emoticon="=)"] {background-position:-3608px 0!important} 
-.e1a-grin {background-position:-3630px 0!important} 
-.e1a-joy, img[alt="^U^"], img[data-emoticon="^U^"] {background-position:-3300px 0!important} 
-.e1a-rofl, img[alt=":XD:"], img[data-emoticon=":XD:"], img[src="https://img.forumfree.net/html/emoticons/new/rotfl.svg"] {background-position:-924px 0!important} 
+.e1a-alarm_clock, .e1a-keyboard, .e1a-skull_crossbones, .e1a-hammer_pick, .e1a-crossed_swords, .e1a-scales, .e1a-alembic, .e1a-gear, .e1a-scissors, .e1a-envelope, .e1a-black_nib, .e1a-love_letter, .e1a-bomb, .e1a-hole, .e1a-shopping_bags, .e1a-prayer_beads, .e1a-gem, .e1a-knife, .e1a-amphora, .e1a-map, .e1a-barber, .e1a-frame_photo, .e1a-bellhop, .e1a-door, .e1a-sleeping_accommodation, .e1a-bed, .e1a-couch, .e1a-toilet, .e1a-shower, .e1a-bathtub, .e1a-hourglass, .e1a-hourglass_flowing_sand, .e1a-watch, .e1a-stopwatch, .e1a-timer, .e1a-clock, .e1a-thermometer, .e1a-beach_umbrella, .e1a-balloon, .e1a-tada, .e1a-confetti_ball, .e1a-dolls, .e1a-flags, .e1a-wind_chime, .e1a-ribbon, .e1a-gift, .e1a-joystick, .e1a-postal_horn, .e1a-microphone2, .e1a-level_slider, .e1a-control_knobs, .e1a-radio, .e1a-iphone, .e1a-calling, .e1a-telephone, .e1a-telephone_receiver, .e1a-pager, .e1a-fax, .e1a-battery, .e1a-electric_plug, .e1a-computer, .e1a-desktop, .e1a-printer, .e1a-mouse_three_button, .e1a-trackball, .e1a-minidisc, .e1a-floppy_disk, .e1a-cd, .e1a-dvd, .e1a-movie_camera, .e1a-film_frames, .e1a-projector, .e1a-tv, .e1a-camera, .e1a-camera_with_flash, .e1a-video_camera, .e1a-vhs, .e1a-mag, .e1a-mag_right, .e1a-microscope, .e1a-telescope, .e1a-satellite, .e1a-candle, .e1a-bulb, .e1a-flashlight, .e1a-izakaya_lantern, .e1a-notebook_with_decorative_cover, .e1a-closed_book, .e1a-book, .e1a-green_book, .e1a-blue_book, .e1a-orange_book, .e1a-books, .e1a-notebook, .e1a-ledger, .e1a-page_with_curl, .e1a-scroll, .e1a-page_facing_up, .e1a-newspaper, .e1a-newspaper2, .e1a-bookmark_tabs, .e1a-bookmark, .e1a-label, .e1a-moneybag, .e1a-yen, .e1a-dollar, .e1a-euro, .e1a-pound, .e1a-money_with_wings, .e1a-credit_card, .e1a-e-mail, .e1a-incoming_envelope, .e1a-envelope_with_arrow, .e1a-outbox_tray, .e1a-inbox_tray, .e1a-package, .e1a-mailbox, .e1a-mailbox_closed, .e1a-mailbox_with_mail, .e1a-mailbox_with_no_mail, .e1a-postbox, .e1a-ballot_box, .e1a-pencil2, .e1a-pen_fountain, .e1a-pen_ballpoint, .e1a-paintbrush, .e1a-crayon, .e1a-pencil, .e1a-file_folder, .e1a-open_file_folder, .e1a-dividers, .e1a-date, .e1a-calendar, .e1a-notepad_spiral, .e1a-calendar_spiral, .e1a-card_index, .e1a-chart_with_upwards_trend, .e1a-chart_with_downwards_trend, .e1a-bar_chart, .e1a-clipboard, .e1a-pushpin, .e1a-round_pushpin, .e1a-paperclip, .e1a-paperclips, .e1a-straight_ruler, .e1a-triangular_ruler, .e1a-card_box, .e1a-file_cabinet, .e1a-wastebasket, .e1a-lock, .e1a-unlock, .e1a-lock_with_ink_pen, .e1a-closed_lock_with_key, .e1a-key, .e1a-key2, .e1a-hammer, .e1a-pick, .e1a-tools, .e1a-dagger, .e1a-gun, .e1a-shield, .e1a-wrench, .e1a-nut_and_bolt, .e1a-compression, .e1a-link, .e1a-chains, .e1a-syringe, .e1a-pill, .e1a-smoking, .e1a-coffin, .e1a-urn, .e1a-moyai, .e1a-oil, .e1a-crystal_ball, .e1a-shopping_cart, .e1a-triangular_flag_on_post, .e1a-crossed_flags, .e1a-flag_black, .e1a-flag_white, .e1a-rainbow_flag {background:url("https://res.cloudinary.com/dbdf6gwgo/image/upload/v1708464579/forum/Sprites/object_lrz4oc.png")!important; background-size: 3960px 22px!important; color:transparent; height: 22px!important; width: 22px!important}
+.e1a-grinning, img[alt="=)"], img[data-emoticon="=)"], .e1a-toilet {background-position:-3608px 0!important} 
+.e1a-grin, .e1a-trackball {background-position:-3630px 0!important} 
+.e1a-joy, img[alt="^U^"], img[data-emoticon="^U^"], .e1a-smoking {background-position:-3300px 0!important} 
+.e1a-rofl, img[alt=":XD:"], img[data-emoticon=":XD:"], img[src="https://img.forumfree.net/html/emoticons/new/rotfl.svg"], .e1a-coffin {background-position:-924px 0!important} 
 img[src="https://img.forumfree.net/html/emoticons/new/rotfl.svg"], img[alt=":sick:"] {box-sizing:border-box; height:22px; padding-left:22px; width:22px} 
-.e1a-smiley, img[alt=":D"] {background-position:-1276px 0!important} 
-.e1a-smile {background-position:-1320px 0!important} 
-.e1a-sweat_smile {background-position:-1298px 0!important} 
-.e1a-frowning2, .e1a-frowning2:hover {background-position:-2178px 0!important} 
-.e1a-laughing, img[alt="X)"], img[data-emoticon="X)"], img[alt=":lol:"] {background-position:-1342px 0!important} 
-.e1a-wink, img[alt=";)"] {background-position:-1892px 0!important} 
-.e1a-blush, img[alt="*^^*"], img[data-emoticon="*^^*"], img[alt="^_^"], img:not([width]):not([height])[src="https://img.forumfree.net/html/emoticons/new/happy.svg"] {background-position:-1364px 0!important} 
-.e1a-yum {background-position:-2970px 0!important} 
-.e1a-sunglasses {background-position:-1386px 0!important} 
-.e1a-heart_eyes, img[alt="3_3"], img[data-emoticon="3_3"] {background-position:-1210px 0!important} 
-.e1a-kissing_heart, img[alt=":*:"], img[data-emoticon=":*:"], img[src="https://img.forumfree.net/html/emoticons/new/kiss.svg"] {background-position:-3014px 0!important} 
+.e1a-smiley, img[alt=":D"], .e1a-urn {background-position:-1276px 0!important} 
+.e1a-smile, .e1a-credit_card {background-position:-1320px 0!important} 
+.e1a-sweat_smile, .e1a-green_book {background-position:-1298px 0!important} 
+.e1a-frowning2, .e1a-pen_fountain {background-position:-2178px 0!important} 
+.e1a-laughing, img[alt="X)"], img[data-emoticon="X)"], img[alt=":lol:"], .e1a-hammer_pick {background-position:-1342px 0!important} 
+.e1a-wink, img[alt=";)"], .e1a-paintbrush {background-position:-1892px 0!important} 
+.e1a-blush, img[alt="*^^*"], img[data-emoticon="*^^*"], img[alt="^_^"], img:not([width]):not([height])[src="https://img.forumfree.net/html/emoticons/new/happy.svg"], .e1a-tools {background-position:-1364px 0!important} 
+.e1a-yum, .e1a-radio {background-position:-2970px 0!important} 
+.e1a-sunglasses, .e1a-hourglass {background-position:-1386px 0!important} 
+.e1a-heart_eyes, img[alt="3_3"], img[data-emoticon="3_3"], .e1a-projector {background-position:-1210px 0!important} 
+.e1a-kissing_heart, img[alt=":*:"], img[data-emoticon=":*:"], img[src="https://img.forumfree.net/html/emoticons/new/kiss.svg"], .e1a-ribbon {background-position:-3014px 0!important} 
 .e1a-kissing {background-position:-3960px 0!important} 
 .e1a-kissing_closed_eyes {background-position:-3982px 0!important} 
 .e1a-kissing_smiling_eyes {background-position:-4004px 0!important} 
-.e1a-relaxed {background-position:-1826px 0!important} 
-.e1a-slight_smile, img[alt=":)"] {background-position:-1144px 0!important} 
-.e1a-hugging {background-position:-3784px 0!important} 
-.e1a-thinking, img[alt=":=/:"], img[data-emoticon=":=/:"] {background-position:-1474px 0!important} 
-.e1a-neutral_face, img[alt=":|"], img[data-emoticon=":|"] {background-position:-242px 0!important} 
-.e1a-expressionless, img[alt="=_="], img[data-emoticon="=_="] {background-position:-2860px 0!important} 
-.e1a-open_mouth, img[alt=":o:"] {background-position:-3146px 0!important} 
-.e1a-no_mouth, img[alt=":?"], img[data-emoticon=":?"] {background-position:-3190px 0!important} 
-.e1a-rolling_eyes {background-position:-3212px 0!important} 
-.e1a-smirk {background-position:-1408px 0!important} 
-.e1a-persevere, img[src="https://img.forumfree.net/html/emoticons/new/squint.svg"] {background-position:-418px 0!important} 
-.e1a-zipper_mouth {background-position:-2068px 0!important} 
-.e1a-hushed {background-position:-3806px 0!important} 
-.e1a-sleepy {background-position:-1078px 0!important} 
-.e1a-tired_face, img[alt=":D:"], img[data-emoticon=":D:"] {background-position:-1540px 0!important} 
-.e1a-sleeping {background-position:-2112px 0!important} 
-.e1a-relieved {background-position:-814px 0!important} 
-.e1a-nerd {background-position:-220px 0!important} 
-.e1a-stuck_out_tongue, img[alt=":P"] {background-position:-3234px 0!important} 
-.e1a-stuck_out_tongue_winking_eye, img[src="https://img.forumfree.net/html/emoticons/new/blep.svg"] {background-position:-3278px 0!important} 
-.e1a-stuck_out_tongue_closed_eyes, img[alt=":XP:"], img[data-emoticon=":XP:"] {background-position:-3256px 0!important} 
-.e1a-drooling_face {background-position:-2816px 0!important} 
-.e1a-unamused {background-position:-1650px 0!important} 
-.e1a-disappointed_relieved {background-position:-2728px 0!important} 
-.e1a-sweat {background-position:-3036px 0!important} 
-.e1a-pensive, img[src="https://img.forumfree.net/html/emoticons/new/sad.svg"] {background-position:-396px 0!important} 
-.e1a-confused {background-position:-2574px 0!important} 
-.e1a-upside_down, img[alt="(:"], img[data-emoticon="(:"] {background-position:-1628px 0!important} 
-.e1a-money_mouth {background-position:-2156px 0!important} 
-.e1a-astonished {background-position:-2134px 0!important} 
-.e1a-slight_frown {background-position:-1122px 0!important} 
-.e1a-confounded, img[src="https://img.forumfree.net/html/emoticons/new/doh.svg"] {background-position:-2552px 0!important} 
-.e1a-disappointed {background-position:-2750px 0!important} 
-.e1a-skull {background-position:-1034px 0!important} 
-.e1a-worried {background-position:-2046px 0!important} 
-.e1a-triumph {background-position:-3102px 0!important} 
-.e1a-cry, img[alt=":cry:"] {background-position:-2662px 0!important} 
+.e1a-relaxed, .e1a-dolls {background-position:-1826px 0!important} 
+.e1a-slight_smile, img[alt=":)"], .e1a-confetti_ball {background-position:-1144px 0!important} 
+.e1a-hugging, .e1a-watch {background-position:-3784px 0!important} 
+.e1a-thinking, img[alt=":=/:"], img[data-emoticon=":=/:"], .e1a-electric_plug {background-position:-1474px 0!important} 
+.e1a-neutral_face, img[alt=":|"], img[data-emoticon=":|"], .e1a-bathtub {background-position:-242px 0!important} 
+.e1a-expressionless, img[alt="=_="], img[data-emoticon="=_="], .e1a-postal_horn {background-position:-2860px 0!important} 
+.e1a-open_mouth, img[alt=":o:"], .e1a-scroll {background-position:-3146px 0!important} 
+.e1a-no_mouth, img[alt=":?"], img[data-emoticon=":?"], .e1a-shopping_bags {background-position:-3190px 0!important} 
+.e1a-rolling_eyes, .e1a-shopping_cart {background-position:-3212px 0!important} 
+.e1a-smirk, .e1a-hourglass_flowing_sand {background-position:-1408px 0!important} 
+.e1a-persevere, img[src="https://img.forumfree.net/html/emoticons/new/squint.svg"], .e1a-bomb {background-position:-418px 0!important} 
+.e1a-zipper_mouth, .e1a-minidisc {background-position:-2068px 0!important} 
+.e1a-hushed, .e1a-flag_black {background-position:-3806px 0!important} 
+.e1a-sleepy, .e1a-file_cabinet {background-position:-1078px 0!important} 
+.e1a-tired_face, img[alt=":D:"], img[data-emoticon=":D:"], .e1a-keyboard {background-position:-1540px 0!important} 
+.e1a-sleeping, .e1a-lock {background-position:-2112px 0!important} 
+.e1a-relieved, .e1a-mailbox_closed {background-position:-814px 0!important} 
+.e1a-nerd, .e1a-bar_chart {background-position:-220px 0!important} 
+.e1a-stuck_out_tongue, img[alt=":P"], .e1a-shower {background-position:-3234px 0!important} 
+.e1a-stuck_out_tongue_winking_eye, img[src="https://img.forumfree.net/html/emoticons/new/blep.svg"], .e1a-sleeping_accommodation {background-position:-3278px 0!important} 
+.e1a-stuck_out_tongue_closed_eyes, img[alt=":XP:"], img[data-emoticon=":XP:"], .e1a-skull_crossbones {background-position:-3256px 0!important} 
+.e1a-drooling_face, .e1a-pick {background-position:-2816px 0!important} 
+.e1a-unamused, .e1a-floppy_disk {background-position:-1650px 0!important} 
+.e1a-disappointed_relieved, .e1a-paperclip {background-position:-2728px 0!important} 
+.e1a-sweat, .e1a-mag_right {background-position:-3036px 0!important} 
+.e1a-pensive, img[src="https://img.forumfree.net/html/emoticons/new/sad.svg"], .e1a-blue_book {background-position:-396px 0!important} 
+.e1a-confused, .e1a-orange_book {background-position:-2574px 0!important} 
+.e1a-upside_down, img[alt="(:"], img[data-emoticon="(:"], .e1a-envelope {background-position:-1628px 0!important} 
+.e1a-money_mouth, .e1a-lock_with_ink_pen {background-position:-2156px 0!important} 
+.e1a-astonished, .e1a-clock {background-position:-2134px 0!important} 
+.e1a-slight_frown, .e1a-file_folder {background-position:-1122px 0!important} 
+.e1a-confounded, img[src="https://img.forumfree.net/html/emoticons/new/doh.svg"], .e1a-cd {background-position:-2552px 0!important} 
+.e1a-disappointed, .e1a-pencil2 {background-position:-2750px 0!important} 
+.e1a-skull, .e1a-envelope_with_arrow {background-position:-1034px 0!important} 
+.e1a-worried, .e1a-inbox_tray {background-position:-2046px 0!important} 
+.e1a-triumph, .e1a-satellite {background-position:-3102px 0!important} 
+.e1a-cry, img[alt=":cry:"], .e1a-pager {background-position:-2662px 0!important} 
 .e1a-sob, img[src="https://img.forumfree.net/html/emoticons/new/bigcry.svg"] {background-position:-4092px 0!important} 
-.e1a-frowning {background-position:-3476px 0!important} 
-.e1a-anguished {background-position:-2200px 0!important} 
-.e1a-fearful {background-position:-3366px 0!important} 
-.e1a-weary {background-position:-1738px 0!important} 
-.e1a-grimacing {background-position:-3564px 0!important} 
-.e1a-cold_sweat {background-position:-3168px 0!important} 
-.e1a-scream {background-position:-2992px 0!important} 
-.e1a-flushed {background-position:-3432px 0!important} 
-.e1a-dizzy_face {background-position:-2772px 0!important} 
-.e1a-rage {background-position:-594px 0!important} 
+.e1a-frowning, .e1a-telephone_receiver {background-position:-3476px 0!important} 
+.e1a-anguished, .e1a-calling {background-position:-2200px 0!important} 
+.e1a-fearful, .e1a-stopwatch {background-position:-3366px 0!important} 
+.e1a-weary, .e1a-link {background-position:-1738px 0!important} 
+.e1a-grimacing, .e1a-mouse_three_button {background-position:-3564px 0!important} 
+.e1a-cold_sweat, .e1a-shield {background-position:-3168px 0!important} 
+.e1a-scream, .e1a-rainbow_flag {background-position:-2992px 0!important} 
+.e1a-flushed, .e1a-syringe {background-position:-3432px 0!important} 
+.e1a-dizzy_face, .e1a-computer {background-position:-2772px 0!important} 
+.e1a-rage, .e1a-card_box {background-position:-594px 0!important} 
 .e1a-angry {background-position:-4400px 0!important} 
-.e1a-innocent {background-position:-1232px 0!important} 
-.e1a-cowboy {background-position:-3058px 0!important} 
-.e1a-clown {background-position:-2530px 0!important} 
+.e1a-innocent, .e1a-gem {background-position:-1232px 0!important} 
+.e1a-cowboy, .e1a-newspaper2 {background-position:-3058px 0!important} 
+.e1a-clown, .e1a-mailbox_with_mail {background-position:-2530px 0!important} 
 .e1a-lying_face {background-position:-4114px 0!important} 
-.e1a-mask {background-position:-3124px 0!important} 
-.e1a-thermometer_face {background-position:-3322px 0!important} 
-.e1a-head_bandage {background-position:-3080px 0!important} 
-.e1a-nauseated_face, img[alt=":sick:"] {background-position:-176px 0!important} 
-.e1a-sneezing_face {background-position:-1430px 0!important} 
-.e1a-smiling_imp {background-position:-1254px 0!important} 
-.e1a-imp {background-position:-3828px 0!important} 
+.e1a-mask, .e1a-scales {background-position:-3124px 0!important} 
+.e1a-thermometer_face, .e1a-notepad_spiral {background-position:-3322px 0!important} 
+.e1a-head_bandage, .e1a-round_pushpin {background-position:-3080px 0!important} 
+.e1a-nauseated_face, img[alt=":sick:"], .e1a-yen {background-position:-176px 0!important} 
+.e1a-sneezing_face, .e1a-knife {background-position:-1430px 0!important} 
+.e1a-smiling_imp, .e1a-film_frames {background-position:-1254px 0!important} 
+.e1a-imp, .e1a-flag_white {background-position:-3828px 0!important} 
 .e1a-no_good {background-position:-4246px 0!important} 
 .e1a-face_palm {background-position:-4202px 0!important} 
-.e1a-shrug {background-position:0 0!important} 
+.e1a-shrug, .e1a-alarm_clock {background-position:0 0!important} 
 .e1a-man_dancing {background-position:-4180px 0!important} 
-.e1a-dancers {background-position:-2024px 0!important} 
-.e1a-muscle {background-position:-3410px 0!important} 
-.e1a-point_left {background-position:-1782px 0!important} 
-.e1a-point_right {background-position:-1804px 0!important} 
-.e1a-point_up {background-position:-1870px 0!important} 
-.e1a-point_up_2 {background-position:-1848px 0!important} 
-.e1a-middle_finger {background-position:-836px 0!important} 
-.e1a-alien {background-position:-2882px 0!important} 
-.e1a-poop {background-position:-506px 0!important} 
-.e1a-point_down {background-position:-1760px 0!important} 
-.e1a-v {background-position:-1672px 0!important} 
-.e1a-fingers_crossed {background-position:-3718px 0!important} 
-.e1a-metal {background-position:-1012px 0!important} 
-.e1a-vulcan {background-position:-792px 0!important} 
-.e1a-call_me {background-position:-2420px 0!important} 
-.e1a-hand_splayed {background-position:-770px 0!important} 
-.e1a-raised_hand {background-position:-748px 0!important} 
-.e1a-ok_hand {background-position:-286px 0!important} 
-.e1a-thumbsup, img[alt=":b:"], img[data-emoticon=":b:"] {background-position:-1518px 0!important} 
-.e1a-thumbsdown, img[alt=":p:"], img[data-emoticon=":p:"] {background-position:-1496px 0!important} 
-.e1a-fist {background-position:-726px 0!important} 
-.e1a-punch {background-position:-3388px 0!important} 
+.e1a-dancers, .e1a-crayon {background-position:-2024px 0!important} 
+.e1a-muscle, .e1a-microphone2 {background-position:-3410px 0!important} 
+.e1a-point_left, .e1a-frame_photo {background-position:-1782px 0!important} 
+.e1a-point_right, .e1a-love_letter {background-position:-1804px 0!important} 
+.e1a-point_up, .e1a-pen_ballpoint {background-position:-1870px 0!important} 
+.e1a-point_up_2, .e1a-label {background-position:-1848px 0!important} 
+.e1a-middle_finger, .e1a-mailbox {background-position:-836px 0!important} 
+.e1a-alien, .e1a-postbox {background-position:-2882px 0!important} 
+.e1a-poop, .e1a-date {background-position:-506px 0!important} 
+.e1a-point_down, .e1a-level_slider {background-position:-1760px 0!important} 
+.e1a-v, .e1a-mag {background-position:-1672px 0!important} 
+.e1a-fingers_crossed, .e1a-video_camera {background-position:-3718px 0!important} 
+.e1a-metal, .e1a-control_knobs {background-position:-1012px 0!important} 
+.e1a-vulcan, .e1a-closed_lock_with_key {background-position:-792px 0!important} 
+.e1a-call_me, .e1a-key2 {background-position:-2420px 0!important} 
+.e1a-hand_splayed, .e1a-closed_book {background-position:-770px 0!important} 
+.e1a-raised_hand, .e1a-clipboard {background-position:-748px 0!important} 
+.e1a-ok_hand, .e1a-bed {background-position:-286px 0!important} 
+.e1a-thumbsup, img[alt=":b:"], img[data-emoticon=":b:"], .e1a-gear {background-position:-1518px 0!important} 
+.e1a-thumbsdown, img[alt=":p:"], img[data-emoticon=":p:"], .e1a-dvd {background-position:-1496px 0!important} 
+.e1a-fist, .e1a-chart_with_upwards_trend {background-position:-726px 0!important} 
+.e1a-punch, .e1a-straight_ruler {background-position:-3388px 0!important} 
 .e1a-left_facing_fist {background-position:-4048px 0!important} 
-.e1a-raised_back_of_hand {background-position:-704px 0!important} 
-.e1a-wave {background-position:-1694px 0!important} 
-.e1a-clap {background-position:-2486px 0!important} 
-.e1a-right_facing_fist {background-position:-858px 0!important} 
-.e1a-writing_hand {background-position:-2090px 0!important} 
-.e1a-open_hands {background-position:-352px 0!important} 
-.e1a-raised_hands {background-position:-440px 0!important} 
-.e1a-pray {background-position:-484px 0!important} 
-.e1a-handshake {background-position:-3696px 0!important} 
-.e1a-ear {background-position:-2838px 0!important} 
-.e1a-nose {background-position:-264px 0!important} 
-.e1a-eyes {background-position:-2948px 0!important} 
-.e1a-eye {background-position:-2904px 0!important} 
+.e1a-raised_back_of_hand, .e1a-chart_with_downwards_trend {background-position:-704px 0!important} 
+.e1a-wave, .e1a-joystick {background-position:-1694px 0!important} 
+.e1a-clap, .e1a-unlock {background-position:-2486px 0!important} 
+.e1a-right_facing_fist, .e1a-couch {background-position:-858px 0!important} 
+.e1a-writing_hand, .e1a-iphone {background-position:-2090px 0!important} 
+.e1a-open_hands, .e1a-scissors {background-position:-352px 0!important} 
+.e1a-raised_hands, .e1a-bookmark {background-position:-440px 0!important} 
+.e1a-pray, .e1a-books {background-position:-484px 0!important} 
+.e1a-handshake, .e1a-beach_umbrella {background-position:-3696px 0!important} 
+.e1a-ear, .e1a-gun {background-position:-2838px 0!important} 
+.e1a-nose, .e1a-battery {background-position:-264px 0!important} 
+.e1a-eyes, .e1a-printer {background-position:-2948px 0!important} 
+.e1a-eye, .e1a-prayer_beads {background-position:-2904px 0!important} 
 .e1a-kiss {background-position:-4026px 0!important} 
-.e1a-crown {background-position:-2618px 0!important} 
-.e1a-zzz {background-position:-1056px 0!important} 
-.e1a-japanese_ogre {background-position:-3872px 0!important} 
-.e1a-japanese_goblin {background-position:-3850px 0!important} 
-.e1a-ghost {background-position:-3498px 0!important} 
-.e1a-robot {background-position:-902px 0!important} 
+.e1a-crown, .e1a-package {background-position:-2618px 0!important} 
+.e1a-zzz, .e1a-dagger {background-position:-1056px 0!important} 
+.e1a-japanese_ogre, .e1a-map {background-position:-3872px 0!important} 
+.e1a-japanese_goblin, .e1a-wind_chime {background-position:-3850px 0!important} 
+.e1a-ghost, .e1a-telescope {background-position:-3498px 0!important} 
+.e1a-robot, .e1a-compression {background-position:-902px 0!important} 
 .e1a-smiley_cat {background-position:-1188px 0!important} 
 .e1a-smile_cat {background-position:-3586px 0!important} 
 .e1a-joy_cat {background-position:-2442px 0!important} 
