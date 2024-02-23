@@ -262,5 +262,5 @@ img[src="https://img.forumfree.net/html/emoticons/new/rotfl.svg"], img[alt=":sic
 .e1a-ring, .e1a-bulb {background-position:-880px 0!important} 
 .e1a-closed_umbrella, .e1a-mailbox_with_no_mail {background-position:-2508px 0!important} 
 .e1a-briefcase, .e1a-notebook_with_decorative_cover {background-position:-2354px 0!important}
-.textinput, #usercp .forminput:not(#usercp select.forminput), input.forminput:not(#allegati.hide .forminput, #usercp input[type="checkbox"]) {background:var(--txtim); border:none; border-radius: 4px; color:var(--ftcol); font-size:.875rem; line-height: 1.618; margin: 10px 0; padding: 10px; width: 100%}
+.textinput, #usercp .forminput:not(#usercp select.forminput, #usercp input[type="checkbox"]), input.forminput:not(#allegati.hide .forminput, #usercp input[type="checkbox"]) {background:var(--txtim); border:none; border-radius: 4px; color:var(--ftcol); font-size:.875rem; line-height: 1.618; margin: 10px 0; padding: 10px; width: 100%}
 #usercp .forminput:not(#usercp select.forminput, #usercp input[type="checkbox"]), #usercp .textinput {border: 1px solid var(--ltbrd); height:initial; padding: 8px 12px}
