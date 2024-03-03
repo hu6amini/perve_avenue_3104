@@ -65,59 +65,60 @@ img[alt=":P"], img[data-emoticon=":P"], img[alt=":)"], img[data-emoticon=":)"], 
 .e1a-alarm_clock, .e1a-keyboard, .e1a-skull_crossbones, .e1a-hammer_pick, .e1a-crossed_swords, .e1a-scales, .e1a-alembic, .e1a-gear, .e1a-scissors, .e1a-envelope, .e1a-black_nib, .e1a-love_letter, .e1a-bomb, .e1a-hole, .e1a-shopping_bags, .e1a-prayer_beads, .e1a-gem, .e1a-knife, .e1a-amphora, .e1a-map, .e1a-barber, .e1a-frame_photo, .e1a-bellhop, .e1a-door, .e1a-sleeping_accommodation, .e1a-bed, .e1a-couch, .e1a-toilet, .e1a-shower, .e1a-bathtub, .e1a-hourglass, .e1a-hourglass_flowing_sand, .e1a-watch, .e1a-stopwatch, .e1a-timer, .e1a-clock, .e1a-thermometer, .e1a-beach_umbrella, .e1a-balloon, .e1a-tada, .e1a-confetti_ball, .e1a-dolls, .e1a-flags, .e1a-wind_chime, .e1a-ribbon, .e1a-gift, .e1a-joystick, .e1a-postal_horn, .e1a-microphone2, .e1a-level_slider, .e1a-control_knobs, .e1a-radio, .e1a-iphone, .e1a-calling, .e1a-telephone, .e1a-telephone_receiver, .e1a-pager, .e1a-fax, .e1a-battery, .e1a-electric_plug, .e1a-computer, .e1a-desktop, .e1a-printer, .e1a-mouse_three_button, .e1a-trackball, .e1a-minidisc, .e1a-floppy_disk, .e1a-cd, .e1a-dvd, .e1a-movie_camera, .e1a-film_frames, .e1a-projector, .e1a-tv, .e1a-camera, .e1a-camera_with_flash, .e1a-video_camera, .e1a-vhs, .e1a-mag, .e1a-mag_right, .e1a-microscope, .e1a-telescope, .e1a-satellite, .e1a-candle, .e1a-bulb, .e1a-flashlight, .e1a-izakaya_lantern, .e1a-notebook_with_decorative_cover, .e1a-closed_book, .e1a-book, .e1a-green_book, .e1a-blue_book, .e1a-orange_book, .e1a-books, .e1a-notebook, .e1a-ledger, .e1a-page_with_curl, .e1a-scroll, .e1a-page_facing_up, .e1a-newspaper, .e1a-newspaper2, .e1a-bookmark_tabs, .e1a-bookmark, .e1a-label, .e1a-moneybag, .e1a-yen, .e1a-dollar, .e1a-euro, .e1a-pound, .e1a-money_with_wings, .e1a-credit_card, .e1a-e-mail, .e1a-incoming_envelope, .e1a-envelope_with_arrow, .e1a-outbox_tray, .e1a-inbox_tray, .e1a-package, .e1a-mailbox, .e1a-mailbox_closed, .e1a-mailbox_with_mail, .e1a-mailbox_with_no_mail, .e1a-postbox, .e1a-ballot_box, .e1a-pencil2, .e1a-pen_fountain, .e1a-pen_ballpoint, .e1a-paintbrush, .e1a-crayon, .e1a-pencil, .e1a-file_folder, .e1a-open_file_folder, .e1a-dividers, .e1a-date, .e1a-calendar, .e1a-notepad_spiral, .e1a-calendar_spiral, .e1a-card_index, .e1a-chart_with_upwards_trend, .e1a-chart_with_downwards_trend, .e1a-bar_chart, .e1a-clipboard, .e1a-pushpin, .e1a-round_pushpin, .e1a-paperclip, .e1a-paperclips, .e1a-straight_ruler, .e1a-triangular_ruler, .e1a-card_box, .e1a-file_cabinet, .e1a-wastebasket, .e1a-lock, .e1a-unlock, .e1a-lock_with_ink_pen, .e1a-closed_lock_with_key, .e1a-key, .e1a-key2, .e1a-hammer, .e1a-pick, .e1a-tools, .e1a-dagger, .e1a-gun, .e1a-shield, .e1a-wrench, .e1a-nut_and_bolt, .e1a-compression, .e1a-link, .e1a-chains, .e1a-syringe, .e1a-pill, .e1a-smoking, .e1a-coffin, .e1a-urn, .e1a-moyai, .e1a-oil, .e1a-crystal_ball, .e1a-shopping_cart, .e1a-triangular_flag_on_post, .e1a-crossed_flags, .e1a-flag_black, .e1a-flag_white, .e1a-rainbow_flag {background:url("https://res.cloudinary.com/dbdf6gwgo/image/upload/v1708464579/forum/Sprites/object_lrz4oc.png")!important; background-size:3960px 22px!important; color:transparent; display:inline-block; height:22px!important; width:22px!important}
 .e1a-tickets, .e1a-space_invader, .e1a-fencer, .e1a-horse_racing, .e1a-skier, .e1a-snowboarder, .e1a-golfer, .e1a-surfer, .e1a-rowboat, .e1a-swimmer, .e1a-basketball_player, .e1a-lifter, .e1a-bicyclist, .e1a-mountain_bicyclist, .e1a-cartwheel, .e1a-wrestlers, .e1a-water_polo, .e1a-handball, .e1a-juggling, .e1a-circus_tent, .e1a-performing_arts, .e1a-art, .e1a-slot_machine, .e1a-bath, .e1a-reminder_ribbon, .e1a-ticket, .e1a-military_medal, .e1a-trophy, .e1a-medal, .e1a-first_place, .e1a-second_place, .e1a-third_place, .e1a-soccer, .e1a-baseball, .e1a-basketball, .e1a-volleyball, .e1a-football, .e1a-rugby_football, .e1a-tennis, .e1a-8ball, .e1a-bowling, .e1a-cricket, .e1a-field_hockey, .e1a-hockey, .e1a-ping_pong, .e1a-badminton, .e1a-boxing_glove, .e1a-martial_arts_uniform, .e1a-goal, .e1a-dart, .e1a-golf, .e1a-ice_skate, .e1a-fishing_pole_and_fish, .e1a-running_shirt_with_sash, .e1a-ski, .e1a-video_game, .e1a-game_die, .e1a-musical_score, .e1a-microphone, .e1a-headphones, .e1a-saxophone, .e1a-guitar, .e1a-musical_keyboard, .e1a-trumpet, .e1a-violin, .e1a-drum, .e1a-clapper, .e1a-bow_and_arrow {background:url("https://res.cloudinary.com/dbdf6gwgo/image/upload/v1708803436/forum/Sprites/activity_gdrzyx.png")!important; background-size:1496px 22px!important; display:inline-block; height:22px!important; width:22px!important} 
 .e1a-pig2, .e1a-sunny, .e1a-cloud, .e1a-umbrella2, .e1a-snowman2, .e1a-comet, .e1a-shamrock, .e1a-snowflake, .e1a-see_no_evil, .e1a-hear_no_evil, .e1a-speak_no_evil, .e1a-sweat_drops, .e1a-dash, .e1a-monkey_face, .e1a-monkey, .e1a-gorilla, .e1a-dog, .e1a-dog2, .e1a-poodle, .e1a-wolf, .e1a-fox, .e1a-cat, .e1a-cat2, .e1a-lion_face, .e1a-tiger, .e1a-tiger2, .e1a-leopard, .e1a-horse, .e1a-racehorse, .e1a-deer, .e1a-unicorn, .e1a-cow, .e1a-ox, .e1a-water_buffalo, .e1a-cow2, .e1a-pig, .e1a-boar, .e1a-pig_nose, .e1a-ram, .e1a-sheep, .e1a-goat, .e1a-dromedary_camel, .e1a-camel, .e1a-elephant, .e1a-rhino, .e1a-mouse, .e1a-mouse2, .e1a-rat, .e1a-hamster, .e1a-rabbit, .e1a-rabbit2, .e1a-chipmunk, .e1a-bat, .e1a-bear, .e1a-koala, .e1a-panda_face, .e1a-feet, .e1a-turkey, .e1a-chicken, .e1a-rooster, .e1a-hatching_chick, .e1a-baby_chick, .e1a-hatched_chick, .e1a-bird, .e1a-penguin, .e1a-dove, .e1a-eagle, .e1a-duck, .e1a-owl, .e1a-frog, .e1a-crocodile, .e1a-turtle, .e1a-lizard, .e1a-snake, .e1a-dragon_face, .e1a-dragon, .e1a-whale, .e1a-whale2, .e1a-dolphin, .e1a-fish, .e1a-tropical_fish, .e1a-blowfish, .e1a-shark, .e1a-octopus, .e1a-shell, .e1a-crab, .e1a-shrimp, .e1a-squid, .e1a-butterfly, .e1a-snail, .e1a-bug, .e1a-ant, .e1a-bee, .e1a-beetle, .e1a-spider, .e1a-spider_web, .e1a-scorpion, .e1a-bouquet, .e1a-cherry_blossom, .e1a-rosette, .e1a-rose, .e1a-wilted_rose, .e1a-hibiscus, .e1a-sunflower, .e1a-blossom, .e1a-tulip, .e1a-seedling, .e1a-evergreen_tree, .e1a-deciduous_tree, .e1a-palm_tree, .e1a-cactus, .e1a-ear_of_rice, .e1a-herb, .e1a-four_leaf_clover, .e1a-maple_leaf, .e1a-fallen_leaf, .e1a-leaves, .e1a-mushroom, .e1a-chestnut, .e1a-earth_africa, .e1a-earth_americas, .e1a-earth_asia, .e1a-new_moon, .e1a-waxing_crescent_moon, .e1a-first_quarter_moon, .e1a-waxing_gibbous_moon, .e1a-full_moon, .e1a-waning_gibbous_moon, .e1a-last_quarter_moon, .e1a-waning_crescent_moon, .e1a-crescent_moon, .e1a-new_moon_with_face, .e1a-first_quarter_moon_with_face, .e1a-last_quarter_moon_with_face, .e1a-full_moon_with_face, .e1a-sun_with_face, .e1a-star, .e1a-star2, .e1a-partly_sunny, .e1a-thunder_cloud_rain, .e1a-white_sun_small_cloud, .e1a-white_sun_cloud, .e1a-white_sun_rain_cloud, .e1a-cloud_rain, .e1a-cloud_snow, .e1a-cloud_lightning, .e1a-cloud_tornado, .e1a-fog, .e1a-wind_blowing_face, .e1a-zap, .e1a-snowman, .e1a-fire, .e1a-droplet, .e1a-ocean, .e1a-jack_o_lantern, .e1a-christmas_tree, .e1a-tanabata_tree, .e1a-bamboo {background:url("https://res.cloudinary.com/dbdf6gwgo/image/upload/v1709060734/forum/Sprites/nature_sfdsh2.png")!important; background-size:3476px 22px!important; color:transparent; display:inline-block; height:22px!important; width:22px!important}
+.e1a-grapes, .e1a-melon, .e1a-watermelon, .e1a-tangerine, .e1a-lemon, .e1a-banana, .e1a-pineapple, .e1a-apple, .e1a-green_apple, .e1a-pear, .e1a-peach, .e1a-cherries, .e1a-strawberry, .e1a-kiwi, .e1a-tomato, .e1a-avocado, .e1a-eggplant, .e1a-potato, .e1a-carrot, .e1a-corn, .e1a-hot_pepper, .e1a-cucumber, .e1a-peanuts, .e1a-bread, .e1a-croissant, .e1a-french_bread, .e1a-pancakes, .e1a-cheese, .e1a-meat_on_bone, .e1a-poultry_leg, .e1a-bacon, .e1a-hamburger, .e1a-fries, .e1a-pizza, .e1a-hotdog, .e1a-taco, .e1a-burrito, .e1a-stuffed_flatbread, .e1a-egg, .e1a-cooking, .e1a-shallow_pan_of_food, .e1a-stew, .e1a-salad, .e1a-popcorn, .e1a-bento, .e1a-rice_cracker, .e1a-rice_ball, .e1a-rice, .e1a-curry, .e1a-ramen, .e1a-spaghetti, .e1a-sweet_potato, .e1a-oden, .e1a-sushi, .e1a-fried_shrimp, .e1a-fish_cake, .e1a-dango, .e1a-icecream, .e1a-shaved_ice, .e1a-ice_cream, .e1a-doughnut, .e1a-birthday, .e1a-cake, .e1a-chocolate_bar, .e1a-candy, .e1a-lollipop, .e1a-custard, .e1a-honey_pot, .e1a-baby_bottle, .e1a-milk, .e1a-tea, .e1a-sake, .e1a-champagne, .e1a-wine_glass, .e1a-cocktail, .e1a-tropical_drink, .e1a-beer, .e1a-beers, .e1a-champagne_glass, .e1a-tumbler_glass, .e1a-fork_knife_plate, .e1a-fork_and_knife, .e1a-spoon{background:url("https://res.cloudinary.com/dbdf6gwgo/image/upload/v1709451513/forum/Sprites/food_aajzns.png")!important;background-size:1826px 22px!important;color:transparent;display:inline-block;height:22px!important;width:22px!important} 
 .e1a-grinning, .e1a-toilet {background-position:-3608px 0!important} 
 .e1a-grin, .e1a-trackball {background-position:-3630px 0!important} 
 .e1a-joy, .e1a-smoking, .e1a-new_moon_with_face {background-position:-3300px 0!important} 
-.e1a-rofl, .e1a-coffin, .e1a-reminder_ribbon, .e1a-turtle {background-position:-924px 0!important} 
+.e1a-rofl, .e1a-coffin, .e1a-reminder_ribbon, .e1a-turtle, .e1a-hot_pepper {background-position:-924px 0!important} 
 img[alt=":sick:"] {box-sizing:border-box; height:22px; padding-left:22px; width:22px} 
-.e1a-smiley, .e1a-urn, .e1a-third_place, .e1a-wolf {background-position:-1276px 0!important} 
-.e1a-smile, .e1a-credit_card, .e1a-trophy, .e1a-baby_chick {background-position:-1320px 0!important} 
-.e1a-sweat_smile, .e1a-green_book, .e1a-ticket, .e1a-ant {background-position:-1298px 0!important} 
+.e1a-smiley, .e1a-urn, .e1a-third_place, .e1a-wolf, .e1a-poultry_leg {background-position:-1276px 0!important} 
+.e1a-smile, .e1a-credit_card, .e1a-trophy, .e1a-baby_chick, .e1a-rice_ball {background-position:-1320px 0!important} 
+.e1a-sweat_smile, .e1a-green_book, .e1a-ticket, .e1a-ant, .e1a-apple {background-position:-1298px 0!important} 
 .e1a-frowning2, .e1a-pen_fountain, .e1a-dragon_face {background-position:-2178px 0!important} 
-.e1a-laughing, .e1a-hammer_pick, .e1a-trumpet, .e1a-camel {background-position:-1342px 0!important} 
+.e1a-laughing, .e1a-hammer_pick, .e1a-trumpet, .e1a-camel, .e1a-rice_cracker {background-position:-1342px 0!important} 
 .e1a-wink, .e1a-paintbrush, .e1a-cow2 {background-position:-1892px 0!important} 
-.e1a-blush, .e1a-tools, .e1a-violin, .e1a-bat {background-position:-1364px 0!important} 
+.e1a-blush, .e1a-tools, .e1a-violin, .e1a-bat, .e1a-sweet_potato {background-position:-1364px 0!important} 
 .e1a-yum, .e1a-radio, .e1a-koala {background-position:-2970px 0!important} 
-.e1a-sunglasses, .e1a-hourglass, .e1a-video_game, .e1a-bear {background-position:-1386px 0!important} 
-.e1a-heart_eyes, .e1a-projector, .e1a-swimmer, .e1a-white_sun_small_cloud {background-position:-1210px 0!important} 
+.e1a-sunglasses, .e1a-hourglass, .e1a-video_game, .e1a-bear, .e1a-sake {background-position:-1386px 0!important} 
+.e1a-heart_eyes, .e1a-projector, .e1a-swimmer, .e1a-white_sun_small_cloud, .e1a-popcorn {background-position:-1210px 0!important} 
 .e1a-kissing_heart, .e1a-ribbon, .e1a-last_quarter_moon {background-position:-3014px 0!important} 
 .e1a-kissing {background-position:-3960px 0!important} 
 .e1a-kissing_closed_eyes {background-position:-3982px 0!important} 
 .e1a-kissing_smiling_eyes {background-position:-4004px 0!important} 
 .e1a-relaxed, .e1a-dolls, .e1a-cloud_rain {background-position:-1826px 0!important} 
-.e1a-slight_smile, .e1a-confetti_ball, .e1a-soccer, .e1a-star {background-position:-1144px 0!important} 
+.e1a-slight_smile, .e1a-confetti_ball, .e1a-soccer, .e1a-star, .e1a-peanuts {background-position:-1144px 0!important} 
 .e1a-hugging, .e1a-watch {background-position:-3784px 0!important} 
-.e1a-thinking, .e1a-electric_plug, .e1a-wrestlers, .e1a-blowfish {background-position:-1474px 0!important} 
-.e1a-neutral_face, .e1a-bathtub, img[alt=":XP:"], img[data-emoticon=":XP:"], .e1a-bowling, .e1a-rose {background-position:-242px 0!important} 
+.e1a-thinking, .e1a-electric_plug, .e1a-wrestlers, .e1a-blowfish, .e1a-pizza {background-position:-1474px 0!important} 
+.e1a-neutral_face, .e1a-bathtub, img[alt=":XP:"], img[data-emoticon=":XP:"], .e1a-bowling, .e1a-rose, .e1a-burrito {background-position:-242px 0!important} 
 .e1a-expressionless, .e1a-postal_horn, .e1a-zap {background-position:-2860px 0!important} 
 .e1a-open_mouth, img[alt=":o:"], .e1a-scroll, .e1a-maple_leaf {background-position:-3146px 0!important} 
 .e1a-no_mouth, .e1a-shopping_bags, .e1a-monkey_face {background-position:-3190px 0!important} 
 .e1a-rolling_eyes, .e1a-shopping_cart, .e1a-mouse2 {background-position:-3212px 0!important} 
-.e1a-smirk, .e1a-hourglass_flowing_sand, .e1a-volleyball, .e1a-bird {background-position:-1408px 0!important} 
-.e1a-persevere, .e1a-bomb, img[alt="=)"], img[data-emoticon="=)"], img[alt=":D"], img[data-emoticon=":D"], .e1a-field_hockey, .e1a-shrimp {background-position:-418px 0!important} 
+.e1a-smirk, .e1a-hourglass_flowing_sand, .e1a-volleyball, .e1a-bird, .e1a-shallow_pan_of_food {background-position:-1408px 0!important} 
+.e1a-persevere, .e1a-bomb, img[alt="=)"], img[data-emoticon="=)"], img[alt=":D"], img[data-emoticon=":D"], .e1a-field_hockey, .e1a-shrimp, .e1a-cocktail {background-position:-418px 0!important} 
 .e1a-zipper_mouth, .e1a-minidisc, .e1a-dog2 {background-position:-2068px 0!important} 
 .e1a-hushed, .e1a-flag_black {background-position:-3806px 0!important} 
-.e1a-sleepy, .e1a-file_cabinet, .e1a-skier, .e1a-waxing_crescent_moon {background-position:-1078px 0!important} 
-.e1a-tired_face, .e1a-keyboard, .e1a-bug {background-position:-1540px 0!important} 
+.e1a-sleepy, .e1a-file_cabinet, .e1a-skier, .e1a-waxing_crescent_moon, .e1a-oden {background-position:-1078px 0!important} 
+.e1a-tired_face, .e1a-keyboard, .e1a-bug, .e1a-spoon {background-position:-1540px 0!important} 
 .e1a-sleeping, .e1a-lock, .e1a-dove {background-position:-2112px 0!important} 
-.e1a-relieved, .e1a-mailbox_closed, .e1a-musical_keyboard, .e1a-tiger2 {background-position:-814px 0!important} 
-.e1a-nerd, .e1a-bar_chart, img[alt=":?"], img[data-emoticon=":?"], .e1a-bow_and_arrow, .e1a-rooster {background-position:-220px 0!important} 
+.e1a-relieved, .e1a-mailbox_closed, .e1a-musical_keyboard, .e1a-tiger2, .e1a-green_apple {background-position:-814px 0!important} 
+.e1a-nerd, .e1a-bar_chart, img[alt=":?"], img[data-emoticon=":?"], .e1a-bow_and_arrow, .e1a-rooster, .e1a-bread {background-position:-220px 0!important} 
 .e1a-stuck_out_tongue, .e1a-shower, .e1a-mouse {background-position:-3234px 0!important} 
 .e1a-stuck_out_tongue_winking_eye, .e1a-sleeping_accommodation, .e1a-new_moon {background-position:-3278px 0!important} 
 .e1a-stuck_out_tongue_closed_eyes, .e1a-skull_crossbones, .e1a-mushroom {background-position:-3256px 0!important} 
 .e1a-drooling_face, .e1a-pick, .e1a-herb {background-position:-2816px 0!important} 
-.e1a-unamused, .e1a-floppy_disk, .e1a-cherry_blossom {background-position:-1650px 0!important} 
+.e1a-unamused, .e1a-floppy_disk, .e1a-cherry_blossom, .e1a-taco {background-position:-1650px 0!important} 
 .e1a-disappointed_relieved, .e1a-paperclip, .e1a-gorilla {background-position:-2728px 0!important} 
 .e1a-sweat, .e1a-mag_right, .e1a-last_quarter_moon_with_face {background-position:-3036px 0!important} 
-.e1a-pensive, img[src="https://img.forumfree.net/html/emoticons/new/sad.svg"], .e1a-blue_book, img[alt="3_3"], img[data-emoticon="3_3"], .e1a-fencer, .e1a-sheep {background-position:-396px 0!important} 
+.e1a-pensive, img[src="https://img.forumfree.net/html/emoticons/new/sad.svg"], .e1a-blue_book, img[alt="3_3"], img[data-emoticon="3_3"], .e1a-fencer, .e1a-sheep, .e1a-champagne_glass {background-position:-396px 0!important} 
 .e1a-confused, .e1a-orange_book, .e1a-fox {background-position:-2574px 0!important} 
-.e1a-upside_down, .e1a-envelope, .e1a-cat {background-position:-1628px 0!important} 
+.e1a-upside_down, .e1a-envelope, .e1a-cat, .e1a-sushi {background-position:-1628px 0!important} 
 .e1a-money_mouth, .e1a-lock_with_ink_pen, .e1a-dolphin {background-position:-2156px 0!important} 
 .e1a-astonished, .e1a-clock, .e1a-dragon {background-position:-2134px 0!important} 
-.e1a-slight_frown, .e1a-file_folder, .e1a-snowboarder, .e1a-whale2 {background-position:-1122px 0!important} 
+.e1a-slight_frown, .e1a-file_folder, .e1a-snowboarder, .e1a-whale2, .e1a-peach {background-position:-1122px 0!important} 
 .e1a-confounded, .e1a-cd, .e1a-four_leaf_clover {background-position:-2552px 0!important} 
 .e1a-disappointed, .e1a-pencil2, .e1a-hamster {background-position:-2750px 0!important} 
-.e1a-skull, .e1a-envelope_with_arrow, .e1a-running_shirt_with_sash, .e1a-water_buffalo {background-position:-1034px 0!important} 
+.e1a-skull, .e1a-envelope_with_arrow, .e1a-running_shirt_with_sash, .e1a-water_buffalo, .e1a-meat_on_bone {background-position:-1034px 0!important} 
 .e1a-worried, .e1a-inbox_tray, .e1a-deer {background-position:-2046px 0!important} 
 .e1a-triumph, .e1a-satellite, .e1a-lion_face {background-position:-3102px 0!important} 
 .e1a-cry, img[alt=":cry:"], .e1a-pager, .e1a-full_moon_with_face {background-position:-2662px 0!important} 
@@ -125,145 +126,145 @@ img[alt=":sick:"] {box-sizing:border-box; height:22px; padding-left:22px; width:
 .e1a-frowning, .e1a-telephone_receiver {background-position:-3476px 0!important} 
 .e1a-anguished, .e1a-calling, .e1a-dromedary_camel {background-position:-2200px 0!important} 
 .e1a-fearful, .e1a-stopwatch, .e1a-ox {background-position:-3366px 0!important} 
-.e1a-weary, .e1a-link, .e1a-christmas_tree {background-position:-1738px 0!important} 
+.e1a-weary, .e1a-link, .e1a-christmas_tree, .e1a-tropical_drink {background-position:-1738px 0!important} 
 .e1a-grimacing, .e1a-mouse_three_button {background-position:-3564px 0!important} 
 .e1a-cold_sweat, .e1a-shield, .e1a-monkey {background-position:-3168px 0!important} 
 .e1a-scream, .e1a-rainbow_flag, .e1a-beetle {background-position:-2992px 0!important} 
 .e1a-flushed, .e1a-syringe, .e1a-feet {background-position:-3432px 0!important} 
 .e1a-dizzy_face, .e1a-computer, .e1a-hatching_chick {background-position:-2772px 0!important} 
-.e1a-rage, .e1a-card_box, img[alt=">_<"], img[data-emoticon=">_<"], .e1a-handball, .e1a-spider_web {background-position:-594px 0!important} 
+.e1a-rage, .e1a-card_box, img[alt=">_<"], img[data-emoticon=">_<"], .e1a-handball, .e1a-spider_web, .e1a-doughnut {background-position:-594px 0!important} 
 .e1a-angry {background-position:-4400px 0!important} 
-.e1a-innocent, .e1a-gem, .e1a-ping_pong, .e1a-wilted_rose {background-position:-1232px 0!important} 
+.e1a-innocent, .e1a-gem, .e1a-ping_pong, .e1a-wilted_rose, .e1a-potato {background-position:-1232px 0!important} 
 .e1a-cowboy, .e1a-newspaper2, .e1a-leaves {background-position:-3058px 0!important} 
 .e1a-clown, .e1a-mailbox_with_mail, .e1a-fog {background-position:-2530px 0!important} 
 .e1a-lying_face {background-position:-4114px 0!important} 
 .e1a-mask, .e1a-scales, .e1a-lizard {background-position:-3124px 0!important} 
 .e1a-thermometer_face, .e1a-calendar_spiral, .e1a-octopus {background-position:-3322px 0!important} 
 .e1a-head_bandage, .e1a-round_pushpin, .e1a-leopard {background-position:-3080px 0!important} 
-.e1a-nauseated_face, img[alt=":sick:"], .e1a-yen, img[alt="=_="], img[data-emoticon="=_="], .e1a-bicyclist, .e1a-rat {background-position:-176px 0!important} 
-.e1a-sneezing_face, .e1a-knife, .e1a-water_polo, .e1a-sunny {background-position:-1430px 0!important} 
-.e1a-smiling_imp, .e1a-film_frames, .e1a-tennis, .e1a-wind_blowing_face {background-position:-1254px 0!important} 
+.e1a-nauseated_face, img[alt=":sick:"], .e1a-yen, img[alt="=_="], img[data-emoticon="=_="], .e1a-bicyclist, .e1a-rat, .e1a-birthday {background-position:-176px 0!important} 
+.e1a-sneezing_face, .e1a-knife, .e1a-water_polo, .e1a-sunny, .e1a-shaved_ice {background-position:-1430px 0!important} 
+.e1a-smiling_imp, .e1a-film_frames, .e1a-tennis, .e1a-wind_blowing_face, .e1a-stew {background-position:-1254px 0!important} 
 .e1a-imp, .e1a-flag_white {background-position:-3828px 0!important} 
 .e1a-no_good {background-position:-4246px 0!important} 
 .e1a-face_palm {background-position:-4202px 0!important} 
-.e1a-shrug, .e1a-alarm_clock, img[alt=":]"], img[data-emoticon=":]"], .e1a-tickets, .e1a-pig2 {background-position:0 0!important} 
+.e1a-shrug, .e1a-alarm_clock, img[alt=":]"], img[data-emoticon=":]"], .e1a-tickets, .e1a-pig2, .e1a-eggplant {background-position:0 0!important} 
 .e1a-man_dancing {background-position:-4180px 0!important} 
 .e1a-dancers, .e1a-crayon, e1a-deciduous_tree {background-position:-2024px 0!important} 
 .e1a-muscle, .e1a-microphone2, .e1a-panda_face {background-position:-3410px 0!important} 
-.e1a-point_left, .e1a-frame_photo, .e1a-cloud_lightning {background-position:-1782px 0!important} 
-.e1a-point_right, .e1a-love_letter, .e1a-cloud_snow {background-position:-1804px 0!important} 
+.e1a-point_left, .e1a-frame_photo, .e1a-cloud_lightning, .e1a-watermelon {background-position:-1782px 0!important} 
+.e1a-point_right, .e1a-love_letter, .e1a-cloud_snow, .e1a-wine_glass {background-position:-1804px 0!important} 
 .e1a-point_up, .e1a-pen_ballpoint, .e1a-comet {background-position:-1870px 0!important} 
 .e1a-point_up_2, .e1a-label, .e1a-cloud_tornado {background-position:-1848px 0!important} 
-.e1a-middle_finger, .e1a-mailbox, .e1a-musical_score, .e1a-tiger {background-position:-836px 0!important} 
+.e1a-middle_finger, .e1a-mailbox, .e1a-musical_score, .e1a-tiger, .e1a-salad {background-position:-836px 0!important} 
 .e1a-alien, .e1a-postbox, .e1a-bee {background-position:-2882px 0!important} 
-.e1a-poop, .e1a-date, img[alt=":p:"], img[data-emoticon=":p:"], .e1a-game_die, .e1a-snowman2 {background-position:-506px 0!important} 
-.e1a-point_down, .e1a-level_slider, .e1a-cloud {background-position:-1760px 0!important} 
-.e1a-v, .e1a-mag, .e1a-chestnut {background-position:-1672px 0!important} 
+.e1a-poop, .e1a-date, img[alt=":p:"], img[data-emoticon=":p:"], .e1a-game_die, .e1a-snowman2, .e1a-cucumber {background-position:-506px 0!important} 
+.e1a-point_down, .e1a-level_slider, .e1a-cloud, .e1a-tumbler_glass {background-position:-1760px 0!important} 
+.e1a-v, .e1a-mag, .e1a-chestnut, .e1a-tangerine {background-position:-1672px 0!important} 
 .e1a-fingers_crossed, .e1a-video_camera {background-position:-3718px 0!important} 
-.e1a-metal, .e1a-control_knobs, .e1a-second_place, .e1a-waning_gibbous_moon {background-position:-1012px 0!important} 
-.e1a-vulcan, .e1a-closed_lock_with_key, .e1a-military_medal, .e1a-thunder_cloud_rain {background-position:-792px 0!important} 
+.e1a-metal, .e1a-control_knobs, .e1a-second_place, .e1a-waning_gibbous_moon, .e1a-lollipop {background-position:-1012px 0!important} 
+.e1a-vulcan, .e1a-closed_lock_with_key, .e1a-military_medal, .e1a-thunder_cloud_rain, .e1a-grapes {background-position:-792px 0!important} 
 .e1a-call_me, .e1a-key2, .e1a-fallen_leaf {background-position:-2420px 0!important} 
-.e1a-hand_splayed, .e1a-closed_book, .e1a-mountain_bicyclist, .e1a-sun_with_face {background-position:-770px 0!important} 
-.e1a-raised_hand, .e1a-clipboard, .e1a-juggling, .e1a-tanabata_tree {background-position:-748px 0!important} 
-.e1a-ok_hand, .e1a-bed, img[alt="^U^"], img[data-emoticon="^U^"], .e1a-circus_tent, .e1a-scorpion {background-position:-286px 0!important} 
-.e1a-thumbsup, .e1a-gear, .e1a-bouquet {background-position:-1518px 0!important} 
-.e1a-thumbsdown, .e1a-dvd, .e1a-boar {background-position:-1496px 0!important} 
-.e1a-fist, .e1a-chart_with_upwards_trend, .e1a-microphone, .e1a-sunflower {background-position:-726px 0!important} 
+.e1a-hand_splayed, .e1a-closed_book, .e1a-mountain_bicyclist, .e1a-sun_with_face, .e1a-milk {background-position:-770px 0!important} 
+.e1a-raised_hand, .e1a-clipboard, .e1a-juggling, .e1a-tanabata_tree, .e1a-fried_shrimp {background-position:-748px 0!important} 
+.e1a-ok_hand, .e1a-bed, img[alt="^U^"], img[data-emoticon="^U^"], .e1a-circus_tent, .e1a-scorpion, .e1a-carrot {background-position:-286px 0!important} 
+.e1a-thumbsup, .e1a-gear, .e1a-bouquet, .e1a-spaghetti {background-position:-1518px 0!important} 
+.e1a-thumbsdown, .e1a-dvd, .e1a-boar, .e1a-icecream {background-position:-1496px 0!important} 
+.e1a-fist, .e1a-chart_with_upwards_trend, .e1a-microphone, .e1a-sunflower, .e1a-fries {background-position:-726px 0!important} 
 .e1a-punch, .e1a-straight_ruler, .e1a-palm_tree {background-position:-3388px 0!important} 
 .e1a-left_facing_fist {background-position:-4048px 0!important} 
-.e1a-raised_back_of_hand, .e1a-chart_with_downwards_trend, .e1a-martial_arts_uniform, .e1a-partly_sunny {background-position:-704px 0!important} 
-.e1a-wave, .e1a-joystick, .e1a-chicken {background-position:-1694px 0!important} 
+.e1a-raised_back_of_hand, .e1a-chart_with_downwards_trend, .e1a-martial_arts_uniform, .e1a-partly_sunny, .e1a-fork_knife_plate {background-position:-704px 0!important} 
+.e1a-wave, .e1a-joystick, .e1a-chicken, .e1a-tea {background-position:-1694px 0!important} 
 .e1a-clap, .e1a-unlock, .e1a-first_quarter_moon_with_face {background-position:-2486px 0!important} 
-.e1a-right_facing_fist, .e1a-couch, .e1a-performing_arts, .e1a-tropical_fish {background-position:-858px 0!important} 
+.e1a-right_facing_fist, .e1a-couch, .e1a-performing_arts, .e1a-tropical_fish, .e1a-hamburger {background-position:-858px 0!important} 
 .e1a-writing_hand, .e1a-iphone, .e1a-dog {background-position:-2090px 0!important} 
-.e1a-open_hands, .e1a-scissors, img[alt=":|"], img[data-emoticon=":|"], .e1a-dart, .e1a-shamrock {background-position:-352px 0!important} 
-.e1a-raised_hands, .e1a-bookmark, img[alt="X)"], img[data-emoticon="X)"], img[alt=":lol:"], .e1a-first_place, .e1a-snail {background-position:-440px 0!important} 
-.e1a-pray, .e1a-books, img[alt=":=/:"], img[data-emoticon=":=/:"], .e1a-golf, .e1a-snowflake {background-position:-484px 0!important} 
+.e1a-open_hands, .e1a-scissors, img[alt=":|"], img[data-emoticon=":|"], .e1a-dart, .e1a-shamrock, .e1a-chocolate_bar {background-position:-352px 0!important} 
+.e1a-raised_hands, .e1a-bookmark, img[alt="X)"], img[data-emoticon="X)"], img[alt=":lol:"], .e1a-first_place, .e1a-snail, .e1a-rice {background-position:-440px 0!important} 
+.e1a-pray, .e1a-books, img[alt=":=/:"], img[data-emoticon=":=/:"], .e1a-golf, .e1a-snowflake, .e1a-croissant {background-position:-484px 0!important} 
 .e1a-handshake, .e1a-beach_umbrella {background-position:-3696px 0!important} 
 .e1a-ear, .e1a-gun, .e1a-hibiscus {background-position:-2838px 0!important} 
-.e1a-nose, .e1a-battery, img[alt=";P"], img[data-emoticon=";P"], .e1a-boxing_glove, .e1a-rosette {background-position:-264px 0!important} 
+.e1a-nose, .e1a-battery, img[alt=";P"], img[data-emoticon=";P"], .e1a-boxing_glove, .e1a-rosette, .e1a-candy {background-position:-264px 0!important} 
 .e1a-eyes, .e1a-printer, .e1a-jack_o_lantern {background-position:-2948px 0!important} 
 .e1a-eye, .e1a-prayer_beads, .e1a-racehorse {background-position:-2904px 0!important} 
 .e1a-kiss {background-position:-4026px 0!important} 
 .e1a-crown, .e1a-package, .e1a-hatched_chick {background-position:-2618px 0!important} 
-.e1a-zzz, .e1a-dagger, .e1a-ski, .e1a-ocean {background-position:-1056px 0!important} 
+.e1a-zzz, .e1a-dagger, .e1a-ski, .e1a-ocean, .e1a-melon {background-position:-1056px 0!important} 
 .e1a-japanese_ogre, .e1a-map {background-position:-3872px 0!important} 
 .e1a-japanese_goblin, .e1a-wind_chime {background-position:-3850px 0!important} 
 .e1a-ghost, .e1a-telescope {background-position:-3498px 0!important} 
-.e1a-robot, .e1a-compression, .e1a-cartwheel, .e1a-turkey {background-position:-902px 0!important} 
-.e1a-smiley_cat, .e1a-crossed_flags, .e1a-surfer, .e1a-white_sun_rain_cloud {background-position:-1188px 0!important} 
+.e1a-robot, .e1a-compression, .e1a-cartwheel, .e1a-turkey, .e1a-hotdog {background-position:-902px 0!important} 
+.e1a-smiley_cat, .e1a-crossed_flags, .e1a-surfer, .e1a-white_sun_rain_cloud, .e1a-pineapple {background-position:-1188px 0!important} 
 .e1a-smile_cat, .e1a-timer {background-position:-3586px 0!important} 
 .e1a-joy_cat, .e1a-book, .e1a-fire {background-position:-2442px 0!important} 
-.e1a-heart_eyes_cat, .e1a-fax, .e1a-medal, .e1a-white_sun_cloud {background-position:-1166px 0!important} 
+.e1a-heart_eyes_cat, .e1a-fax, .e1a-medal, .e1a-white_sun_cloud, .e1a-pear {background-position:-1166px 0!important} 
 .e1a-smirk_cat, .e1a-open_file_folder, .e1a-first_quarter_moon {background-position:-2464px 0!important} 
 .e1a-kissing_cat, .e1a-desktop {background-position:-3938px 0!important} 
-.e1a-scream_cat, .e1a-key, .e1a-chipmunk {background-position:-1716px 0!important} 
+.e1a-scream_cat, .e1a-key, .e1a-chipmunk, .e1a-tomato {background-position:-1716px 0!important} 
 .e1a-crying_cat_face, .e1a-page_facing_up, .e1a-full_moon {background-position:-2640px 0!important} 
-.e1a-pouting_cat, .e1a-candle, img[alt="(:"], img[data-emoticon="(:"], .e1a-guitar, .e1a-spider {background-position:-572px 0!important} 
+.e1a-pouting_cat, .e1a-candle, img[alt="(:"], img[data-emoticon="(:"], .e1a-guitar, .e1a-spider, .e1a-dango {background-position:-572px 0!important} 
 .e1a-boy, .e1a-newspaper, .e1a-earth_americas {background-position:-2310px 0!important} 
 .e1a-girl, .e1a-tv {background-position:-3520px 0!important} 
 .e1a-man {background-position:-4136px 0!important} 
 .e1a-woman, .e1a-pencil, .e1a-crab {background-position:-1914px 0!important} 
-.e1a-older_man, .e1a-bellhop, .e1a-clapper, .e1a-seedling {background-position:-308px 0!important} 
-.e1a-older_woman, .e1a-black_nib, img[alt=";_;"], img[data-emoticon=";_;"], .e1a-cricket, .e1a-see_no_evil {background-position:-330px 0!important} 
+.e1a-older_man, .e1a-bellhop, .e1a-clapper, .e1a-seedling, .e1a-cheese {background-position:-308px 0!important} 
+.e1a-older_woman, .e1a-black_nib, img[alt=";_;"], img[data-emoticon=";_;"], .e1a-cricket, .e1a-see_no_evil, .e1a-cherries {background-position:-330px 0!important} 
 .e1a-baby, .e1a-money_with_wings, .e1a-duck {background-position:-2244px 0!important} 
 .e1a-angel, .e1a-movie_camera, .e1a-eagle {background-position:-2266px 0!important} 
-.e1a-cop, .e1a-camera, img[alt=":b:"], img[data-emoticon=":b:"], .e1a-goal, .e1a-snowman {background-position:-528px 0!important} 
-.e1a-spy, .e1a-crossed_swords, .e1a-slot_machine, .e1a-waxing_gibbous_moon {background-position:-1100px 0!important} 
+.e1a-cop, .e1a-camera, img[alt=":b:"], img[data-emoticon=":b:"], .e1a-goal, .e1a-snowman, .e1a-curry {background-position:-528px 0!important} 
+.e1a-spy, .e1a-crossed_swords, .e1a-slot_machine, .e1a-waxing_gibbous_moon, .e1a-pancakes {background-position:-1100px 0!important} 
 .e1a-guardsman, .e1a-triangular_flag_on_post {background-position:-3652px 0!important} 
 .e1a-construction_worker, .e1a-outbox_tray, .e1a-frog {background-position:-2596px 0!important} 
-.e1a-man_with_turban, .e1a-ballot_box, img[alt=";)"], img[data-emoticon=";)"], .e1a-badminton, .e1a-poodle {background-position:-88px 0!important} 
-.e1a-person_with_blond_hair, .e1a-bookmark_tabs, img[alt="*^^*"], img[data-emoticon="*^^*"], img[alt="^_^"], img[data-emoticon="^_^"], .e1a-fishing_pole_and_fish, .e1a-snake {background-position:-462px 0!important} 
+.e1a-man_with_turban, .e1a-ballot_box, img[alt=";)"], img[data-emoticon=";)"], .e1a-badminton, .e1a-poodle, .e1a-french_bread {background-position:-88px 0!important} 
+.e1a-person_with_blond_hair, .e1a-bookmark_tabs, img[alt="*^^*"], img[data-emoticon="*^^*"], img[alt="^_^"], img[data-emoticon="^_^"], .e1a-fishing_pole_and_fish, .e1a-snake, .e1a-cooking {background-position:-462px 0!important} 
 .e1a-santa, .e1a-notepad_spiral, .e1a-owl {background-position:-3344px 0!important} 
-.e1a-mrs_claus, .e1a-dollar, img[alt=":XD:"], img[data-emoticon=":XD:"], .e1a-baseball, .e1a-rabbit2 {background-position:-110px 0!important} 
-.e1a-princess, .e1a-flags, .e1a-hockey, .e1a-whale {background-position:-660px 0!important} 
-.e1a-prince, .e1a-dividers, .e1a-horse_racing, .e1a-sweat_drops {background-position:-638px 0!important} 
+.e1a-mrs_claus, .e1a-dollar, img[alt=":XD:"], img[data-emoticon=":XD:"], .e1a-baseball, .e1a-rabbit2, .e1a-banana {background-position:-110px 0!important} 
+.e1a-princess, .e1a-flags, .e1a-hockey, .e1a-whale, .e1a-fish_cake {background-position:-660px 0!important} 
+.e1a-prince, .e1a-dividers, .e1a-horse_racing, .e1a-sweat_drops, .e1a-egg {background-position:-638px 0!important} 
 .e1a-bride_with_veil, .e1a-notebook, .e1a-earth_asia {background-position:-2332px 0!important} 
 .e1a-man_in_tuxedo {background-position:-4334px 0!important} 
-.e1a-pregnant_woman, .e1a-card_index, .e1a-headphones, .e1a-shell {background-position:-616px 0!important} 
-.e1a-man_with_gua_pi_mao, .e1a-balloon, img[alt=":)"], img[data-emoticon=":)"], .e1a-art, .e1a-bamboo {background-position:-66px 0!important} 
+.e1a-pregnant_woman, .e1a-card_index, .e1a-headphones, .e1a-shell, .e1a-corn {background-position:-616px 0!important} 
+.e1a-man_with_gua_pi_mao, .e1a-balloon, img[alt=":)"], img[data-emoticon=":)"], .e1a-art, .e1a-bamboo, .e1a-bacon {background-position:-66px 0!important} 
 .e1a-person_frowning {background-position:-4224px 0!important} 
 .e1a-person_with_pouting_face {background-position:-4356px 0!important} 
 .e1a-ok_woman {background-position:-4268px 0!important} 
-.e1a-information_desk_person, .e1a-amphora, img[alt=":P"], img[data-emoticon=":P"], .e1a-football, .e1a-pig_nose {background-position:-44px 0!important} 
+.e1a-information_desk_person, .e1a-amphora, img[alt=":P"], img[data-emoticon=":P"], .e1a-football, .e1a-pig_nose, .e1a-baby_bottle {background-position:-44px 0!important} 
 .e1a-raising_hand {background-position:-4378px 0!important} 
 .e1a-bow {background-position:-4158px 0!important} 
 .e1a-massage {background-position:-4290px 0!important} 
 .e1a-haircut {background-position:-4312px 0!important} 
-.e1a-walking, .e1a-telephone, img[alt=">.<"], img[data-emoticon=">.<"], .e1a-drum, .e1a-shark {background-position:-374px 0!important} 
-.e1a-runner, .e1a-flashlight, .e1a-rowboat, .e1a-umbrella2 {background-position:-946px 0!important} 
+.e1a-walking, .e1a-telephone, img[alt=">.<"], img[data-emoticon=">.<"], .e1a-drum, .e1a-shark, .e1a-beers {background-position:-374px 0!important} 
+.e1a-runner, .e1a-flashlight, .e1a-rowboat, .e1a-umbrella2, .e1a-ice_cream {background-position:-946px 0!important} 
 .e1a-dancer, .e1a-page_with_curl, .e1a-star2 {background-position:-2684px 0!important} 
-.e1a-speaking_head, .e1a-incoming_envelope, .e1a-lifter, .e1a-blossom {background-position:-1452px 0!important} 
+.e1a-speaking_head, .e1a-incoming_envelope, .e1a-lifter, .e1a-blossom, .e1a-cake {background-position:-1452px 0!important} 
 .e1a-bust_in_silhouette, .e1a-nut_and_bolt, .e1a-elephant {background-position:-2376px 0!important} 
 .e1a-busts_in_silhouette, .e1a-oil, .e1a-evergreen_tree {background-position:-2398px 0!important} 
-.e1a-selfie, .e1a-crystal_ball, .e1a-saxophone, .e1a-waning_crescent_moon {background-position:-990px 0!important} 
-.e1a-nail_care, .e1a-pound, img[alt="*_*"], img[data-emoticon="*_*"], .e1a-bath, .e1a-ram {background-position:-154px 0!important} 
+.e1a-selfie, .e1a-crystal_ball, .e1a-saxophone, .e1a-waning_crescent_moon, .e1a-lemon {background-position:-990px 0!important} 
+.e1a-nail_care, .e1a-pound, img[alt="*_*"], img[data-emoticon="*_*"], .e1a-bath, .e1a-ram, .e1a-bento {background-position:-154px 0!important} 
 .e1a-footprints, .e1a-calendar, .e1a-penguin {background-position:-3454px 0!important} 
-.e1a-tongue, .e1a-hammer, .e1a-butterfly {background-position:-1562px 0!important} 
-.e1a-lips, .e1a-euro, img[alt="<3"], img[data-emoticon="<3"], .e1a-basketball, .e1a-rabbit {background-position:-132px 0!important} 
+.e1a-tongue, .e1a-hammer, .e1a-butterfly, .e1a-ramen {background-position:-1562px 0!important} 
+.e1a-lips, .e1a-euro, img[alt="<3"], img[data-emoticon="<3"], .e1a-basketball, .e1a-rabbit, .e1a-beer {background-position:-132px 0!important} 
 .e1a-eyeglasses, .e1a-pushpin, .e1a-horse {background-position:-2926px 0!important} 
 .e1a-dark_sunglasses, .e1a-tada, .e1a-goat {background-position:-2706px 0!important} 
-.e1a-necktie, .e1a-barber, img[alt=":*:"], img[data-emoticon=":*:"], .e1a-8ball, .e1a-rhino {background-position:-198px 0!important} 
-.e1a-shirt, .e1a-izakaya_lantern, .e1a-cat2 {background-position:-1606px 0!important} 
+.e1a-necktie, .e1a-barber, img[alt=":*:"], img[data-emoticon=":*:"], .e1a-8ball, .e1a-rhino, .e1a-champagne {background-position:-198px 0!important} 
+.e1a-shirt, .e1a-izakaya_lantern, .e1a-cat2, .e1a-stuffed_flatbread {background-position:-1606px 0!important} 
 .e1a-jeans, .e1a-gift {background-position:-3894px 0!important} 
 .e1a-dress, .e1a-pill, .e1a-hear_no_evil {background-position:-2794px 0!important} 
 .e1a-kimono, .e1a-wrench {background-position:-3916px 0!important} 
 .e1a-bikini, .e1a-moyai, .e1a-ear_of_rice {background-position:-2288px 0!important} 
 .e1a-womans_clothes, .e1a-ledger, .e1a-crescent_moon {background-position:-1958px 0!important} 
-.e1a-purse, .e1a-chains, .e1a-ice_skate, .e1a-squid {background-position:-682px 0!important} 
+.e1a-purse, .e1a-chains, .e1a-ice_skate, .e1a-squid, .e1a-fork_and_knife {background-position:-682px 0!important} 
 .e1a-handbag, .e1a-triangular_ruler {background-position:-3674px 0!important} 
-.e1a-pouch, .e1a-camera_with_flash, img[alt=":D:"], img[data-emoticon=":D:"], .e1a-golfer, .e1a-speak_no_evil {background-position:-550px 0!important} 
-.e1a-school_satchel, .e1a-door, .e1a-rugby_football, .e1a-unicorn {background-position:-968px 0!important} 
-.e1a-mans_shoe, .e1a-alembic, img[alt=":f:"], img[data-emoticon=":f:"], .e1a-space_invader, .e1a-pig {background-position:-22px 0!important} 
+.e1a-pouch, .e1a-camera_with_flash, img[alt=":D:"], img[data-emoticon=":D:"], .e1a-golfer, .e1a-speak_no_evil, .e1a-custard {background-position:-550px 0!important} 
+.e1a-school_satchel, .e1a-door, .e1a-rugby_football, .e1a-unicorn, .e1a-kiwi {background-position:-968px 0!important} 
+.e1a-mans_shoe, .e1a-alembic, img[alt=":f:"], img[data-emoticon=":f:"], .e1a-space_invader, .e1a-pig, .e1a-avocado {background-position:-22px 0!important} 
 .e1a-athletic_shoe, .e1a-moneybag, .e1a-droplet {background-position:-2222px 0!important} 
 .e1a-high_heel, .e1a-wastebasket {background-position:-3762px 0!important} 
 .e1a-sandal, .e1a-hole, .e1a-dash {background-position:-2002px 0!important} 
 .e1a-boot, .e1a-paperclips, .e1a-cow {background-position:-1936px 0!important} 
 .e1a-womans_hat, .e1a-microscope, .e1a-crocodile {background-position:-1980px 0!important} 
-.e1a-tophat, .e1a-e-mail, .e1a-cactus {background-position:-1584px 0!important} 
+.e1a-tophat, .e1a-e-mail, .e1a-cactus, .e1a-strawberry {background-position:-1584px 0!important} 
 .e1a-mortar_board, .e1a-thermometer {background-position:-3542px 0!important} 
 .e1a-helmet_with_cross, .e1a-vhs {background-position:-3740px 0!important} 
 .e1a-lipstick {background-position:-4070px 0!important} 
-.e1a-ring, .e1a-bulb, .e1a-basketball_player, .e1a-tulip {background-position:-880px 0!important} 
+.e1a-ring, .e1a-bulb, .e1a-basketball_player, .e1a-tulip, .e1a-honey_pot {background-position:-880px 0!important} 
 .e1a-closed_umbrella, .e1a-mailbox_with_no_mail, .e1a-fish {background-position:-2508px 0!important} 
 .e1a-briefcase, .e1a-notebook_with_decorative_cover, .e1a-earth_africa {background-position:-2354px 0!important}
