@@ -277,7 +277,8 @@ img[alt=":sick:"] {box-sizing:border-box; height:22px; padding-left:22px; width:
 .e1a-helmet_with_cross, .e1a-vhs {background-position:-3740px 0!important} 
 .e1a-lipstick {background-position:-4070px 0!important} 
 .e1a-ring, .e1a-bulb, .e1a-basketball_player, .e1a-tulip, .e1a-honey_pot {background-position:-880px 0!important}
-.tag a[target="_self"]{background:none;color:var(--ltcol);float:right;font-size:0!important} 
-.tag a[target="_self"]::before{content:'\f3c5';font-size:.813rem} 
 .e1a-closed_umbrella, .e1a-mailbox_with_no_mail, .e1a-fish {background-position:-2508px 0!important} 
 .e1a-briefcase, .e1a-notebook_with_decorative_cover, .e1a-earth_africa {background-position:-2354px 0!important}
+.tag a[target="_self"]{background:none;color:var(--ltcol);float:right;font-size:0!important} 
+.tag a[target="_self"]::before{content:'\f3c5';font-size:.813rem}
+.tag a[target="_self"]:hover{color:var(--ftcol);text-decoration:none} 
