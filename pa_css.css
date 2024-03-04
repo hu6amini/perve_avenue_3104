@@ -5,6 +5,7 @@ img[alt$=":"]{height:22px;margin:0 3px;vertical-align:text-bottom!important;widt
 .quote [class*=e1a-],.quote img[src^="https://img.forumfree.net/html/emoticons/new/"],.tmsg [class*=e1a-],.tmsg img[src^="https://img.forumfree.net/html/emoticons/new/"]{transform:scale(.875)}
 #Post{width:100%!important}
 .textinput,.forminput,.codebuttons,option,input,button,optgroup,textarea,.footer span:first-child,.nickname{font-family:quicksand!important}
+.color img[src^="https://www.google.com/s2/"]{margin-right:3px;vertical-align:text-bottom}
 .tmsg img[src^="https://www.google.com/s2/"]{border-radius:0!important;bottom:0;left:0;margin:auto;position:absolute;top:0}
 img[src^="https://img.forumfree.net/html/emoticons/new/"]{margin:0;vertical-align:text-bottom}
 .forumfree-modal.notifications-modal.Blocker.current #notifications-modal .notification-text{color:var(--ftcol)!important}
