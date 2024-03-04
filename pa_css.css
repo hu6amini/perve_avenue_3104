@@ -1,4 +1,4 @@
-.color img:not(img[alt="fav"],img[src^="https://img.forumfree.net/html/emoticons/new/"],[class*=e1a-],img[alt$=":"]), .color a img, .color p img {background-color:transparent;border:0;border-radius:4px;font-size:0;margin:3px;position:relative;right:3px;vertical-align:text-bottom!important}
+.color img:not(img[alt="fav"],img[src^="https://img.forumfree.net/html/emoticons/new/"],[class*=e1a-],img[alt$=":"]), .color a img:not(img[src^="https://www.google.com/s2/"]), .color p img {background-color:transparent;border:0;border-radius:4px;font-size:0;margin:3px;position:relative;right:3px;vertical-align:text-bottom!important}
 img[alt$=":"]{height:22px;margin:0 3px;vertical-align:text-bottom!important;width:22px}
 .quote img[alt$=":"],.tmsg img[alt$=":"]{height:19.25px;width:19.25px}
 [class*=e1a-]{vertical-align:text-bottom!important}
@@ -6,7 +6,7 @@ img[alt$=":"]{height:22px;margin:0 3px;vertical-align:text-bottom!important;widt
 #Post{width:100%!important}
 .textinput,.forminput,.codebuttons,option,input,button,optgroup,textarea,.footer span:first-child,.nickname{font-family:quicksand!important}
 .tmsg img[src^="https://www.google.com/s2/"]{border-radius:0!important;bottom:0;left:0;margin:auto;position:absolute;top:0}
-img[src^="https://img.forumfree.net/html/emoticons/new/"]{border-radius:0;margin:0;vertical-align:text-bottom}
+img[src^="https://img.forumfree.net/html/emoticons/new/"]{margin:0;vertical-align:text-bottom}
 .forumfree-modal.notifications-modal.Blocker.current #notifications-modal .notification-text{color:var(--ftcol)!important}
 input[type="checkbox"],input[type="radio"]{appearance:none;background:none;border:none;font-size:.813rem;line-height:.813rem;outline-style:none;padding:0;width:16px} 
 .forminput[id="DST"], .forminput[value="yes"]{background:none;border:none;border-radius:0;padding:0;text-align:center} 
