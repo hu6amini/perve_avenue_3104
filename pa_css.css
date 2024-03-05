@@ -285,3 +285,4 @@ img[alt=":sick:"] {box-sizing:border-box; height:22px; padding-left:22px; width:
 .tag a[target="_self"]:hover{color:var(--ftcol);text-decoration:none} 
 #poll, #ADDCRON{color:var(--ftcol);font-size:.813rem} 
 #ADDCRON::before{color:var(--ltcol);content:'\e0d6';display:inline-block}
+#MarketGidComposite719965_079a4 .mgbox {background:none!important}
