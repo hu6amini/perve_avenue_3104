@@ -10,6 +10,7 @@ img[alt$=":"]{height:22px;margin:0 3px;vertical-align:text-bottom!important;widt
 .color img[src^="https://www.google.com/s2/"]{margin-right:3px;vertical-align:text-bottom}
 .tmsg img[src^="https://www.google.com/s2/"]{border-radius:0!important;bottom:0;left:0;margin:auto;position:absolute;top:0}
 img[src^="https://img.forumfree.net/html/emoticons/new/"]{margin:0;vertical-align:text-bottom!important}
+.forumfree-modal div[id^="emoticon-popup"] li{margin:5px;vertical-align:text-bottom}
 .forumfree-modal.notifications-modal.Blocker.current #notifications-modal .notification-text{color:var(--ftcol)!important}
 input[type="checkbox"],input[type="radio"]{appearance:none;background:none;border:none;font-size:.813rem;line-height:.813rem;outline-style:none;padding:0;width:16px} 
 .forminput[id="DST"], .forminput[value="yes"]{background:none;border:none;border-radius:0;padding:0;text-align:center} 
