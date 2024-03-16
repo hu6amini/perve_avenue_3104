@@ -1,41 +1,47 @@
 //Reply Counter
 document.addEventListener("DOMContentLoaded",(function(){!function processPostElements(){const e=document.querySelectorAll(".post"),t=function getPageNumber(){const e=new URLSearchParams(window.location.search);return parseInt(e.get("st")||0)+1}();e.forEach(((e,n)=>{!function createReplyCounter(e,t,n){const o=document.createElement("b");o.className="reply_counter",o.textContent="#"+t;const r=e.querySelector(".mini_buttons.rt.Sub");r&&("after"===n?r.appendChild(o):r.insertBefore(o,r.firstChild))}(e,t+n,"after")}))}()}));
 //Favicons
-function updateFaviconsForLinks(links) {
-    links.forEach((link) => {
-        if (!(link.closest(".spoiler .code_top a") || link.closest(".fancyborder a") || link.closest(".quote_top a") || link.querySelector("img"))) {
+function updateFaviconsForLinks(e) {
+    e.forEach((element => {
+        if (!(element.closest(".spoiler .code_top a") || element.closest(".fancyborder a") || element.closest(".quote_top a") || element.querySelector("img"))) {
             let img = document.createElement("img");
-            if (link.href.includes("youtu.be")) {
+            if (element.href.includes("youtu.be")) {
                 img.src = "https://www.google.com/s2/favicons?domain=youtube.com";
             } else {
-                img.src = "https://www.google.com/s2/favicons?domain=" + link.href;
+                img.src = "https://www.google.com/s2/favicons?domain=" + element.href;
             }
             img.alt = "fav";
-            if (link.matches(".quote a, .tmsg a")) {
+            if (element.matches(".quote a, .tmsg a")) {
                 img.width = 14;
                 img.height = 14;
             } else {
                 img.width = 16;
                 img.height = 16;
             }
-            link.prepend(img);
+            element.prepend(img);
         }
-    });
+    }));
 }
 
-const favObserver = new MutationObserver((mutations) => {
-    mutations.forEach((mutation) => {
-        if (mutation.type === "childList") {
-            updateFaviconsForLinks(mutation.target.querySelectorAll(".color a, span.tmsg a"));
-        }
+const observer = new MutationObserver((mutationsList) => {
+    mutationsList.forEach((mutation) => {
+        updateFaviconsForLinks(mutation.target.querySelectorAll(".color a, span.tmsg a"));
     });
 });
 
 const body = document.querySelector("body");
-favObserver.observe(body, { childList: true, subtree: true });
 
-document.addEventListener("DOMContentLoaded", () => {
-    updateFaviconsForLinks(document.querySelectorAll(".color a, span.tmsg a"));
+const observerConfig = {
+    childList: true,
+    subtree: true
+};
+
+const targetElements = document.querySelectorAll(".color a, span.tmsg a");
+
+updateFaviconsForLinks(targetElements);
+
+targetElements.forEach((element) => {
+    observer.observe(element, observerConfig);
 });
 
 //Quote
