@@ -3,17 +3,17 @@ document.addEventListener("DOMContentLoaded",(function(){!function processPostEl
 //Favicons
 document.addEventListener("DOMContentLoaded",(function(){function updateFaviconsForLinks(e){e.forEach((e=>{if(!(e.closest(".spoiler .code_top a")||e.closest(".fancyborder a")||e.closest(".quote_top a")||e.querySelector("img"))){let o=document.createElement("img");e.href.includes("youtu.be")?o.src="https://www.google.com/s2/favicons?domain=youtube.com":o.src="https://www.google.com/s2/favicons?domain="+e.href,o.alt="fav",e.matches(".quote a,.tmsg a")?(o.width=14,o.height=14):(o.width=16,o.height=16),e.prepend(o)}}))}const e=new MutationObserver((e=>{e.forEach((e=>{updateFaviconsForLinks(e.target.querySelectorAll(".color a, span.tmsg a"))}))})),o=document.querySelector("body");e.observe(o,{childList:!0,subtree:!0});updateFaviconsForLinks(document.querySelectorAll(".color a, span.tmsg a"))}));
 //Quote
-(function waitForElement() {
+(function waitForElementToAppear() {
     const targetElement = document.querySelector(".quote");
 
     if (targetElement) {
-        initializeScript();
+        initializeScript(targetElement);
     } else {
-        setTimeout(waitForElement, 100); // Check again after 100ms
+        setTimeout(waitForElementToAppear, 100); // Check again after 100ms
     }
 })();
 
-function initializeScript() {
+function initializeScript(targetElement) {
     const maxHeight = 170;
 
     function expandQuotes(element) {
