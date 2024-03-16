@@ -1,23 +1,22 @@
 //Reply Counter
 document.addEventListener("DOMContentLoaded",(function(){!function processPostElements(){const e=document.querySelectorAll(".post"),t=function getPageNumber(){const e=new URLSearchParams(window.location.search);return parseInt(e.get("st")||0)+1}();e.forEach(((e,n)=>{!function createReplyCounter(e,t,n){const o=document.createElement("b");o.className="reply_counter",o.textContent="#"+t;const r=e.querySelector(".mini_buttons.rt.Sub");r&&("after"===n?r.appendChild(o):r.insertBefore(o,r.firstChild))}(e,t+n,"after")}))}()}));
 //Favicons
-function updateFaviconsForLinks(elements) {
-    elements.forEach(element => {
-        if (!(element.closest(".spoiler .code_top a") || element.closest(".fancyborder a") || element.closest(".quote_top a") || element.querySelector("img"))) {
-            let img = document.createElement("img");
-            img.alt = "fav";
-            img.src = element.href.includes("youtu.be") ? "https://www.google.com/s2/favicons?domain=youtube.com" : "https://www.google.com/s2/favicons?domain=" + element.href;
-            img.width = element.matches(".quote a, .tmsg a") ? 14 : 16;
-            img.height = element.matches(".quote a, .tmsg a") ? 14 : 16;
-            element.prepend(img);
+function updateFaviconsForLinks(e) {
+    e.forEach((e => {
+        if (!(e.closest(".spoiler .code_top a") || e.closest(".fancyborder a") || e.closest(".quote_top a") || e.querySelector("img"))) {
+            let o = document.createElement("img");
+            e.href.includes("youtu.be") ? o.src = "https://www.google.com/s2/favicons?domain=youtube.com" : o.src = "https://www.google.com/s2/favicons?domain=" + e.href,
+                o.alt = "fav";
+            e.matches(".quote a, .tmsg a") ? (o.width = 14, o.height = 14) : (o.width = 16, o.height = 16);
+            e.prepend(o);
         }
-    });
+    }));
 }
 
-const favObserver = new MutationObserver(mutationsList => {
-    mutationsList.forEach(mutation => {
-        if (mutation.type === 'childList') {
-            mutation.addedNodes.forEach(node => {
+const fav = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+        if (mutation.addedNodes && mutation.addedNodes.length > 0) {
+            mutation.addedNodes.forEach((node) => {
                 if (node.nodeType === Node.ELEMENT_NODE) {
                     updateFaviconsForLinks(node.querySelectorAll(".color a, span.tmsg a"));
                 }
@@ -27,7 +26,7 @@ const favObserver = new MutationObserver(mutationsList => {
 });
 
 const body = document.querySelector("body");
-favObserver.observe(body, { childList: true, subtree: true });
+fav.observe(body, { childList: true, subtree: true });
 
 updateFaviconsForLinks(document.querySelectorAll(".color a, span.tmsg a"));
 
