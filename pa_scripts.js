@@ -79,12 +79,8 @@ function initializeScript() {
                 if (node.nodeType === Node.ELEMENT_NODE) {
                     if (node.classList.contains("quote")) {
                         expandQuotes(node);
-                        modifyQuoteTop(node.querySelector(".quote_top"));
                     } else {
-                        node.querySelectorAll(".quote").forEach((quoteNode) => {
-                            expandQuotes(quoteNode);
-                            modifyQuoteTop(quoteNode.querySelector(".quote_top"));
-                        });
+                        node.querySelectorAll(".quote").forEach(expandQuotes);
                     }
                 }
             });
@@ -93,6 +89,8 @@ function initializeScript() {
 
     const quotObserver = new MutationObserver(handleMutations);
     quotObserver.observe(document.body, { childList: true, subtree: true });
+
+    document.querySelectorAll(".quote_top").forEach(modifyQuoteTop);
 }
 
 //Textarea Autogrow
