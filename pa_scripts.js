@@ -1,8 +1,8 @@
 //Reply Counter
 document.addEventListener("DOMContentLoaded",(function(){!function processPostElements(){const e=document.querySelectorAll(".post"),t=function getPageNumber(){const e=new URLSearchParams(window.location.search);return parseInt(e.get("st")||0)+1}();e.forEach(((e,n)=>{!function createReplyCounter(e,t,n){const o=document.createElement("b");o.className="reply_counter",o.textContent="#"+t;const r=e.querySelector(".mini_buttons.rt.Sub");r&&("after"===n?r.appendChild(o):r.insertBefore(o,r.firstChild))}(e,t+n,"after")}))}()}));
 //Favicons
-function updateFaviconsForLinks(e) {
-    e.forEach((element => {
+function updateFaviconsForLinks(elements) {
+    elements.forEach((element => {
         if (!(element.closest(".spoiler .code_top a") || element.closest(".fancyborder a") || element.closest(".quote_top a") || element.querySelector("img"))) {
             let img = document.createElement("img");
             if (element.href.includes("youtu.be")) {
@@ -23,7 +23,7 @@ function updateFaviconsForLinks(e) {
     }));
 }
 
-const observer = new MutationObserver((mutationsList) => {
+const fav = new MutationObserver((mutationsList) => {
     mutationsList.forEach((mutation) => {
         updateFaviconsForLinks(mutation.target.querySelectorAll(".color a, span.tmsg a"));
     });
@@ -41,7 +41,7 @@ const targetElements = document.querySelectorAll(".color a, span.tmsg a");
 updateFaviconsForLinks(targetElements);
 
 targetElements.forEach((element) => {
-    observer.observe(element, observerConfig);
+    fav.observe(element, observerConfig);
 });
 
 //Quote
