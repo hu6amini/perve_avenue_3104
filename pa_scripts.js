@@ -3,7 +3,107 @@ document.addEventListener("DOMContentLoaded",(function(){!function processPostEl
 //Favicons
 document.addEventListener("DOMContentLoaded",(function(){function updateFaviconsForLinks(e){e.forEach((e=>{if(!(e.closest(".spoiler .code_top a")||e.closest(".fancyborder a")||e.closest(".quote_top a")||e.querySelector("img"))){let o=document.createElement("img");e.href.includes("youtu.be")?o.src="https://www.google.com/s2/favicons?domain=youtube.com":o.src="https://www.google.com/s2/favicons?domain="+e.href,o.alt="fav",e.matches(".quote a,.tmsg a")?(o.width=14,o.height=14):(o.width=16,o.height=16),e.prepend(o)}}))}const e=new MutationObserver((e=>{e.forEach((e=>{updateFaviconsForLinks(e.target.querySelectorAll(".color a, span.tmsg a"))}))})),o=document.querySelector("body");e.observe(o,{childList:!0,subtree:!0});updateFaviconsForLinks(document.querySelectorAll(".color a, span.tmsg a"))}));
 //Quote
-function initializeScript(){const e=170;function expandQuotes(t){const updateHeight=()=>{const o=t.querySelector(".quotebtn button");if(!o&&t.scrollHeight>e){t.style.maxHeight=e+"px";const o=document.createElement("div");o.className="quotebtn";const n=document.createElement("button");n.innerHTML="Show More...",o.appendChild(n),t.appendChild(o),n.addEventListener("click",(()=>{t.style.transition="max-height 0.382s ease-in-out",t.style.maxHeight=t.scrollHeight+"px",setTimeout((()=>{t.style.maxHeight="none"}),382)}))}else o&&t.scrollHeight<=e&&o.parentNode.remove()};updateHeight();const o=new ResizeObserver(updateHeight);o.observe(t);const n=t.querySelector(".spoiler .code_top a");n&&n.addEventListener("click",(()=>{t.style.maxHeight="none",o.disconnect()}))}new MutationObserver((function handleMutations(e){e.forEach((e=>{e.addedNodes.forEach((e=>{e.nodeType===Node.ELEMENT_NODE&&(e.classList.contains("quote")?expandQuotes(e):e.querySelectorAll(".quote").forEach(expandQuotes))}))}))})).observe(document.body,{childList:!0,subtree:!0}),document.querySelectorAll(".quote_top").forEach((function modifyQuoteTop(e){const t=e.textContent,o=e.querySelector("a");if(t.includes("@")){const n=t.replace(/QUOTE\s*\(([^@]+)@[^)]+\)\s*/,"$1 said:");e.innerHTML=n,e.style.color="var(--mdcol)",o&&(e.appendChild(o),o.style.color="var(--mdcol)")}else{const t=e.querySelector("b");t&&(t.style.opacity=1)}}))}!function waitForElement(){document.querySelector(".quote")?initializeScript():setTimeout(waitForElement,100)}();
+(function waitForElement() {
+    const targetElement = document.querySelector(".quote");
+
+    if (targetElement) {
+        initializeScript();
+    } else {
+        setTimeout(waitForElement, 100); // Check again after 100ms
+    }
+})();
+
+function initializeScript() {
+    console.log("Script initialized");
+
+    const maxHeight = 170;
+
+    function expandQuotes(element) {
+        console.log("Expanding quotes");
+        const updateHeight = () => {
+            console.log("Updating height");
+            const quoteButton = element.querySelector(".quotebtn button");
+            console.log("Quote button:", quoteButton);
+            if (!quoteButton && element.scrollHeight > maxHeight) {
+                console.log("Adding show more button");
+                element.style.maxHeight = maxHeight + "px";
+                const quoteButtonWrapper = document.createElement("div");
+                quoteButtonWrapper.className = "quotebtn";
+                const showMoreButton = document.createElement("button");
+                showMoreButton.innerHTML = "Show More...";
+                quoteButtonWrapper.appendChild(showMoreButton);
+                element.appendChild(quoteButtonWrapper);
+                showMoreButton.addEventListener("click", () => {
+                    console.log("Show more button clicked");
+                    element.style.transition = "max-height 0.382s ease-in-out";
+                    element.style.maxHeight = element.scrollHeight + "px";
+                    setTimeout(() => {
+                        element.style.maxHeight = "none";
+                    }, 382);
+                });
+            } else if (quoteButton && element.scrollHeight <= maxHeight) {
+                console.log("Removing show more button");
+                quoteButton.parentNode.remove();
+            }
+        };
+
+        updateHeight();
+
+        const resizeObserver = new ResizeObserver(updateHeight);
+        resizeObserver.observe(element);
+
+        const spoilerCodeLink = element.querySelector(".spoiler .code_top a");
+        if (spoilerCodeLink) {
+            console.log("Spoiler code link found");
+            spoilerCodeLink.addEventListener("click", () => {
+                console.log("Spoiler code link clicked");
+                element.style.maxHeight = "none";
+                resizeObserver.disconnect();
+            });
+        }
+    }
+
+    function modifyQuoteTop(element) {
+        console.log("Modifying quote top");
+        const text = element.textContent;
+        const link = element.querySelector("a");
+        if (text.includes("@")) {
+            const modifiedText = text.replace(/QUOTE\s*\(([^@]+)@[^)]+\)\s*/, "$1 said:");
+            element.innerHTML = modifiedText;
+            element.style.color = "var(--mdcol)";
+            if (link) {
+                element.appendChild(link);
+                link.style.color = "var(--mdcol)";
+            }
+        } else {
+            const boldElement = element.querySelector("b");
+            if (boldElement) {
+                boldElement.style.opacity = 1;
+            }
+        }
+    }
+
+    function handleMutations(mutations) {
+        console.log("Handling mutations");
+        mutations.forEach((mutation) => {
+            mutation.addedNodes.forEach((node) => {
+                if (node.nodeType === Node.ELEMENT_NODE) {
+                    if (node.classList.contains("quote")) {
+                        expandQuotes(node);
+                    } else {
+                        node.querySelectorAll(".quote").forEach(expandQuotes);
+                    }
+                }
+            });
+        });
+    }
+
+    const quotObserver = new MutationObserver(handleMutations);
+    quotObserver.observe(document.body, { childList: true, subtree: true });
+
+    document.querySelectorAll(".quote_top").forEach(modifyQuoteTop);
+}
+
 //Textarea Autogrow
 function waitForElementToAppear(e,t){const a=document.querySelector(e);a?t(a):setTimeout((()=>waitForElementToAppear(e,t)),100)}waitForElementToAppear("textarea#Post",(e=>{!function resizeTextarea(){function updateTextareaHeight(){t.style.height="0",t.style.height=t.scrollHeight+"px",t.style.maxHeight="655px"}const t=e;t&&(updateTextareaHeight(),t.addEventListener("input",updateTextareaHeight),window.addEventListener("load",updateTextareaHeight),t.addEventListener("paste",(()=>setTimeout(updateTextareaHeight,0))))}()}));
 //Goto
