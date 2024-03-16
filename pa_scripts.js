@@ -30,12 +30,13 @@ function initializeScript() {
                 showMoreButton.addEventListener("click", () => {
                     element.style.transition = "max-height 0.382s ease-in-out";
                     element.style.maxHeight = element.scrollHeight + "px";
+                    quoteButtonWrapper.style.display = "none"; // Hide the button wrapper
                     setTimeout(() => {
                         element.style.maxHeight = "none";
                     }, 382);
                 });
             } else if (quoteButton && element.scrollHeight <= maxHeight) {
-                quoteButton.parentNode.remove();
+                quoteButton.parentNode.remove(); // Remove the button wrapper
             }
         };
 
