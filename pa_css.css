@@ -13,6 +13,7 @@ img[alt$=":"]{height:22px;margin:0;vertical-align:text-bottom!important;width:22
 .color img[src^="https://www.google.com/s2/"]{margin-right:3px;vertical-align:text-bottom}
 .tmsg img[src^="https://www.google.com/s2/"]{border-radius:0!important;bottom:0;left:0;margin:auto;position:absolute;top:0}
 img[src^="https://www.google.com/s2/"]{user-select:none}
+.signature img[src^="https://www.google.com/s2/"]{margin:0;transform:scale(.8125)}
 img[src^="https://img.forumfree.net/html/emoticons/new/"]{margin:0;vertical-align:text-bottom!important}
 .forumfree-modal div[id^="emoticon-popup"] li{margin:5px!important;vertical-align:text-bottom}
 #emoticon-popup1 img[src="https://img.forumfree.net/index_file/loads3.gif"]{overflow:hidden;padding-left:22px}
