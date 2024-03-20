@@ -348,6 +348,7 @@ img[alt=":huh:"],img[data-emoticon=":huh:"],img[alt="^_^"],img[data-emoticon="^_
 .tag a[target="_self"]{background:none;color:var(--ltcol);float:right;font-size:0!important} 
 .tag a[target="_self"]::before{content:'\f3c5';font-size:.813rem}
 .tag a[target="_self"]:hover{color:var(--ftcol);text-decoration:none} 
+form[name="tagboard"]{background:var(--contt);border-radius:4px;display:table}
 .send .List .Item[style="text-align: center; padding: 2px 0"], #send .send ul.main_list .Item[style="padding:6px;text-align:center"], #send .send ul.list li:first-child .Justify div,#user input.codebuttons[accesskey="g"] + div, #msg button.codebuttons[accesskey="r"] + div{display:contents}
 #poll,#ADDCRON{color:var(--ftcol);font-size:.813rem}
 #ADDCRON::before{color:var(--ltcol);content:'\e0d6';display:inline-block}
