@@ -365,7 +365,8 @@ input.forminput[value="Search this forum"]{font-size:0;height:.875rem;margin-lef
 .atwho-view ul li{background:none;border-bottom:none;font-weight:700;line-height:35px;padding:0 12px;padding-top:0} 
 .atwho-view ul li.cur{background:var(--txtim)} 
 .atwho-view li img{border-radius:100%;bottom:1px;margin-right:3px;object-fit:cover;object-position:top;position:relative}
-#notifications-modal .notification-image .notification-type{background:none!important;border:none!important;border-radius:0!important;height:22px!important;width:22px!important}
-#notifications-modal .notification-image .notification-type img{height:22px!important;width:22px!important}
+#notifications-modal .notification-image .notification-type{background:none!important;border:none!important;border-radius:0!important;height:22px!important;overflow:visible!important;width:22px!important}
+#notifications-modal .notification-image .notification-type img{background-color:var(--contt)!important;border-radius:100%;height:22px!important;outline:2px solid var(--contt);width:22px!important}
+#notifications-modal .notification-container:not(.readed) .notification-image .notification-type img{background-color:var(--hovbd)!important;outline:2px solid var(--hovbd)}
 img[src="https://img.forumfree.net/home/images/like_icon.png"]{background:url("https://res.cloudinary.com/dbdf6gwgo/image/upload/v1632732137/forum/icons/thumb_up_cdmnbo.png");background-size:22px;padding-left:22px} 
 img[src="https://img.forumfree.net/home/images/comment_icon.png"],img[src="https://img.forumfree.net/home/images/news_icon.png"],img[src="https://img.forumfree.net/home/images/type_error.png"]{padding-left:22px} 
