@@ -370,3 +370,4 @@ input.forminput[value="Search this forum"]{font-size:0;height:.875rem;margin-lef
 img[src="https://img.forumfree.net/home/images/like_icon.png"]{background:url("https://res.cloudinary.com/dbdf6gwgo/image/upload/v1632732137/forum/icons/thumb_up_cdmnbo.png");background-size:22px;padding-left:22px} 
 img[src="https://img.forumfree.net/home/images/comment_icon.png"],img[src="https://img.forumfree.net/home/images/news_icon.png"],img[src="https://img.forumfree.net/home/images/type_error.png"]{padding-left:22px} 
 img[src="https://img.forumfree.net/home/images/avatar_email.png"]{background:url("https://res.cloudinary.com/dbdf6gwgo/image/upload/v1711199941/forum/Avatar/e-mail-symbol_1f4e7_cq2lhf.png") 50% no-repeat;background-size:45px 45px;height:45px!important;padding-left:45px;width:45px!important}
+#mod [title="drag and drop"] em::before{content:'move';font-family:quicksand;font-size:.813rem;font-style:normal}
