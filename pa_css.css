@@ -378,4 +378,4 @@ img[src="https://img.forumfree.net/home/images/avatar_email.png"]{background:url
 .alert::before,.cp .main_list .Item[style="padding: 1em; font-size: 1.1em; color: indianred"]:before{content:'\e204'}
 .info::after,.alert::after,.cp .main_list .Item[style="padding: 1em; font-size: 1.1em; color: indianred"]:after{background:var(--redft);content:'';display:flex;height:100%;left:0;position:absolute;top:0;width:32px;z-index:0}
 .alert b{font-size:.875rem!important;font-weight:400}
-.info a, .alert a{color:#32CFFF!important;font-size:.813rem;font-weight:700}
+.info a,.alert a,.cp .main_list .Item[style="padding: 1em; font-size: 1.1em; color: indianred"] a{color:#32CFFF!important;font-size:.813rem;font-weight:700}
