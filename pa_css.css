@@ -385,5 +385,5 @@ img[src="https://img.forumfree.net/home/images/avatar_email.png"]{background:url
 #notifications-modal #notifications-empty::before,.cs-modal .st-emoji-notice-empty-message::before{content:'\f05a \00a0';display:inline-block}
 #notifications-box{align-items:center;display:flex!important;flex-direction:column;overflow-x:hidden!important}
 #notifications-modal .notification-container{width:100%}
-#notifications-more{background:#090A0C40;box-shadow:none}
-.plus-button::before{background:none;color:var(--ltcol);content:'\2b'!important;display:inline-block;font-size:1.125rem;height:auto!important;width:auto!important}
+#notifications-more{background:#090A0C40!important;box-shadow:none}
+.plus-button::before{background:none!important;color:var(--ltcol);content:'\2b'!important;display:inline-block;font-size:1.125rem;height:auto!important;width:auto!important}
