@@ -383,4 +383,4 @@ img[src="https://img.forumfree.net/home/images/avatar_email.png"]{background:url
 .cs-modal .st-emoji-notice-empty-message{background:none!important;color:var(--ltcol)!important;padding:8px 0 0!important;text-shadow:none!important}
 .cs-modal .st-emoji-notice-empty{font-size:.813rem;margin-bottom:0;margin:0 10px!important;margin-top:0}
 #notifications-modal #notifications-empty::before,.cs-modal .st-emoji-notice-empty-message::before{content:'\f05a \00a0';display:inline-block}
-#notifications-box{display:flex;flex-direction:column;overflow-x:hidden!important}
+#notifications-box{display:flex!important;flex-direction:column;overflow-x:hidden!important}
