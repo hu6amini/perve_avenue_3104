@@ -379,7 +379,7 @@ img[src="https://img.forumfree.net/home/images/avatar_email.png"]{background:url
 .alert b{font-size:.875rem!important;font-weight:400}
 .info a,.alert a,.cp .main_list .Item[style="padding: 1em; font-size: 1.1em; color: indianred"] a{color:#32CFFF!important;font-size:.813rem;font-weight:700}
 #msg td a,.cp a:not(.notification-container .bb a,.pages li a,.info a,.alert a,.cp .main_list .Item[style="padding: 1em; font-size: 1.1em; color: indianred"] a),.cp a i,#user input.codebuttons{font-size:.938rem;font-weight:700;text-transform:capitalize}
-.cs-modal .st-emoji-notice-list{display:flex;flex-direction:column;gap:0;list-style-type:none;margin:0;padding: 0;position:relative;z-index:1}
+.cs-modal .st-emoji-notice-list{display:flex!important;flex-direction:column!important;gap:0!important;list-style-type:none!important;margin:0!important;padding: 0!important;position:relative!important;z-index:1!important}
 .cs-modal .st-emoji-notice-empty-message{background:none!important;color:var(--ltcol)!important;padding:8px 0 0!important;text-shadow:none!important}
 .cs-modal .st-emoji-notice-empty{font-size:.813rem;margin-bottom:0;margin:0 10px!important;margin-top:0}
 #notifications-modal #notifications-empty::before,.cs-modal .st-emoji-notice-empty-message::before{content:'\f05a \00a0';display:inline-block}
