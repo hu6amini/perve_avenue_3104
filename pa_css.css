@@ -26,7 +26,7 @@ img[src^="https://img.forumfree.net/html/emoticons/new/"]{margin:0;vertical-alig
 #emoticon-popup1 img[src="https://img.forumfree.net/index_file/loads3.gif"],img:not([width]):not([height])[src^="https://img.forumfree.net/html/emoticons/new"]{overflow:hidden;padding-left:22px}
 .forumfree-modal.notifications-modal.Blocker.current #notifications-modal .notification-text{color:var(--ftcol)!important}
 input[type="checkbox"],input[type="radio"]{appearance:none;background:none;border:none;font-size:.813rem;line-height:.813rem;outline-style:none;padding:0;width:16px} 
-.forminput[id="DST"], .forminput[value="yes"]{background:none;border:none;border-radius:0;padding:0;text-align:center} 
+.forminput[id="DST"],.forminput[value="yes"]{background:none;border:none;border-radius:0;padding:0;text-align:center} 
 input[type="checkbox"]::before,input[type="radio"]::before{content:'\f111'} 
 input[type="checkbox"]:checked::before{content:'\f058'} 
 input[type="radio"]:checked::before{content:'\f192'} 
