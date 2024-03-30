@@ -385,7 +385,7 @@ input.forminput[value="Search this forum"]{font-size:0;height:.875rem;margin-lef
 .cs-modal .st-emoji-notice-history-title{border-bottom:none!important;color:var(--ftcol);font-size:.875rem!important;margin:0!important;padding:10px!important;position:relative!important;text-align:left!important}
 .cs-modal .st-emoji-notice-history-title::before{content:'\f1da \00a0'}
 .cs-modal .st-emoji-notice-history-title::after{background:var(--redft);bottom:0;content:'';display:inline-block;height:3px;left:0;margin-left:-5px;position:absolute;width:100px}
-#notifications-modal .notification-image .notification-type{background:none!important;border:none!important;border-radius:0!important;bottom:-5px;height:22px!important;overflow:visible!important;right:-5px;width:22px!important}
+#notifications-modal .notification-image .notification-type{background:none!important;border:none!important;border-radius:0!important;bottom:-5px!important;height:22px!important;overflow:visible!important;right:-5px!important;width:22px!important}
 #notifications-modal .notification-image .notification-type img{height:22px!important;width:22px!important}
 img[src="https://img.forumfree.net/home/images/like_icon.png"]{background:url("https://res.cloudinary.com/dbdf6gwgo/image/upload/v1632732137/forum/icons/thumb_up_cdmnbo.png");background-size:22px;padding-left:22px} 
 img[src="https://img.forumfree.net/home/images/comment_icon.png"],img[src="https://img.forumfree.net/home/images/news_icon.png"],img[src="https://img.forumfree.net/home/images/type_error.png"]{padding-left:22px} 
@@ -394,5 +394,5 @@ img[src="https://img.forumfree.net/home/images/avatar_email.png"]{background:url
 #notifications-box{align-items:center;display:flex!important;flex-direction:column;overflow-x:hidden!important}
 #notifications-modal .notification-container{width:100%}
 #notifications-more{background:#090A0C40!important;box-shadow:none!important;min-height:50px}
-#notifications-modal .notification-row .notification-image{padding:0}
+#notifications-modal .notification-row .notification-image{padding:0!important}
 .plus-button::before{background:none!important;color:var(--ltcol);content:'\2b'!important;display:inline-block;font-size:1.125rem;height:auto!important;width:auto!important}
