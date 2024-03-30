@@ -387,6 +387,8 @@ img[src="https://img.forumfree.net/home/images/avatar_email.png"]{background:url
 .cs-modal .st-emoji-notice-avatar{background:none!important;border:none!important;border-radius:100%!important;height:48px!important;left:0!important;margin-right:12px;min-width:48px;overflow:hidden;padding:0!important;position:relative!important;top:0!important;width:48px!important}
 .cs-modal .st-emoji-notice-message{color:var(--ftcol);font-size:.813rem;line-height:1.618;margin:0;min-height:43px;text-align:left}
 .cs-buttons.st-emoji-notice-btn{position:relative;width:fit-content!important}
+.cs-modal .st-emoji-notice-history-title{border-bottom:none;color:var(--ftcol);font-size:.875rem;margin:0;padding:10px;position:relative;text-align:left}
+.cs-modal .st-emoji-notice-history-title::before{content:'\f1da \00a0'}
 #notifications-modal #notifications-empty::before,.cs-modal .st-emoji-notice-empty-message::before{content:'\f05a \00a0';display:inline-block}
 #notifications-box{align-items:center;display:flex!important;flex-direction:column;overflow-x:hidden!important}
 #notifications-modal .notification-container{width:100%}
