@@ -387,7 +387,7 @@ input.forminput[value="Search this forum"]{font-size:0;height:.875rem;margin-lef
 .cs-modal .st-emoji-notice-history-title::after{background:var(--redft);bottom:0;content:'';display:inline-block;height:3px;left:0;margin-left:-5px;position:absolute;width:100px}
 #notifications-modal .notification-image .notification-type,#msg .cp .aa .notification-type{background:none!important;border:none!important;border-radius:0!important;bottom:-5px!important;height:22px!important;overflow:visible!important;right:-5px!important;width:22px!important}
 #notifications-modal .notification-image .notification-type img{height:22px!important;width:22px!important}
-img[src="https://img.forumfree.net/home/images/like_icon.png"]{background:url("https://res.cloudinary.com/dbdf6gwgo/image/upload/v1632732137/forum/icons/thumb_up_cdmnbo.png");background-size:22px;padding-left:22px} 
+img[src="https://img.forumfree.net/home/images/like_icon.png"]{background:url("https://res.cloudinary.com/dbdf6gwgo/image/upload/v1632732137/forum/icons/thumb_up_cdmnbo.png");background-size:22px!important;height:22px;padding-left:22px;width:22px} 
 img[src="https://img.forumfree.net/home/images/comment_icon.png"],img[src="https://img.forumfree.net/home/images/news_icon.png"],img[src="https://img.forumfree.net/home/images/type_error.png"]{padding-left:22px} 
 img[src="https://img.forumfree.net/home/images/avatar_email.png"]{background:url("https://res.cloudinary.com/dbdf6gwgo/image/upload/v1711199941/forum/Avatar/e-mail-symbol_1f4e7_cq2lhf.png") 50% no-repeat;background-size:45px 45px;height:45px!important;padding-left:45px;width:45px!important}
 #notifications-modal #notifications-empty::before,.cs-modal .st-emoji-notice-empty-message::before{content:'\f05a \00a0';display:inline-block}
