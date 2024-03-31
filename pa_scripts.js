@@ -12,25 +12,22 @@ function waitForElementToAppear(selector, callback) {
 waitForElementToAppear('.post', function() {
     const processPostElements = function() {
         const posts = document.querySelectorAll('.post');
-        let pageNumber = getPageNumber();
+        const getPageNumber = function(postIndex) {
+            const searchParams = new URLSearchParams(window.location.search);
+            return parseInt(searchParams.get('st') || 0) + postIndex + 1;
+        };
 
         posts.forEach(function(post, index) {
-            pageNumber++; // Increment page number for each post
-            (function createReplyCounter(postElement, pageNumber) {
+            (function createReplyCounter(postElement, postIndex) {
                 const replyCounter = document.createElement('b');
                 replyCounter.className = 'reply_counter';
-                replyCounter.textContent = '#' + pageNumber;
+                replyCounter.textContent = '#' + getPageNumber(postIndex);
                 const miniButtons = postElement.querySelector('.mini_buttons.rt.Sub');
                 if (miniButtons) {
                     miniButtons.appendChild(replyCounter);
                 }
-            })(post, pageNumber);
+            })(post, index);
         });
-    };
-
-    const getPageNumber = function() {
-        const searchParams = new URLSearchParams(window.location.search);
-        return parseInt(searchParams.get('st') || 0) + 1;
     };
 
     processPostElements();
