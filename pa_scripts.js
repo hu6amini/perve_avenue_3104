@@ -1,17 +1,16 @@
 //Reply Counter
-function waitForElementToAppear(selector, callback) {
+function waitForAllElementsToAppear(selector, callback) {
     const interval = setInterval(function() {
-        const element = document.querySelector(selector);
-        if (element) {
+        const elements = document.querySelectorAll(selector);
+        if (elements.length > 0) {
             clearInterval(interval);
-            callback(element);
+            callback(elements);
         }
     }, 100);
 }
 
-waitForElementToAppear('.post', function() {
+waitForAllElementsToAppear('.post', function(posts) {
     const processPostElements = function() {
-        const posts = document.querySelectorAll('.post');
         const getPageNumber = function(postIndex) {
             const searchParams = new URLSearchParams(window.location.search);
             return parseInt(searchParams.get('st') || 0) + postIndex + 1;
