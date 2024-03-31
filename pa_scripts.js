@@ -1,16 +1,17 @@
 //Reply Counter
-function waitForAllElementsToAppear(selector, callback) {
+function waitForElementToAppear(selector, callback) {
     const interval = setInterval(function() {
-        const elements = document.querySelectorAll(selector);
-        if (elements.length > 0) {
+        const element = document.querySelector(selector);
+        if (element) {
             clearInterval(interval);
-            callback(elements);
+            callback(element);
         }
     }, 100);
 }
 
-waitForAllElementsToAppear('.post', function(posts) {
+waitForElementToAppear('.post', function() {
     const processPostElements = function() {
+        const posts = document.querySelectorAll('.post');
         const getPageNumber = function(postIndex) {
             const searchParams = new URLSearchParams(window.location.search);
             return parseInt(searchParams.get('st') || 0) + postIndex + 1;
@@ -30,6 +31,24 @@ waitForAllElementsToAppear('.post', function(posts) {
     };
 
     processPostElements();
+
+    // Mutation Observer
+    const mutationObserver = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+            if (mutation.addedNodes) {
+                mutation.addedNodes.forEach(function(addedNode) {
+                    if (addedNode.classList && addedNode.classList.contains('post')) {
+                        processPostElements();
+                    }
+                });
+            }
+        });
+    });
+
+    const targetNode = document.querySelector('body');
+    const config = { childList: true, subtree: true };
+
+    const countObserver = mutationObserver.observe(targetNode, config);
 });
 
 //Favicons
