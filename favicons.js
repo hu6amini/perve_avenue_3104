@@ -24,7 +24,8 @@ function waitForElementToAppear(selector, callback) {
     const fav = new MutationObserver(mutations => {
         mutations.forEach(mutation => {
             if (mutation.addedNodes.length) {
-                callback();
+                const newElements = document.querySelectorAll(selector);
+                callback(newElements);
             }
         });
     });
@@ -34,10 +35,10 @@ function waitForElementToAppear(selector, callback) {
 
     const initialElements = document.querySelectorAll(selector);
     if (initialElements.length) {
-        callback();
+        callback(initialElements);
     }
 }
 
-waitForElementToAppear(".color a, span.tmsg a", function() {
-    updateFaviconsForLinks(document.querySelectorAll(".color a, span.tmsg a"));
+waitForElementToAppear(".color a, span.tmsg a", function(newElements) {
+    updateFaviconsForLinks(newElements);
 });
