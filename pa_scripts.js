@@ -18,15 +18,18 @@ waitForElementToAppear('.post', function() {
         };
 
         posts.forEach(function(post, index) {
-            (function createReplyCounter(postElement, postIndex) {
-                const replyCounter = document.createElement('b');
-                replyCounter.className = 'reply_counter';
-                replyCounter.textContent = '#' + getPageNumber(postIndex);
-                const miniButtons = postElement.querySelector('.mini_buttons.rt.Sub');
-                if (miniButtons) {
-                    miniButtons.appendChild(replyCounter);
-                }
-            })(post, index);
+            // Check if .reply_counter already exists
+            if (!post.querySelector('.reply_counter')) {
+                (function createReplyCounter(postElement, postIndex) {
+                    const replyCounter = document.createElement('b');
+                    replyCounter.className = 'reply_counter';
+                    replyCounter.textContent = '#' + getPageNumber(postIndex);
+                    const miniButtons = postElement.querySelector('.mini_buttons.rt.Sub');
+                    if (miniButtons) {
+                        miniButtons.appendChild(replyCounter);
+                    }
+                })(post, index);
+            }
         });
     };
 
