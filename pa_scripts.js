@@ -1,5 +1,41 @@
 //Reply Counter
-document.addEventListener("DOMContentLoaded",(function(){!function processPostElements(){const e=document.querySelectorAll(".post"),t=function getPageNumber(){const e=new URLSearchParams(window.location.search);return parseInt(e.get("st")||0)+1}();e.forEach(((e,n)=>{!function createReplyCounter(e,t,n){const o=document.createElement("b");o.className="reply_counter",o.textContent="#"+t;const r=e.querySelector(".mini_buttons.rt.Sub");r&&("after"===n?r.appendChild(o):r.insertBefore(o,r.firstChild))}(e,t+n,"after")}))}()}));
+function waitForElementToAppear(selector, callback) {
+    const interval = setInterval(function() {
+        const element = document.querySelector(selector);
+        if (element) {
+            clearInterval(interval);
+            callback(element);
+        }
+    }, 100);
+}
+
+waitForElementToAppear('.post', function() {
+    const processPostElements = function() {
+        const posts = document.querySelectorAll('.post');
+        const getPageNumber = function() {
+            const searchParams = new URLSearchParams(window.location.search);
+            return parseInt(searchParams.get('st') || 0) + 1;
+        };
+
+        posts.forEach(function(post, index) {
+            (function createReplyCounter(postElement, pageNumber, index) {
+                const replyCounter = document.createElement('b');
+                replyCounter.className = 'reply_counter';
+                replyCounter.textContent = '#' + pageNumber;
+                const miniButtons = postElement.querySelector('.mini_buttons.rt.Sub');
+                if (miniButtons) {
+                    if (index === 'after') {
+                        miniButtons.appendChild(replyCounter);
+                    } else {
+                        miniButtons.insertBefore(replyCounter, miniButtons.firstChild);
+                    }
+                }
+            })(post, getPageNumber(), index);
+        });
+    };
+
+    processPostElements();
+});
 //Favicons
 document.addEventListener("DOMContentLoaded",(function(){function updateFaviconsForLinks(e){e.forEach((e=>{if(!(e.closest(".spoiler .code_top a")||e.closest(".fancyborder a")||e.closest(".quote_top a")||e.querySelector("img"))){let o=document.createElement("img");e.href.includes("youtu.be")?o.src="https://www.google.com/s2/favicons?domain=youtube.com":o.src="https://www.google.com/s2/favicons?domain="+e.href,o.alt="fav",e.matches(".quote a,.tmsg a")?(o.width=14,o.height=14):(o.width=16,o.height=16),e.prepend(o)}}))}const e=new MutationObserver((e=>{e.forEach((e=>{updateFaviconsForLinks(e.target.querySelectorAll(".color a, span.tmsg a"))}))})),o=document.querySelector("body");e.observe(o,{childList:!0,subtree:!0});updateFaviconsForLinks(document.querySelectorAll(".color a, span.tmsg a"))}));
 //Quote
