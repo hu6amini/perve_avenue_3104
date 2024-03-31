@@ -1,5 +1,60 @@
 //Reply Counter
 function waitForElementToAppear(e,t){const n=setInterval((function(){const o=document.querySelector(e);o&&(clearInterval(n),t(o))}),100)}waitForElementToAppear(".post",(function(){const processPostElements=function(){const e=document.querySelectorAll(".post");e.forEach((function(e,t){e.querySelector(".reply_counter")||function createReplyCounter(e,t){const n=document.createElement("b");n.className="reply_counter",n.textContent="#"+function(e){const t=new URLSearchParams(window.location.search);return parseInt(t.get("st")||0)+e+1}(t);const o=e.querySelector(".mini_buttons.rt.Sub");o&&o.appendChild(n)}(e,t)}))};processPostElements();const e=new MutationObserver((function(e){e.forEach((function(e){e.addedNodes&&e.addedNodes.forEach((function(e){e.classList&&e.classList.contains("post")&&processPostElements()}))}))})),t=document.querySelector("body");e.observe(t,{childList:!0,subtree:!0})}));
+//Favicons
+function waitForElementToAppear(selector, callback) {
+    const intervalId = setInterval(() => {
+        const element = document.querySelector(selector);
+        if (element) {
+            clearInterval(intervalId);
+            callback(element);
+        }
+    }, 100);
+}
+
+waitForElementToAppear(".color a, span.tmsg a", (links) => {
+    function updateFaviconsForLinks(links) {
+        links.forEach((link) => {
+            if (
+                !(
+                    link.closest(".spoiler .code_top a") ||
+                    link.closest(".fancyborder a") ||
+                    link.closest(".quote_top a") ||
+                    link.querySelector("img")
+                )
+            ) {
+                const img = document.createElement("img");
+                if (link.href.includes("youtu.be")) {
+                    img.src = "https://www.google.com/s2/favicons?domain=youtube.com";
+                } else {
+                    img.src = "https://www.google.com/s2/favicons?domain=" + link.href;
+                }
+                img.alt = "fav";
+                if (link.matches(".quote a, .tmsg a")) {
+                    img.width = 14;
+                    img.height = 14;
+                } else {
+                    img.width = 16;
+                    img.height = 16;
+                }
+                link.prepend(img);
+            }
+        });
+    }
+
+    const favObserver = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+            mutation.addedNodes.forEach((node) => {
+                if (node.nodeType === Node.ELEMENT_NODE) {
+                    updateFaviconsForLinks(node.querySelectorAll(".color a, span.tmsg a"));
+                }
+            });
+        });
+    });
+
+    favObserver.observe(document.body, { childList: true, subtree: true });
+
+    updateFaviconsForLinks(links);
+});
 //Quote
 document.addEventListener("DOMContentLoaded",(()=>{function expandQuotes(e){const updateHeight=()=>{const t=e.querySelector(".quotebtn button");if(!t&&e.scrollHeight>170){e.style.maxHeight="170px";const t=document.createElement("div");t.className="quotebtn";const o=document.createElement("button");o.innerHTML="Show More...",t.appendChild(o),e.appendChild(t),o.addEventListener("click",(o=>{o.preventDefault(),o.stopPropagation(),e.style.transition="max-height 0.382s ease-in-out",e.style.maxHeight=e.scrollHeight+"px",t.style.display="none",setTimeout((()=>{e.style.maxHeight="none"}),382)}))}else t&&e.scrollHeight<=170&&t.parentNode.remove()};updateHeight();const t=new ResizeObserver(updateHeight);t.observe(e);const o=e.querySelector(".spoiler .code_top a");o&&o.addEventListener("click",(()=>{e.style.maxHeight="none",t.disconnect()}))}function modifyQuoteTop(e){const t=e.textContent,o=e.querySelector("a");if(t.includes("@")){const n=t.replace(/QUOTE\s*\(([^@]+)@[^)]+\)\s*/,"$1 said:");e.innerHTML=n,e.style.color="var(--mdcol)",o&&(e.appendChild(o),o.style.color="var(--mdcol)")}else{const t=e.querySelector(".quote_top b");t&&(t.style.opacity=1)}}(function initializeExpandQuotes(){document.querySelectorAll(".quote").forEach(expandQuotes),new MutationObserver((e=>{for(const t of e)t.addedNodes.length>0&&t.addedNodes.forEach((e=>{e.nodeType===Node.ELEMENT_NODE&&(e.classList.contains("quote")?expandQuotes(e):e.querySelectorAll(".quote").forEach(expandQuotes))}))})).observe(document.body,{childList:!0,subtree:!0})})(),document.querySelectorAll(".quote_top").forEach(modifyQuoteTop),function observeMutations(){new MutationObserver((e=>{for(const t of e)"childList"===t.type&&t.addedNodes.forEach((e=>{e.nodeType===Node.ELEMENT_NODE&&e.querySelectorAll(".quote_top").forEach(modifyQuoteTop)}))})).observe(document.body,{childList:!0,subtree:!0})}()}));
 //Textarea Autogrow
