@@ -40,11 +40,15 @@ waitForElementToAppear(".color a, span.tmsg a", (links) => {
 
     const favObserver = new MutationObserver((mutations) => {
         mutations.forEach((mutation) => {
-            updateFaviconsForLinks(mutation.target.querySelectorAll(".color a, span.tmsg a"));
+            mutation.addedNodes.forEach((node) => {
+                if (node.nodeType === Node.ELEMENT_NODE) {
+                    updateFaviconsForLinks(node.querySelectorAll(".color a, span.tmsg a"));
+                }
+            });
         });
     });
 
-    favObserver.observe(links.parentElement, { childList: true, subtree: true });
+    favObserver.observe(document.body, { childList: true, subtree: true });
 
     updateFaviconsForLinks(links);
 });
