@@ -399,4 +399,5 @@ img[src="https://img.forumfree.net/home/images/avatar_email.png"]{background:url
 #notifications-modal .notification-row .notification-image{padding:0!important}
 #msg .notification-container .aa{padding:0!important;width:4px!important}
 #msg .notification-container .aa .avatar{height:48px!important;width:48px!important}
+#msg a.forminput[href="/?act=Msg&CODE=16&c=655775"]:before{content:'\f0f3 \00a0';display:inline-block}
 .plus-button::before{background:none!important;color:var(--ltcol);content:'\2b'!important;display:inline-block;font-size:1.125rem;height:auto!important;width:auto!important}
