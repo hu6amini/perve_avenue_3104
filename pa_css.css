@@ -13,7 +13,7 @@ img[alt$=":"]{height:22px;margin:0;vertical-align:text-bottom!important;width:22
 #Post{width:100%!important}
 .send .Justify:hover,td.right.Item.Justify{cursor:default}
 .cp.send .sunbar.center.Item + ul.list{padding:12px}
-#msg .cp.send .Item > #Post{border:1px solid var(--ltbrd)}
+#msg .cp.send .Item > #Post{border:1px solid var(--ltbrd);margin:0}
 .Blocker{background-color:#090A0C61!important}
 .send .List li:first-child .Justify,#send .send ul.list li:first-child .Justify,#send .send ul.main_list ul.list li:nth-of-type(3) .right.Sub,.post .avatar:not(#msg .post .avatar) img[src="https://res.cloudinary.com/dbdf6gwgo/image/upload/v1674337715/forum/Avatar/default_avatar_zpw3zz.svg"],#board .menuwrap img[src="https://res.cloudinary.com/dbdf6gwgo/image/upload/v1674337715/forum/Avatar/default_avatar_zpw3zz.svg"],#forum .menuwrap img[src="https://res.cloudinary.com/dbdf6gwgo/image/upload/v1674337715/forum/Avatar/default_avatar_zpw3zz.svg"],#topic .menuwrap img[src="https://res.cloudinary.com/dbdf6gwgo/image/upload/v1674337715/forum/Avatar/default_avatar_zpw3zz.svg"],#blog .menuwrap img[src="https://res.cloudinary.com/dbdf6gwgo/image/upload/v1674337715/forum/Avatar/default_avatar_zpw3zz.svg"],.profile img[src="https://res.cloudinary.com/dbdf6gwgo/image/upload/v1674337715/forum/Avatar/default_avatar_zpw3zz.svg"]{visibility:hidden}
 .textinput,.forminput,.codebuttons,option,input,button,optgroup,textarea,.footer span:first-child,.nickname{font-family:quicksand!important}
@@ -355,7 +355,7 @@ img[src="https://img.forumfree.net/home/img/flag-gb.png"],img[src="https://img.f
 .tag a[target="_self"]::before{content:'\f3c5';font-size:.813rem}
 .tag a[target="_self"]:hover{color:var(--ftcol);text-decoration:none} 
 form[name="tagboard"]{background:var(--contt);border-radius:4px;display:table;width:100%}
-.send .List .Item[style="text-align: center; padding: 2px 0"], #send .send ul.main_list .Item[style="padding:6px;text-align:center"], #send .send ul.list li:first-child .Justify div,#user input.codebuttons[accesskey="g"] + div, #msg button.codebuttons[accesskey="r"] + div,#msg .cp.send .Item[style="padding: 6px;text-align:center;"]{display:contents}
+.send .List .Item[style="text-align: center; padding: 2px 0"], #send .send ul.main_list .Item[style="padding:6px;text-align:center"], #send .send ul.list li:first-child .Justify div,#user input.codebuttons[accesskey="g"] + div, #msg button.codebuttons[accesskey="r"] + div,#msg .cp.send .Item[style="padding:6px;text-align:center"]{display:contents}
 #poll,#ADDCRON{color:var(--ftcol);font-size:.813rem}
 #ADDCRON::before{color:var(--ltcol);content:'\e0d6';display:inline-block}
 .poll input[type="radio"]{height:14px;position:relative;top:50%;transform:translatey(-50%);width:14px}
