@@ -17,7 +17,7 @@ img[alt$=":"]{height:22px;margin:0;vertical-align:text-bottom!important;width:22
 #msg .cp.send .Item > #Post:focus{min-height:300px}
 #user .Item[style="padding:6px;text-align:center"]{padding:0 12px 0 12px!important}
 #user .Item[style="text-align:center;line-height:200%;padding-bottom:14px"]{padding:0 0 13px 0!important}
-#user small a[href="https://accounts.forumcommunity.net/?act=Reg&CODE=10"]::before{content:'\f0e0 \00a0';margin-left:5px}
+#user small a[href="https://accounts.forumcommunity.net/?act=Reg&CODE=10"]::before{content:'\f0e0 \00a0';display:inline-block;margin-left:5px}
 .Blocker{background-color:#090A0C61!important}
 .send .List li:first-child .Justify,#send .send ul.list li:first-child .Justify,#send .send ul.main_list ul.list li:nth-of-type(3) .right.Sub,.post .avatar:not(#msg .post .avatar) img[src="https://res.cloudinary.com/dbdf6gwgo/image/upload/v1674337715/forum/Avatar/default_avatar_zpw3zz.svg"],#board .menuwrap img[src="https://res.cloudinary.com/dbdf6gwgo/image/upload/v1674337715/forum/Avatar/default_avatar_zpw3zz.svg"],#forum .menuwrap img[src="https://res.cloudinary.com/dbdf6gwgo/image/upload/v1674337715/forum/Avatar/default_avatar_zpw3zz.svg"],#topic .menuwrap img[src="https://res.cloudinary.com/dbdf6gwgo/image/upload/v1674337715/forum/Avatar/default_avatar_zpw3zz.svg"],#blog .menuwrap img[src="https://res.cloudinary.com/dbdf6gwgo/image/upload/v1674337715/forum/Avatar/default_avatar_zpw3zz.svg"],.profile img[src="https://res.cloudinary.com/dbdf6gwgo/image/upload/v1674337715/forum/Avatar/default_avatar_zpw3zz.svg"]{visibility:hidden}
 .textinput,.forminput,.codebuttons,option,input,button,optgroup,textarea,.footer span:first-child,.nickname{font-family:quicksand!important}
