@@ -13,7 +13,8 @@ img[alt$=":"]{height:22px;margin:0;vertical-align:text-bottom!important;width:22
 #Post{width:100%!important}
 .send .Justify:hover,td.right.Item.Justify{cursor:default}
 .cp.send .sunbar.center.Item + ul.list{padding:12px}
-#msg .cp.send .Item > #Post{border:1px solid var(--ltbrd);margin:0}
+#msg .cp.send .Item > #Post{border:1px solid var(--ltbrd);margin:0;transition:max-height .618s ease-in-out}
+#msg .cp.send .Item > #Post:focus{max-height:300px}
 .Blocker{background-color:#090A0C61!important}
 .send .List li:first-child .Justify,#send .send ul.list li:first-child .Justify,#send .send ul.main_list ul.list li:nth-of-type(3) .right.Sub,.post .avatar:not(#msg .post .avatar) img[src="https://res.cloudinary.com/dbdf6gwgo/image/upload/v1674337715/forum/Avatar/default_avatar_zpw3zz.svg"],#board .menuwrap img[src="https://res.cloudinary.com/dbdf6gwgo/image/upload/v1674337715/forum/Avatar/default_avatar_zpw3zz.svg"],#forum .menuwrap img[src="https://res.cloudinary.com/dbdf6gwgo/image/upload/v1674337715/forum/Avatar/default_avatar_zpw3zz.svg"],#topic .menuwrap img[src="https://res.cloudinary.com/dbdf6gwgo/image/upload/v1674337715/forum/Avatar/default_avatar_zpw3zz.svg"],#blog .menuwrap img[src="https://res.cloudinary.com/dbdf6gwgo/image/upload/v1674337715/forum/Avatar/default_avatar_zpw3zz.svg"],.profile img[src="https://res.cloudinary.com/dbdf6gwgo/image/upload/v1674337715/forum/Avatar/default_avatar_zpw3zz.svg"]{visibility:hidden}
 .textinput,.forminput,.codebuttons,option,input,button,optgroup,textarea,.footer span:first-child,.nickname{font-family:quicksand!important}
