@@ -27,7 +27,7 @@ img[src^="https://www.google.com/s2/"]{user-select:none}
 img[src^="https://img.forumfree.net/html/emoticons/new/"]{margin:0;vertical-align:text-bottom!important}
 .forumfree-modal div[id^="emoticon-popup"] img:not([data-src]){height:22px;width:auto}
 .forumfree-modal div[id^="emoticon-popup"] ul{border-radius:0 0 4px 4px;display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:7px 0 0!important;padding:10px 0 10px 10px!important;scrollbar-width:thin}
-.forumfree-modal div[id^="emoticon-popup"] li{height:22px;margin:0!important;text-align:bottom;width:22px}
+.forumfree-modal div[id^="emoticon-popup"] li{height:22px;margin:0!important;vertical-align:text-bottom;width:22px}
 #emoticon-popup1 img[src="https://img.forumfree.net/index_file/loads3.gif"],img:not([width]):not([height])[src^="https://img.forumfree.net/html/emoticons/new"]{overflow:hidden;padding-left:22px}
 .forumfree-modal.notifications-modal.Blocker.current #notifications-modal .notification-text,#user span[style="color:#D22"]{color:var(--ftcol)!important}
 #topic .iuw-alert{border-radius:0;margin:0!important}
