@@ -379,7 +379,7 @@ input.forminput[value="Search this forum"]{font-size:0;height:.875rem;margin-lef
 .alert::before,.cp .main_list .Item[style="padding: 1em; font-size: 1.1em; color: indianred"]:before{content:'\e204'}
 .info::after,.alert::after,.cp .main_list .Item[style="padding: 1em; font-size: 1.1em; color: indianred"]:after{background:var(--redft);content:'';display:flex;height:100%;left:0;position:absolute;top:0;width:32px;z-index:0}
 .alert b{font-size:.875rem!important;font-weight:400}
-.info a,.alert a,.cp .main_list .Item[style="padding: 1em; font-size: 1.1em; color: indianred"] a{color:#32CFFF!important;font-size:.813rem;font-weight:700}
+.info a:not(.notification a),.alert a,.cp .main_list .Item[style="padding: 1em; font-size: 1.1em; color: indianred"] a{color:#32CFFF!important;font-size:.813rem;font-weight:700}
 #msg td a,.cp a:not(.notification-container .bb a,.pages li a,.info a,.alert a,.cp .main_list .Item[style="padding: 1em; font-size: 1.1em; color: indianred"] a),.cp a i,#user input.codebuttons{font-size:.938rem;font-weight:700;text-transform:capitalize}
 .cs-modal .st-emoji-notice-list{display:flex!important;flex-direction:column!important;gap:0!important;list-style-type:none!important;margin:0!important;padding: 0!important;position:relative!important;z-index:1!important}
 .cs-modal .st-emoji-notice-empty-message{background:none!important;color:var(--ltcol)!important;padding:8px 0 0!important;text-shadow:none!important}
