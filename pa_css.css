@@ -389,7 +389,8 @@ input.forminput[value="Search this forum"]{font-size:0;height:.875rem;margin-lef
 .st-emoji-notice-content{display:flex;flex-direction:row;flex-wrap:wrap;justify-content:space-between;order:2}
 .cs-modal .st-emoji-notice-message{color:var(--ftcol);font-size:.813rem;line-height:1.618;margin:0;min-height:43px;order:1;text-align:left}
 .cs-modal .st-emoji-notice-time{color:var(--ltcol);font-size:.75rem;margin:0;order:3;text-align:right}
-.cs-buttons.st-emoji-notice-btn{order:2;position:relative;width:fit-content!important}
+.cs-buttons.st-emoji-notice-btn{gap:10px;order:2;position:relative;width:fit-content!important}
+.cs-btn.cs-btn-outer-red{border:none!important;bottom:4px;color:var(--ltcol)!important;font-size:.75rem;margin:0!important;padding:0!important;position:relative;top:0;transition:none;width:auto!important}
 .cs-modal .st-emoji-notice-history-title{border-bottom:none!important;color:var(--ftcol);display:table;font-size:.875rem!important;margin:0!important;padding:10px!important;position:relative!important;text-align:left!important}
 .cs-modal .st-emoji-notice-history-title::before{content:'\f1da \00a0'}
 .cs-modal .st-emoji-notice-history-title::after{background:var(--redft);bottom:0;content:'';display:inline-block;height:3px;left:0;position:absolute;width:100%}
