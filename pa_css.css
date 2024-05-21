@@ -395,6 +395,8 @@ input.forminput[value="Search this forum"]{font-size:0;height:.875rem;margin-lef
 .cs-modal .st-emoji-notice-history-title{border-bottom:none!important;color:var(--ftcol);display:table;font-size:.875rem!important;margin:0!important;padding:10px!important;position:relative!important;text-align:left!important}
 .cs-modal .st-emoji-notice-history-title::before{content:'\f1da \00a0'}
 .cs-modal .st-emoji-notice-history-title::after{background:var(--redft);bottom:0;content:'';display:inline-block;height:3px;left:0;position:absolute;width:100%}
+.cs-btn.cs-btn-outer-red::before{content:'\f1f6 \00a0';display:inline-block}
+.cs-btn.cs-btn-outer-green::before,#notifications-modal .notification-container:not(.readed) .dot::before{content:'\f061 \00a0';display:inline-block}
 .cs-btn.cs-btn-outer-red.st-emoji-notice-delete::before{content:'\f12d \00a0';display:inline-block;font-size:.75rem}
 .cs-modal-footer{background:var(--contt);border-radius:0 0 4px 4px;border-top:1px solid var(--ltbrd);height:45px;overflow-y:hidden!important;padding:0 10px!important}
 #notifications-modal .notification-image .notification-type,#msg .cp .aa .notification-type{background:none!important;border:none!important;border-radius:0!important;bottom:-5px!important;height:22px!important;overflow:visible!important;right:-5px!important;width:22px!important}
