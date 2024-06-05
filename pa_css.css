@@ -9,6 +9,7 @@ img[alt$=":"]{height:22px;margin:0;vertical-align:text-bottom!important;width:22
 .quote [class*=e1a-],.quote img[src^="https://img.forumfree.net/html/emoticons/new/"],.tmsg [class*=e1a-],.tmsg img[src^="https://img.forumfree.net/html/emoticons/new/"]{transform:scale(.875)}
 .cs-modal .st-emoji-notice-message img[data-rid="1"],.cs-modal .st-emoji-notice-message img[data-rid="2"],.cs-modal .st-emoji-notice-message img[data-rid="3"],.cs-modal .st-emoji-notice-message img[data-rid="4"],.cs-modal .st-emoji-notice-message img[data-rid="5"],.cs-modal .st-emoji-notice-message img[data-rid="6"],.cs-modal .st-emoji-notice-message img[data-rid="7"],.cs-modal .st-emoji-notice-message img[data-rid="8"],.cs-modal .st-emoji-notice-message img[data-rid="9"],.cs-modal .st-emoji-notice-message img[data-rid="10"],.cs-modal .st-emoji-notice-message img[data-rid="11"],.cs-modal .st-emoji-notice-message img[data-rid="12"]{height:17.94px;vertical-align:text-bottom;width:17.94px}
 #Post{width:100%!important}
+.mini_buttons.points.Sub{vertical-align:unset}
 .send input[name="sub-mit"]{background:var(--redft)!important;border:1px solid var(--dkbrd)!important;border-radius:4px!important;color:var(--ftcol);font-size:.875rem;font-weight:700;padding:7px 11px!important;text-transform:uppercase!important}
 .send .Justify:hover,td.right.Item.Justify{cursor:default}
 .cp.send .sunbar.center.Item + ul.list{padding:12px}
