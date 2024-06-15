@@ -1,6 +1,6 @@
 .menuwrap.Ghost:not(#search .menuwrap.Ghost,#user .menuwrap.Ghost,#msg .menuwrap.Ghost){min-height:97px}
 #msg .Fixed,#user .Fixed,#search .Fixed{left:0;margin:auto;max-width:1200px;right:0;z-index:8}
-.menuwrap .left .menu a:not(.menuwrap ul a){color:var(--mdcol)}
+.menuwrap .left .menu a:not(.menuwrap .menu > ul a){color:var(--mdcol)}
 .menuwrap .left .menu a::before{font-size:1rem}
 .menuwrap .left .menu > a[href="https://msg.forumcommunity.net/?act=Msg&CODE=01&c=655775"]::before{content:'\f0e0'}
 .menuwrap .left .menu > a[href="https://msg.forumcommunity.net/?act=UserCP&CODE=26&c=655775"]::before{content:'\f14b'}
