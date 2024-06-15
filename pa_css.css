@@ -1,6 +1,6 @@
 .menuwrap.Ghost:not(#search .menuwrap.Ghost,#user .menuwrap.Ghost,#msg .menuwrap.Ghost){min-height:97px}
 #msg .Fixed,#user .Fixed,#search .Fixed{left:0;margin:auto;max-width:1200px;right:0;z-index:8}
-.menuwrap a:not(.menuwrap ul a)::before{color:var(--mdcol);font-size:1rem}
+.menuwrap .left .menu a::before{color:var(--mdcol);font-size:1rem}
 .menuwrap a[href="https://www.forumcommunity.net/?cid=655775"]:before{content:'\f3ed'}
 #user .Item.title2,#user span[style="color:#D22"]{font-size:.875rem!important}
 #user .main_list img[alt="Avatar"]{border-radius:100%;height:192px;object-fit:cover;object-position:top;overflow:hidden;width:192px}
