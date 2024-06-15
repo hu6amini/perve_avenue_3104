@@ -2,7 +2,7 @@
 #msg .Fixed,#user .Fixed,#search .Fixed{left:0;margin:auto;max-width:1200px;right:0;z-index:8}
 .menuwrap .left .menu a::before{color:var(--mdcol);font-size:1rem}
 .menuwrap .left .menu > a[href="https://msg.forumcommunity.net/?act=Msg&CODE=01&c=655775"]::before{content:'\f0e0'}
-.menuwrap a[href="https://msg.forumcommunity.net/?act=UserCP&CODE=26&c=655775"]::before{content:'\f14b'}
+.menuwrap .left .menu > a[href="https://msg.forumcommunity.net/?act=UserCP&CODE=26&c=655775"]::before{content:'\f14b'}
 .menuwrap a[href="#notifications"]::before{content:'\f0f3'}
 .menuwrap a[href="https://www.forumcommunity.net/?cid=655775"]::before{content:'\f3ed'}
 #user .Item.title2,#user span[style="color:#D22"]{font-size:.875rem!important}
