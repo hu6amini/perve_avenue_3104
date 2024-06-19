@@ -370,7 +370,7 @@ input.forminput[value="Search this forum"]{font-size:0;height:.875rem;margin-lef
 .atwho-view ul li,.atwho-view ul li *{color:var(--ftcol)!important;font-size:.875rem} 
 .atwho-view ul li:hover,.atwho-view ul li *:hover{background:#090A0C40!important} 
 .atwho-view ul li{background:none;border-bottom:none!important;font-weight:700;line-height:35px;padding:0 12px!important} 
-.atwho-view ul li.cur{border:none} 
+.atwho-view ul li.cur{background:none;border:none} 
 .atwho-view li img{border-radius:100%;bottom:1px;margin-right:3px;object-fit:cover;object-position:top;position:relative}
 #mod [title="drag and drop"] em::before{content:'move';font-family:quicksand;font-size:.813rem;font-style:normal}
 .info:not(.cp b.info),.alert,.cp .main_list .Item[style="padding: 1em; font-size: 1.1em; color: indianred"]{background:var(--txtim)!important;border-bottom:2px solid var(--redft);border-left:none!important;border-radius:4px;border-right:2px solid var(--redft);border-top:2px solid var(--redft);color:var(--ftcol)!important;font-size:.813rem!important;padding:10px 10px 10px 42px!important;position:relative;text-align:left}
