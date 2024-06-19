@@ -428,3 +428,4 @@ img[src="https://img.forumfree.net/home/images/avatar_email.png"]{background:url
 .ffb_embedlink_initialized > div:last-child > div:first-child,.ffb_embedlink_initialized > div:last-child > div:first-child > a{margin-bottom:3px;max-height:100%;max-width:100%}
 .ffb_embedlink_initialized > div:last-child > div:first-child > a{display:block!important;overflow:visible}
 .Sub.Item[style="width:28%"]{color:var(--ltcol);font-size:.813rem;font-weight:400}
+.Sub.Item.handle.ui-sortable-handle{color:var(--ftcol);font-size:1rem}
