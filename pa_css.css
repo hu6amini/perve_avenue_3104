@@ -435,3 +435,4 @@ img[src="https://img.forumfree.net/home/images/avatar_email.png"]{background:url
 .Sub a[href="/?act=UserCP&CODE=04&c=655775"]::before{content:'\f013 \00a0'}
 .Sub a[href="/?act=UserCP&CODE=02&c=655775"]::before{content:'\f0f3 \00a0'}
 .Sub a[href="/?act=UserCP&CODE=28&c=655775"]::before{content:'\f023 \00a0'}
+@media (max-width: 768px){}
