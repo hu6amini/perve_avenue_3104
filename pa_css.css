@@ -438,6 +438,6 @@ img[src="https://img.forumfree.net/home/images/avatar_email.png"]{background:url
 @media (max-width: 768px){
 .prvchat{width:100%!important}
 .children-2{margin:0;width:100%}
-.top-button{flex:1;margin:0;width:100%}
+.top-button{flex:1;margin:0!important;width:100%}
 .children-1,.prvposts{display:none}
 }
