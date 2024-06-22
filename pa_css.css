@@ -429,6 +429,7 @@ img[src="https://img.forumfree.net/home/images/avatar_email.png"]{background:url
 .ffb_embedlink_initialized > div:last-child > div:first-child > a{display:block!important;overflow:visible}
 .Sub.Item[style="width:28%"]{color:var(--ltcol);font-size:.875rem;font-weight:400}
 .Sub.Item.handle.ui-sortable-handle{color:var(--ftcol);font-size:1rem}
+#markdiv .list-users > div{border:1px solid var(==ltbrd);border-radius:4px;padding:12px}
 .Sub a[href="/?act=UserCP&CODE=01&c=655775"]::before{content:'\f007 \00a0'}
 .Sub a[href="/?act=UserCP&CODE=24&c=655775"]::before{content:'\f2bd \00a0'}
 .Sub a[href="/?act=UserCP&CODE=22&c=655775"]::before{content:'\f5b7 \00a0'}
