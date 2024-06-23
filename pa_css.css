@@ -430,6 +430,8 @@ img[src="https://img.forumfree.net/home/images/avatar_email.png"]{background:url
 .Sub.Item[style="width:28%"]{color:var(--ltcol);font-size:.875rem;font-weight:400}
 .Sub.Item.handle.ui-sortable-handle{color:var(--ftcol);font-size:1rem}
 #markdiv .list-users > div{border:1px solid var(--ltbrd);border-radius:4px;margin:0!important;min-width:106px;padding:12px}
+.atwho-view ul li[data-name="group: Game Dev"],.atwho-view ul li[data-name="group: Moderator"],.atwho-view ul li[data-name="group: Global Moderator"],.atwho-view ul li[data-name="group: Mod"],.atwho-view ul li[data-name="group: Staff"],.atwho-view ul li[data-name="group: Member"],.atwho-view ul li[data-name="group: Admin"]{padding:0} 
+.atwho-view ul li[data-name="group: Game Dev"]::before,.atwho-view ul li[data-name="group: Staff"]::before,.atwho-view ul li[data-name="group: Admin"]::before,.atwho-view ul li[data-name="group: Mod"]::before,.atwho-view ul li[data-name="group: Moderator"]::before,.atwho-view ul li[data-name="group: Global Moderator"]::before,.atwho-view ul li[data-name="group: Member"]::before{border-radius:100%;bottom:0;content:'';display:inline-block;height:25px;left:0;margin:auto;margin-left:10px;margin-right:3px;position:absolute;top:0;width:25px}
 #markdiv .list-users > div:hover{background-color:var(--hovbd)}
 .Sub a[href="/?act=UserCP&CODE=01&c=655775"]::before{content:'\f007 \00a0'}
 .Sub a[href="/?act=UserCP&CODE=24&c=655775"]::before{content:'\f2bd \00a0'}
