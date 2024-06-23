@@ -369,9 +369,9 @@ input.forminput[value="Search this forum"]{font-size:0;height:.875rem;margin-lef
 .atwho-view{background:var(--menul)!important;border:none!important;border-radius:4px!important;box-shadow: 0 5px 10px 0 #090A0C61!important;margin:0;padding:0} 
 .atwho-view ul li,.atwho-view ul li *{color:var(--ftcol)!important;font-size:.875rem} 
 .atwho-view ul li:hover,.atwho-view ul li *:hover{background:#090A0C40!important} 
-.atwho-view ul li{background:none;border-bottom:none!important;font-weight:700;line-height:35px;padding:0 12px!important} 
+.atwho-view ul li{align-items:center;background:none;border-bottom:none!important;display:flex!important;flex-wrap:wrap;font-weight:700;gap:5px;justify-content:left;padding:0 12px!important} 
 .atwho-view ul li.cur{background:none;border:none} 
-.atwho-view li img{border-radius:100%;bottom:1px;margin-right:3px;object-fit:cover;object-position:top;position:relative}
+.atwho-view li img{border-radius:100%;object-fit:cover;object-position:top;position:relative}
 #mod [title="drag and drop"] em::before{content:'move';font-family:quicksand;font-size:.813rem;font-style:normal}
 .info:not(.cp b.info),.alert,.cp .main_list .Item[style="padding: 1em; font-size: 1.1em; color: indianred"]{background:var(--txtim)!important;border-bottom:2px solid var(--redft);border-left:none!important;border-radius:4px;border-right:2px solid var(--redft);border-top:2px solid var(--redft);color:var(--ftcol)!important;font-size:.813rem!important;padding:10px 10px 10px 42px!important;position:relative;text-align:left}
 .info::before,.alert::before,.cp .main_list .Item[style="padding: 1em; font-size: 1.1em; color: indianred"]:before{color:var(--ftcol);display:inline-block;font-size:1rem;left:8px;line-height:26px;opacity:.618;position:absolute;top:50%;transform:translatey(-50%);z-index:1}
