@@ -448,7 +448,7 @@ img[src="https://img.forumfree.net/home/images/avatar_email.png"]{background:url
 .Sub a[href="/?act=UserCP&CODE=04&c=655775"]::before{content:'\f013 \00a0'}
 .Sub a[href="/?act=UserCP&CODE=02&c=655775"]::before{content:'\f0f3 \00a0'}
 .Sub a[href="/?act=UserCP&CODE=28&c=655775"]::before{content:'\f023 \00a0'}
-#user span[style="color:indianred"]:before{color:var(--redft);content:'\f057 \00a0'}
+#user span[style="color:indianred"]:before{color:var(--redft);content:'\f057 \00a0';margin-left:5px}
 @media (max-width: 768px){
 .prvchat{width:100%!important}
 .children-2{margin:0;width:100%}
