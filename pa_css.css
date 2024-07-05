@@ -388,7 +388,7 @@ input.forminput[value="Search this forum"]{font-size:0;height:.875rem;margin-lef
 .info::before,.alert:not(.cp .alert)::before,.cp .main_list .Item[style="padding: 1em; font-size: 1.1em; color: indianred"]:before{color:var(--ftcol);display:inline-block;font-size:1rem;left:8px;line-height:26px;opacity:.618;position:absolute;top:50%;transform:translatey(-50%);z-index:1}
 .info::before{content:'\f05a'}
 .alert::before,.cp .main_list .Item[style="padding: 1em; font-size: 1.1em; color: indianred"]:before{content:'\e204'}
-.info::after,.alert::after,.cp .main_list .Item[style="padding: 1em; font-size: 1.1em; color: indianred"]:after{background:var(--redft);content:'';display:flex;height:100%;left:0;position:absolute;top:0;width:32px;z-index:0}
+.info::after,.alert:not(.cp .alert)::after,.cp .main_list .Item[style="padding: 1em; font-size: 1.1em; color: indianred"]:after{background:var(--redft);content:'';display:flex;height:100%;left:0;position:absolute;top:0;width:32px;z-index:0}
 .alert b{font-size:.875rem!important;font-weight:400}
 .info a:not(.notification a),.alert a,.cp .main_list .Item[style="padding: 1em; font-size: 1.1em; color: indianred"] a{color:#32CFFF!important;font-size:.813rem;font-weight:700}
 #msg td a,.cp a:not(.notification-container .bb a,.pages li a,.info a,.alert a,.cp .main_list .Item[style="padding: 1em; font-size: 1.1em; color: indianred"] a),.cp a i,#user input.codebuttons{font-size:.938rem;font-weight:700;text-transform:capitalize}
