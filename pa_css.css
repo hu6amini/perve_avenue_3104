@@ -455,7 +455,7 @@ img[src="https://img.forumfree.net/home/images/avatar_email.png"]{background:url
 #user span[style="color:indianred"]:before{color:var(--redft);content:'\f057 \00a0';margin-left:5px}
 .guest.error.no_view_topic .skin_tbl,.guest.error.no_permission .skin_tbl:not(.skin_tbl[style="width:60%;min-width:500px"]){margin-top:calc(68px + 1em)!important;width:100%!important} 
 .guest.error.no_view_topic .darkbar,.guest.error.no_permission .darkbar:not(.skin_tbl[style="width:60%;min-width:500px"]){border-top:1px solid var(--ltbrd);padding-top:8px} 
-.error .skin_tbl[style="width:60%;min-width:500px"]{width:100%}
+.error .skin_tbl[style="width:60%;min-width:500px"]{width:100%!important}
 @media (max-width: 768px){
 .prvchat{width:100%!important}
 .children-2{margin:0;width:100%}
