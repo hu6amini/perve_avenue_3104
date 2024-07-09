@@ -459,6 +459,7 @@ img[src="https://img.forumfree.net/home/images/avatar_email.png"]{background:url
 .error .skin_tbl[style="width:60%;min-width:500px"] .list li[style="padding: 1em 0"],.error .skin_tbl[style="width:60%;min-width:500px"] .sunbar{padding:0!important}
 .error .skin_tbl[style="width:60%;min-width:500px"] .Sub.Item{padding:8px 0 12px 0!important;text-align:right!important;width:100%!important}
 .error .skin_tbl[style="width:60%;min-width:500px"] .sunbar{text-align:left}
+.error button[value="Register"]{margin-right:3px}
 @media (max-width: 768px){
 .prvchat{width:100%!important}
 .children-2{margin:0;width:100%}
