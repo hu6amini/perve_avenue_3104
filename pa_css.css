@@ -19,7 +19,7 @@ input.forminput[type="submit"]:not(input[value="Change my Account Options"],.rig
 button[value="Register"],button[value="Log In"]{font-size:.875rem!important}
 .right.Sub.preview{align-items:center;display:inline-flex;gap:3px}
 #send .send .darkbar button[name="preview"]{order:1}
-#send .send .darkbar button[type="submit"],.send .darkbar button[name="submit_post"]{order:2}
+#send .send .darkbar button[type="submit"],.send .darkbar button[name="submit_post"],.profile .Sub.left .mini_buttons{order:2}
 input[value="Go!"]:hover:not(.right.Sub input[value="Go!"]),#user input[title="Character Map"]:hover{background-color:var(--grhov)!important}
 input.forminput[type="submit"]:hover:not(input[value="Save"],input[value="Update my avatar"],input[value="Update my Signature"],.right.Sub input[value="Go!"],input[value="Change my Account Options"],.poll .darkbar input.forminput,input[value="Invia le modifiche"],input[value="Modifica avatar"],input[value="Modifica Profilo"],input[value="Edit this poll"]),.forminput.button_replies:hover::before,body#user input.forminput[value="Random"]:hover,.mark_as_all_read button:hover,#popupmod input.codebuttons:hover,.title.bottom .forminput[type="submit"]:hover,#user input.forminput[value="Random"]:hover,.sunbar.center[onclick="addButtonPollFF()"]:hover,button[value="Register"]:hover,button[value="Log In"]:hover,.send_preview:hover,.send button[name="preview"]:hover,#search a.forminput.button_replies:hover:after{background:var(--grhov);border:1px solid var(--dkbrd);color:var(--ftcol);text-decoration:none}
 .sunbar.center[onclick="addButtonPollFF()"] > .Sub.Item[style="width:68%"]{width:100%!important;white-space:nowrap}
