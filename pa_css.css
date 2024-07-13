@@ -462,6 +462,7 @@ img[src="https://img.forumfree.net/home/images/avatar_email.png"]{background:url
 .error button[value="Register"]{margin-right:3px}
 #search a.forminput.button_replies{font-size:0}
 #search a.forminput.button_replies:after{content:'SHOW COMMENTS';font-family:'Quicksand'}
+.profile-friends.thumbs a[rel="#pop_profile"]{color:var(--ltcol)}
 @media (max-width: 768px){
 .prvchat{width:100%!important}
 .children-2{margin:0;width:100%}
