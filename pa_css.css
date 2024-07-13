@@ -2,7 +2,7 @@
 #msg .Fixed,#user .Fixed,#search .Fixed{left:0;margin:auto;max-width:1200px;right:0;z-index:8}
 #user .Item.title2,#user span[style="color:#D22"]{font-size:.875rem!important}
 #user .main_list img[alt="Avatar"]{border-radius:100%;height:192px;object-fit:cover;object-position:top;overflow:hidden;width:192px}
-.color img:not(img[alt="fav"],img[src^="https://img.forumfree.net/html/emoticons/new/"],[class*=e1a-],img[alt$=":"],.res_tmb img), .color a img:not(img[src^="https://www.google.com/s2/"]), .color p img {background-color:transparent;border:0;border-radius:4px;font-size:0;margin:3px;position:relative;right:3px;vertical-align:text-bottom!important}
+.color img:not(img[alt="fav"],img[src^="https://img.forumfree.net/html/emoticons/new/"],[class*=e1a-],img[alt$=":"],.res_tmb img,.emojione), .color a img:not(img[src^="https://www.google.com/s2/"]), .color p img {background-color:transparent;border:0;border-radius:4px;font-size:0;margin:3px;position:relative;right:3px;vertical-align:text-bottom!important}
 img[alt$=":"],.web a .emojione{height:22px;margin:0;vertical-align:text-bottom!important;width:22px}
 .quote img[alt$=":"],.tmsg img[alt$=":"],.quote .emojione{height:19px;width:19px}
 [class*=e1a-]{margin:0!important;vertical-align:text-bottom!important}
