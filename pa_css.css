@@ -463,6 +463,7 @@ img[src="https://img.forumfree.net/home/images/avatar_email.png"]{background:url
 #search a.forminput.button_replies{font-size:0}
 #search a.forminput.button_replies:after{content:'SHOW COMMENTS';font-family:'Quicksand'}
 .profile-friends.thumbs a[rel="#pop_profile"]{color:var(--ltcol)}
+.profile .Sub.left{background-color:var(--hovbd);border-radius:4px 4px 0 0;box-shadow:inset #F3F5F61a 0 1px 0;padding:12px;width:100%}
 @media (max-width: 768px){
 .prvchat{width:100%!important}
 .children-2{margin:0;width:100%}
