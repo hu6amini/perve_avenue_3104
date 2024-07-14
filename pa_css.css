@@ -13,8 +13,8 @@ input.forminput:not(input[type="submit"],input[type="checkbox"],button[type="sub
 .forminput:not(input[type="submit"],input[type="checkbox"],button[type="submit"],.poll .darkbar .forminput,button[onclick="javascript:history.go(-1)"],.send button[name="preview"]),.cp b.info{background-color:var(--txtim);border:1px solid var(--ltbrd);border-radius:4px;font-size:.875rem;padding: 8px 12px}
 input[type="submit"],button[type="submit"]:not(.children-2 button){background:var(--redft);border:1px solid var(--dkbrd);border-radius:4px;color:var(--ftcol);font-size:.875rem;font-weight:700;padding:7px 11px;text-transform:uppercase}
 input[type="submit"]:hover,button[type="submit"]:hover{background-color:var(--rdhov);border:1px solid var(--dkbrd);color:var(--ftcol);text-decoration:none}
-.title.bottom input[type="submit"]{background:var(--ltgry);border:1px solid var(--dkbrd);border-radius:4px;box-shadow:var(--btsha);color:var(--ftcol);font-size:.875rem;font-weight:700;padding:8px 12px;text-transform:uppercase}
-.title.bottom input[type="submit"]:hover{background:var(--grhov);border:1px solid var(--dkbrd);color:var(--ftcol);text-decoration:none}
+.title.bottom input[type="submit"],.send_preview{background:var(--ltgry);border:1px solid var(--dkbrd);border-radius:4px;box-shadow:var(--btsha);color:var(--ftcol);font-size:.875rem;font-weight:700;padding:8px 12px;text-transform:uppercase}
+.title.bottom input[type="submit"]:hover,.send_preview:hover{background:var(--grhov);border:1px solid var(--dkbrd);color:var(--ftcol);text-decoration:none}
 button[value="Register"],button[value="Log In"]{font-size:.875rem!important}
 .right.Sub.preview{align-items:center;display:inline-flex;gap:3px}
 #send .send .darkbar button[name="preview"],.profile .nick{order:1}
