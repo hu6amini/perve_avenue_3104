@@ -470,6 +470,8 @@ img[src="https://img.forumfree.net/home/images/avatar_email.png"]{background:url
 .profile .left.Sub.Item h2{display:flex;gap:12px;order:1}
 .profile_info{display:flex;flex-direction:column}
 .tag button.codebuttons:not(.tag button.codebuttons[name="ffbutton"]),.tag input.codebuttons,.tag select.codebuttons{border:1px solid var(--ltbrd);border-radius:4px;height:19px!important;margin:0!important;width:31px!important}
+#msg #smilies tbody{display:flex;flex-wrap:wrap;gap:10px;padding:12px}
+#msg #smilies td{padding:0}
 @media (max-width: 768px){
 .prvchat{width:100%!important}
 .children-2{margin:0;width:100%}
