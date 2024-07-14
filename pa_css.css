@@ -465,7 +465,7 @@ img[src="https://img.forumfree.net/home/images/avatar_email.png"]{background:url
 #search a.forminput.button_replies{font-size:0}
 #search a.forminput.button_replies:after{content:'SHOW COMMENTS';font-family:'Quicksand'}
 .profile-friends.thumbs a[rel="#pop_profile"]{color:var(--ltcol)}
-.profile .Sub.left{background-color:var(--hovbd);border-radius:4px 4px 0 0;box-shadow:inset #F3F5F61a 0 1px 0;padding:12px;width:100%!important}
+.profile .Sub.left,#user .sunbar.top.Item + .list .Item[style="text-align:center"]{background-color:var(--hovbd);border-radius:4px 4px 0 0;box-shadow:inset #F3F5F61a 0 1px 0;padding:12px;width:100%!important}
 .profile .left.Sub.Item h2{display:flex;gap:12px;order:1}
 .profile_info{display:flex;flex-direction:column}
 .tag button.codebuttons:not(.tag button.codebuttons[name="ffbutton"]),.tag input.codebuttons,.tag select.codebuttons{border:1px solid var(--ltbrd);border-radius:4px;height:19px!important;margin:0!important;width:31px!important}
