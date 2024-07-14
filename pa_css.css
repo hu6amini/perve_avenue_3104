@@ -21,12 +21,13 @@ button[value="Register"],button[value="Log In"]{font-size:.875rem!important}
 #send .send .darkbar button[name="preview"],.profile .nick,#msg .cp.send button[name="preview"]{order:1}
 #send .send .darkbar button[type="submit"],.send .darkbar button[name="submit_post"],.profile_info,.profile-group,#msg .cp.send input[type="submit"]{order:2}
 .profile .Sub.left .mini_buttons{order:3}
-.profile_info{margin:0}
+.profile_info,.cp.send li.Item[style="padding:5px 1.5% 2px 1.5%"] > .Justify{margin:0}
 input[value="Go!"]:hover:not(.right.Sub input[value="Go!"]),#user input[title="Character Map"]:hover{background-color:var(--grhov)!important}
 .sunbar.center[onclick="addButtonPollFF()"] > .Sub.Item[style="width:68%"]{width:100%!important;white-space:nowrap}
 .sunbar.center[onclick="addButtonPollFF()"]{align-items:center;display:inline-flex;height:36px;justify-content:center;margin-left:10px;width:auto}
 .send .Justify:hover,td.right.Item.Justify{cursor:default}
 .cp.send .sunbar.center.Item + ul.list{padding:12px}
+.cp.send li.Item[style="padding:5px 1.5% 2px 1.5%"]{align-items:center;display:flex;justify-content:left}
 #msg .cp.send .Item > #Post{border:1px solid var(--ltbrd);margin:0;transition:min-height .618s ease-in-out}
 #msg .cp.send .Item > #Post:focus{min-height:300px}
 #user .Sub.Item b.info{color:var(--grnon);font-weight:700}
