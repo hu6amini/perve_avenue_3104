@@ -17,7 +17,7 @@ input[type="submit"]:hover,button[type="submit"]:hover:not(.children-2 button:ho
 .title.bottom input[type="submit"]:hover,input[type="button"]:hover:not(input[name="submit"]:hover,.send .codebuttons:hover,.tag .codebuttons:hover),.send_preview:hover,#send .send .darkbar button[name="preview"]:hover,.sunbar.center[onclick="addButtonPollFF()"]:hover,.darkbar a[href="/?act=Msg&CODE=16&c=655775"]:hover,#msg button[name="preview"]:hover{background:var(--grhov);border:1px solid var(--dkbrd);color:var(--ftcol);text-decoration:none}
 .fast.send .codebuttons:hover,#send .codebuttons:not(.imgen .codebuttons, .linkgen .codebuttons):hover,#user .codebuttons:hover:not(input[title="Character Map"]),#msg .codebuttons:hover,.tag button.codebuttons:hover:not(.codebuttons[name="ffbutton"]:hover),.tag input.codebuttons:hover,.tag select.codebuttons:hover{background-color:var(--menul); opacity: 1}
 button[value="Register"],button[value="Log In"]{font-size:.875rem!important}
-#msg .textinput[name="FILE_UPLOAD"],#user .forminput[type="file"],#user .textinput[name="FILE_UPLOAD"]{background-color:transparent;border:none;box-sizing:border-box;font-size:0;padding: 0;width:fit-content!important} 
+#msg .textinput[name="FILE_UPLOAD"],#user .forminput[type="file"],#user .textinput[name="FILE_UPLOAD"]{font-size:0;width:fit-content!important} 
 .right.Sub.preview{align-items:center;display:inline-flex;gap:3px}
 #send .send .darkbar button[name="preview"],.profile .nick,#msg .cp.send button[name="preview"]{order:1}
 #send .send .darkbar button[type="submit"],.send .darkbar button[name="submit_post"],.profile_info,.profile-group,#msg .cp.send input[type="submit"]{order:2}
