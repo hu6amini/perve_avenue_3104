@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded",(function(){let e;function scrollTo
 //Preview
 document.addEventListener("DOMContentLoaded",(function(){document.querySelectorAll(".send").forEach((function(e){var n=e.querySelectorAll("ul li.Item");if(n.length>=2){var t=document.getElementById("loading");t&&n[1].appendChild(t)}}))}));
 <!--Emojione--> 
-function applyEmojiTransformation(element) { 
+<script>function applyEmojiTransformation(element) { 
  if (!element.classList.contains("[class*=e1a-]")) { 
  element.innerHTML = emojione.toImage(emojione.shortnameToUnicode(emojione.toShort(element.innerHTML))); 
  } 
@@ -38,9 +38,10 @@ function observeElements(selector) {
 } 
  
 observeElements('.color,.tmsg,.profile-interests,.web a,.mtitle'); 
+</script>
 
 //Timestamps
-// Function to format dates relative to the current date 
+<script>// Function to format dates relative to the current date 
  function formatDate(dateString) { 
  var now = new Date(); 
  var postDate = new Date(dateString); 
@@ -115,6 +116,6 @@ observeElements('.color,.tmsg,.profile-interests,.web a,.mtitle');
  
  // Start observing the document body for changes 
  timestamp.observe(document.body, { childList: true, subtree: true }); 
- 
+</script>
  // Initial call to update existing .post .when elements 
  updatePostDates(); 
