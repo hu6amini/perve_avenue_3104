@@ -116,6 +116,7 @@ observeElements('.color,.tmsg,.profile-interests,.web a,.mtitle');
  
  // Start observing the document body for changes 
  timestamp.observe(document.body, { childList: true, subtree: true }); 
-</script>
+
  // Initial call to update existing .post .when elements 
  updatePostDates(); 
+</script>
