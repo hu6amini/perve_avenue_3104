@@ -459,6 +459,7 @@ img[src="https://img.forumfree.net/home/images/avatar_email.png"]{background:url
 #user span[style="color:indianred"]:before{color:var(--redft);content:'\f057 \00a0';margin-left:5px}
 .codebuttons[name="ffbutton"]::before{content:'\f3e5 \00a0'}
 .guest.error.no_view_topic .darkbar,.guest.error.no_permission .darkbar:not(.skin_tbl[style="width:60%;min-width:500px"]){border-top:1px solid var(--ltbrd);padding-top:8px} 
+.guest.error.no_permission .darkbar:not(.skin_tbl[style="width:60%;min-width:500px"]){padding:8px 12px 12px}
 .error .skin_tbl[style="width:60%;min-width:500px"]{width:100%!important}
 .error .skin_tbl[style="width:60%;min-width:500px"] .list li[style="padding: 1em 0"],.error .skin_tbl[style="width:60%;min-width:500px"] .sunbar{padding:0!important}
 .error .skin_tbl[style="width:60%;min-width:500px"] .Sub.Item{padding:8px 0 12px 0!important;text-align:right!important;width:100%!important}
