@@ -430,8 +430,8 @@ img[src="https://img.forumfree.net/home/images/avatar_email.png"]{background:url
 #notifications-modal .notification-container{width:100%}
 #notifications-more{background:#090A0C40!important;box-shadow:none!important;min-height:50px}
 #notifications-modal .notification-row .notification-image,.cp.send .Item[style="padding:5px 1.5% 2px 1.5%"]{padding:0!important}
-#msg .notification-container .aa{padding:0!important;width:4px!important}
-#msg .notification-container .aa .avatar{height:48px!important;width:48px!important}
+.notification-container .aa:not(#msg .notification-container .aa){padding:0!important;width:4px!important}
+.notification-container .aa .avatar:not(#msg .notification-container .aa .avatar){height:48px!important;width:48px!important}
 #msg a.forminput[href="/?act=Msg&CODE=16&c=655775"]::before{content:'\f0f3 \00a0';display:inline-block}
 #ajaxUObject span[style="color:#491"]{color:var(--green)!important}
 #ajaxUObject span[style="color:#491"]::before{content:'\f00c \00a0'}
