@@ -479,6 +479,7 @@ img[src="https://img.forumfree.net/home/images/avatar_email.png"]{background:url
 #msg #smilies tbody{display:flex;flex-wrap:wrap;gap:10px;padding:12px}
 #msg #smilies td{padding:0}
 .clipbd{align-items:center;animation:slideinout 3.82s forwards;background:var(--ltgry);box-shadow:var(--hfsha);color:var(--ftcol);display:flex;font-size:1.375rem;height:60px;justify-content:center;left:0;opacity:0;padding:15px;position:fixed;right:0;top:-60px;width:100%;z-index:101!important}
+img[alt="x"][src="https://img.forumfree.net/home/img/bullet_delete.png"]{opacity:0;position:absolute}
 @media (max-width: 768px){
 .prvchat{width:100%!important}
 .children-2{margin:0;width:100%}
