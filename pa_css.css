@@ -489,6 +489,7 @@ img[alt="x"][src="https://img.forumfree.net/home/img/bullet_delete.png"]{opacity
 .board.List li:nth-child(4) .mainbg::before{background-color:var(--grmbg);box-shadow:var(--grmbg) 0 0 25px}
 .board.List li:nth-child(5) .mainbg::before{background-color:var(--ormbg);box-shadow:var(--ormbg) 0 0 25px}
 .board.List li:nth-child(6) .mainbg::before{background-color:var(--lncol);box-shadow:var(--lncol) 0 0 25px}
+.board.List li:nth-child(7) .mainbg::before{background-color:var(--prmbg);box-shadow:var(--prmbg) 0 0 25px}
 .board.List li:nth-child(1) .mtitle,.guest.error.no_view_topic .mtitle,.guest.error.no_permission .mtitle,.error .mtitle,.board.List li:nth-child(1) .big_list .aa i{color:var(--redft)}
 .board.List li:nth-child(2) .mtitle,.board.List li:nth-child(2) .big_list .aa i,.forum .big_list .aa i{color:var(--green)}
 .board.List li:nth-child(3) .mtitle,.board.List li:nth-child(3) .big_list .aa i{color:var(--yello)}
