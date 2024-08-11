@@ -486,6 +486,8 @@ img[alt="x"][src="https://img.forumfree.net/home/img/bullet_delete.png"]{opacity
 .board.List li:nth-child(1) .mainbg::before,.online .mainbg::before,.members .mainbg::before,#topic .skin_tbl::before,.guest.error.no_view_topic .msg .mainbg::before,.guest.error.no_permission .msg .mainbg::before,.error .mainbg::before,#search.posts .skin_tbl::before,.send .mainbg::before{background-color:var(--redft);box-shadow:var(--redft) 0 0 25px}
 .tabs::before,.group .mainbg::before,.forum .mainbg::before,.board.List li:nth-child(2) .mainbg::before{background-color:var(--green);box-shadow:var(--green) 0 0 25px}
 .board.List li:nth-child(3) .mainbg::before{background-color:var(--yello);box-shadow:var(--yello) 0 0 25px}
+.board.List li:nth-child(4) .mainbg::before{background-color:var(--grmbg);box-shadow:var(--grmbg) 0 0 25px}
+.board.List li:nth-child(5) .mainbg::before{background-color:var(--ormbg);box-shadow:var(--ormbg) 0 0 25px}
 .send .mainbg::before{left:0;position:absolute;top:-6px;width:100%}
 @media (max-width: 768px){
 .prvchat{width:100%!important}
