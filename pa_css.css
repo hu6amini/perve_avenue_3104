@@ -488,6 +488,11 @@ img[alt="x"][src="https://img.forumfree.net/home/img/bullet_delete.png"]{opacity
 .board.List li:nth-child(3) .mainbg::before{background-color:var(--yello);box-shadow:var(--yello) 0 0 25px}
 .board.List li:nth-child(4) .mainbg::before{background-color:var(--grmbg);box-shadow:var(--grmbg) 0 0 25px}
 .board.List li:nth-child(5) .mainbg::before{background-color:var(--ormbg);box-shadow:var(--ormbg) 0 0 25px}
+.board.List li:nth-child(1) .mtitle,.guest.error.no_view_topic .mtitle,.guest.error.no_permission .mtitle,.error .mtitle{color:var(--redft)}
+.board.List li:nth-child(2) .mtitle{color:var(--green)}
+.board.List li:nth-child(3) .mtitle, .board.List li:nth-child(3) .aa i{color:var(--yello)}
+.board.List li:nth-child(4) .mtitle{color:var(--grmbg)}
+.board.List li:nth-child(5) .mtitle{color:var(--ormbg)}
 .send .mainbg::before{left:0;position:absolute;top:-6px;width:100%}
 @media (max-width: 768px){
 .prvchat{width:100%!important}
