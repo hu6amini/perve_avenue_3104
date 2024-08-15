@@ -3,3 +3,53 @@ function waitForElement(e,t){const o=new MutationObserver((r=>{for(const i of r)
 //Emojione
 function applyEmojiTransformation(e){e.classList.contains("[class*=e1a-]")||(e.innerHTML=emojione.toImage(emojione.shortnameToUnicode(emojione.toShort(e.innerHTML))))}function observeElements(e){document.querySelectorAll(e).forEach(applyEmojiTransformation),new MutationObserver((function(o){o.forEach((function(o){"childList"===o.type&&o.addedNodes.forEach((function(o){o.nodeType===Node.ELEMENT_NODE&&(o.matches(e)||o.querySelector(e))&&applyEmojiTransformation(o.matches(e)?o:o.querySelector(e))}))}))})).observe(document.body,{childList:!0,subtree:!0})}observeElements(".color,.tmsg,.profile-interests,.web a,.mtitle,.notification-text");
 
+// Emoji mapping
+  const emojiMap = {
+    ':)': '🙂',
+    ':(': '☹️',
+    ';)': '😉',
+    ':-P': '😛',
+    ':-p': '😛',
+    ':P': '😛',
+    ';P': '😜',
+    ';-P': '😜',
+    ':-D': '😀',
+    ':D': '😀',
+    ':fire:': '🔥',
+    // Add more emoji mappings as needed
+  };
+
+  // Function to replace text representations with emojis
+  function replaceEmojis(text) {
+    return text.replace(/:\)|:\(|;\)|:-P|:-p|:P|;P|;-P|:-D|:D|:fire:/g, match => emojiMap[match]);
+  }
+
+  // Function to handle emoji replacement for .color and textarea#Post elements
+  function replaceEmojisInElements() {
+    // Get the content of the .color element
+    const colorElement = document.querySelector('.color');
+    if (colorElement) {
+      colorElement.innerHTML = replaceEmojis(colorElement.innerHTML);
+    }
+
+    // Get the content of the textarea#Post element
+    const postTextarea = document.querySelector('textarea#Post');
+    if (postTextarea) {
+      postTextarea.value = replaceEmojis(postTextarea.value);
+    }
+  }
+
+  // Event listener for text input in .color element
+  document.querySelector('.color').addEventListener('input', function() {
+    this.innerHTML = replaceEmojis(this.innerHTML);
+  });
+
+  // Event listener for text input in textarea#Post element
+  document.querySelector('textarea#Post').addEventListener('input', function() {
+    this.value = replaceEmojis(this.value);
+  });
+
+  // Optional: Apply emoji replacement on page load
+  document.addEventListener('DOMContentLoaded', function() {
+    replaceEmojisInElements();
+  });
