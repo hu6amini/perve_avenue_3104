@@ -23,7 +23,7 @@ button[value="Register"],button[value="Log In"]{font-size:.875rem!important}
 .right.Sub.preview{align-items:center;display:inline-flex;gap:3px}
 #send .send .darkbar button[name="preview"],.profile .nick,#msg .cp.send button[name="preview"]{order:1}
 #send .send .darkbar button[type="submit"],.send .darkbar button[name="submit_post"],.profile_info,.profile-group,#msg .cp.send input[type="submit"]{order:2}
-.sbutton{align-items:center;display:flex;justify-content:center;margin:0;overflow:hidden;position:relative}
+.sbutton{align-items:center;display:flex;justify-content:center;margin:0;order:2;overflow:hidden;position:relative}
 input[value="Submit Modified Post"]{opacity:0;position:absolute}
 .profile .Sub.left .mini_buttons{order:3}
 .profile_info,.cp.send li.Item[style="padding:5px 1.5% 2px 1.5%"] > .Justify{margin:0}
