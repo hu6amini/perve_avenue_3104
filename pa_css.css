@@ -500,6 +500,7 @@ img[alt="x"][src="https://img.forumfree.net/home/img/bullet_delete.png"]{opacity
 .board.List li:nth-child(7) .mtitle,.board.List li:nth-child(7) .big_list .aa i{color:var(--prmbg)}
 .send .mainbg::before,.search .skin_tbl::before{left:0;position:absolute;top:-6px;width:100%}
 .color span[style="font-size: 2em"]{font-size:19.5pt!important}
+.st-editor-area li.Item[style="padding: 6px 2%"]{padding:0!important}
 @media (max-width: 768px){
 .prvchat{width:100%!important}
 .children-2{margin:0;width:100%}
