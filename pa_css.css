@@ -501,6 +501,8 @@ img[alt="x"][src="https://img.forumfree.net/home/img/bullet_delete.png"]{opacity
 .send .mainbg::before,.search .skin_tbl::before{left:0;position:absolute;top:-6px;width:100%}
 .color span[style="font-size: 2em"]{font-size:19.5pt!important}
 .st-editor-area li.Item[style="padding: 6px 2%"],.st-editor-area li.Item[style="text-align: center; padding: 2px 0"]{padding:0!important}
+.codebuttons[accesskey="b"]{align-items:center;border-radius:4px;display:flex;flex-wrap:wrap;font-size:1rem;height:30px;justify-content:center;line-height:1;width:30px}
+.codebuttons[accesskey="b"]::before{content:'\f032'}
 @media (max-width: 768px){
 .prvchat{width:100%!important}
 .children-2{margin:0;width:100%}
