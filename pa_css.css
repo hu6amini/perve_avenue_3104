@@ -502,10 +502,11 @@ img[alt="x"][src="https://img.forumfree.net/home/img/bullet_delete.png"]{opacity
 .color span[style="font-size: 2em"]{font-size:19.5pt!important}
 .st-editor-area li.Item[style="padding: 6px 2%"],.st-editor-area li.Item[style="text-align: center; padding: 2px 0"]{padding:0!important}
 .send .Item[style="padding: 6px 2%"]:first-child .Justify{border:1px solid var(--ltbrd);border-bottom:none;border-top-left-radius:4px;border-top-right-radius:4px;padding:6px}
-.codebuttons[accesskey="b"],.codebuttons[accesskey="i"],.codebuttons[accesskey="u"]{align-items:center;border-radius:4px;display:inline-flex;flex-wrap:wrap;font-size:0;height:30px;justify-content:center;line-height:1;width:30px}
+.codebuttons[accesskey="b"],.codebuttons[accesskey="i"],.codebuttons[accesskey="u"],.codebuttons[accesskey="c"]{align-items:center;border-radius:4px;display:inline-flex;flex-wrap:wrap;font-size:0;height:30px;justify-content:center;line-height:1;width:30px}
 .codebuttons[accesskey="b"]::before{content:'\f032';font-size:1rem}
 .codebuttons[accesskey="i"]::before{content:'\f033';font-size:1rem}
 .codebuttons[accesskey="u"]::before{content:'\f0cd';font-size:1rem}
+.codebuttons[accesskey="c"]::before{content:'\f036';font-size:1rem}
 @media (max-width: 768px){
 .prvchat{width:100%!important}
 .children-2{margin:0;width:100%}
