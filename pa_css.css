@@ -502,6 +502,7 @@ img[alt="x"][src="https://img.forumfree.net/home/img/bullet_delete.png"]{opacity
 .st-editor-area li.Item[style="padding: 6px 2%"],.st-editor-area li.Item[style="text-align: center; padding: 2px 0"]{padding:0!important}
 .send .Item[style="padding: 6px 2%"]:first-child .Justify,.send .Item[style="padding:5px 1.5% 2px 1.5%"] .Justify{border:1px solid var(--ltbrd);border-bottom:none;border-top-left-radius:4px;border-top-right-radius:4px;padding:6px;width:100%}
 select.codebuttons[title="Insert Font Color tags"],input.codebuttons[accesskey="w"],input.codebuttons[accesskey="g"],input.codebuttons[accesskey="q"],input.codebuttons[accesskey="k"],input.codebuttons[accesskey="h"],input.codebuttons[accesskey="t"]{font-size:1rem;height:30px;text-transform:lowercase}
+select.codebuttons[title="Insert Font Color tags"]{width:65px}
 .codebuttons[accesskey="b"],.codebuttons[accesskey="i"],.codebuttons[accesskey="u"],.codebuttons[accesskey="c"],.codebuttons[accesskey="s"],.codebuttons[accesskey="a"],.codebuttons[accesskey="p"],.codebuttons[accesskey="l"]{align-items:center;border-radius:4px;display:inline-flex;flex-wrap:wrap;font-size:0;height:30px;justify-content:center;line-height:1;width:30px}
 .codebuttons[accesskey="b"]::before{content:'\f032';font-size:1rem}
 .codebuttons[accesskey="i"]::before{content:'\f033';font-size:1rem}
