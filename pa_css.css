@@ -506,7 +506,7 @@ select.codebuttons[title="Insert Font Color tags"],input.codebuttons[accesskey="
 .codebuttons[accesskey="b"]::before{content:'\f032';font-size:1rem}
 .codebuttons[accesskey="i"]::before{content:'\f033';font-size:1rem}
 .codebuttons[accesskey="u"]::before{content:'\f0cd';font-size:1rem}
-.codebuttons[accesskey="c"]::before{content:'\f036';font-size:1rem}
+.codebuttons[accesskey="c"]::before{content:'\f037';font-size:1rem}
 .codebuttons[accesskey="s"]::before{content:'\f0cc';font-size:1rem}
 .codebuttons[accesskey="a"]::before{content:'\f12b';font-size:1rem}
 .codebuttons[accesskey="p"]::before{content:'\f12c';font-size:1rem}
