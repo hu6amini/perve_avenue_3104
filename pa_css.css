@@ -501,7 +501,7 @@ img[alt="x"][src="https://img.forumfree.net/home/img/bullet_delete.png"]{opacity
 .send .mainbg::before,.search .skin_tbl::before{left:0;position:absolute;top:-6px;width:100%}
 .color span[style="font-size: 2em"]{font-size:19.5pt!important}
 .st-editor-area li.Item[style="padding: 6px 2%"],.st-editor-area li.Item[style="text-align: center; padding: 2px 0"]{padding:0!important}
-.send .Item[style="padding: 6px 2%"]:first-child .Justify{border:1px solid var(--ltbrd);border-bottom:none;border-top-left-radius:4px;border-top-right-radius:4px;padding:6px}
+.send .Item[style="padding: 6px 2%"]:first-child .Justify,.send .Item[style="padding:5px 1.5% 2px 1.5%"] .Justify{border:1px solid var(--ltbrd);border-bottom:none;border-top-left-radius:4px;border-top-right-radius:4px;padding:6px}
 .codebuttons[accesskey="b"],.codebuttons[accesskey="i"],.codebuttons[accesskey="u"],.codebuttons[accesskey="c"],.codebuttons[accesskey="s"],.codebuttons[accesskey="a"],.codebuttons[accesskey="p"],.codebuttons[accesskey="l"]{align-items:center;border-radius:4px;display:inline-flex;flex-wrap:wrap;font-size:0;height:30px;justify-content:center;line-height:1;width:30px}
 .codebuttons[accesskey="b"]::before{content:'\f032';font-size:1rem}
 .codebuttons[accesskey="i"]::before{content:'\f033';font-size:1rem}
