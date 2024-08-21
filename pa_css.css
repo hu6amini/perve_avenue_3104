@@ -513,7 +513,7 @@ select.codebuttons[onchange="tag('[color='+this.options[this.selectedIndex].valu
 .codebuttons[accesskey="a"]::before{content:'\f12b';font-size:1rem}
 .codebuttons[accesskey="p"]::before{content:'\f12c';font-size:1rem}
 .codebuttons[accesskey="l"]::before{content:'\f0ca';font-size:1rem}
-button.codebuttons[accesskey="q"],button.codebuttons[accesskey="k"],button.codebuttons[accesskey="h"],button.codebuttons[accesskey="t"]{align-items:center;border-radius:4px;display:flex;flex-wrap:wrap;font-size:1rem;height:30px;justify-content:center;line-height:1;width:30px}
+button.codebuttons[accesskey="q"],button.codebuttons[accesskey="k"],button.codebuttons[accesskey="h"],button.codebuttons[accesskey="t"]{align-items:center;border-radius:4px;display:inline-flex;flex-wrap:wrap;font-size:1rem;height:30px;justify-content:center;line-height:1;width:30px}
 @media (max-width: 768px){
 .prvchat{width:100%!important}
 .children-2{margin:0;width:100%}
