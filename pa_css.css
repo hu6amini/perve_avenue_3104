@@ -499,6 +499,7 @@ img[alt="x"][src="https://img.forumfree.net/home/img/bullet_delete.png"]{opacity
 .board.List li:nth-child(7) .mtitle,.board.List li:nth-child(7) .big_list .aa i{color:var(--prmbg)}
 .send .mainbg::before,.search .skin_tbl::before{left:0;position:absolute;top:-6px;width:100%}
 .color span[style="font-size: 2em"]{font-size:19.5pt!important}
+.Justify img[alt="Smilies"]{height:1rem;width:1rem}
 .st-editor-area li.Item[style="padding: 6px 2%"],.st-editor-area li.Item[style="text-align: center; padding: 2px 0"]{padding:0!important}
 .send .Item[style="padding: 6px 2%"]:first-child .Justify,.send .Item[style="padding:5px 1.5% 2px 1.5%"] .Justify{border:1px solid var(--ltbrd);border-bottom:none;border-top-left-radius:4px;border-top-right-radius:4px;padding:6px;width:100%}
 select.codebuttons[onchange="tag('[color='+this.options[this.selectedIndex].value+']','[/color]'); this.selectedIndex=0"],input.codebuttons[accesskey="w"],input.codebuttons[accesskey="g"],input.codebuttons[accesskey="q"],input.codebuttons[accesskey="k"],input.codebuttons[accesskey="h"],input.codebuttons[accesskey="t"],select[onchange="tag('[font='+this.options[this.selectedIndex].value+']','[/font]'); this.selectedIndex=0"],select[onchange="tag('[size='+this.options[this.selectedIndex].value+']','[/size]'); this.selectedIndex=0"]{border-radius:4px;font-size:1rem;padding:.313rem;text-transform:lowercase}
