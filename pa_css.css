@@ -529,7 +529,7 @@ ul.List.st-editor-area.st-editor-area-desktop.st-editor-area-active{border-left:
 .ve-dp-item[data-placeholder="Align left"]::before,.ve-btn.ve-btn-text-align[data-value="left"]::before{content:'\f036'}
 .ve-dp-item[data-placeholder="Align center"]::before,.ve-btn.ve-btn-text-align[data-value="center"]::before{content:'\f037'}
 .ve-dp-item[data-placeholder="Align right"]::before,.ve-btn.ve-btn-text-align[data-value="right"]::before{content:'\f038'}
-.ve-dp-item[data-placeholder="Justify"]::before{content:'\f039'}
+.ve-dp-item[data-placeholder="Justify"]::before,.ve-btn.ve-btn-text-align[data-value="justify"]::before{content:'\f039'}
 @media (max-width: 768px){
 .prvchat{width:100%!important}
 .children-2{margin:0;width:100%}
