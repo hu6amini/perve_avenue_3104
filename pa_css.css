@@ -526,6 +526,7 @@ ul.List.st-editor-area.st-editor-area-desktop.st-editor-area-active{border-left:
 .ve-dp-item[data-placeholder="Back"]::before{content:'\f053'}
 .ve-dp-item[data-placeholder="Copy format"]::before{content:'\f0c5'}
 .ve-dp-item[data-placeholder="Paste format"]::before{content:'\f0ea'}
+[data-theme*=ve-dropdown] ul.ve-dropdown-list>li:nth-child(3)::after,[data-theme*=ve-dropdown] ul.ve-dropdown-list>li:nth-child(4)::after,[data-theme*=ve-dropdown] ul.ve-dropdown-list>li:nth-child(5)::after,[data-theme*=ve-dropdown] ul.ve-dropdown-list>li:nth-child(7)::after{content:'\f054';margin-right:15px}
 @media (max-width: 768px){
 .prvchat{width:100%!important}
 .children-2{margin:0;width:100%}
