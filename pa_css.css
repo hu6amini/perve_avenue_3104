@@ -571,7 +571,7 @@ ul.List.st-editor-area.st-editor-area-desktop.st-editor-area-active,.List.st-edi
 .ve-dp-item[data-placeholder="Remove heading"]::before{content:'\48'}
 .ve-dp-item[data-placeholder="Merge/split cells"]::before{content:'\e254'}
 .ve-dp-item[data-placeholder="Select"]::before{content:'\f00c'}
-.ve-dp-item[data-placeholder="Delete"]::before,#tippy-35 .ve-dp-item[data-placeholder="Table"]::before{content:'\f2ed'}
+.ve-dp-item[data-placeholder="Delete"]::before,#tippy-35 .ve-dp-item[data-placeholder="Table"]::before,#tippy-19 .ve-dp-item[data-placeholder="Table"]::before{content:'\f2ed'}
 .ve-dp-item[data-placeholder="Column before"]::before{content:'\f33e'}
 .ve-dp-item[data-placeholder="Column after"]::before{content:'\f340'}
 .ve-dp-item[data-placeholder="Row before"]::before{content:'\f341'}
