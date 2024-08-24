@@ -536,7 +536,7 @@ ul.List.st-editor-area.st-editor-area-desktop.st-editor-area-active,.List.st-edi
 .ve-btn.ve-btn-color::before{content:'\f53f'}
 .ve-btn.ve-btn-background-color::before{content:'\f55d'}
 .ve-btn.ve-btn-text-align::before{content:'\f036'}
-.ve-btn.ve-btn-history-undo::before{content:'\f0e2'}
+.ve-btn.ve-btn-history-undo::before,.ve-color-suggestions .ve-btn::before{content:'\f0e2'}
 .ve-btn.ve-btn-history-redo::before{content:'\f01e'}
 .ve-btn.ve-btn-clear::before{content:'\f87d'}
 .ve-btn.ve-btn-others::before{content:'\e411'}
