@@ -561,12 +561,12 @@ ul.List.st-editor-area.st-editor-area-desktop.st-editor-area-active,.List.st-edi
 .ve-dp-item[data-placeholder="Justify"]::before,.ve-btn.ve-btn-text-align[data-value="justify"]::before{content:'\f039'}
 .ve-dp-item[data-action="add"]::before,.ve-dp-item[data-placeholder="New table"]::before{content:'\f0fe'}
 .ve-dp-item[data-placeholder="Remove"]::before{content:'\f146'}
-.ve-dp-item[data-placeholder="Heading 1"]::before{content:'\f313'}
-.ve-dp-item[data-placeholder="Heading 2"]::before{content:'\f314'}
-.ve-dp-item[data-placeholder="Heading 3"]::before{content:'\f315'}
-.ve-dp-item[data-placeholder="Heading 4"]::before{content:'\f86a'}
-.ve-dp-item[data-placeholder="Heading 5"]::before{content:'\e412'}
-.ve-dp-item[data-placeholder="Heading 6"]::before{content:'\e413'}
+.ve-dp-item[data-placeholder="Heading 1"]::before,.ve-btn.ve-btn-paragraph[data-value="1"]::before{content:'\f313'}
+.ve-dp-item[data-placeholder="Heading 2"]::before,.ve-btn.ve-btn-paragraph[data-value="2"]::before{content:'\f314'}
+.ve-dp-item[data-placeholder="Heading 3"]::before,.ve-btn.ve-btn-paragraph[data-value="3"]::before{content:'\f315'}
+.ve-dp-item[data-placeholder="Heading 4"]::before,.ve-btn.ve-btn-paragraph[data-value="4"]::before{content:'\f86a'}
+.ve-dp-item[data-placeholder="Heading 5"]::before,.ve-btn.ve-btn-paragraph[data-value="5"]::before{content:'\e412'}
+.ve-dp-item[data-placeholder="Heading 6"]::before,.ve-btn.ve-btn-paragraph[data-value="6"]::before{content:'\e413'}
 #tippy-19 .ve-dp-item.has-children[data-placeholder="Insert"]::before,#tippy-35 .ve-dp-item.has-children[data-placeholder="Insert"]::before{content:'\f0db'}
 .ve-dp-item[data-placeholder="Remove heading"]::before{content:'\48'}
 .ve-dp-item[data-placeholder="Merge/split cells"]::before{content:'\e254'}
