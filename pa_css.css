@@ -567,7 +567,7 @@ ul.List.st-editor-area.st-editor-area-desktop.st-editor-area-active,.List.st-edi
 .ve-dp-item[data-placeholder="Heading 4"]::before{content:'\f86a'}
 .ve-dp-item[data-placeholder="Heading 5"]::before{content:'\e412'}
 .ve-dp-item[data-placeholder="Heading 6"]::before{content:'\e413'}
-#tippy-19 .ve-dp-item.has-children[data-placeholder="Insert"]::before{content:'\f0db'}
+#tippy-19 .ve-dp-item.has-children[data-placeholder="Insert"]::before,#tippy-35 .ve-dp-item.has-children[data-placeholder="Insert"]::before{content:'\f0db'}
 .ve-dp-item[data-placeholder="Remove heading"]::before{content:'\48'}
 .ve-dp-item[data-placeholder="Merge/split cells"]::before{content:'\e254'}
 .ve-dp-item[data-placeholder="Select"]::before{content:'\f00c'}
