@@ -527,7 +527,7 @@ ul.List.st-editor-area.st-editor-area-desktop.st-editor-area-active,.List.st-edi
 .ve-btn.ve-btn-blockquote::before{content:'\f10d'}
 .ve-btn.ve-btn-code-block::before{content:'\f121'}
 .ve-btn.ve-btn-spoiler::before{content:'\f024'}
-.ve-btn.ve-btn-paragraph::before,.ve-dp-item[data-placeholder="Paragraph"]{content:'\f1dd'}
+.ve-btn.ve-btn-paragraph::before,.ve-dp-item[data-placeholder="Paragraph"]::before{content:'\f1dd'}
 .ve-btn.ve-btn-hard-break::before{content:'\e090'}
 .ve-btn.ve-btn-link::before{content:'\f0c1'}
 .ve-btn.ve-btn-image::before{content:'\f03e'}
