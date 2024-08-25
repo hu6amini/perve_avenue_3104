@@ -17,6 +17,8 @@ input[type="submit"]:hover,button[type="submit"]:hover:not(.children-2 button:ho
 button[value="Register"],button[value="Log In"]{font-size:.875rem!important}
 .buttons .reply,.buttons .newpost,.ui-datepicker .ui-datepicker-buttonpane button,button[onclick="$(this).notifications('mark_as_all_read');"],::file-selector-button{background:transparent;border:2px solid var(--ltcol);border-radius:4px;box-shadow:none;color:var(--ftcol);cursor:pointer;font-size:.875rem;font-weight:700;line-height:1;padding:.430rem 1rem;text-transform:uppercase}
 .buttons .reply:hover,.buttons .newpost:hover,.mark_as_all_read button:hover,.ui-datepicker .ui-datepicker-buttonpane button:hover,#theme-toggle-button:hover,button[onclick="$(this).notifications('mark_as_all_read');"]:hover,::file-selector-button:hover{background:var(--bthov);text-decoration:none}
+select{background:none;border:1px solid var(--ltbrd);border-radius:4px;box-shadow:none;color:var(--ftcol);display:inline-block;font-size:.875rem;line-height: 1;padding:.430rem 1rem}
+select:hover:not(.codebuttons[onchange="tag('[color='+this.options[this.selectedIndex].value+']','[/color]'); this.selectedIndex=0"],.codebuttons[onchange="tag('[font='+this.options[this.selectedIndex].value+']','[/font]'); this.selectedIndex=0"],.codebuttons[onchange="tag('[size='+this.options[this.selectedIndex].value+']','[/size]'); this.selectedIndex=0"]),.selected-item:hover{background-color:var(--hovbd)}
 #msg .textinput[name="FILE_UPLOAD"],#user .forminput[type="file"],#user .textinput[name="FILE_UPLOAD"]{font-size:0;width:fit-content!important} 
 #attach{border-top:1px solid var(--ltbrd)}
 .send button{white-space:nowrap}
