@@ -572,9 +572,9 @@ select.codebuttons[onchange="tag('[color='+this.options[this.selectedIndex].valu
 .fast.send span#ADDCRON{order:14}
 .fast.send select.codebuttons[onchange="tag('[color='+this.options[this.selectedIndex].value+']','[/color]'); this.selectedIndex=0"]{order:12}
 .post .title2.top .right{align-items:center;cursor:default;display:flex;font-size:0;padding:12px 12px 0;width:100%}
-.post .title2.top .right .lt.Sub{margin:0;white-space:nowrap}
+.post .title2.top .right .lt.Sub{line-height:1;margin:0;white-space:nowrap}
 .post .title2.top .right .mini_buttons.points.Sub{margin:0 0 0 10px}
-.post .title2.top .right .mini_buttons.rt.Sub{margin:auto 0 auto auto;white-space:nowrap}
+.post .title2.top .right .mini_buttons.rt.Sub{line-height:1;margin:0 0 0 auto;white-space:nowrap}
 ul.List.st-editor-area.st-editor-area-desktop.st-editor-area-active,.List.st-editor-area.st-editor-area-desktop:not(.List.st-editor-area.st-editor-area-desktop.st-editor-area-active){border-left:1px solid var(--ltbrd)}
 .ve-btn.ve-btn-history-undo,.ve-btn.ve-btn-history-redo{color:var(--ltbrd)}
 .ve-btn.ve-btn-bold::before{content:'\f032'}
