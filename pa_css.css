@@ -38,7 +38,8 @@ input[value="Go!"]:hover:not(.right.Sub input[value="Go!"]),#user input[title="C
 #msg .cp.send .Item > #Post{border:1px solid var(--ltbrd);margin:0;transition:min-height .618s ease-in-out}
 #msg .cp.send .Item > #Post:focus{min-height:300px}
 #user .Sub.Item b.info{color:var(--grnon);font-weight:700}
-#user .Item[style="padding:6px;text-align:center"],#user .Item[style="padding:5px 0 2px 0;text-align:center"]{padding:0 12px 0 12px!important}
+#user .Item[style="padding:6px;text-align:center"]{padding:0}
+#user .main_list .sunbar.center.Item + ul.list{padding-left:12px;padding-right:12px}
 #user .Item[style="text-align:center;line-height:200%;padding-bottom:14px"]{padding:0 0 13px 0!important}
 #user small a[href="https://accounts.forumcommunity.net/?act=Reg&CODE=10"]::before{content:'\f0e0 \00a0';display:inline-block;margin-left:5px}
 .Blocker{background-color:#090A0C61!important}
