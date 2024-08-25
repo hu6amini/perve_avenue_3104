@@ -557,7 +557,7 @@ select.codebuttons[onchange="tag('[color='+this.options[this.selectedIndex].valu
 .send button.codebuttons,.send input.codebuttons,.send select.codebuttons,#user .Item[style="padding:5px 0 2px 0;text-align:center"] .codebuttons{align-items:center;border-radius:4px;display:inline-flex;flex-wrap:wrap;font-size:0;height:30px;justify-content:center;line-height:1;width:30px}
 .post .title2.top .right{align-items:center;cursor:default;display:flex;font-size:0;padding:12px 12px 0;width:100%}
 .post .title2.top .right .lt.Sub{margin:0;white-space:nowrap}
-.post .title2.top .right .mini_buttons.points.Sub{margin:0}
+.post .title2.top .right .mini_buttons.points.Sub{margin:0 0 0 10px}
 .post .title2.top .right .mini_buttons.rt.Sub{margin:auto 0 auto auto;white-space:nowrap}
 ul.List.st-editor-area.st-editor-area-desktop.st-editor-area-active,.List.st-editor-area.st-editor-area-desktop:not(.List.st-editor-area.st-editor-area-desktop.st-editor-area-active){border-left:1px solid var(--ltbrd)}
 .ve-btn.ve-btn-history-undo,.ve-btn.ve-btn-history-redo{color:var(--ltbrd)}
