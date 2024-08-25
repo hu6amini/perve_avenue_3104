@@ -568,7 +568,7 @@ select.codebuttons[onchange="tag('[color='+this.options[this.selectedIndex].valu
 .fast.send .codebuttons[accesskey="c"]{order:10}
 .fast.send img[alt="Clickable Smilies"]{order:11}
 .fast.send .codebuttons[accesskey="t"]{order:12}
-.fast.send img[alt="Help"]{order:13}
+.fast.send a[href="https://www.forumcommunity.net/?wiki=BBCode"]{order:13}
 .fast.send span#ADDCRON{order:14}
 .fast.send select.codebuttons[onchange="tag('[color='+this.options[this.selectedIndex].value+']','[/color]'); this.selectedIndex=0"]{order:12}
 .post .title2.top .right{align-items:center;cursor:default;display:flex;font-size:0;padding:12px 12px 0;width:100%}
