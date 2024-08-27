@@ -607,9 +607,9 @@ ul.List.st-editor-area.st-editor-area-desktop.st-editor-area-active,.List.st-edi
 .ve-btn.ve-btn-tb-collapse::before{content:'\e0a3'}
 .ve-btn.ve-btn-bubble-table-menu::before{content:'\f58d'}
 .st-editor-toggle{align-items:center;border-radius:4px;display:flex;flex-wrap:wrap;font-size:1rem;height:auto!important;justify-content:center;line-height:1;padding:.618rem;width:auto!important}
-.st-editor-area-active .st-editor-toggle::before {content:'\f205'}
+.st-editor-area-active .st-editor-toggle::before,.st-editor-area.st-editor-area-mobile.st-editor-container.st-editor-area-active .st-editor-toggle::before{content:'\f205'}
 .ve-image-add .ve-btn::before, .ve-link-add .ve-btn::before {content:'\f061'}
-.st-editor-area-desktop .st-editor-toggle:not(.st-editor-area-active .st-editor-toggle)::before {content:'\f204'}
+.st-editor-area-desktop .st-editor-toggle:not(.st-editor-area-active .st-editor-toggle)::before,.st-editor-area.st-editor-area-mobile .st-editor-toggle:not(.st-editor-area.st-editor-area-mobile.st-editor-container.st-editor-area-active .st-editor-toggle)::before{content:'\f204'}
 .ve-dp-item[data-placeholder="Subscript"]::before{content:'\f12c'}
 .ve-dp-item[data-placeholder="Superscript"]::before{content:'\f12b'}
 .ve-dp-item[data-placeholder="Font"]::before{content:'\f031'}
