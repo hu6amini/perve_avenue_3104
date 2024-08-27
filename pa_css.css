@@ -578,7 +578,9 @@ select.codebuttons[onchange="tag('[color='+this.options[this.selectedIndex].valu
 .post .title2.top .right .lt.Sub{line-height:1;margin:0;white-space:nowrap}
 .post .title2.top .right .mini_buttons.points.Sub{margin:0 0 0 10px}
 .post .title2.top .right .mini_buttons.rt.Sub{line-height:1;margin:0 0 0 auto;white-space:nowrap}
-.post .title2.bottom .right.Item.Justify{font-size:0;padding:0 12px 12px 12px}
+.post .title2.bottom .right.Item.Justify{align-items:center;display:flex;font-size:0;padding:0 12px 12px 12px;width:100%}
+.post .title2.bottom .right.Item.Justify .mini_buttons.lt.Sub{align-items:center;display:flex;flex-wrap:wrap;gap:5px;margin-left:0}
+.post .title2.bottom .right.Item.Justify .mini_buttons.rt.Sub{align-items:center;display:flex;flex-wrap:wrap;gap:5px;margin-left:auto;margin-right:0}
 ul.List.st-editor-area.st-editor-area-desktop.st-editor-area-active,.List.st-editor-area.st-editor-area-desktop:not(.List.st-editor-area.st-editor-area-desktop.st-editor-area-active){border-left:1px solid var(--ltbrd)}
 .ve-btn.ve-btn-history-undo,.ve-btn.ve-btn-history-redo{color:var(--ltbrd)}
 .ve-btn.ve-btn-bold::before{content:'\f032'}
