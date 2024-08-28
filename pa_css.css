@@ -566,13 +566,13 @@ select.codebuttons[onchange="tag('[color='+this.options[this.selectedIndex].valu
 .fast.send .codebuttons[accesskey="h"]{margin-right:24px;order:6}
 .fast.send .codebuttons[accesskey="w"]{order:7}
 .fast.send .codebuttons[accesskey="g"]{order:8}
-.fast.send img[src="https://upload.forumfree.net/assets/widget-icon.svg"]{order:9}
-.fast.send .codebuttons[accesskey="c"]{margin-right:24px;order:10}
-.fast.send img[alt="Clickable Smilies"]{order:11}
-.fast.send .codebuttons[accesskey="t"]{margin-right:24px;order:12}
-.fast.send a[href="https://www.forumcommunity.net/?wiki=BBCode"]{order:13}
-.fast.send span#ADDCRON{order:14}
+.fast.send img[src="https://upload.forumfree.net/assets/widget-icon.svg"]{margin-right:24px;order:9}
+.fast.send .codebuttons[accesskey="c"]{order:10}
+.fast.send img[alt="Clickable Smilies"]{margin-right:24px;order:11}
 .fast.send select.codebuttons[onchange="tag('[color='+this.options[this.selectedIndex].value+']','[/color]'); this.selectedIndex=0"]{order:12}
+.fast.send .codebuttons[accesskey="t"]{margin-right:24px;order:13}
+.fast.send a[href="https://www.forumcommunity.net/?wiki=BBCode"]{order:14}
+.fast.send span#ADDCRON{order:15}
 .post .title2.top .right{align-items:center;cursor:default;display:flex;font-size:0;padding:12px 12px 0;width:100%}
 .post .title2.top .right .lt.Sub{line-height:1;margin:0;white-space:nowrap}
 .post .title2.top .right .mini_buttons.points.Sub{margin:0 0 0 10px}
