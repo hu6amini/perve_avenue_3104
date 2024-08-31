@@ -620,6 +620,7 @@ ul.List.st-editor-area.st-editor-area-desktop.st-editor-area-active,.List.st-edi
 .ve-btn.ve-btn-others::before{content:'\e411'}
 .ve-btn.ve-btn-tb-collapse::before{content:'\e0a3'}
 .ve-btn.ve-btn-bubble-table-menu::before{content:'\f58d'}
+.ve-btn.ve-link-edit::before{content:'\f044'}
 .st-editor-toggle{align-items:center;border-radius:4px;display:inline-flex;flex-wrap:wrap;font-size:1rem;height:auto!important;justify-content:center;line-height:1;padding:.618rem;width:auto!important}
 .st-editor-area-active .st-editor-toggle::before,.st-editor-area.st-editor-area-mobile.st-editor-container.st-editor-area-active .st-editor-toggle::before{content:'\f205'}
 .ve-image-add .ve-btn::before, .ve-link-add .ve-btn::before {content:'\f061'}
@@ -650,7 +651,7 @@ ul.List.st-editor-area.st-editor-area-desktop.st-editor-area-active,.List.st-edi
 .ve-dp-item[data-placeholder="Remove heading"]::before{content:'\48'}
 .ve-dp-item[data-placeholder="Merge/split cells"]::before{content:'\e254'}
 .ve-dp-item[data-placeholder="Select"]::before{content:'\f00c'}
-.ve-dp-item[data-placeholder="Delete"]::before,#tippy-35 .ve-dp-item[data-placeholder="Table"]::before,#tippy-19 .ve-dp-item[data-placeholder="Table"]::before{content:'\f2ed'}
+.ve-dp-item[data-placeholder="Delete"]::before,#tippy-35 .ve-dp-item[data-placeholder="Table"]::before,#tippy-19 .ve-dp-item[data-placeholder="Table"]::before,.ve-btn.ve-link-delete::before{content:'\f2ed'}
 .ve-dp-item[data-placeholder="Column before"]::before{content:'\f33e'}
 .ve-dp-item[data-placeholder="Column after"]::before{content:'\f340'}
 .ve-dp-item[data-placeholder="Row before"]::before{content:'\f341'}
