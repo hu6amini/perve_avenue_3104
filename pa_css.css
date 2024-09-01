@@ -588,7 +588,7 @@ select.codebuttons[onchange="tag('[color='+this.options[this.selectedIndex].valu
 .ve-container .ve-btn:not(.ve-emoji-buttons .ve-btn),.ve-image-add .ve-btn{align-items:center;border-radius:4px;display:flex;flex-wrap:wrap;font-size:1rem;height:30px;justify-content:center;line-height:1;width:30px}
 [data-theme*=ve-popover]{background-color:var(--menul);border:1px solid var(--dkbrd);border-radius:4px;box-shadow:var(--shado)}
 .ve-dropdown-list > li,.ve-shortcuts-list li,.ve-color-suggestions li,.ve-emoji-list li{background:none!important}
-.group-1,.group-2,.group-3,.group-4,.group-5,.group-6{margin-left:0}
+.group-1,.group-2,.group-3,.group-4,.group-5,.group-6,.notification-text{margin-left:0}
 .ve-toolbar-inactive .btn{height:30px;width:30px}
 .ve-content blockquote.quote::after,.ve-content pre.code::after,.ve-content spoiler.code::after{color:var(--mdcol);border-bottom:1px solid var(--ltbrd);font-family:quicksand;font-size:.813rem;font-weight:700;left:0;padding:.844rem;right:0;top:0}
 .ve-content blockquote.quote[data-author]::after{content:attr(data-author) " said: "}
