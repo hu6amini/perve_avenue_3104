@@ -542,10 +542,11 @@ select.codebuttons[onchange="tag('[color='+this.options[this.selectedIndex].valu
 .send button.codebuttons:not(#send-button,#preview-button,.codebuttons.st-editor-toggle),.send input.codebuttons,.send select.codebuttons,#user .Item[style="padding:5px 0 2px 0;text-align:center"] .codebuttons{align-items:center;border-radius:4px;display:inline-flex;flex-wrap:wrap;font-size:0;height:30px;justify-content:center;line-height:1;width:30px!important}
 #REPLIER_POST input[name="ffm"] + div{align-items:center;border:1px solid var(--ltbrd);border-radius:4px 4px 0 0;display:flex;flex-wrap:wrap;justify-content:flex-start;padding:6px}
 #REPLIER_POST input[name="ffm"] + div .codebuttons, #REPLIER_POST input[name="ffm"] + div img{margin:0!important}
-.fast.send .codebuttons[accesskey="b"],#send .codebuttons[accesskey="b"],#msg .codebuttons[accesskey="b"],#user .codebuttons[accesskey="b"],#send .send .darkbar button[name="preview"],.profile .nick,#msg .cp.send button[name="preview"]{order:1}
-.fast.send .codebuttons[accesskey="i"],#send .codebuttons[accesskey="i"],#msg .codebuttons[accesskey="i"],#user .codebuttons[accesskey="i"],#send .send .darkbar button[type="submit"],.send .darkbar button[name="submit_post"],.profile_info,.profile-group,#msg .cp.send input[type="submit"]{order:2}
+.fast.send .Item + .Item[style="padding: 6px 2%"] .Justify .right.Sub{display:inline-flex;font-size:0}
+.fast.send .codebuttons[accesskey="b"],#send .codebuttons[accesskey="b"],#msg .codebuttons[accesskey="b"],#user .codebuttons[accesskey="b"],#send .send .darkbar button[name="preview"],.profile .nick,#msg .cp.send button[name="preview"],.fast.send .st-editor-toggle{order:1}
+.fast.send .codebuttons[accesskey="i"],#send .codebuttons[accesskey="i"],#msg .codebuttons[accesskey="i"],#user .codebuttons[accesskey="i"],#send .send .darkbar button[type="submit"],.send .darkbar button[name="submit_post"],.profile_info,.profile-group,#msg .cp.send input[type="submit"],.fast.send button[name="full"]{order:2}
 .fast.send .codebuttons[accesskey="u"]{margin-right:24px;order:3}
-#send .codebuttons[accesskey="u"],#msg .codebuttons[accesskey="u"],#user .codebuttons[accesskey="u"],.profile .Sub.left .mini_buttons{order:3}
+#send .codebuttons[accesskey="u"],#msg .codebuttons[accesskey="u"],#user .codebuttons[accesskey="u"],.profile .Sub.left .mini_buttons,.fast.send img#preview_button{order:3}
 .fast.send .codebuttons[accesskey="q"],#send .codebuttons[accesskey="s"],#msg .codebuttons[accesskey="s"],#user .codebuttons[accesskey="s"]{order:4}
 .fast.send .codebuttons[accesskey="k"],#send .codebuttons[accesskey="a"],#msg .codebuttons[accesskey="a"],#user .codebuttons[accesskey="a"]{order:5}
 .fast.send .codebuttons[accesskey="h"],#send .codebuttons[accesskey="p"],#msg .codebuttons[accesskey="p"],#user .codebuttons[accesskey="p"]{margin-right:24px;order:6}
