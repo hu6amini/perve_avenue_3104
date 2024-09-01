@@ -572,7 +572,7 @@ select.codebuttons[onchange="tag('[color='+this.options[this.selectedIndex].valu
 #send .codebuttons[accesskey="k"],#msg .codebuttons[accesskey="k"],#user .codebuttons[accesskey="k"]{order:16}
 #send .codebuttons[accesskey="h"],#msg .codebuttons[accesskey="h"],#user .codebuttons[accesskey="h"]{margin-right:24px;order:17}
 #send img[src="https://upload.forumfree.net/assets/widget-icon.svg"],#msg img[src="https://upload.forumfree.net/assets/widget-icon.svg"],#user img[src="https://upload.forumfree.net/assets/widget-icon.svg"]{order:18}
-#send a[href="https://www.forumcommunity.net/?wiki=BBCode"],#msg a[href="https://www.forumcommunity.net/?wiki=BBCode"],#user a[href="https://www.forumcommunity.net/?wiki=BBCode"]{order:19}
+#send a[href="https://www.forumcommunity.net/?wiki=BBCode"],#msg a[href="https://www.forumcommunity.net/?wiki=BBCode"],#user a[href="http://forumcommunity.net/?wiki=BBCODE"]{order:19}
 .post .title2.top .right{align-items:center;cursor:default;display:flex;font-size:0;padding:12px 12px 0;width:100%}
 .post .title2.top .right .lt.Sub{line-height:1;margin:0;white-space:nowrap}
 .post .title2.top .right .mini_buttons.points.Sub{margin:0 0 0 10px}
