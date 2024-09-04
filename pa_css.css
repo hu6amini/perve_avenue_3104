@@ -598,7 +598,7 @@ select.codebuttons[onchange="tag('[color='+this.options[this.selectedIndex].valu
 .ve-content blockquote.quote[data-author]::after{content:attr(data-author) " said: "}
 .ve-content blockquote.quote:after{text-transform:unset}
 #st-visual-editor blockquote.quote,#st-visual-editor pre.code,#st-visual-editor spoiler.code{padding-top:50px!important}
-[data-theme*=ve-dropdown] ul.ve-dropdown-list>li,.ve-dropdown-link.ve-link-add,.ve-image-add{align-items:center}
+[data-theme*=ve-dropdown] ul.ve-dropdown-list>li,.ve-dropdown-link .ve-link-add,.ve-image-add{align-items:center}
 [data-theme*=ve-dropdown] ul.ve-dropdown-list>li>button{gap:10px}
 #tippy-32 [data-theme*=ve-dropdown] ul.ve-dropdown-list,#tippy-17 [data-theme*=ve-dropdown] ul.ve-dropdown-list,#tippy-27 [data-theme*=ve-dropdown] ul.ve-dropdown-list,#tippy-9 [data-theme*=ve-dropdown] ul.ve-dropdown-list,#tippy-13 [data-theme*=ve-dropdown] ul.ve-dropdown-list,#tippy-19 [data-theme*=ve-dropdown] ul.ve-dropdown-list,#tippy-35 [data-theme*=ve-dropdown] ul.ve-dropdown-list,.ve-dropdown-link .ve-link-add,.post .title2.bottom .left.Item,#msg #smilies td{padding:0}
 #tippy-32 [data-theme*=ve-popover],#tippy-17 [data-theme*=ve-popover],#tippy-27 [data-theme*=ve-popover],#tippy-9 [data-theme*=ve-popover],#tippy-13 [data-theme*=ve-popover],#tippy-19 [data-theme*=ve-popover],#tippy-35 [data-theme*=ve-popover]{overflow:hidden}
