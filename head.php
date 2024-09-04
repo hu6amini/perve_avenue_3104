@@ -1,0 +1,1 @@
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/hu6amini/perve_avenue_1025/pa_scripts.js" defer></script>
