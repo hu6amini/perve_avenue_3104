@@ -449,7 +449,7 @@ img[src="https://img.forumfree.net/home/images/avatar_email.png"]{background:url
 .codebuttons[name="ffbutton"]::before{content:'\f3e5 \00a0'}
 .prvcomb td[width="16%"][valign="middle"][nowrap] .codebuttons{height:30px;margin:0;width:30px}
 .prvcomb td:not(.prvcomb td[width="16%"][valign="middle"][nowrap]),.prvcomb tr,.prvcomb tbody,.prvcomb table{display:contents}
-.prvcomb td[width="16%"][valign="middle"][nowrap]{align-items:center;border:1px solid var(--ltbrd);border-top-left-radius:4px;border-top-right-radius:4px;display:flex;flex-wrap:wrap;width:100%}
+.prvcomb td[width="16%"][valign="middle"][nowrap]{align-items:center;border:1px solid var(--ltbrd);border-bottom:none;border-top-left-radius:4px;border-top-right-radius:4px;display:flex;flex-wrap:wrap;width:100%}
 .guest.error.no_view_topic .darkbar,.guest.error.no_permission .darkbar:not(.skin_tbl[style="width:60%;min-width:500px"]),.error.profile_guest .darkbar.Item,#attach{border-top:1px solid var(--ltbrd)} 
 .guest.error .darkbar.Item, .error.profile_guest .darkbar.Item{padding:8px 12px 12px}
 .error li.Item,.cp.send .sunbar.center.Item + ul.list,.cp .main_list .sunbar.top.Item + .list .Item{padding:12px}
