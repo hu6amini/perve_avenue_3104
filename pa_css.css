@@ -561,9 +561,9 @@ select.codebuttons[onchange="tag('[color='+this.options[this.selectedIndex].valu
 .fast.send .codebuttons[accesskey="b"],#send .codebuttons[accesskey="b"],#msg .codebuttons[accesskey="b"],#user .codebuttons[accesskey="b"],#send .send .darkbar button[name="preview"],.profile .nick,#msg .cp.send button[name="preview"],.fast.send .st-editor-toggle,.tag_btn button.codebuttons:nth-of-type(2){order:1}
 .fast.send .codebuttons[accesskey="i"],#send .codebuttons[accesskey="i"],#msg .codebuttons[accesskey="i"],#user .codebuttons[accesskey="i"],#send .send .darkbar button[type="submit"],.send .darkbar button[name="submit_post"],.profile_info,.profile-group,#msg .cp.send input[type="submit"],.fast.send button[name="full"],.tag_btn button.codebuttons:nth-of-type(3){order:2}
 #send .codebuttons[accesskey="u"],#msg .codebuttons[accesskey="u"],#user .codebuttons[accesskey="u"],.profile .Sub.left .mini_buttons,.fast.send img#preview_button{order:3}
-.fast.send .codebuttons[accesskey="u"],.tag_btn button.codebuttons:nth-of-type(4){margin-right:25px;order:3}
+.fast.send .codebuttons[accesskey="u"],.tag_btn button.codebuttons:nth-of-type(4){margin-right:25px!important;order:3}
 .fast.send .codebuttons[accesskey="q"],#send .codebuttons[accesskey="s"],#msg .codebuttons[accesskey="s"],#user .codebuttons[accesskey="s"],.fast.send .right.Sub .forminput[type="submit"]{order:4}
-.tag_btn input.codebuttons:nth-of-type(1){margin-right:25px;order:4}
+.tag_btn input.codebuttons:nth-of-type(1){margin-right:25px!important;order:4}
 .fast.send .codebuttons[accesskey="k"],#send .codebuttons[accesskey="a"],#msg .codebuttons[accesskey="a"],#user .codebuttons[accesskey="a"],#fastemoticon.codebuttons{order:5}
 .fast.send .codebuttons[accesskey="h"],#send .codebuttons[accesskey="p"],#msg .codebuttons[accesskey="p"],#user .codebuttons[accesskey="p"]{margin-right:25px;order:6}
 .fast.send .codebuttons[accesskey="w"],#send .codebuttons[accesskey="l"],#msg .codebuttons[accesskey="l"],#user .codebuttons[accesskey="l"]{order:7}
