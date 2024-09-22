@@ -700,6 +700,7 @@ button[name="full"] img {max-height:16px;max-width:16px;position:absolute}
 [data-theme*=ve-dropdown] .ve-shortcuts-list li:not(:last-of-type),[data-theme*=ve-dropdown] .ve-shortcuts-list li:last-of-type{border-bottom:none;padding:8px 13px}
 .st-editor-area > div[style="margin-bottom:15px"]{display:inline;margin-bottom:0!important}
 .btn-social span > img[src="https://img.forumfree.net/vectors/google_logo_vector.svg"]:hover,.btn-social span > img[src="https://img.forumfree.net/vectors/fb_logo_vector.svg"]:hover,.send img[title="Clickable Smilies"]:hover,.fast.send img[title="Clickable Smilies"]:hover,.send img[title="File Attachments"]:hover{opacity:1}
+.notification-image [src="https://img.forumfree.net/style_images/default_avatar.png"]{background-image:url("https://res.cloudinary.com/dbdf6gwgo/image/upload/v1674337715/forum/Avatar/default_avatar_zpw3zz.svg"); box-sizing:border-box; height: 60px; padding-left: 60px; width: 60px}
 
 @media (max-width: 768px){
 .prvchat{width:100%!important}
