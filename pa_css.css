@@ -54,7 +54,7 @@ input[type="checkbox"]::before,input[type="radio"]::before{content:'\f111'}
 input[type="checkbox"]:checked::before{content:'\f058'} 
 input[type="radio"]:checked::before{content:'\f192'} 
 input[type="radio"]:checked::before,input[type="checkbox"]::before,input[type="radio"]::before{color:var(--ltcol);font-size:.813rem}
-#ADDCRON::before{color:var(--ltcol);content:'\e0d6 \00a0';display:inline-block}
+#ADDCRON:not(.send #ADDCRON)::before{color:var(--ltcol);content:'\e0d6 \00a0';display:inline-block}
 #usercp .codebuttons[value="Generate"]{height:auto!important;width:auto!important} 
 input[type="file"]{background:none!important;border:none!important;color:var(--ltcol)!important;padding:0!important}
 .quote span[style="font-size:19.5pt;line-height:100%"]{font-size:17.062pt!important}
