@@ -715,6 +715,7 @@ button[name="full"] img {max-height:16px;max-width:16px;position:absolute}
 .send [rows].textinput:not(#pollRow textarea){height:0}
 #pollRow textarea{background-color:var(--txtim);border:1px solid var(--ltbrd);border-radius:4px;font-size:1rem;padding:10px}
 .ve-content.color{height:auto}
+#msg .post .mini_buttons.rt.Sub font::before,#msg .post .mini_buttons.lt.Sub font::before{content:'\00a0'}
 
 @media (max-width: 768px){
 .prvchat{width:100%!important}
