@@ -719,7 +719,7 @@ button[name="full"] img {max-height:16px;max-width:16px;position:absolute}
 .sunbar.center[onclick="addButtonPollFF()"] .Sub.Item[style="width:68%"]::before,#pollRow div[style="cursor:pointer"] .Sub.Item[style="width:68%"]::before{content:'\f0fe'}
 #pollRow div[style="cursor:pointer"] .Sub.Item[style="width:68%"],#pollRow div[style="cursor:pointer"]{margin-left:0;width:fit-content!important}
 .Sortable.ui-sortable .Sub.Item[style="width:68%"],#pollRow [id^="Option"]{align-items:center;display:inline-flex;width:100%!important}
-.Sub.Item.handle.ui-sortable-handle,.Sub.Item.handle{border-right:1px solid var(--ltbrd);margin-right:12px;padding:24px}
+.Sub.Item.handle.ui-sortable-handle,.Sub.Item.handle:not(.Sub.Item.handle[style="width:18%"]){border-right:1px solid var(--ltbrd);margin-right:12px;padding:24px}
 .Sortable.ui-sortable{border-bottom:1px solid var(--ltbrd);border-top:1px solid var(--ltbrd);margin-bottom:12px;margin-top:12px}
 [id^="Option"]{display:flex}
 
