@@ -718,6 +718,7 @@ button[name="full"] img {max-height:16px;max-width:16px;position:absolute}
 #msg .post .mini_buttons.rt.Sub font::before,#msg .post .mini_buttons.lt.Sub font::before{content:'\00a0'}
 .sunbar.center[onclick="addButtonPollFF()"] .Sub.Item[style="width:68%"]::before,#pollRow div[style="cursor:pointer"] .Sub.Item[style="width:68%"]::before{content:'\f0fe'}
 #pollRow div[style="cursor:pointer"] .Sub.Item[style="width:68%"],#pollRow div[style="cursor:pointer"]{margin-left:0;width:fit-content!important}
+.Sortable.ui-sortable .Sub.Item[style="width:68%"],#pollRow [id^="Option"]{align-items:center;display:inline-flex;width:100%!important}
 
 @media (max-width: 768px){
 .prvchat{width:100%!important}
