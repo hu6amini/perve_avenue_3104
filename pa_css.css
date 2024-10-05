@@ -454,7 +454,7 @@ img[src="https://img.forumfree.net/home/images/avatar_email.png"]{background:url
 .prvcomb td[width="16%"][valign="middle"][nowrap]{align-items:center;background-color:var(--contt);border:1px solid var(--ltbrd);border-bottom:none;border-top-left-radius:4px;border-top-right-radius:4px;display:flex;flex-wrap:wrap;padding:0 6px;width:100%}
 .guest.error.no_view_topic .darkbar,.guest.error.no_permission .darkbar:not(.skin_tbl[style="width:60%;min-width:500px"]),.error.profile_guest .darkbar.Item,#attach{border-top:1px solid var(--ltbrd)} 
 .guest.error .darkbar.Item, .error.profile_guest .darkbar.Item{padding:8px 12px 12px}
-.error li.Item,.cp.send .sunbar.center.Item + ul.list,.cp .main_list .sunbar.top.Item + .list .Item,#tippy-19 li,#tippy-21 ul.ve-dropdown-list{padding:12px}
+.error li.Item,.cp.send .sunbar.center.Item + ul.list,.cp .main_list .sunbar.top.Item + .list .Item,#tippy-19 li,#tippy-21 ul.ve-dropdown-list,#mod .Sub.Item[style="width:67%"] + .list{padding:12px}
 .error .skin_tbl[style="width:60%;min-width:500px"],#Post,.Sortable.ui-sortable textarea{width:100%!important}
 .error .skin_tbl[style="width:60%;min-width:500px"] .Sub.Item{padding:8px 0 12px 0!important;text-align:right!important;width:100%!important}
 .error .skin_tbl[style="width:60%;min-width:500px"] .sunbar,.profile-group .Sub.Item:last-of-type{text-align:left}
@@ -492,7 +492,7 @@ input[value="Submit Modified Post"],input[value="Invia il messaggio modificato"]
 .st-editor-area.st-editor-area-desktop:not(.st-editor-area-desktop.st-editor-area-active) .Item[style="padding: 6px 2%"]:first-child .Justify,.send .list.st-editor-area.st-editor-area-desktop:not(.list.st-editor-area.st-editor-area-desktop.st-editor-area-active) .Item[style="padding:5px 1.5% 2px 1.5%"] .Justify,.send .list:not(.list.st-editor-area.st-editor-area-desktop,.list.st-editor-area.st-editor-area-desktop.st-editor-area-active) .Item[style="padding:5px 1.5% 2px 1.5%"] .Justify,#msg .Item[style="padding:5px 1.5% 2px 1.5%"] .Justify,#user .Item[style="padding:5px 0 2px 0;text-align:center"],.fast.send .List:not(.List.st-editor-area.st-editor-area-desktop.st-editor-area-active) .Item[style="padding: 6px 2%"]:first-child .Justify,.tag_btn{align-items:center;border:1px solid var(--ltbrd);border-bottom:none;border-top-left-radius:4px;border-top-right-radius:4px;display:flex!important;flex-wrap:wrap;font-size:0;min-height:45px;padding:6px!important;width:100%}
 .send .Item[style="padding:12px 1.5% 12px 1.5%"] .right.Sub,#search a.forminput.button_replies,#tagObject li{font-size:0}
 ul.List.st-editor-area.st-editor-area-desktop .Item[style="text-align: center; padding: 2px 0"]{display:block;margin-bottom:8px}
-.send .list:not(.list.st-editor-area.st-editor-area-desktop,.list.st-editor-area.st-editor-area-desktop.st-editor-area-active,.send .cronRow .list){padding: 12px 12px 0 12px}
+.send .list:not(.list.st-editor-area.st-editor-area-desktop,.list.st-editor-area.st-editor-area-desktop.st-editor-area-active,.send .cronRow .list,.send #pollRow .list){padding: 12px 12px 0 12px}
 .st-editor-area.st-editor-area-desktop .cronRow:not(.st-editor-area.st-editor-area-desktop.st-editor-area-active .cronRow){border:1px solid var(--ltbrd);border-bottom:none;margin:0!important;padding:12px}
 .st-editor-area.st-editor-area-desktop.st-editor-area-active .cronRow{border:1px solid var(--ltbrd);border-radius:4px;margin-bottom:8px!important;margin-top:0!important;padding:12px}
 #pollRow + .cronRow{border:1px solid var(--ltbrd);border-radius:4px;margin-left:12px!important;margin-right:12px!important;padding:12px}
@@ -720,7 +720,7 @@ button[name="full"] img {max-height:16px;max-width:16px;position:absolute}
 #pollRow div[style="cursor:pointer"] .Sub.Item[style="width:68%"],#pollRow div[style="cursor:pointer"]{margin-left:0;width:fit-content!important}
 .Sortable.ui-sortable .Sub.Item[style="width:68%"],#pollRow [id^="Option"]{align-items:center;display:inline-flex;width:100%!important}
 .Sub.Item.handle.ui-sortable-handle,.Sub.Item.handle{border-right:1px solid var(--ltbrd);margin-right:12px;padding:24px}
-.Sortable.ui-sortable{border-bottom:1px solid var(--ltbrd);border-top:1px solid var(--ltbrd);margin:12px}
+.Sortable.ui-sortable{border-bottom:1px solid var(--ltbrd);border-top:1px solid var(--ltbrd);margin-bottom:12px;margin-top:12px}
 [id^="Option"]{display:flex}
 
 @media (max-width: 768px){
