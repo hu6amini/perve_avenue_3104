@@ -438,7 +438,7 @@ img[src="https://img.forumfree.net/home/images/avatar_email.png"]{background:url
 .ffb_embedlink_initialized > div:last-child > div:first-child,.ffb_embedlink_initialized > div:last-child > div:first-child > a{margin-bottom:3px;max-height:100%;max-width:100%}
 .ffb_embedlink_initialized > div:last-child > div:first-child > a{display:block!important;overflow:visible}
 .Sub.Item[style="width:28%"]{color:var(--ltcol);font-size:.875rem;font-weight:400}
-.Sub.Item.handle.ui-sortable-handle,.Sub.Item.handle.ui-sortable-handle b{color:var(--ftcol);font-size:.813rem;font-wieght:400}
+.Sub.Item.handle.ui-sortable-handle,.Sub.Item.handle.ui-sortable-handle b{color:var(--ftcol);font-size:.813rem;font-weight:400}
 #markdiv .list-users > div{border:1px solid var(--ltbrd);border-radius:4px;margin:0!important;min-width:106px;padding:12px}
 #markdiv .list-users > div:hover,select:hover:not(.codebuttons[onchange="tag('[color='+this.options[this.selectedIndex].value+']','[/color]'); this.selectedIndex=0"],.codebuttons[onchange="tag('[font='+this.options[this.selectedIndex].value+']','[/font]'); this.selectedIndex=0"],.codebuttons[onchange="tag('[size='+this.options[this.selectedIndex].value+']','[/size]'); this.selectedIndex=0"]),.selected-item:hover{background-color:var(--hovbd)}
 .Sub a[href="/?act=UserCP&CODE=01&c=655775"]::before{content:'\f007 \00a0'}
