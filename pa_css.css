@@ -721,7 +721,7 @@ button[name="full"] img {max-height:16px;max-width:16px;position:absolute}
 #pollRow div[style="cursor:pointer"] .Sub.Item[style="width:68%"],#pollRow div[style="cursor:pointer"]{margin-left:0;width:fit-content!important}
 .Sortable.ui-sortable .Sub.Item[style="width:68%"],#pollRow [id^="Option"]{align-items:center;display:inline-flex;width:100%!important}
 .Sub.Item.handle.ui-sortable-handle,.Sub.Item.handle:not(.Sub.Item.handle[style="width:18%"]){border-right:1px solid var(--ltbrd);margin-right:12px;padding:16px 0}
-[id^='POLL_']{border-radius:4px;margin:8px}
+[id^='POLL_']{border-radius:4px;margin:8px;min-height:2.368rem}
 #PollTitle{border-radius:4px}
 .Sortable.ui-sortable{border-bottom:1px solid var(--ltbrd);border-top:1px solid var(--ltbrd);margin-bottom:12px;margin-top:12px}
 [id^="Option"]{display:flex}
