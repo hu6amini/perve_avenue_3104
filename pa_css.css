@@ -27,7 +27,6 @@ input[value="Go!"]:hover:not(.right.Sub input[value="Go!"]),#user input[title="C
 .sunbar.center[onclick="addButtonPollFF()"]{align-items:center;display:inline-flex;height:36px;justify-content:center;width:auto}
 .send .Justify:hover,td.right.Item.Justify{cursor:default}
 .cp.send li.Item[style="padding:5px 1.5% 2px 1.5%"]{align-items:center;display:flex;justify-content:left}
-.board.List .big_list .zz{align-items:center;display:flex;flex-wrap:wrap;padding-left:44px;position:relative}
 #msg .cp.send .Item > #Post{border:1px solid var(--ltbrd);margin:0;transition:min-height .618s ease-in-out}
 #msg .cp.send .Item > #Post:focus{min-height:300px}
 #user .Sub.Item b.info{color:var(--grnon);font-weight:700}
