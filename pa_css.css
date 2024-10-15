@@ -27,6 +27,7 @@ input[value="Go!"]:hover:not(.right.Sub input[value="Go!"]),#user input[title="C
 .sunbar.center[onclick="addButtonPollFF()"]{align-items:center;display:inline-flex;height:36px;justify-content:center;width:auto}
 .send .Justify:hover,td.right.Item.Justify{cursor:default}
 .cp.send li.Item[style="padding:5px 1.5% 2px 1.5%"]{align-items:center;display:flex;justify-content:left}
+.board.List .big_list .zz{align-items:center;display:flex;flex-wrap:wrap;padding-left:44px;position:relative}
 #msg .cp.send .Item > #Post{border:1px solid var(--ltbrd);margin:0;transition:min-height .618s ease-in-out}
 #msg .cp.send .Item > #Post:focus{min-height:300px}
 #user .Sub.Item b.info{color:var(--grnon);font-weight:700}
@@ -452,7 +453,7 @@ img[src="https://img.forumfree.net/home/images/avatar_email.png"]{background:url
 .prvcomb td[width="16%"][valign="middle"][nowrap]{align-items:center;background-color:var(--contt);border:1px solid var(--ltbrd);border-bottom:none;border-top-left-radius:4px;border-top-right-radius:4px;display:flex;flex-wrap:wrap;padding:0 6px;width:100%}
 .guest.error.no_view_topic .darkbar,.guest.error.no_permission .darkbar:not(.skin_tbl[style="width:60%;min-width:500px"]),.error.profile_guest .darkbar.Item,#attach{border-top:1px solid var(--ltbrd)} 
 .guest.error .darkbar.Item, .error.profile_guest .darkbar.Item{padding:8px 12px 12px}
-.error li.Item,.cp.send .sunbar.center.Item + ul.list,.cp .main_list .sunbar.top.Item + .list .Item,#tippy-19 li,#tippy-21 ul.ve-dropdown-list,#mod .Sub.Item[style="width:67%"] + .list{padding:12px}
+.error li.Item,.cp.send .sunbar.center.Item + ul.list,.cp .main_list .sunbar.top.Item + .list .Item,#tippy-19 li,#tippy-21 ul.ve-dropdown-list,#mod .Sub.Item[style="width:67%"] + .list,#board .zz:not(.board.List .zz){padding:12px}
 .error .skin_tbl[style="width:60%;min-width:500px"],#Post,.Sortable.ui-sortable textarea{width:100%!important}
 .error .skin_tbl[style="width:60%;min-width:500px"] .Sub.Item{padding:8px 0 12px 0!important;text-align:right!important;width:100%!important}
 .error .skin_tbl[style="width:60%;min-width:500px"] .sunbar,.profile-group .Sub.Item:last-of-type{text-align:left}
