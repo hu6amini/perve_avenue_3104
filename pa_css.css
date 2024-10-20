@@ -595,7 +595,7 @@ select.codebuttons[onchange="tag('[color='+this.options[this.selectedIndex].valu
 .post .title2.top .right .mini_buttons.rt.Sub{line-height:1rem;margin:0 0 0 auto;white-space:nowrap}
 .post .title2.bottom .right.Item.Justify{align-items:center;display:flex;font-size:0;padding:12px;width:100%}
 .post .title2.bottom .right.Item.Justify .mini_buttons.lt.Sub{align-items:center;display:flex;flex-wrap:wrap;margin-left:0}
-.post .title2.bottom .right.Item.Justify .mini_buttons.lt.Sub a:first-child{margin-right:5px}
+.post .title2.bottom .right.Item.Justify .mini_buttons.lt.Sub a:not(:last-child){margin-right:5px}
 .post .title2.bottom .right.Item.Justify .rt.Sub{align-items:center;display:flex;flex-wrap:wrap;gap:5px;margin-left:auto;margin-right:0}
 .st-editor-container{display:block;margin-bottom:8px!important;padding: 0!important}
 .ve-content p.is-editor-empty:first-child::before,[data-theme*=ve-dropdown] ul.ve-dropdown-list>li>button[data-placeholder]::after{font-family:quicksand}
