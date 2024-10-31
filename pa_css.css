@@ -725,7 +725,6 @@ button[name="full"] img {max-height:16px;max-width:16px;position:absolute}
 [id^="Option"]{display:flex}
 ul.stats.List .users li{min-height:24px;padding-left:29px;position:relative}
 ul.stats.List .users .avatar{left:-29px;position:absolute;top:0}
-#board img[src="https://res.cloudinary.com/dbdf6gwgo/image/upload/v1674337715/forum/Avatar/default_avatar_zpw3zz.svg"],#topic img[src="https://res.cloudinary.com/dbdf6gwgo/image/upload/v1674337715/forum/Avatar/default_avatar_zpw3zz.svg"],#forum img[src="https://res.cloudinary.com/dbdf6gwgo/image/upload/v1674337715/forum/Avatar/default_avatar_zpw3zz.svg"],#send img[src="https://res.cloudinary.com/dbdf6gwgo/image/upload/v1674337715/forum/Avatar/default_avatar_zpw3zz.svg"],#profile img[src="https://res.cloudinary.com/dbdf6gwgo/image/upload/v1674337715/forum/Avatar/default_avatar_zpw3zz.svg"]{visibility:hidden}
 .popup.pop_points img[alt="← undo"]{margin-right:10px}
 
 @media (max-width: 768px){
