@@ -732,5 +732,5 @@ ul.stats.List .users a.avatar{left:-29px;position:absolute;top:0}
 .children-2{margin:0;width:100%}
 .top-button{flex-grow:1;margin:0!important;width:100%}
 .top-button input.forminput{max-width:100%!important;min-width:100%!important}
-.children-1,.prvposts{display:none}
+.children-1,.prvposts,.post.send_post{display:none}
 }
