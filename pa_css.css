@@ -726,6 +726,7 @@ button[name="full"] img {max-height:16px;max-width:16px;position:absolute}
 ul.stats.List .users li{min-height:24px;padding-left:29px;position:relative}
 ul.stats.List .users a.avatar{left:-29px;position:absolute;top:0}
 .popup.pop_points img[alt="← undo"]{margin-right:10px}
+.pages .lastpost a:not(.pages .lastpost a i){color:transparent;max-width:31.38px}
 
 @media (max-width: 768px){
 .prvchat{width:100%!important}
