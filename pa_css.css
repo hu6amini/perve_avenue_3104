@@ -575,16 +575,21 @@ select.codebuttons[onchange="tag('[color='+this.options[this.selectedIndex].valu
 .fast.send .codebuttons[accesskey="g"],#send .codebuttons[accesskey="g"],#msg .codebuttons[accesskey="g"],#user .codebuttons[accesskey="g"]{order:10}
 .fast.send .codebuttons[accesskey="t"]{order:11}
 #send .codebuttons[onclick="add_mark();return;"]{margin-right:25px;order:11}
-.fast.send select.codebuttons[onchange="tag('[font='+this.options[this.selectedIndex].value+']','[/font]'); this.selectedIndex=0"],#send .codebuttons[onchange="tag('[font='+this.options[this.selectedIndex].value+']','[/font]'); this.selectedIndex=0"],#msg .codebuttons[onchange="tag('[font='+this.options[this.selectedIndex].value+']','[/font]'); this.selectedIndex=0"],#user .codebuttons[onchange="tag('[font='+this.options[this.selectedIndex].value+']','[/font]'); this.selectedIndex=0"]{order:12}
+#send .codebuttons[onchange="tag('[font='+this.options[this.selectedIndex].value+']','[/font]'); this.selectedIndex=0"],#msg .codebuttons[onchange="tag('[font='+this.options[this.selectedIndex].value+']','[/font]'); this.selectedIndex=0"],#user .codebuttons[onchange="tag('[font='+this.options[this.selectedIndex].value+']','[/font]'); this.selectedIndex=0"]{order:12}
 .fast.send img[alt="Clickable Smilies"]{margin-right:25px;order:12}
-.fast.send .codebuttons[onchange="tag('[size='+this.options[this.selectedIndex].value+']','[/size]'); this.selectedIndex=0"],#msg .codebuttons[onchange="tag('[size='+this.options[this.selectedIndex].value+']','[/size]'); this.selectedIndex=0"],#user .codebuttons[onchange="tag('[size='+this.options[this.selectedIndex].value+']','[/size]'); this.selectedIndex=0"],#send .codebuttons[onchange="tag('[size='+this.options[this.selectedIndex].value+']','[/size]'); this.selectedIndex=0"]{order:13}
-.fast.send .codebuttons[onchange="tag('[color='+this.options[this.selectedIndex].value+']','[/color]'); this.selectedIndex=0"],#send .codebuttons[onchange="tag('[color='+this.options[this.selectedIndex].value+']','[/color]'); this.selectedIndex=0"],#msg .codebuttons[onchange="tag('[color='+this.options[this.selectedIndex].value+']','[/color]'); this.selectedIndex=0"],#user .codebuttons[onchange="tag('[color='+this.options[this.selectedIndex].value+']','[/color]'); this.selectedIndex=0"]{margin-right:25px;order:14}
-.fast.send .codebuttons[accesskey="q"],#send .codebuttons[accesskey="q"],#msg .codebuttons[accesskey="q"],#user .codebuttons[accesskey="q"]{order:15}
-.fast.send .codebuttons[accesskey="k"],#send .codebuttons[accesskey="k"],#msg .codebuttons[accesskey="k"],#user .codebuttons[accesskey="k"]{order:16}
-.fast.send .codebuttons[accesskey="h"],#send .codebuttons[accesskey="h"],#msg .codebuttons[accesskey="h"],#user .codebuttons[accesskey="h"]{margin-right:25px;order:17}
-.fast.send img[src="https://upload.forumfree.net/assets/widget-icon.svg"],#send img[src="https://upload.forumfree.net/assets/widget-icon.svg"],#msg img[src="https://upload.forumfree.net/assets/widget-icon.svg"],#user img[src="https://upload.forumfree.net/assets/widget-icon.svg"]{order:18}
-.fast.send a[href="https://www.forumcommunity.net/?wiki=BBCode"],#send a[href="https://www.forumcommunity.net/?wiki=BBCode"],#msg a[href="https://www.forumcommunity.net/?wiki=BBCode"],#user a[href="http://forumcommunity.net/?wiki=BBCODE"]{order:19}
-.fast.send span#ADDCRON,#send span#ADDCRON{order:20}
+.fast.send select.codebuttons[onchange="tag('[font='+this.options[this.selectedIndex].value+']','[/font]'); this.selectedIndex=0"],#msg .codebuttons[onchange="tag('[size='+this.options[this.selectedIndex].value+']','[/size]'); this.selectedIndex=0"],#user .codebuttons[onchange="tag('[size='+this.options[this.selectedIndex].value+']','[/size]'); this.selectedIndex=0"],#send .codebuttons[onchange="tag('[size='+this.options[this.selectedIndex].value+']','[/size]'); this.selectedIndex=0"]{order:13}
+.fast.send .codebuttons[onchange="tag('[size='+this.options[this.selectedIndex].value+']','[/size]'); this.selectedIndex=0"]{order:14}
+#send .codebuttons[onchange="tag('[color='+this.options[this.selectedIndex].value+']','[/color]'); this.selectedIndex=0"],#msg .codebuttons[onchange="tag('[color='+this.options[this.selectedIndex].value+']','[/color]'); this.selectedIndex=0"],#user .codebuttons[onchange="tag('[color='+this.options[this.selectedIndex].value+']','[/color]'); this.selectedIndex=0"]{margin-right:25px;order:14}
+#send .codebuttons[accesskey="q"],#msg .codebuttons[accesskey="q"],#user .codebuttons[accesskey="q"]{order:15}
+.fast.send .codebuttons[onchange="tag('[color='+this.options[this.selectedIndex].value+']','[/color]'); this.selectedIndex=0"]{margin-right:25;order:15}
+.fast.send .codebuttons[accesskey="q"],#send .codebuttons[accesskey="k"],#msg .codebuttons[accesskey="k"],#user .codebuttons[accesskey="k"]{order:16}
+.fast.send .codebuttons[accesskey="k"]{order:17}
+#send .codebuttons[accesskey="h"],#msg .codebuttons[accesskey="h"],#user .codebuttons[accesskey="h"]{margin-right:25px;order:17}
+#send img[src="https://upload.forumfree.net/assets/widget-icon.svg"],#msg img[src="https://upload.forumfree.net/assets/widget-icon.svg"],#user img[src="https://upload.forumfree.net/assets/widget-icon.svg"]{order:18}
+.fast.send .codebuttons[accesskey="h"]{margin-right:25px;order:18}
+.fast.send img[src="https://upload.forumfree.net/assets/widget-icon.svg"],#send a[href="https://www.forumcommunity.net/?wiki=BBCode"],#msg a[href="https://www.forumcommunity.net/?wiki=BBCode"],#user a[href="http://forumcommunity.net/?wiki=BBCODE"]{order:19}
+.fast.send a[href="https://www.forumcommunity.net/?wiki=BBCode"]{order:20}
+.fast.send span#ADDCRON,#send span#ADDCRON{order:21}
 .post .title2.top .right{align-items:center;cursor:default;display:flex;font-size:0;padding:12px 12px 0;width:100%}
 .post .title2.top .right .lt.Sub{line-height:1;margin:0;white-space:nowrap}
 .post .title2.top .right .mini_buttons.points.Sub{margin:0 0 0 10px}
