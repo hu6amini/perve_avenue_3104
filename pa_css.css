@@ -750,7 +750,9 @@ ul.stats.List .users a.avatar{left:-29px;position:absolute;top:0}
 .menuwrap .left .menu li a[onclick="Logout.CODE.value='05';Logout.submit()"]::before{content:'\f00c'}
 .menuwrap .left .menu li a[href="https://msg.forumcommunity.net/?act=Search&CODE=02&MID=11517378&c=655775"]::before{content:'\e1d8'}
 .menuwrap .left .menu li a[href="https://msg.forumcommunity.net/?act=Search&MID=11517378&c=655775"]::before{content:'\f4ff'}
-.menuwrap .left .menu li a.track::before{content:'\f1f6'}
+.menuwrap .left .menu li a.track::before{content:'\f8fa'}
+.menuwrap .left .menu a[href="https://www.forumcommunity.net/?cid=655775"] .submenu a:first-of-type::before{content:'\f085'}
+.menuwrap .left .menu > a[href="https://www.forumcommunity.net/?cid=655775"] > ul > li.submenu:first-of-type > a::before{content:'\f085'}
 
 @media (max-width: 768px){
 .prvchat{width:100%!important}
