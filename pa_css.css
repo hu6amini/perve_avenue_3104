@@ -803,7 +803,7 @@ ul.stats.List .users a.avatar{left:-29px;position:absolute;top:0}
 .menuwrap .left .menu li a[href="https://msg.forumcommunity.net/?act=UserCP&CODE=28&c=655775"]::before{content:'\f084'}
 .menuwrap .left .menu li a[onclick="tracked.submit()"]::before{content:'\f5c1'}
 .menuwrap .left .menu li a[onclick="inbox.action.value='move';inbox.VID.value='sent';inbox.submit()"]::before{content:'\f0e0'}
-#msg .menuwrap .left .menu + .menu + .menu + .menu + li + li + .menu + .menu .submenu.alternative + .submenu.alternative a:first-child::before{content:'\f56e'}
+#msg .menuwrap .left .menu + .menu + .menu + .menu + li + li + .menu + .menu .submenu.alternative + .submenu.alternative a:first-child:not(:nth-of-type(1))::before{content:'\f56e'}
 .menuwrap .left .menu li a + ul > li a[onclick="inbox.action.value='archive';inbox.type.value='html';inbox.submit()"]::before{content:'\f1c9'}
 .menuwrap .left .menu li a + ul > li a[onclick="inbox.action.value='archive';inbox.type.value='xls';inbox.submit()"]::before{content:'\f0ce'}
 
