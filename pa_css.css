@@ -739,6 +739,10 @@ ul.stats.List .users a.avatar{left:-29px;position:absolute;top:0}
 .menuwrap .left .menu li a::before{color:var(--ltcol);margin-right:10px}
 .menuwrap .left .menu li a[href="https://msg.forumcommunity.net/?act=Msg&CODE=04&c=655775"]::before{content:'\f064'}
 .menuwrap .left .menu li a[href="https://msg.forumcommunity.net/?act=Msg&CODE=01&c=655775"]::before{content:'\f658'}
+.menuwrap .left .menu li a[href="https://msg.forumcommunity.net/?act=Msg&CODE=07&c=655775"]::before{content:'\e187'}
+.menuwrap .left .menu li a[href="https://msg.forumcommunity.net/?act=Msg&CODE=14&c=655775"]::before{content:'\f1c6'}
+.menuwrap .left .menu li a[href="https://msg.forumcommunity.net/?act=Msg&CODE=02&c=655775"]::before{content:'\f2b9'}
+.menuwrap .left .menu li a[href="https://msg.forumcommunity.net/?act=UserCP&CODE=00&c=655775"]::before{content:'\e201'}
 
 @media (max-width: 768px){
 .prvchat{width:100%!important}
