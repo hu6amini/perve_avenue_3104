@@ -89,7 +89,6 @@ input[type="file"]{background:none!important;border:none!important;color:var(--l
 .emoji_tab_list ul li{height:1rem;margin:0 4px;width:1.313rem}
 .emoji_tab_list ul li::before{inset:0;font-size:1rem;line-height:1rem;margin:auto;position:absolute;z-index:-1}
 .emoji_tab_list > ul > li > img{background-size:1rem;box-sizing:border-box;height:1rem;padding-left:1.313rem;width:1.313rem}
-.emoji_tab_list ul li:nth-child(1)::before{content:'\f1da'}
 .emoji_tab_list ul li:nth-child(3)::before{content:'\f0eb'}
 .emoji_tab_list ul li:nth-child(4)::before{content:'\f434'}
 .emoji_tab_list ul li:nth-child(5)::before{content:'\f1bb'}
@@ -410,7 +409,6 @@ input.forminput[value="Search this forum"]{font-size:0;height:.875rem;margin-lef
 .cs-btn.cs-btn-outer-red.st-emoji-notice-delete::before{content:'\f12d \00a0';display:inline-block;font-size:.75rem}
 .cs-modal-footer{background:var(--contt);border-radius:0 0 4px 4px;border-top:1px solid var(--ltbrd);height:45px;overflow-y:hidden!important;padding:0 10px!important}
 .cs-toast.slide-in.st-emoji-toast.cs-toast-info{background:var(--menul)!important;box-shadow:var(--shado)!important}
-.cs-toast:not(.cs-toast-dark) .cs-toast-content{background:none!important}
 .cs-toast-info .cs-toast-timer{background-color:var(--contt)!important;background-image:linear-gradient(to bottom, var(--ltgry) 50%, var(--contt) 50%)!important}
 .cs-toast-header{border-bottom:1px solid var(--ltbrd)!important}
 .cs-toast-timer{border-right:1px solid var(--ltbrd)!important}
@@ -440,8 +438,7 @@ img[src="https://img.forumfree.net/home/images/avatar_email.png"]{background:url
 .ffb_embedlink div:nth-of-type(2) > div{border:none;padding:0}
 .ffb_embedlink_initialized > div:last-child > div:first-child{max-height:100%;max-width:100%}
 .ffb_embedlink a{background:none!important; font-weight:700;padding-left:0!important}
-.ffb_embedlink_initialized > div:last-child > div:first-child > a{margin-bottom:3px;max-height:100%;max-width:100%}
-.ffb_embedlink_initialized > div:last-child > div:first-child > a{display:block!important;overflow:visible}
+.ffb_embedlink_initialized > div:last-child > div:first-child > a{display:block!important;margin-bottom:3px;max-height:100%;max-width:100%;overflow:visible}
 .Sub.Item[style="width:28%"]{color:var(--ltcol);font-size:.875rem;font-weight:400}
 .Sub.Item.handle.ui-sortable-handle,.Sub.Item.handle.ui-sortable-handle b,.Sub.Item.handle,.Sub.Item.handle b{color:var(--ftcol);font-size:.813rem;font-weight:400}
 #markdiv .list-users > div{align-items:center;border:1px solid var(--ltbrd);border-radius:4px;display:flex!important;flex-direction:column;gap:10px;justify-content:center;margin:0!important;min-width:106px;padding:10px}
@@ -619,14 +616,13 @@ select.codebuttons[onchange="tag('[color='+this.options[this.selectedIndex].valu
 .ve-container:not(.ve-touch-device) .ve-btn:not(.ve-static):not([data-active]):not(:disabled):hover,.ve-container:not(.ve-touch-device) .ve-btn:not(.ve-static)[data-active=false]:not(:disabled):hover,.ve-toolbar .ve-formats-item[aria-expanded=true] button:not([data-active=true]),.ve-bubble-menu .ve-formats-item[aria-expanded=true] button:not([data-active=true]),.ve-image-add .ve-btn:hover{background:var(--ltgry);color:var(--ftcol)}
 .ve-container .ve-btn:not(.ve-emoji-buttons .ve-btn),.ve-image-add .ve-btn{align-items:center;border-radius:4px;display:flex;flex-wrap:wrap;font-size:1rem;height:30px;justify-content:center;line-height:1;width:30px}
 [data-theme*=ve-popover]{background-color:var(--menul);border:1px solid var(--dkbrd);border-radius:4px;box-shadow:var(--shado)}
-.ve-dropdown-list > li,.ve-shortcuts-list li,.ve-color-suggestions li,.ve-emoji-list li{background:none!important}
+.ve-dropdown-list > li,.ve-shortcuts-list li,.ve-color-suggestions li,.ve-emoji-list li,.cs-toast:not(.cs-toast-dark) .cs-toast-content{background:none!important}
 .group-1,.group-2,.group-3,.group-4,.group-5,.group-6,.notification-text{margin-left:0}
 .ve-toolbar-inactive .btn{height:30px;width:30px}
 .ve-content blockquote.quote::after,.ve-content pre.code::after,.ve-content spoiler.code::after,div[data-type="spoiler"]::after{border-bottom:1px solid var(--ltbrd);font-family:quicksand;font-weight:700;left:0;padding:.844rem;right:0;top:0!important}
 .ve-content pre.code::after,.ve-content spoiler.code::after,div[data-type="spoiler"]::after{color:var(--ftcol);font-size:1rem!important}
-.ve-content blockquote.quote::after{color:var(--mdcol);font-size:.813rem}
 .ve-content blockquote.quote[data-author]::after{content:attr(data-author) " said: "!important}
-.ve-content blockquote.quote::after{text-transform:unset}
+.ve-content blockquote.quote::after{color:var(--mdcol);font-size:.813rem;text-transform:unset}
 #st-visual-editor blockquote.quote,#st-visual-editor pre.code,#st-visual-editor spoiler.code,.ve-content div[data-type=spoiler].code{padding-top:50px!important}
 [data-theme*=ve-dropdown] ul.ve-dropdown-list>li,.ve-dropdown-link .ve-link-add,.ve-image-add{align-items:center}
 [data-theme*=ve-dropdown] ul.ve-dropdown-list>li>button{gap:10px}
@@ -649,23 +645,17 @@ select.codebuttons[onchange="tag('[color='+this.options[this.selectedIndex].valu
 .ve-btn.ve-btn-ordered-list::before{content:'\f0cb'}
 .ve-btn.ve-btn-task-list::before{content:'\f0ae'}
 .ve-btn.ve-btn-blockquote::before{content:'\f10d'}
-.ve-btn.ve-btn-code-block::before{content:'\f121'}
 .ve-btn.ve-btn-spoiler::before,.emoji_tab_list ul li:nth-child(9)::before{content:'\f024'}
 .ve-btn.ve-btn-paragraph::before,.ve-dp-item[data-placeholder="Paragraph"]::before{content:'\f1dd'}
 .ve-btn.ve-btn-hard-break::before{content:'\e090'}
 .ve-btn.ve-btn-link::before{content:'\f0c1'}
-.ve-btn.ve-btn-image::before{content:'\f03e'}
-.ve-btn.ve-btn-table::before{content:'\f0ce'}
-.ve-btn.ve-btn-emoji::before,.emoji_tab_list ul li:nth-child(2)::before{content:'\f118'}
 .ve-btn.ve-btn-color::before{content:'\f53f'}
-.ve-btn.ve-btn-background-color::before{content:'\f55d'}
 .ve-btn.ve-btn-history-undo::before,.ve-color-suggestions .ve-btn::before{content:'\f0e2'}
 .ve-btn.ve-btn-history-redo::before{content:'\f01e'}
 .ve-btn.ve-btn-clear::before{content:'\f87d'}
 .ve-btn.ve-btn-others::before{content:'\e411'}
 .ve-btn.ve-btn-tb-collapse::before{content:'\e0a3'}
 .ve-btn.ve-btn-bubble-table-menu::before{content:'\f58d'}
-.ve-btn.ve-link-edit::before,button[name="full"]::before{content:'\f044'}
 .st-editor-toggle,button[name="full"]{align-items:center;border-radius:4px;display:inline-flex;flex-wrap:wrap;font-size:1rem;height:auto!important;justify-content:center;line-height:1;padding:.618rem!important;width:auto!important}
 button[name="full"] img {max-height:16px;max-width:16px;position:absolute}
 .st-editor-area-active .st-editor-toggle::before,.st-editor-area.st-editor-area-mobile.st-editor-container.st-editor-area-active .st-editor-toggle::before{content:'\f205'}
@@ -678,7 +668,6 @@ button[name="full"] img {max-height:16px;max-width:16px;position:absolute}
 .ve-dp-item[data-placeholder="Font size"]::before{content:'\f034'}
 .ve-dp-item[data-placeholder="Formats"]::before{content:'\f5aa'}
 .ve-dp-item[data-placeholder="Plan post"]::before{content:'\e0d6'}
-.ve-dp-item[data-placeholder="Shortcuts"]::before,.info::before{content:'\f05a'}
 .ve-dp-item[data-placeholder="Back"]::before{content:'\f053'}
 .ve-dp-item[data-placeholder="Copy format"]::before{content:'\f0c5'}
 .ve-dp-item[data-placeholder="Paste format"]::before{content:'\f0ea'}
@@ -686,7 +675,6 @@ button[name="full"] img {max-height:16px;max-width:16px;position:absolute}
 .ve-dp-item[data-placeholder="Align center"]::before,.ve-btn.ve-btn-text-align[data-value="center"]::before{content:'\f037'}
 .ve-dp-item[data-placeholder="Align right"]::before,.ve-btn.ve-btn-text-align[data-value="right"]::before{content:'\f038'}
 .ve-dp-item[data-placeholder="Justify"]::before,.ve-btn.ve-btn-text-align[data-value="justify"]::before{content:'\f039'}
-.ve-dp-item[data-action="add"]::before,.ve-dp-item[data-placeholder="New table"]::before{content:'\f0fe'}
 .ve-dp-item[data-placeholder="Remove"]::before{content:'\f146'}
 .ve-dp-item[data-placeholder="Heading 1"]::before,.ve-btn.ve-btn-paragraph[data-value="1"]::before{content:'\f313'}
 .ve-dp-item[data-placeholder="Heading 2"]::before,.ve-btn.ve-btn-paragraph[data-value="2"]::before{content:'\f314'}
@@ -696,8 +684,6 @@ button[name="full"] img {max-height:16px;max-width:16px;position:absolute}
 .ve-dp-item[data-placeholder="Heading 6"]::before,.ve-btn.ve-btn-paragraph[data-value="6"]::before{content:'\e413'}
 .ve-dp-item[data-placeholder="Remove heading"]::before{content:'\48'}
 .ve-dp-item[data-placeholder="Merge/split cells"]::before{content:'\e254'}
-.ve-dp-item[data-placeholder="Select"]::before{content:'\f00c'}
-.ve-dp-item[data-placeholder="Delete"]::before,#tippy-35 .ve-dp-item[data-placeholder="Table"]::before,#tippy-19 .ve-dp-item[data-placeholder="Table"]::before,.ve-btn.ve-link-delete::before{content:'\f2ed'}
 .ve-dp-item[data-placeholder="Column before"]::before{content:'\f33e'}
 .ve-dp-item[data-placeholder="Column after"]::before{content:'\f340'}
 .ve-dp-item[data-placeholder="Row before"]::before{content:'\f341'}
@@ -724,7 +710,7 @@ button[name="full"] img {max-height:16px;max-width:16px;position:absolute}
 #pollRow textarea{background-color:var(--txtim);border:1px solid var(--ltbrd);border-radius:4px;font-size:1rem;width:100%!important}
 .ve-content.color{height:auto}
 #msg .post .mini_buttons.rt.Sub font::before,#msg .post .mini_buttons.lt.Sub font::before{content:'\00a0'}
-.sunbar.center[onclick="addButtonPollFF()"] .Sub.Item[style="width:68%"]::before,#pollRow div[style="cursor:pointer"] .Sub.Item[style="width:68%"]::before{content:'\f0fe'}
+.sunbar.center[onclick="addButtonPollFF()"] .Sub.Item[style="width:68%"]::before,#pollRow div[style="cursor:pointer"] .Sub.Item[style="width:68%"]::before,.ve-dp-item[data-action="add"]::before,.ve-dp-item[data-placeholder="New table"]::before{content:'\f0fe'}
 #pollRow div[style="cursor:pointer"] .Sub.Item[style="width:68%"],#pollRow div[style="cursor:pointer"]{margin-left:0;width:fit-content!important}
 .Sortable.ui-sortable .Sub.Item[style="width:68%"],#pollRow [id^="Option"]{align-items:center;display:inline-flex;width:100%!important}
 .Sub.Item.handle.ui-sortable-handle,.Sub.Item.handle:not(.Sub.Item.handle[style="width:18%"]){border-right:1px solid var(--ltbrd);margin-right:12px;padding:16px 0}
@@ -748,19 +734,16 @@ ul.stats.List .users a.avatar{left:-29px;position:absolute;top:0}
 .menuwrap .left .menu li a[href="https://perveavenue.forumcommunity.net/?act=Search&CODE=getactive&pop=1"]::before{content:'\f06d'}
 .menuwrap .left .menu li a[href="https://msg.forumcommunity.net/?act=UserCP&CODE=26&c=655775"]::before{content:'\f77f'}
 .menuwrap .left .menu li a[href="https://msg.forumcommunity.net/?act=Msg&CODE=16&c=655775"]::before{content:'\f0f3'}
-.menuwrap .left .menu li a[onclick="Logout.CODE.value='05';Logout.submit()"]::before{content:'\f00c'}
+.menuwrap .left .menu li a[onclick="Logout.CODE.value='05';Logout.submit()"]::before,.ve-dp-item[data-placeholder="Select"]::before{content:'\f00c'}
 .menuwrap .left .menu li a[href="https://msg.forumcommunity.net/?act=Search&CODE=02&MID=11517378&c=655775"]::before{content:'\e1d8'}
 .menuwrap .left .menu li a[href="https://msg.forumcommunity.net/?act=Search&MID=11517378&c=655775"]::before{content:'\f4ff'}
 .menuwrap .left .menu li a.track::before{content:'\f8fa'}
-.menuwrap .left .menu a[href="https://www.forumcommunity.net/?cid=655775"] .submenu a:first-of-type::before{content:'\f085'}
-.menuwrap .left .menu > a[href="https://www.forumcommunity.net/?cid=655775"] + ul > li.submenu:first-of-type > a::before{content:'\f085'}
 .menuwrap .left .menu > a[href="https://www.forumcommunity.net/?cid=655775"] + ul > li.submenu:first-of-type > a + ul li a[href="https://www.forumcommunity.net/?act=modforum&cid=655775"]::before{content:'\e1d2'}
 .menuwrap .left .menu > a[href="https://www.forumcommunity.net/?cid=655775"] + ul > li.submenu:first-of-type > a + ul li a[href="https://www.forumcommunity.net/?act=modsezioni&cid=655775"]::before{content:'\f802'}
 .menuwrap .left .menu > a[href="https://www.forumcommunity.net/?cid=655775"] + ul > li.submenu:first-of-type > a + ul li a[href="https://www.forumcommunity.net/?act=modpages&cid=655775"]::before{content:'\e494'}
 .menuwrap .left .menu > a[href="https://www.forumcommunity.net/?cid=655775"] + ul > li.submenu:first-of-type > a + ul li a[href="https://www.forumcommunity.net/?act=blog&cid=655775"]::before{content:'\f781'}
-.menuwrap .left .menu > a[href="https://www.forumcommunity.net/?cid=655775"] + ul > li.submenu:first-of-type > a + ul li a[href="https://www.forumcommunity.net/?act=logs&cid=655775"]::before{content:'\f1da'}
+.menuwrap .left .menu > a[href="https://www.forumcommunity.net/?cid=655775"] + ul > li.submenu:first-of-type > a + ul li a[href="https://www.forumcommunity.net/?act=logs&cid=655775"]::before,.emoji_tab_list ul li:nth-child(1)::before{content:'\f1da'}
 .menuwrap .left .menu > a[href="https://www.forumcommunity.net/?cid=655775"] + ul > li.submenu:first-of-type > a + ul li a[href="https://www.forumcommunity.net/?act=queue&cid=655775"]::before{content:'\f132'}
-.menuwrap .left .menu > a[href="https://www.forumcommunity.net/?cid=655775"] + ul > li.submenu:first-of-type > a + ul li a[href="https://www.forumcommunity.net/?act=stats&cid=655775"]::before{content:'\f1c9'}
 .menuwrap .left .menu > a[href="https://www.forumcommunity.net/?cid=655775"] + ul > li.submenu:nth-child(2) > a::before{content:'\f0c0'}
 .menuwrap .left .menu > a[href="https://www.forumcommunity.net/?cid=655775"] + ul > li.submenu:nth-child(2) > a + ul li a[href="https://www.forumcommunity.net/?act=newsletter&cid=655775"]::before{content:'\f1ea'}
 .menuwrap .left .menu > a[href="https://www.forumcommunity.net/?cid=655775"] + ul > li.submenu:nth-child(2) > a + ul li a[href="https://www.forumcommunity.net/?act=gruppi&cid=655775"]::before{content:'\f500'}
@@ -769,43 +752,40 @@ ul.stats.List .users a.avatar{left:-29px;position:absolute;top:0}
 .menuwrap .left .menu > a[href="https://www.forumcommunity.net/?cid=655775"] + ul > li.submenu:nth-child(2) > a + ul li a[href="https://www.forumcommunity.net/?act=convalida&cid=655775"]::before{content:'\f234'}
 .menuwrap .left .menu > a[href="https://www.forumcommunity.net/?cid=655775"] + ul > li.submenu:nth-child(2) > a + ul li a[href="https://www.forumcommunity.net/?act=modnick&cid=655775"]::before{content:'\f007'}
 .menuwrap .left .menu > a[href="https://www.forumcommunity.net/?cid=655775"] + ul > li.submenu:nth-child(2) > a + ul li a[href="https://www.forumcommunity.net/?act=modlivelli&cid=655775"]::before{content:'\f005'}
-.menuwrap .left .menu > a[href="https://www.forumcommunity.net/?cid=655775"] + ul > li.submenu:nth-child(2) > a + ul li a[href="https://www.forumcommunity.net/?act=avatar&cid=655775"]::before{content:'\f5b7'}
-.menuwrap .left .menu > a[href="https://www.forumcommunity.net/?cid=655775"] + ul > li.submenu:nth-child(3) > a::before{content:'\f55d'}
+.menuwrap .left .menu > a[href="https://www.forumcommunity.net/?cid=655775"] + ul > li.submenu:nth-child(3) > a::before,.ve-btn.ve-btn-background-color::before{content:'\f55d'}
 .menuwrap .left .menu > a[href="https://www.forumcommunity.net/?cid=655775"] + ul > li.submenu:nth-child(3) > a + ul li a[href="https://www.forumcommunity.net/?act=mobile&cid=655775"]::before{content:'\f3ce'}
 .menuwrap .left .menu > a[href="https://www.forumcommunity.net/?cid=655775"] + ul > li.submenu:nth-child(3) > a + ul li a[href="https://www.forumcommunity.net/?act=modhtml&cid=655775"]::before{content:'\f13b'}
 .menuwrap .left .menu > a[href="https://www.forumcommunity.net/?cid=655775"] + ul > li.submenu:nth-child(3) > a + ul li a[href="https://www.forumcommunity.net/?act=modcss&cid=655775&r=2f"]::before,.menuwrap .left .menu > a[href="https://www.forumcommunity.net/?cid=655775"] + ul > li.submenu:nth-child(3) > a + ul li:nth-child(3) a::before{content:'\f13c'}
-.menuwrap .left .menu > a[href="https://www.forumcommunity.net/?cid=655775"] + ul > li.submenu:nth-child(3) > a + ul li a[href="https://www.forumcommunity.net/?act=modimg&cid=655775"]::before{content:'\f03e'}
+.menuwrap .left .menu > a[href="https://www.forumcommunity.net/?cid=655775"] + ul > li.submenu:nth-child(3) > a + ul li a[href="https://www.forumcommunity.net/?act=modimg&cid=655775"]::before,.ve-btn.ve-btn-image::before{content:'\f03e'}
 .menuwrap .left .menu > a[href="https://www.forumcommunity.net/?cid=655775"] + ul > li.submenu:nth-child(3) > a + ul li a[href="https://www.forumcommunity.net/?act=modskin&cid=655775"]::before{content:'\f1fc'}
-.menuwrap .left .menu > a[href="https://www.forumcommunity.net/?cid=655775"] + ul > li.submenu:nth-child(3) > a + ul li a[href="https://www.forumcommunity.net/?act=modemo&cid=655775"]::before{content:'\f118'}
+.menuwrap .left .menu > a[href="https://www.forumcommunity.net/?cid=655775"] + ul > li.submenu:nth-child(3) > a + ul li a[href="https://www.forumcommunity.net/?act=modemo&cid=655775"]::before,.ve-btn.ve-btn-emoji::before,.emoji_tab_list ul li:nth-child(2)::before{content:'\f118'}
 .menuwrap .left .menu > a[href="https://www.forumcommunity.net/?cid=655775"] + ul > li.submenu:nth-child(3) > a + ul li a[href="https://www.forumcommunity.net/?act=modmenu&cid=655775"]::before{content:'\f0c9'}
 .menuwrap .left .menu > a[href="https://www.forumcommunity.net/?cid=655775"] + ul > li.submenu:nth-child(3) > a + ul li a[href="https://www.forumcommunity.net/?act=modtabs&cid=655775"]::before{content:'\f03a'}
 .menuwrap .left .menu > a[href="https://www.forumcommunity.net/?cid=655775"] + ul > li.submenu.alternative > a::before{content:'\f013'}
-.menuwrap .left .menu > a[href="https://www.forumcommunity.net/?cid=655775"] + ul > li.submenu.alternative > a + ul li a[href="https://www.forumcommunity.net/?act=link&cid=655775"]::before{content:'\f121'}
+.menuwrap .left .menu > a[href="https://www.forumcommunity.net/?cid=655775"] + ul > li.submenu.alternative > a + ul li a[href="https://www.forumcommunity.net/?act=link&cid=655775"]::before,.ve-btn.ve-btn-code-block::before{content:'\f121'}
 .menuwrap .left .menu > a[href="https://www.forumcommunity.net/?cid=655775"] + ul > li.submenu.alternative > a + ul li a[href="https://www.forumcommunity.net/?act=top&cid=655775"]::before{content:'\f559'}
 .menuwrap .left .menu > a[href="https://www.forumcommunity.net/?cid=655775"] + ul > li.submenu.alternative > a + ul li a[href="https://www.forumcommunity.net/?act=allegati&cid=655775"]::before{content:'\f0c6'}
 .menuwrap .left .menu > a[href="https://www.forumcommunity.net/?cid=655775"] + ul > li.submenu.alternative > a + ul li a[href="https://www.forumcommunity.net/?act=addtagboard&cid=655775"]::before{content:'\f4ad'}
 .menuwrap .left .menu + .menu + .menu + .menu + li + li + .menu + .menu li a[onclick="modform.CODE.value='00';modform.submit()"]::before{content:'\f023'}
-.menuwrap .left .menu + .menu + .menu + .menu + li + li + .menu + .menu li a[onclick="modform.CODE.value='05';modform.submit()"]::before{content:'\f044'}
+.menuwrap .left .menu + .menu + .menu + .menu + li + li + .menu + .menu li a[onclick="modform.CODE.value='05';modform.submit()"]::before,.ve-btn.ve-link-edit::before,button[name="full"]::before{content:'\f044'}
 .menuwrap .left .menu + .menu + .menu + .menu + li + li + .menu + .menu li a[onclick="modform.CODE.value='15';modform.submit()"]::before{content:'\f276'}
 .menuwrap .left .menu + .menu + .menu + .menu + li + li + .menu + .menu li a[onclick="modform.CODE.value='18';modform.submit()"]::before{content:'\f675'}
 .menuwrap .left .menu + .menu + .menu + .menu + li + li + .menu + .menu li a[onclick="modform.CODE.value='02';modform.submit()"]::before{content:'\f0b2'}
-.menuwrap .left .menu + .menu + .menu + .menu + li + li + .menu + .menu li a[onclick="modform.CODE.value='03';modform.submit()"]::before,.menuwrap .left .menu li a[onclick="inbox.action.value='delete';inbox.submit()"]::before{content:'\f2ed'}
-.menuwrap .left .menu + .menu + .menu + .menu + li + li + .menu + .menu li a[onclick="modform.CODE.value='26';modform.submit()"]::before{content:'\f5c1'}
+.menuwrap .left .menu + .menu + .menu + .menu + li + li + .menu + .menu li a[onclick="modform.CODE.value='03';modform.submit()"]::before,.menuwrap .left .menu li a[onclick="inbox.action.value='delete';inbox.submit()"]::before,.ve-dp-item[data-placeholder="Delete"]::before,#tippy-35 .ve-dp-item[data-placeholder="Table"]::before,#tippy-19 .ve-dp-item[data-placeholder="Table"]::before,.ve-btn.ve-link-delete::before{content:'\f2ed'}
 .menuwrap .left .menu + .menu + .menu + .menu + li + li + .menu + .menu li a[onclick="modform.CODE.value='24';modform.submit()"]::before{content:'\e2b4'}
 .menuwrap .left .menu + .menu + .menu + .menu + li + li + .menu + .menu li a[onclick="modform.CODE.value='20';modform.submit()"]::before{content:'\2b'}
 .menuwrap .left .menu + .menu + .menu + .menu + li + li + .menu + .menu li a#openmod::before{content:'\e472'}
-.menuwrap .left .menu li a[href="https://msg.forumcommunity.net/?act=UserCP&CODE=01&c=655775"]::before{content:'\f05a'}
+.menuwrap .left .menu li a[href="https://msg.forumcommunity.net/?act=UserCP&CODE=01&c=655775"]::before,.ve-dp-item[data-placeholder="Shortcuts"]::before,.info::before{content:'\f05a'}
 .menuwrap .left .menu li a[href="https://msg.forumcommunity.net/?act=UserCP&CODE=24&c=655775"]::before{content:'\f2bd'}
-.menuwrap .left .menu li a[href="https://msg.forumcommunity.net/?act=UserCP&CODE=22&c=655775"]::before{content:'\f5b7'}
+.menuwrap .left .menu li a[href="https://msg.forumcommunity.net/?act=UserCP&CODE=22&c=655775"]::before,.menuwrap .left .menu > a[href="https://www.forumcommunity.net/?cid=655775"] + ul > li.submenu:nth-child(2) > a + ul li a[href="https://www.forumcommunity.net/?act=avatar&cid=655775"]::before{content:'\f5b7'}
 .menuwrap .left .menu li a[href="https://www.forumcommunity.net/?act=image"]::before{content:'\f302'}
-.menuwrap .left .menu li a[href="https://msg.forumcommunity.net/?act=UserCP&CODE=04&c=655775"]::before{content:'\f085'}
-.menuwrap .left .menu li a[href="https://msg.forumcommunity.net/?act=UserCP&CODE=02&c=655775"]::before{content:'\f0e0'}
+.menuwrap .left .menu li a[href="https://msg.forumcommunity.net/?act=UserCP&CODE=04&c=655775"]::before,.menuwrap .left .menu a[href="https://www.forumcommunity.net/?cid=655775"] .submenu a:first-of-type::before,.menuwrap .left .menu > a[href="https://www.forumcommunity.net/?cid=655775"] + ul > li.submenu:first-of-type > a::before{content:'\f085'}
 .menuwrap .left .menu li a[href="https://msg.forumcommunity.net/?act=UserCP&CODE=28&c=655775"]::before{content:'\f084'}
-.menuwrap .left .menu li a[onclick="tracked.submit()"]::before{content:'\f5c1'}
-.menuwrap .left .menu li a[onclick="inbox.action.value='move';inbox.VID.value='sent';inbox.submit()"]::before{content:'\f0e0'}
+.menuwrap .left .menu li a[onclick="tracked.submit()"]::before,.menuwrap .left .menu + .menu + .menu + .menu + li + li + .menu + .menu li a[onclick="modform.CODE.value='26';modform.submit()"]::before{content:'\f5c1'}
+.menuwrap .left .menu li a[onclick="inbox.action.value='move';inbox.VID.value='sent';inbox.submit()"]::before,.menuwrap .left .menu li a[href="https://msg.forumcommunity.net/?act=UserCP&CODE=02&c=655775"]::before{content:'\f0e0'}
 #msg .menuwrap .left .menu + .menu + .menu + .menu + li + li + .menu + .menu .submenu.alternative + .submenu.alternative a:not(.submenu.alternative a + ul a)::before{content:'\f56e'}
-.menuwrap .left .menu li a + ul > li a[onclick="inbox.action.value='archive';inbox.type.value='html';inbox.submit()"]::before{content:'\f1c9'}
-.menuwrap .left .menu li a + ul > li a[onclick="inbox.action.value='archive';inbox.type.value='xls';inbox.submit()"]::before{content:'\f0ce'}
+.menuwrap .left .menu li a + ul > li a[onclick="inbox.action.value='archive';inbox.type.value='html';inbox.submit()"]::before,.menuwrap .left .menu > a[href="https://www.forumcommunity.net/?cid=655775"] + ul > li.submenu:first-of-type > a + ul li a[href="https://www.forumcommunity.net/?act=stats&cid=655775"]::before{content:'\f1c9'}
+.menuwrap .left .menu li a + ul > li a[onclick="inbox.action.value='archive';inbox.type.value='xls';inbox.submit()"]::before,.ve-btn.ve-btn-table::before{content:'\f0ce'}
 
 @media (max-width: 768px){
 .prvchat{width:100%!important}
