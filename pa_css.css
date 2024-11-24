@@ -789,7 +789,7 @@ ul.stats.List .users a.avatar{left:-29px;position:absolute;top:0}
 .menuwrap .left .menu + .menu + .menu + .menu + li + li + .menu + .menu li a[onclick="modform.CODE.value='15';modform.submit()"]::before{content:'\f276'}
 .menuwrap .left .menu + .menu + .menu + .menu + li + li + .menu + .menu li a[onclick="modform.CODE.value='18';modform.submit()"]::before{content:'\f675'}
 .menuwrap .left .menu + .menu + .menu + .menu + li + li + .menu + .menu li a[onclick="modform.CODE.value='02';modform.submit()"]::before{content:'\f0b2'}
-.menuwrap .left .menu + .menu + .menu + .menu + li + li + .menu + .menu li a[onclick="modform.CODE.value='03';modform.submit()"]::before{content:'\f2ed'}
+.menuwrap .left .menu + .menu + .menu + .menu + li + li + .menu + .menu li a[onclick="modform.CODE.value='03';modform.submit()"]::before,.menuwrap .left .menu li a[onclick="inbox.action.value='delete';inbox.submit()"]::before{content:'\f2ed'}
 .menuwrap .left .menu + .menu + .menu + .menu + li + li + .menu + .menu li a[onclick="modform.CODE.value='26';modform.submit()"]::before{content:'\f5c1'}
 .menuwrap .left .menu + .menu + .menu + .menu + li + li + .menu + .menu li a[onclick="modform.CODE.value='24';modform.submit()"]::before{content:'\e2b4'}
 .menuwrap .left .menu + .menu + .menu + .menu + li + li + .menu + .menu li a[onclick="modform.CODE.value='20';modform.submit()"]::before{content:'\2b'}
@@ -801,6 +801,11 @@ ul.stats.List .users a.avatar{left:-29px;position:absolute;top:0}
 .menuwrap .left .menu li a[href="https://msg.forumcommunity.net/?act=UserCP&CODE=04&c=655775"]::before{content:'\f085'}
 .menuwrap .left .menu li a[href="https://msg.forumcommunity.net/?act=UserCP&CODE=02&c=655775"]::before{content:'\f0e0'}
 .menuwrap .left .menu li a[href="https://msg.forumcommunity.net/?act=UserCP&CODE=28&c=655775"]::before{content:'\f084'}
+.menuwrap .left .menu li a[onclick="tracked.submit()"]::before{content:'\f5c1'}
+.menuwrap .left .menu li a[onclick="inbox.action.value='move';inbox.VID.value='sent';inbox.submit()"]::before{content:'\f0e0'}
+#msg .menuwrap .left .menu + .menu + .menu + .menu + li + li + .menu + .menu .submenu.alternative a::before{content:'\f56e'}
+.menuwrap .left .menu li a[onclick="inbox.action.value='archive';inbox.type.value='html';inbox.submit()"]::before{content:'\f1c9'}
+.menuwrap .left .menu li a[onclick="inbox.action.value='archive';inbox.type.value='xls';inbox.submit()"]::before{content:'\f0ce'}
 
 @media (max-width: 768px){
 .prvchat{width:100%!important}
