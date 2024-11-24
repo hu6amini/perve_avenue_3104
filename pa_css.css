@@ -769,7 +769,7 @@ ul.stats.List .users a.avatar{left:-29px;position:absolute;top:0}
 .menuwrap .left .menu > a[href="https://www.forumcommunity.net/?cid=655775"] + ul > li.submenu:nth-child(2) > a + ul li a[href="https://www.forumcommunity.net/?act=convalida&cid=655775"]::before{content:'\f234'}
 .menuwrap .left .menu > a[href="https://www.forumcommunity.net/?cid=655775"] + ul > li.submenu:nth-child(2) > a + ul li a[href="https://www.forumcommunity.net/?act=modnick&cid=655775"]::before{content:'\f007'}
 .menuwrap .left .menu > a[href="https://www.forumcommunity.net/?cid=655775"] + ul > li.submenu:nth-child(2) > a + ul li a[href="https://www.forumcommunity.net/?act=modlivelli&cid=655775"]::before{content:'\f005'}
-.menuwrap .left .menu > a[href="https://www.forumcommunity.net/?cid=655775"] + ul > li.submenu:nth-child(2) > a + ul li a[href="https://www.forumcommunity.net/?act=avatar&cid=655775"]::before{content:'\f508'}
+.menuwrap .left .menu > a[href="https://www.forumcommunity.net/?cid=655775"] + ul > li.submenu:nth-child(2) > a + ul li a[href="https://www.forumcommunity.net/?act=avatar&cid=655775"]::before{content:'\f5b7'}
 
 @media (max-width: 768px){
 .prvchat{width:100%!important}
