@@ -784,7 +784,7 @@ ul.stats.List .users a.avatar{left:-29px;position:absolute;top:0}
 .menuwrap .left .menu > a[href="https://www.forumcommunity.net/?cid=655775"] + ul > li.submenu.alternative > a + ul li a[href="https://www.forumcommunity.net/?act=top&cid=655775"]::before{content:'\f559'}
 .menuwrap .left .menu > a[href="https://www.forumcommunity.net/?cid=655775"] + ul > li.submenu.alternative > a + ul li a[href="https://www.forumcommunity.net/?act=allegati&cid=655775"]::before{content:'\f0c6'}
 .menuwrap .left .menu > a[href="https://www.forumcommunity.net/?cid=655775"] + ul > li.submenu.alternative > a + ul li a[href="https://www.forumcommunity.net/?act=addtagboard&cid=655775"]::before{content:'\f4ad'}
-.menuwrap .left .menu + .menu + .menu + .menu + li + li + .menu + .menu li a[onclick="modform.CODE.value='00';modform.submit()"]::before{content:'\f00d'}
+.menuwrap .left .menu + .menu + .menu + .menu + li + li + .menu + .menu li a[onclick="modform.CODE.value='00';modform.submit()"]::before{content:'\f023'}
 .menuwrap .left .menu + .menu + .menu + .menu + li + li + .menu + .menu li a[onclick="modform.CODE.value='05';modform.submit()"]::before{content:'\f044'}
 .menuwrap .left .menu + .menu + .menu + .menu + li + li + .menu + .menu li a[onclick="modform.CODE.value='15';modform.submit()"]::before{content:'\f276'}
 .menuwrap .left .menu + .menu + .menu + .menu + li + li + .menu + .menu li a[onclick="modform.CODE.value='18';modform.submit()"]::before{content:'\f675'}
