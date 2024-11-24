@@ -794,6 +794,13 @@ ul.stats.List .users a.avatar{left:-29px;position:absolute;top:0}
 .menuwrap .left .menu + .menu + .menu + .menu + li + li + .menu + .menu li a[onclick="modform.CODE.value='24';modform.submit()"]::before{content:'\e2b4'}
 .menuwrap .left .menu + .menu + .menu + .menu + li + li + .menu + .menu li a[onclick="modform.CODE.value='20';modform.submit()"]::before{content:'\2b'}
 .menuwrap .left .menu + .menu + .menu + .menu + li + li + .menu + .menu li a#openmod::before{content:'\e472'}
+.menuwrap .left .menu li a[href="https://msg.forumcommunity.net/?act=UserCP&CODE=01&c=655775"]::before{content:'\f05a'}
+.menuwrap .left .menu li a[href="https://msg.forumcommunity.net/?act=UserCP&CODE=24&c=655775"]::before{content:'\f2bd'}
+.menuwrap .left .menu li a[href="https://msg.forumcommunity.net/?act=UserCP&CODE=22&c=655775"]::before{content:'\f5b7'}
+.menuwrap .left .menu li a[href="https://www.forumcommunity.net/?act=image"]::before{content:'\f302'}
+.menuwrap .left .menu li a[href="https://msg.forumcommunity.net/?act=UserCP&CODE=04&c=655775"]::before{content:'\f085'}
+.menuwrap .left .menu li a[href="https://msg.forumcommunity.net/?act=UserCP&CODE=02&c=655775"]::before{content:'\f0e0'}
+.menuwrap .left .menu li a[href="https://msg.forumcommunity.net/?act=UserCP&CODE=28&c=655775"]::before{content:'\f084'}
 
 @media (max-width: 768px){
 .prvchat{width:100%!important}
