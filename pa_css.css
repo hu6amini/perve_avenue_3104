@@ -779,6 +779,11 @@ ul.stats.List .users a.avatar{left:-29px;position:absolute;top:0}
 .menuwrap .left .menu > a[href="https://www.forumcommunity.net/?cid=655775"] + ul > li.submenu:nth-child(3) > a + ul li a[href="https://www.forumcommunity.net/?act=modemo&cid=655775"]::before{content:'\f118'}
 .menuwrap .left .menu > a[href="https://www.forumcommunity.net/?cid=655775"] + ul > li.submenu:nth-child(3) > a + ul li a[href="https://www.forumcommunity.net/?act=modmenu&cid=655775"]::before{content:'\f0c9'}
 .menuwrap .left .menu > a[href="https://www.forumcommunity.net/?cid=655775"] + ul > li.submenu:nth-child(3) > a + ul li a[href="https://www.forumcommunity.net/?act=modtabs&cid=655775"]::before{content:'\f03a'}
+.menuwrap .left .menu > a[href="https://www.forumcommunity.net/?cid=655775"] + ul > li.submenu.alternative > a::before{content:'\f013'}
+.menuwrap .left .menu > a[href="https://www.forumcommunity.net/?cid=655775"] + ul > li.submenu.alternative > a + ul li a[href="https://www.forumcommunity.net/?act=link&cid=655775"]::before{content:'\f121'}
+.menuwrap .left .menu > a[href="https://www.forumcommunity.net/?cid=655775"] + ul > li.submenu.alternative > a + ul li a[href="https://www.forumcommunity.net/?act=top&cid=655775"]::before{content:'\f559'}
+.menuwrap .left .menu > a[href="https://www.forumcommunity.net/?cid=655775"] + ul > li.submenu.alternative > a + ul li a[href="https://www.forumcommunity.net/?act=allegati&cid=655775"]::before{content:'\f0c6'}
+.menuwrap .left .menu > a[href="https://www.forumcommunity.net/?cid=655775"] + ul > li.submenu.alternative > a + ul li a[href="https://www.forumcommunity.net/?act=addtagboard&cid=655775"]::before{content:'\f4ad'}
 
 @media (max-width: 768px){
 .prvchat{width:100%!important}
