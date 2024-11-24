@@ -784,6 +784,16 @@ ul.stats.List .users a.avatar{left:-29px;position:absolute;top:0}
 .menuwrap .left .menu > a[href="https://www.forumcommunity.net/?cid=655775"] + ul > li.submenu.alternative > a + ul li a[href="https://www.forumcommunity.net/?act=top&cid=655775"]::before{content:'\f559'}
 .menuwrap .left .menu > a[href="https://www.forumcommunity.net/?cid=655775"] + ul > li.submenu.alternative > a + ul li a[href="https://www.forumcommunity.net/?act=allegati&cid=655775"]::before{content:'\f0c6'}
 .menuwrap .left .menu > a[href="https://www.forumcommunity.net/?cid=655775"] + ul > li.submenu.alternative > a + ul li a[href="https://www.forumcommunity.net/?act=addtagboard&cid=655775"]::before{content:'\f4ad'}
+.menuwrap .left .menu + .menu + .menu + .menu + li + li + .menu + .menu li a[onclick="modform.CODE.value='00';modform.submit()"]::before{content:'\f00d'}
+.menuwrap .left .menu + .menu + .menu + .menu + li + li + .menu + .menu li a[onclick="modform.CODE.value='05';modform.submit()"]::before{content:'\f044'}
+.menuwrap .left .menu + .menu + .menu + .menu + li + li + .menu + .menu li a[onclick="modform.CODE.value='15';modform.submit()"]::before{content:'\f276'}
+.menuwrap .left .menu + .menu + .menu + .menu + li + li + .menu + .menu li a[onclick="modform.CODE.value='18';modform.submit()"]::before{content:'\f675'}
+.menuwrap .left .menu + .menu + .menu + .menu + li + li + .menu + .menu li a[onclick="modform.CODE.value='02';modform.submit()"]::before{content:'\f0b2'}
+.menuwrap .left .menu + .menu + .menu + .menu + li + li + .menu + .menu li a[onclick="modform.CODE.value='03';modform.submit()"]::before{content:'\f2ed'}
+.menuwrap .left .menu + .menu + .menu + .menu + li + li + .menu + .menu li a[onclick="modform.CODE.value='26';modform.submit()"]::before{content:'\f5c1'}
+.menuwrap .left .menu + .menu + .menu + .menu + li + li + .menu + .menu li a[onclick="modform.CODE.value='24';modform.submit()"]::before{content:'\e2b4'}
+.menuwrap .left .menu + .menu + .menu + .menu + li + li + .menu + .menu li a[onclick="modform.CODE.value='20';modform.submit()"]::before{content:'\2b'}
+.menuwrap .left .menu + .menu + .menu + .menu + li + li + .menu + .menu li a#openmod::before{content:'\e472'}
 
 @media (max-width: 768px){
 .prvchat{width:100%!important}
