@@ -753,6 +753,13 @@ ul.stats.List .users a.avatar{left:-29px;position:absolute;top:0}
 .menuwrap .left .menu li a.track::before{content:'\f8fa'}
 .menuwrap .left .menu a[href="https://www.forumcommunity.net/?cid=655775"] .submenu a:first-of-type::before{content:'\f085'}
 .menuwrap .left .menu > a[href="https://www.forumcommunity.net/?cid=655775"] + ul > li.submenu:first-of-type > a::before{content:'\f085'}
+.menuwrap .left .menu > a[href="https://www.forumcommunity.net/?cid=655775"] + ul > li.submenu:first-of-type > a + ul li a[href="https://www.forumcommunity.net/?act=modforum&cid=655775"]::before{content:'\e1d2'}
+.menuwrap .left .menu > a[href="https://www.forumcommunity.net/?cid=655775"] + ul > li.submenu:first-of-type > a + ul li a[href="https://www.forumcommunity.net/?act=modsezioni&cid=655775"]::before{content:'\f802'}
+.menuwrap .left .menu > a[href="https://www.forumcommunity.net/?cid=655775"] + ul > li.submenu:first-of-type > a + ul li a[href="https://www.forumcommunity.net/?act=modpages&cid=655775"]::before{content:'\e494'}
+.menuwrap .left .menu > a[href="https://www.forumcommunity.net/?cid=655775"] + ul > li.submenu:first-of-type > a + ul li a[href="https://www.forumcommunity.net/?act=blog&cid=655775"]::before{content:'\f781'}
+.menuwrap .left .menu > a[href="https://www.forumcommunity.net/?cid=655775"] + ul > li.submenu:first-of-type > a + ul li a[href="https://www.forumcommunity.net/?act=logs&cid=655775"]::before{content:'\f1da'}
+.menuwrap .left .menu > a[href="https://www.forumcommunity.net/?cid=655775"] + ul > li.submenu:first-of-type > a + ul li a[href="https://www.forumcommunity.net/?act=queue&cid=655775"]::before{content:'\f132'}
+.menuwrap .left .menu > a[href="https://www.forumcommunity.net/?cid=655775"] + ul > li.submenu:first-of-type > a + ul li a[href="https://www.forumcommunity.net/?act=stats&cid=655775"]::before{content:'\f1c9'}
 
 @media (max-width: 768px){
 .prvchat{width:100%!important}
