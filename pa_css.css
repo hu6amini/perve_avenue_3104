@@ -721,6 +721,9 @@ button[name="full"] img {max-height:16px;max-width:16px;position:absolute}
 ul.stats.List .users li{min-height:24px;padding-left:29px;position:relative}
 ul.stats.List .users a.avatar{left:-29px;position:absolute;top:0}
 .popup.pop_points img[alt="← undo"]{margin-right:10px}
+span.points_up.opacity:not(.points a[rel="#overlay"] + span.points_up.opacity)::before{content:'\f164';font-size:1rem;position:absolute}
+span.points_down.opacity:not(.points a[rel="#overlay"] + span.points_down.opacity)::before{content:'\f165';font-size:1rem;position:absolute}
+.points .opacity img:not(.points a[rel="#overlay"] + .points_up.opacity img, .points a[rel="#overlay"] + .points_down.opacity img){opacity:0}
 .menuwrap .left .menu li a[href="https://msg.forumcommunity.net/?act=Msg&CODE=16&c=655775"]{font-weight:400!important}
 .menuwrap .left .menu li a[href="https://msg.forumcommunity.net/?act=Msg&CODE=04&c=655775"]::before{content:'\f064'}
 .menuwrap .left .menu li a[href="https://msg.forumcommunity.net/?act=Msg&CODE=01&c=655775"]::before{content:'\f658'}
