@@ -472,7 +472,7 @@ img[src="https://img.forumfree.net/home/images/avatar_email.png"]{background:url
 .clipbd{align-items:center;animation:slideinout 3.82s forwards;background:var(--ltgry);box-shadow:var(--hfsha);color:var(--ftcol);display:flex;font-size:1.375rem;height:60px;justify-content:center;left:0;opacity:0;padding:15px;position:fixed;right:0;top:-60px;width:100%;z-index:101!important}
 .dropdown-list,.sform{z-index:101}
 .title.bottom.Item.Justify form[method="post"],.right.Sub form[method="GET"]{align-items:center;display:flex;flex-wrap:wrap;gap:5px}
-.board .mainbg::before,.online .mainbg::before,.members .mainbg::before,#topic .skin_tbl::before,.send .mainbg::before,.guest.error.no_view_topic .msg .mainbg::before,.guest.error.no_permission .msg .mainbg::before,.error .mainbg::before,#search.posts .skin_tbl::before,.tabs::before,.group .mainbg::before,.forum .mainbg::before,.search .skin_tbl::before,#mod .cp .skin_tbl::before{background-blend-mode:overlay;background-image:var(--gradi);border-top: 1px solid var(--ltbrd);border-top-left-radius:4px;border-top-right-radius:4px;content:'';display:block;height:6px;position:relative;z-index:1}
+.board .mainbg::before,.online .mainbg::before,.members .mainbg::before,#topic .skin_tbl::before,.send .mainbg::before,.guest.error.no_view_topic .msg .mainbg::before,.guest.error.no_permission .msg .mainbg::before,.error .mainbg::before,#search.posts .skin_tbl::before,.tabs::before,.group .mainbg::before,.forum .mainbg::before,.search .skin_tbl::before,#mod .cp .skin_tbl::before{background-blend-mode:overlay;background-image:var(--gradi);border-top: 1px solid var(--ltbrd);border-top-left-radius:4px;border-top-right-radius:4px;content:'';display:block;height:6px;position:relative;z-index:3}
 .board.List li:nth-child(1) .mainbg::before,.online .mainbg::before,.members .mainbg::before,#topic .skin_tbl::before,.guest.error.no_view_topic .msg .mainbg::before,.guest.error.no_permission .msg .mainbg::before,.error .mainbg::before,#search.posts .skin_tbl::before,.send .mainbg::before,.search .skin_tbl::before,#mod .cp .skin_tbl::before{background-color:var(--redft);box-shadow:var(--redft) 0 0 25px}
 .tabs::before,.group .mainbg::before,.forum .mainbg::before,.board.List li:nth-child(2) .mainbg::before{background-color:var(--green);box-shadow:var(--green) 0 0 25px}
 .board.List li:nth-child(3) .mainbg::before{background-color:var(--yello);box-shadow:var(--yello) 0 0 25px}
@@ -626,6 +626,8 @@ select.codebuttons[onchange="tag('[color='+this.options[this.selectedIndex].valu
 .ve-content blockquote.quote[data-author]::after{content:attr(data-author) " said: "!important}
 .ve-content blockquote.quote::after{color:var(--mdcol);font-size:.813rem;text-transform:unset}
 #st-editor-alert .cs-buttons{gap:3px;margin-top:10px!important}
+#st-editor-alert > div{color:var(--mdcol);font-size:.875rem}
+#st-editor-alert > div:not(.cs-buttons)::before{content:'\f071 \00a0'}
 #st-visual-editor blockquote.quote,#st-visual-editor pre.code,#st-visual-editor spoiler.code,.ve-content div[data-type=spoiler].code{padding-top:50px!important}
 [data-theme*=ve-dropdown] ul.ve-dropdown-list>li,.ve-dropdown-link .ve-link-add,.ve-image-add{align-items:center}
 [data-theme*=ve-dropdown] ul.ve-dropdown-list>li>button{gap:10px}
