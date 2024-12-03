@@ -727,14 +727,14 @@ button[name="full"] img {max-height:16px;max-width:16px;position:absolute}
 ul.stats.List .users li{min-height:24px;padding-left:29px;position:relative}
 ul.stats.List .users a.avatar{left:-29px;position:absolute;top:0}
 .popup.pop_points img[alt="← undo"]{margin-right:10px}
-a.leftitem::before,.sidebar a::before,a.rightitem::before{margin-right:3px}
+a.leftitem::before,.sidebar a::before,a.rightitem::before{margin-right:5px}
 .menuwrap .left .menu li a[href="https://msg.forumcommunity.net/?act=Msg&CODE=16&c=655775"]{font-weight:400!important}
 .menuwrap .left .menu li a[href="https://msg.forumcommunity.net/?act=Msg&CODE=04&c=655775"]::before{content:'\f064'}
 .menuwrap .left .menu li a[href="https://msg.forumcommunity.net/?act=Msg&CODE=01&c=655775"]::before{content:'\f658'}
 .menuwrap .left .menu li a[href="https://msg.forumcommunity.net/?act=Msg&CODE=07&c=655775"]::before{content:'\e187'}
 .menuwrap .left .menu li a[href="https://msg.forumcommunity.net/?act=Msg&CODE=14&c=655775"]::before{content:'\f1c6'}
 .menuwrap .left .menu li a[href="https://msg.forumcommunity.net/?act=Msg&CODE=02&c=655775"]::before,a.leftitem[href="https://msg.forumcommunity.net/?act=Msg&CODE=02&c=655775"]::before{content:'\f2b9'}
-.menuwrap .left .menu li a[href="https://msg.forumcommunity.net/?act=UserCP&CODE=00&c=655775"]::before,a.leftitem[href="https://msg.forumcommunity.net/?act=UserCP&CODE=00&c=655775"]::before{content:'\e201'}
+.menuwrap .left .menu li a[href="https://msg.forumcommunity.net/?act=UserCP&CODE=00&c=655775"]::before,a.rightitem[href="https://msg.forumcommunity.net/?act=UserCP&CODE=00&c=655775"]::before{content:'\e201'}
 .menuwrap .left .menu li a[href="https://perveavenue.forumcommunity.net/?act=Search&CODE=getactive"]::before{content:'\f4a4'}
 .menuwrap .left .menu li a[href="https://perveavenue.forumcommunity.net/?act=Search&CODE=getactive&pop=1"]::before{content:'\f06d'}
 .menuwrap .left .menu li a[href="https://msg.forumcommunity.net/?act=UserCP&CODE=26&c=655775"]::before{content:'\f77f'}
