@@ -727,7 +727,7 @@ button[name="full"] img {max-height:16px;max-width:16px;position:absolute}
 ul.stats.List .users li{min-height:24px;padding-left:29px;position:relative}
 ul.stats.List .users a.avatar{left:-29px;position:absolute;top:0}
 .popup.pop_points img[alt="← undo"]{margin-right:10px}
-a.leftitem::before{margin-right:3px}
+a.leftitem::before,.sidebar a::before{margin-right:3px}
 .menuwrap .left .menu li a[href="https://msg.forumcommunity.net/?act=Msg&CODE=16&c=655775"]{font-weight:400!important}
 .menuwrap .left .menu li a[href="https://msg.forumcommunity.net/?act=Msg&CODE=04&c=655775"]::before{content:'\f064'}
 .menuwrap .left .menu li a[href="https://msg.forumcommunity.net/?act=Msg&CODE=01&c=655775"]::before{content:'\f658'}
