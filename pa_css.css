@@ -794,6 +794,7 @@ a.leftitem::before,.sidebar a::before,a.rightitem::before{margin-right:3px}
 .menuwrap .left .menu li a + ul > li a[onclick="inbox.action.value='archive';inbox.type.value='html';inbox.submit()"]::before,.menuwrap .left .menu > a[href="https://www.forumcommunity.net/?cid=655775"] + ul > li.submenu:first-of-type > a + ul li a[href="https://www.forumcommunity.net/?act=stats&cid=655775"]::before,.menuwrap .left .menu + .menu + .menu + .menu + li + li + .menu li:nth-child(1)  > ul li:nth-child(7) a::before{content:'\f1c9'}
 .menuwrap .left .menu li a + ul > li a[onclick="inbox.action.value='archive';inbox.type.value='xls';inbox.submit()"]::before,.ve-btn.ve-btn-table::before{content:'\f0ce'}
 a.rightitem[onclick="Logout.submit()"]::before{content:'\f2f5'}
+a.a2a_dd.nolink::before{content:'\f1e0'}
 
 @media (max-width: 768px){
 .prvchat{width:100%!important}
