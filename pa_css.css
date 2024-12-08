@@ -798,7 +798,6 @@ a.a2a_dd.nolink::before{content:'\f1e0'}
 .submenu.featured_links a::before{content:'\f08e'}
 #usercp .textinput[name="contacts"]{margin:8px 0 13px 0;width:100%}
 #usercp .textinput[name="Interests"]{margin-top:8px;width:100%}
-#usercp form[name="REPLIER"]{margin-bottom:32px}
 #usercp .list-group li[style="text-align:center;padding-bottom:15px"]{border-top:1px solid var(--ltbrd);padding:7px 12px 12px!important;text-align:right!important}
 
 @media (max-width: 768px){
