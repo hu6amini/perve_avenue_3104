@@ -798,6 +798,7 @@ a.a2a_dd.nolink::before{content:'\f1e0'}
 .submenu.featured_links a::before{content:'\f08e'}
 #usercp .textinput[name="contacts"]{margin:8px 0 13px 0;width:100%}
 #usercp .textinput[name="Interests"]{margin-top:8px;width:100%}
+#usercp form[name="REPLIER"]{margin-bottom:32px}
 
 @media (max-width: 768px){
 .prvchat{width:100%!important}
