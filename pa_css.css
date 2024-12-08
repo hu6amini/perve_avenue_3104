@@ -797,6 +797,7 @@ a.a2a_dd.nolink::before{content:'\f1e0'}
 .sidebar a[href="https://msg.forumcommunity.net/?act=Msg&CODE=04&c=655775"]::before{content:'\f3e5'}
 .submenu.featured_links a::before{content:'\f08e'}
 #usercp .textinput[name="contacts"]{margin:8px 0 13px 0;width:100%}
+#usercp .textinput[name="Interests"]{margin-top:8px;width:100%}
 
 @media (max-width: 768px){
 .prvchat{width:100%!important}
