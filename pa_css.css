@@ -739,7 +739,7 @@ a.leftitem::before,.sidebar a::before,a.rightitem::before{margin-right:5px}
 .menuwrap .left .menu li a[href="https://msg.forumcommunity.net/?act=UserCP&CODE=26&c=655775"]::before,.sidebar a[href="https://msg.forumcommunity.net/?act=UserCP&CODE=26&c=655775"]::before{content:'\f77f'}
 .menuwrap .left .menu li a[href="https://msg.forumcommunity.net/?act=Msg&CODE=16&c=655775"]::before,.sidebar .nolink[href="#notifications"]::before{content:'\f0f3'}
 .menuwrap .left .menu li a[onclick="Logout.CODE.value='05';Logout.submit()"]::before,.ve-dp-item[data-placeholder="Select"]::before{content:'\f00c'}
-.menuwrap .left .menu li a[href="https://msg.forumcommunity.net/?act=Search&CODE=02&MID=11517378&c=655775"]::before,.sidebar a[href="https://msg.forumcommunity.net/?act=UserCP&CODE=26&c=655775"] + a::before{content:'\e1d8'}
+.menuwrap .left .menu li a[href="https://msg.forumcommunity.net/?act=Search&CODE=02&MID=11517378&c=655775"]::before,.sidebar a[href^="https://msg.forumcommunity.net/?act=Search&CODE=02&MID="]::before{content:'\e1d8'}
 .menuwrap .left .menu li a[href="https://msg.forumcommunity.net/?act=Search&MID=11517378&c=655775"]::before{content:'\f4ff'}
 .menuwrap .left .menu li a.track::before,.rightitem.st-emoji-link-void.st-emoji-notice-disable-btn::before{content:'\f8fa'}
 .menuwrap .left .menu > a[href="https://www.forumcommunity.net/?cid=655775"] + ul > li.submenu:first-of-type > a + ul li a[href="https://www.forumcommunity.net/?act=modforum&cid=655775"]::before,.menuwrap .left .menu + .menu + .menu + .menu + li + li + .menu li:nth-child(1) > ul li:nth-child(1) a::before{content:'\e1d2'}
