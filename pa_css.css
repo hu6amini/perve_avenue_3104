@@ -802,7 +802,7 @@ a.a2a_dd.nolink::before{content:'\f1e0'}
 #usercp #menu-notif + form:not(form[enctype="multipart/form-data"]){margin-top:15px}
 #usercp #menu-notif + form:not(form[enctype="multipart/form-data"])::before{background-color:var(--redft);background-blend-mode:overlay;background-image:var(--gradi);border-top:1px solid var(--ltbrd);box-shadow:var(--redft) 0 0 25px;content:'';display:block;height:6px;min-width:100%;position:relative;z-index:1}
 #usercp form[name="REPLIER"] li[style="text-align:center"]:not(textarea){text-align:left!important}
-#usercp input.forminput:not(input[type="checkbox"]){margin:7px 0 12px 0;width:100%}
+#usercp input.forminput:not(input[type="checkbox"],#FILE_UPLOAD){margin:7px 0 12px 0;width:100%}
 
 @media (max-width: 768px){
 .prvchat{width:100%!important}
