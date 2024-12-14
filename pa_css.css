@@ -616,7 +616,7 @@ select.codebuttons[onchange="tag('[color='+this.options[this.selectedIndex].valu
 .ve-content p.is-editor-empty:first-child::before,[data-theme*=ve-dropdown] ul.ve-dropdown-list>li>button:disabled,.profile-friends.thumbs a[rel="#pop_profile"],a.leftitem::before,.sidebar a::before,a.rightitem::before,.sidebar #openmod::before{color:var(--ltcol)}
 .ve-link-add input,.ve-image-add input,[data-theme*=ve-dropdown] .ve-color-utils .ve-color-hex-input{background-color:var(--txtim)}
 .ve-container:not(.ve-touch-device) .ve-btn:not(.ve-static):not([data-active]):not(:disabled):hover,.ve-container:not(.ve-touch-device) .ve-btn:not(.ve-static)[data-active=false]:not(:disabled):hover,.ve-bubble-menu .ve-formats-item[aria-expanded=true] button:not([data-active=true]),.ve-image-add .ve-btn:hover{background:var(--ltgry);color:var(--ftcol)}
-.ve-toolbar .ve-formats-item[aria-expanded=true] button:not([data-active=true]){background-color:var(--ltgry);color:var(--lncol)}
+.ve-toolbar .ve-formats-item[aria-expanded=true] button:not([data-active=true]){background-color:var(--ltgry)!important;color:var(--lncol)!important}
 .ve-container .ve-btn:not(.ve-emoji-buttons .ve-btn),.ve-image-add .ve-btn{align-items:center;border-radius:4px;display:flex;flex-wrap:wrap;font-size:1rem;height:30px;justify-content:center;line-height:1;width:30px}
 [data-theme*=ve-popover]{background-color:var(--menul)!important;border:1px solid var(--dkbrd)!important;border-radius:4px!important;box-shadow:var(--shado)}
 .ve-dropdown-list > li,.ve-shortcuts-list li,.ve-color-suggestions li,.ve-emoji-list li,.cs-toast:not(.cs-toast-dark) .cs-toast-content{background:none!important}
