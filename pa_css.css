@@ -646,6 +646,7 @@ select.codebuttons[onchange="tag('[color='+this.options[this.selectedIndex].valu
 [data-theme*=ve-dropdown] .ve-color-picker .react-colorful__saturation{border-top-left-radius:4px;border-top-right-radius:4px}
 [data-theme*=ve-dropdown] .ve-color-suggestions .ve-color-btn{border-radius:4px;opacity:1}
 .ve-btn.ve-btn-history-undo,.ve-btn.ve-btn-history-redo{color:var(--ltbrd)}
+.ve-dp-item[data-fontsize="2em"]::after{font-size:1.625rem!important}
 .ve-btn.ve-btn-bold::before{content:'\f032'}
 .ve-btn.ve-btn-italic::before{content:'\f033'}
 .ve-btn.ve-btn-underline::before{content:'\f0cd'}
