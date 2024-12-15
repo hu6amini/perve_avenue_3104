@@ -619,7 +619,7 @@ select.codebuttons[onchange="tag('[color='+this.options[this.selectedIndex].valu
 .ve-toolbar .ve-formats-item[aria-expanded=true] button:not([data-active=true]){background-color:var(--ltgry)!important;color:var(--lncol)!important}
 .ve-container .ve-btn:not(.ve-emoji-buttons .ve-btn),.ve-image-add .ve-btn{align-items:center;border-radius:4px;display:flex;flex-wrap:wrap;font-size:1rem;height:30px;justify-content:center;line-height:1;width:30px}
 [data-theme*=ve-popover]{background-color:var(--menul)!important;border:1px solid var(--dkbrd)!important;border-radius:4px!important;box-shadow:var(--shado)}
-[class="ve-dropdown-list] > li,.ve-shortcuts-list li,[class="ve-color-suggestions"] > li,[class="ve-emoji-list] > li,.cs-toast:not(.cs-toast-dark) .cs-toast-content{background:none!important}
+.ve-dropdown-list li,.ve-dropdown-list>li,.ve-shortcuts-list li,.ve-color-suggestions li,.ve-emoji-list li,.cs-toast:not(.cs-toast-dark) .cs-toast-content{background:none!important}
 .group-1,.group-2,.group-3,.group-4,.group-5,.group-6,.notification-text{margin-left:0}
 .ve-toolbar-inactive .btn{height:30px;width:30px}
 .ve-content blockquote.quote::after,.ve-content pre.code::after,.ve-content spoiler.code::after,div[data-type="spoiler"]::after{border-bottom:1px solid var(--ltbrd);font-family:quicksand;font-weight:700;left:0;padding:.844rem;right:0;top:0!important}
