@@ -614,12 +614,12 @@ select.codebuttons[onchange="tag('[color='+this.options[this.selectedIndex].valu
 .st-editor-area:not(ul.list-group .st-editor-area),.ve-image-add,.ve-dropdown-link,#tippy-23 [data-theme*=ve-dropdown] ul.ve-dropdown-list,#tippy-25 [data-theme*=ve-dropdown] ul.ve-dropdown-list{padding:12px!important}
 .ve-container .ve-btn[data-active=true]{background:none;border:none;color:var(--lncol)}
 .ve-content p.is-editor-empty:first-child::before,[data-theme*=ve-dropdown] ul.ve-dropdown-list>li>button:disabled,.profile-friends.thumbs a[rel="#pop_profile"],a.leftitem::before,.sidebar a::before,a.rightitem::before,.sidebar #openmod::before{color:var(--ltcol)}
-.ve-link-add input,.ve-image-add input,[data-theme*=ve-dropdown] .ve-color-utils .ve-color-hex-input{background-color:var(--txtim)!important}
+.ve-link-add input,.ve-image-add input,[data-theme*=ve-dropdown] .ve-color-utils .ve-color-hex-input{background-color:var(--txtim)!important;color:var(--ftcol)}
 .ve-container:not(.ve-touch-device) .ve-btn:not(.ve-static):not([data-active]):not(:disabled):hover,.ve-container:not(.ve-touch-device) .ve-btn:not(.ve-static)[data-active=false]:not(:disabled):hover,.ve-bubble-menu .ve-formats-item[aria-expanded=true] button:not([data-active=true]),.ve-image-add .ve-btn:hover{background:var(--ltgry);color:var(--ftcol)}
 .ve-toolbar .ve-formats-item[aria-expanded=true] button:not([data-active=true]){background-color:var(--ltgry)!important;color:var(--lncol)!important}
 .ve-container .ve-btn:not(.ve-emoji-buttons .ve-btn),.ve-image-add .ve-btn{align-items:center;border-radius:4px;display:flex;flex-wrap:wrap;font-size:1rem;height:30px;justify-content:center;line-height:1;width:30px}
 [data-theme*=ve-popover]{background-color:var(--menul)!important;border:1px solid var(--dkbrd)!important;border-radius:4px!important;box-shadow:var(--shado)}
-.ve-dropdown-list li,.ve-dropdown-list>li,.ve-shortcuts-list li,.ve-color-suggestions li,.ve-emoji-list li,.cs-toast:not(.cs-toast-dark) .cs-toast-content{background:none!important}
+.ve-dropdown-list li,.ve-dropdown-list>li,.ve-shortcuts-list li,ul.ve-color-suggestions > li,.ve-emoji-list li,.cs-toast:not(.cs-toast-dark) .cs-toast-content{background:none!important}
 .group-1,.group-2,.group-3,.group-4,.group-5,.group-6,.notification-text{margin-left:0}
 .ve-toolbar-inactive .btn{height:30px;width:30px}
 .ve-content blockquote.quote::after,.ve-content pre.code::after,.ve-content spoiler.code::after,div[data-type="spoiler"]::after{border-bottom:1px solid var(--ltbrd);font-family:quicksand;font-weight:700;left:0;padding:.844rem;right:0;top:0!important}
@@ -644,7 +644,7 @@ select.codebuttons[onchange="tag('[color='+this.options[this.selectedIndex].valu
 .ve-link-add input,.ve-image-add input{border-radius:4px;color:var(--ftcol);padding:.618rem 1rem}
 [data-theme*=ve-dropdown] .ve-color-picker .react-colorful__last-control{border-bottom-left-radius:4px;border-bottom-right-radius:4px}
 [data-theme*=ve-dropdown] .ve-color-picker .react-colorful__saturation{border-top-left-radius:4px;border-top-right-radius:4px}
-[data-theme*=ve-dropdown] .ve-color-suggestions .ve-color-btn{border-radius:4px;opacity:1}
+[data-theme*=ve-dropdown] .ve-color-suggestions li .ve-color-btn{border-radius:4px;opacity:1}
 .ve-btn.ve-btn-history-undo,.ve-btn.ve-btn-history-redo{color:var(--ltbrd)}
 .ve-dp-item[data-fontsize="2em"]::after{font-size:1.625rem!important}
 .ve-btn.ve-btn-bold::before{content:'\f032'}
