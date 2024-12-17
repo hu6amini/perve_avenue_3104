@@ -632,8 +632,8 @@ select.codebuttons[onchange="tag('[color='+this.options[this.selectedIndex].valu
 #st-visual-editor blockquote.quote,#st-visual-editor pre.code,#st-visual-editor spoiler.code,.ve-content div[data-type=spoiler].code{padding-top:50px!important}
 [data-theme*=ve-dropdown] ul.ve-dropdown-list>li,.ve-dropdown-link .ve-link-add,.ve-image-add{align-items:center}
 [data-theme*=ve-dropdown] ul.ve-dropdown-list>li>button{gap:10px}
-.ve-table-gen>div{border:1px solid var(--mdcol);height:12px;margin:2px!important;width:12px}
-.ve-table-gen>div.ve-table-selected{background-color:transparent;border-color:var(--redft)}
+.ve-table-gen>div{border:1px solid var(--mdcol)!important;height:12px;margin:2px!important;width:12px}
+.ve-table-gen>div.ve-table-selected{background-color:transparent!important;border-color:var(--redft)!important}
 #tippy-19 .tippy-box{width:auto}
 #tippy-32 [data-theme*=ve-dropdown] ul.ve-dropdown-list,#tippy-17 [data-theme*=ve-dropdown] ul.ve-dropdown-list,#tippy-27 [data-theme*=ve-dropdown] ul.ve-dropdown-list,#tippy-9 [data-theme*=ve-dropdown] ul.ve-dropdown-list,#tippy-13 [data-theme*=ve-dropdown] ul.ve-dropdown-list,#tippy-19 [data-theme*=ve-dropdown] ul.ve-dropdown-list,#tippy-35 [data-theme*=ve-dropdown] ul.ve-dropdown-list,.ve-dropdown-link .ve-link-add,.post .title2.bottom .left.Item,#msg #smilies td,.Sortable.ui-sortable .Sub.Item[style="width:68%"]{padding:0}
 #tippy-32 [data-theme*=ve-popover],#tippy-17 [data-theme*=ve-popover],#tippy-27 [data-theme*=ve-popover],#tippy-9 [data-theme*=ve-popover],#tippy-13 [data-theme*=ve-popover],#tippy-19 [data-theme*=ve-popover],#tippy-35 [data-theme*=ve-popover]{overflow:hidden}
