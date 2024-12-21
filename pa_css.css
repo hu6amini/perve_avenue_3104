@@ -597,7 +597,7 @@ select.codebuttons[onchange="tag('[color='+this.options[this.selectedIndex].valu
 .fast.send span#ADDCRON,#send span#ADDCRON{order:21}
 .post .title2.top .right{align-items:center;cursor:default;display:flex;font-size:0;padding:12px 12px 0;width:100%}
 .post .title2.top .right .lt.Sub{line-height:1;margin:0;white-space:nowrap}
-.post .title2.top .right .mini_buttons.points.Sub{margin:0 0 0 10px}
+.post .title2.top .right .mini_buttons.points.Sub,#search .post .title2.top .points{margin:0 0 0 10px}
 .post .title2.top .right .mini_buttons.rt.Sub{line-height:1rem;margin:0 0 0 auto;white-space:nowrap}
 .post .title2.bottom .right.Item.Justify{align-items:center;display:flex;font-size:0;padding:12px;width:100%}
 .post .title2.bottom .right.Item.Justify .mini_buttons.lt.Sub{align-items:center;display:flex;flex-wrap:wrap;margin-left:0}
