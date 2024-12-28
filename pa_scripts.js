@@ -26,46 +26,10 @@ function resizeTextarea(){const e=document.querySelector("textarea#Post");functi
 function isInsideVeContentColor(e){return null!==e.closest(".ve-content.color")}function expandQuotes(e){if(isInsideVeContentColor(e))return;const updateHeight=()=>{const o=e.querySelector(".quotebtn button");if(!o&&e.scrollHeight>170){e.style.maxHeight="170px";const o=document.createElement("div");o.className="quotebtn";const t=document.createElement("button");t.innerHTML="Show More...",o.appendChild(t),e.appendChild(o),t.addEventListener("click",(t=>{t.preventDefault(),t.stopPropagation(),e.style.transition="max-height 0.382s ease-in-out",e.style.maxHeight=e.scrollHeight+"px",o.style.display="none",setTimeout((()=>{e.style.maxHeight="none"}),382)}))}else o&&e.scrollHeight<=170&&o.parentNode.remove()};updateHeight();const o=new ResizeObserver(updateHeight);o.observe(e);const t=e.querySelector(".spoiler .code_top a");t&&t.addEventListener("click",(()=>{e.style.maxHeight="none",o.disconnect()}))}document.querySelectorAll(".quote").forEach(expandQuotes);const quoteObserver=new MutationObserver((e=>{e.forEach((e=>{e.addedNodes.forEach((e=>{e.nodeType===Node.ELEMENT_NODE&&e.matches(".quote")?expandQuotes(e):e.nodeType===Node.ELEMENT_NODE&&e.querySelectorAll(".quote").forEach(expandQuotes)}))}))}));quoteObserver.observe(document.body,{childList:!0,subtree:!0}),document.querySelectorAll(".quote_top").forEach(modifyQuoteTop);const quoteTopObserver=new MutationObserver((e=>{e.forEach((e=>{e.addedNodes.forEach((e=>{e.nodeType===Node.ELEMENT_NODE&&e.querySelectorAll(".quote_top").forEach(modifyQuoteTop)}))}))}));function modifyQuoteTop(e){if(isInsideVeContentColor(e))return;const o=e.textContent,t=e.querySelector("a");if(o.includes("@")){const n=o.replace(/(.*)\s*\(([^@]+)@[^)]+\)\s*/,"$2 said:");e.innerHTML=n,e.style.color="var(--mdcol)",t&&(e.appendChild(t),t.style.color="var(--mdcol)")}else{const o=e.querySelector(".quote_top b");o&&(o.style.opacity=1)}}quoteTopObserver.observe(document.body,{childList:!0,subtree:!0});
 //Goto
 let timeoutId;function scrollToSmooth(o){window.scrollTo({top:o,behavior:"smooth"})}function showGotoElement(o){o.classList.add("active"),o.style.zIndex="9999"}function hideGotoElement(o){o.classList.remove("active")}function initSmoothScrolling(){document.querySelector(".p_up").addEventListener("click",(()=>{scrollToSmooth(0)})),document.querySelector(".p_down").addEventListener("click",(()=>{scrollToSmooth(document.body.scrollHeight)}));const o=document.querySelector(".goto");window.addEventListener("scroll",(()=>{clearTimeout(timeoutId),showGotoElement(o),timeoutId=setTimeout((()=>{hideGotoElement(o)}),3e3)})),o.addEventListener("mouseenter",(()=>{clearTimeout(timeoutId),showGotoElement(o)})),o.addEventListener("mouseleave",(()=>{timeoutId=setTimeout((()=>{hideGotoElement(o)}),3e3)}))}initSmoothScrolling();const smoothScrollObserver=new MutationObserver((o=>{o.forEach((o=>{o.addedNodes.forEach((o=>{o.nodeType===Node.ELEMENT_NODE&&o.matches(".p_up, .p_down, .goto")&&initSmoothScrolling()}))}))}));smoothScrollObserver.observe(document.body,{childList:!0,subtree:!0});
-//test
-// Select all .post .color elements
-const postColors = document.querySelectorAll('.post .color');
-
-// Loop through each .post .color element
-postColors.forEach(function(postColor) {
-  // Select all images inside the current .post .color, excluding .signature, .emojione, images with specific src patterns, and images with alt starting with ":"
-  const images = postColor.querySelectorAll('img:not(.emojione):not(.signature img):not([src^="https://img.forumfree.net/html/emoticons/new"])');
-
-  // Loop through each image
-  images.forEach(function(img) {
-    // Exclude images with alt attribute starting with ":"
-    if (img.alt && img.alt.startsWith(':')) {
-      return; // Skip this image
-    }
-
-    // Check if the image is already inside an <a> tag
-    if (img.parentNode.tagName.toLowerCase() === 'a') {
-      // Add data-lightbox attribute to the existing <a> tag
-      img.parentNode.setAttribute('data-lightbox', 'gallery');
-    } else {
-      // If not wrapped, create a new <a> tag
-      const link = document.createElement('a');
-      link.href = img.src; // Set the href to the image's src
-      link.setAttribute('data-lightbox', 'gallery'); // Set lightbox group
-
-      // Wrap the image with the new <a> tag
-      img.parentNode.insertBefore(link, img);
-      link.appendChild(img);
-    }
-  });
-
-  // Initialize lightGallery on the current .post .color container
-  lightGallery(postColor, {
-    selector: 'a', // Activate lightGallery on anchor tags
-  });
-});
-
 //Lazysizes
 !function(){function handleLazyLoad(){Array.from(document.querySelectorAll("img, iframe")).filter((e=>!function isInViewport(e){const o=e.getBoundingClientRect();return o.bottom>0&&o.top<window.innerHeight}(e)&&!function isInsideSlideshow(e){return!!e.closest("#pa_slideshow")}(e))).forEach((e=>{e.classList.add("lazyload")})),window.lazySizes&&lazySizes.init()}new MutationObserver((e=>{const o=[];e.forEach((e=>{e.addedNodes.forEach((e=>{e.nodeType===Node.ELEMENT_NODE&&o.push(e)}))})),o.length>0&&handleLazyLoad()})).observe(document.body,{childList:!0,subtree:!0}),handleLazyLoad()}();
+//Gallery
+const postColors=document.querySelectorAll(".post .color");postColors.forEach((function(t){t.querySelectorAll('img:not(.emojione):not(.signature img):not([src^="https://img.forumfree.net/html/emoticons/new"])').forEach((function(t){if(!t.alt||!t.alt.startsWith(":"))if("a"===t.parentNode.tagName.toLowerCase())t.parentNode.setAttribute("data-lightbox","gallery");else{const e=document.createElement("a");e.href=t.src,e.setAttribute("data-lightbox","gallery"),t.parentNode.insertBefore(e,t),e.appendChild(t)}})),lightGallery(t,{selector:"a"})}));
 //Youtube iframe
 function replaceYouTubeFrames(){document.querySelectorAll('iframe[src*="youtube.com/embed/"]').forEach((function(e){var t=e.src.split("/").pop().split("?")[0],a=e.src.match(/[?&]start=([^&]*)/),l=a?a[1]:null;fetch("https://www.googleapis.com/youtube/v3/videos?part=snippet&id="+t+"&key=AIzaSyCFhniclB06-OF1kOeL6t0g-KF7_qYVslI").then((e=>e.json())).then((a=>{var r=a.items[0].snippet.title,o=a.items[0].snippet.thumbnails,s=o.maxres?o.maxres.url:o.standard?o.standard.url:o.medium?o.medium.url:"",i=document.createElement("img");i.src=s,i.width="560",i.height="315",i.alt="YouTube Video Thumbnail";var n=document.createElement("span");n.textContent=r;var c=document.createElement("button");c.className="ytp-button",c.setAttribute("aria-label","Play"),c.setAttribute("title","Play"),c.style.width="68px",c.style.height="48px",c.style.background="none",c.style.border="none",c.style.position="absolute",c.style.top="50%",c.style.left="50%",c.style.transform="translate(-50%, -50%)",c.innerHTML='<svg height="100%" version="1.1" viewBox="0 0 68 48" width="100%"><path class="ytp-large-play-button-bg" d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55 C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19 C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z" fill="#f00"></path><path d="M 45,24 27,14 27,34" fill="#fff"></path></svg>';var p=document.createElement("div");p.className="res_tmb",p.appendChild(i),p.appendChild(n),p.appendChild(c),p.onclick=function(){var e=document.createElement("iframe");e.width="560",e.height="315",e.src="https://www.youtube.com/embed/"+t+"?autoplay=1",e.title="YouTube video player",e.frameborder="0",e.allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture",e.allowFullscreen="true",l&&(e.src+="&start="+l),p.parentNode.replaceChild(e,p)},e.parentNode.replaceChild(p,e)})).catch((e=>console.error(e)))}))}replaceYouTubeFrames();
 //Pamedia
