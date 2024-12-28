@@ -26,6 +26,44 @@ function resizeTextarea(){const e=document.querySelector("textarea#Post");functi
 function isInsideVeContentColor(e){return null!==e.closest(".ve-content.color")}function expandQuotes(e){if(isInsideVeContentColor(e))return;const updateHeight=()=>{const o=e.querySelector(".quotebtn button");if(!o&&e.scrollHeight>170){e.style.maxHeight="170px";const o=document.createElement("div");o.className="quotebtn";const t=document.createElement("button");t.innerHTML="Show More...",o.appendChild(t),e.appendChild(o),t.addEventListener("click",(t=>{t.preventDefault(),t.stopPropagation(),e.style.transition="max-height 0.382s ease-in-out",e.style.maxHeight=e.scrollHeight+"px",o.style.display="none",setTimeout((()=>{e.style.maxHeight="none"}),382)}))}else o&&e.scrollHeight<=170&&o.parentNode.remove()};updateHeight();const o=new ResizeObserver(updateHeight);o.observe(e);const t=e.querySelector(".spoiler .code_top a");t&&t.addEventListener("click",(()=>{e.style.maxHeight="none",o.disconnect()}))}document.querySelectorAll(".quote").forEach(expandQuotes);const quoteObserver=new MutationObserver((e=>{e.forEach((e=>{e.addedNodes.forEach((e=>{e.nodeType===Node.ELEMENT_NODE&&e.matches(".quote")?expandQuotes(e):e.nodeType===Node.ELEMENT_NODE&&e.querySelectorAll(".quote").forEach(expandQuotes)}))}))}));quoteObserver.observe(document.body,{childList:!0,subtree:!0}),document.querySelectorAll(".quote_top").forEach(modifyQuoteTop);const quoteTopObserver=new MutationObserver((e=>{e.forEach((e=>{e.addedNodes.forEach((e=>{e.nodeType===Node.ELEMENT_NODE&&e.querySelectorAll(".quote_top").forEach(modifyQuoteTop)}))}))}));function modifyQuoteTop(e){if(isInsideVeContentColor(e))return;const o=e.textContent,t=e.querySelector("a");if(o.includes("@")){const n=o.replace(/(.*)\s*\(([^@]+)@[^)]+\)\s*/,"$2 said:");e.innerHTML=n,e.style.color="var(--mdcol)",t&&(e.appendChild(t),t.style.color="var(--mdcol)")}else{const o=e.querySelector(".quote_top b");o&&(o.style.opacity=1)}}quoteTopObserver.observe(document.body,{childList:!0,subtree:!0});
 //Goto
 let timeoutId;function scrollToSmooth(o){window.scrollTo({top:o,behavior:"smooth"})}function showGotoElement(o){o.classList.add("active"),o.style.zIndex="9999"}function hideGotoElement(o){o.classList.remove("active")}function initSmoothScrolling(){document.querySelector(".p_up").addEventListener("click",(()=>{scrollToSmooth(0)})),document.querySelector(".p_down").addEventListener("click",(()=>{scrollToSmooth(document.body.scrollHeight)}));const o=document.querySelector(".goto");window.addEventListener("scroll",(()=>{clearTimeout(timeoutId),showGotoElement(o),timeoutId=setTimeout((()=>{hideGotoElement(o)}),3e3)})),o.addEventListener("mouseenter",(()=>{clearTimeout(timeoutId),showGotoElement(o)})),o.addEventListener("mouseleave",(()=>{timeoutId=setTimeout((()=>{hideGotoElement(o)}),3e3)}))}initSmoothScrolling();const smoothScrollObserver=new MutationObserver((o=>{o.forEach((o=>{o.addedNodes.forEach((o=>{o.nodeType===Node.ELEMENT_NODE&&o.matches(".p_up, .p_down, .goto")&&initSmoothScrolling()}))}))}));smoothScrollObserver.observe(document.body,{childList:!0,subtree:!0});
+//test
+// Select all .post .color elements
+const postColors = document.querySelectorAll('.post .color');
+
+// Loop through each .post .color element
+postColors.forEach(function(postColor) {
+  // Select all images inside the current .post .color, excluding .signature, .emojione, images with specific src patterns, and images with alt starting with ":"
+  const images = postColor.querySelectorAll('img:not(.emojione):not(.signature img):not([src^="https://img.forumfree.net/html/emoticons/new"])');
+
+  // Loop through each image
+  images.forEach(function(img) {
+    // Exclude images with alt attribute starting with ":"
+    if (img.alt && img.alt.startsWith(':')) {
+      return; // Skip this image
+    }
+
+    // Check if the image is already inside an <a> tag
+    if (img.parentNode.tagName.toLowerCase() === 'a') {
+      // Add data-lightbox attribute to the existing <a> tag
+      img.parentNode.setAttribute('data-lightbox', 'gallery');
+    } else {
+      // If not wrapped, create a new <a> tag
+      const link = document.createElement('a');
+      link.href = img.src; // Set the href to the image's src
+      link.setAttribute('data-lightbox', 'gallery'); // Set lightbox group
+
+      // Wrap the image with the new <a> tag
+      img.parentNode.insertBefore(link, img);
+      link.appendChild(img);
+    }
+  });
+
+  // Initialize lightGallery on the current .post .color container
+  lightGallery(postColor, {
+    selector: 'a', // Activate lightGallery on anchor tags
+  });
+});
+
 //Lazysizes
 !function(){function handleLazyLoad(){Array.from(document.querySelectorAll("img, iframe")).filter((e=>!function isInViewport(e){const o=e.getBoundingClientRect();return o.bottom>0&&o.top<window.innerHeight}(e)&&!function isInsideSlideshow(e){return!!e.closest("#pa_slideshow")}(e))).forEach((e=>{e.classList.add("lazyload")})),window.lazySizes&&lazySizes.init()}new MutationObserver((e=>{const o=[];e.forEach((e=>{e.addedNodes.forEach((e=>{e.nodeType===Node.ELEMENT_NODE&&o.push(e)}))})),o.length>0&&handleLazyLoad()})).observe(document.body,{childList:!0,subtree:!0}),handleLazyLoad()}();
 //Youtube iframe
