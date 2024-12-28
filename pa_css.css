@@ -22,6 +22,7 @@ button[value="Register"],button[value="Log In"],#user .Item.title2,#user span[st
 .st-editor-area .cs-btn.cs-btn-blue::before{content:'\f1da \00a0'}
 select{background:none;border:1px solid var(--ltbrd);border-radius:4px;box-shadow:none;color:var(--ftcol);display:inline-block;font-size:.875rem;line-height: 1;padding:.430rem 1rem}
 #msg .textinput[name="FILE_UPLOAD"],#user .forminput[type="file"],#user .textinput[name="FILE_UPLOAD"]{font-size:0;width:fit-content!important} 
+#msg .big_list li div[class="Sub Item"]{order:6;width:auto!important;z-index:1}
 .send button{white-space:nowrap}
 .right.Sub.preview{align-items:center;display:inline-flex;gap:3px}
 .profile_info,.cp.send li.Item[style="padding:5px 1.5% 2px 1.5%"] > .Justify,.ffb_embedlink_initialized div + div > div{margin:0}
