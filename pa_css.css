@@ -25,7 +25,7 @@ select{background:none;border:1px solid var(--ltbrd);border-radius:4px;box-shado
 #msg .big_list li div[class="Sub Item"]{order:6;width:auto!important;z-index:1}
 .send button{white-space:nowrap}
 .right.Sub.preview{align-items:center;display:inline-flex;gap:3px}
-.profile_info,.cp.send li.Item[style="padding:5px 1.5% 2px 1.5%"] > .Justify,.ffb_embedlink_initialized div + div > div{margin:0}
+.profile_info,.cp.send li.Item[style="padding:5px 1.5% 2px 1.5%"] > .Justify,.ffb_embedlink_initialized div + div > div,#blog .post .title2.top .right .mini_buttons.points.Sub{margin:0}
 input[value="Go!"]:hover:not(.right.Sub input[value="Go!"]),#user input[title="Character Map"]:hover{background-color:var(--grhov)!important}
 .sunbar.center[onclick="addButtonPollFF()"] > .Sub.Item[style="width:68%"]{width:100%!important;white-space:nowrap}
 .sunbar.center[onclick="addButtonPollFF()"]{align-items:center;display:inline-flex;height:36px;justify-content:center;width:auto}
@@ -598,7 +598,7 @@ select.codebuttons[onchange="tag('[color='+this.options[this.selectedIndex].valu
 .fast.send span#ADDCRON,#send span#ADDCRON{order:21}
 .post .title2.top .right{align-items:center;cursor:default;display:flex;font-size:0;padding:12px 12px 0;width:100%}
 .post .title2.top .right .lt.Sub{line-height:1;margin:0;white-space:nowrap}
-.post .title2.top .right .mini_buttons.points.Sub,#search .post .title2.top .points{margin:0 0 0 10px}
+.post .title2.top .right .mini_buttons.points.Sub:not(#blog .post .title2.top .right .mini_buttons.points.Sub),#search .post .title2.top .points{margin:0 0 0 10px}
 .post .title2.top .right .mini_buttons.rt.Sub{line-height:1rem;margin:0 0 0 auto;white-space:nowrap}
 .post .title2.bottom .right.Item.Justify{align-items:center;display:flex;font-size:0;padding:12px;width:100%}
 .post .title2.bottom .right.Item.Justify .mini_buttons.lt.Sub{align-items:center;display:flex;flex-wrap:wrap;margin-left:0}
