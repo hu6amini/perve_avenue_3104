@@ -813,6 +813,7 @@ a.a2a_dd.nolink::before{content:'\f1e0'}
 #usercp input.forminput:not(input[type="checkbox"],#FILE_UPLOAD){margin:7px 0 12px 0;width:100%}
 .color div[align="center"]:not(.spoiler.ffbspoiler),.ve-content.color blockquote{margin-bottom:15px!important}
 div[style="padding:56.25% 0 0 0;position:relative;"]{height:315px;margin:0;padding:0!important;width:560px}
+#popupmod #Cronmod{display:block;font-size:2rem;left:50%;position:relative;top:50%;transform:translate(-50%, -50%)}
 
 @media (max-width: 768px){
 .prvchat{width:100%!important}
