@@ -23,7 +23,6 @@ button[value="Register"],button[value="Log In"],#user .Item.title2,#user span[st
 .st-editor-area .cs-btn.cs-btn-green::before{content:'\f0a9 \00a0'}
 .st-editor-area .cs-btn.cs-btn-blue::before{content:'\f1da \00a0'}
 select{background:none;border:1px solid var(--ltbrd);border-radius:4px;box-shadow:none;color:var(--ftcol);display:inline-block;font-size:.875rem;line-height: 1;padding:.430rem 1rem}
-#msg .textinput[name="FILE_UPLOAD"],#user .forminput[type="file"],#user .textinput[name="FILE_UPLOAD"]{font-size:0;width:fit-content!important} 
 #msg .big_list li div[class="Sub Item"]{order:6;width:auto!important;z-index:1}
 .send button{white-space:nowrap}
 .right.Sub.preview{align-items:center;display:inline-flex;gap:3px}
@@ -60,7 +59,6 @@ input[type="radio"]:checked::before{content:'\f192'}
 input[type="radio"]:checked::before,input[type="checkbox"]:not(#delattach)::before,input[type="radio"]::before{color:var(--ltcol);font-size:.813rem}
 #ADDCRON:not(.send #ADDCRON)::before{color:var(--ltcol);content:'\e0d6 \00a0';display:inline-block}
 #usercp .codebuttons[value="Generate"]{height:auto!important;width:auto!important} 
-input[type="file"]{background:none!important;border:none!important;color:var(--ltcol)!important;padding:0!important}
 .quote span[style="font-size:19.5pt;line-height:100%"]{font-size:17.062pt!important}
 .st-emoji-fieldset[data-rid="6"] li::after,.st-emoji-fieldset[data-rid="12"] li::after,.st-emoji-fieldset[data-rid="10"] li::after,.st-emoji-fieldset[data-rid="1"] li::after,.st-emoji-fieldset[data-rid="2"] li::after,.st-emoji-fieldset[data-rid="5"] li::after,.st-emoji-fieldset[data-rid="3"] li::after,.st-emoji-fieldset[data-rid="4"] li::after,.st-emoji-fieldset[data-rid="7"] li::after,.st-emoji-fieldset[data-rid="8"] li::after,.st-emoji-fieldset[data-rid="9"] li::after,.st-emoji-fieldset[data-rid="11"] li::after{background:url("https://res.cloudinary.com/dbdf6gwgo/image/upload/v1708465570/forum/Sprites/pa_r_qeuqr4.png");background-size:448px 32px;content:'';display:inline-block;height:32px;margin-right:1rem;position:absolute;right:0;width:32px} 
 /* ok hand */ 
