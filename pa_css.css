@@ -461,7 +461,7 @@ img[src="https://img.forumfree.net/home/images/avatar_email.png"]{background:url
 .guest.error.no_view_topic .darkbar,.guest.error.no_permission .darkbar:not(.skin_tbl[style="width:60%;min-width:500px"]),.error.profile_guest .darkbar.Item{border-top:1px solid var(--ltbrd)} 
 .guest.error .darkbar.Item, .error.profile_guest .darkbar.Item{padding:8px 12px 12px}
 .error li.Item,.cp.send .sunbar.center.Item + ul.list,.cp .main_list .sunbar.top.Item + .list .Item,#tippy-19 li,#tippy-21 ul.ve-dropdown-list,#mod .Sub.Item[style="width:67%"] + .list,#board .zz:not(.board.List .zz,.stats.List .zz),.send .list:not(.list.st-editor-area.st-editor-area-desktop,.list.st-editor-area.st-editor-area-desktop.st-editor-area-active,.send .cronRow .list){padding:12px}
-#attach input.textinput[name="FILE_UPLOAD"]{padding:12px 0}
+#attach input.textinput[name="FILE_UPLOAD"],#user [accept="image/*"]{padding:12px 0}
 .error .skin_tbl[style="width:60%;min-width:500px"],#Post,.Sortable.ui-sortable textarea{width:100%!important}
 .error .skin_tbl[style="width:60%;min-width:500px"] .Sub.Item{padding:8px 0 12px 0!important;text-align:right!important;width:100%!important}
 .error .skin_tbl[style="width:60%;min-width:500px"] .sunbar,.profile-group .Sub.Item:last-of-type{text-align:left}
@@ -820,7 +820,7 @@ div[style="padding:56.25% 0 0 0;position:relative;"]{height:315px;margin:0;paddi
 #attach td[width="40%"]{display:block;text-align:left}
 #user .Item[style="text-align:center;line-height:200%;padding-bottom:14px"] form[method="post"]{margin-top:12px}
 .cp .textinput:not(#user [accept="image/*"]){background:var(--txtim);border:1px solid var(--ltbrd);cursor:text;font-size:1rem;max-height:100px;transition:max-height .618s ease-in-out}
-#user [accept="image/*"]{font-size:.813rem}
+#user [accept="image/*"]{display:block;font-size:.813rem}
 
 @media (max-width: 768px){
 .prvchat{width:100%!important}
