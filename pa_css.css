@@ -816,9 +816,9 @@ a.a2a_dd.nolink::before{content:'\f1e0'}
 .color div[align="center"]:not(.spoiler.ffbspoiler),.ve-content.color blockquote{margin-bottom:15px!important}
 div[style="padding:56.25% 0 0 0;position:relative;"]{height:315px;margin:0;padding:0!important;width:560px}
 #popupmod #Cronmod{display:block;font-size:2rem;height:100%}
-#attach td[width="60%"],#user form[method="post"]{border:1px solid var(--ltbrd);border-radius:4px;display:block;padding:12px;text-align:left}
+#attach td[width="60%"],#user .Item[style="text-align:center;line-height:200%;padding-bottom:14px"] form[method="post"]{border:1px solid var(--ltbrd);border-radius:4px;display:block;padding:12px;text-align:left}
 #attach td[width="40%"]{display:block;text-align:left}
-#user form[method="post"]{margin-top:12px}
+#user .Item[style="text-align:center;line-height:200%;padding-bottom:14px"] form[method="post"]{margin-top:12px}
 
 @media (max-width: 768px){
 .prvchat{width:100%!important}
