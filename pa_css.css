@@ -821,6 +821,7 @@ div[style="padding:56.25% 0 0 0;position:relative;"]{height:315px;margin:0;paddi
 #user .Item[style="text-align:center;line-height:200%;padding-bottom:14px"] form[method="post"]{margin-top:12px}
 .cp .textinput:not(#user [accept="image/*"]){background:var(--txtim);border:1px solid var(--ltbrd);cursor:text;font-size:1rem;max-height:100px;transition:max-height .618s ease-in-out}
 #user [accept="image/*"]{display:block;font-size:.813rem}
+#user table[style="width:75%"]{width:100%!important}
 
 @media (max-width: 768px){
 .prvchat{width:100%!important}
