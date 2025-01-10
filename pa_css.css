@@ -647,6 +647,8 @@ select.codebuttons[onchange="tag('[color='+this.options[this.selectedIndex].valu
 .ve-content pre.code::after{content:'code';text-transform:uppercase}
 .ve-content blockquote.quote:not([data-author])::after{content:'quote';text-transform:uppercase}
 .ve-content ul,.ve-content ol,.color ul,.color ol{margin:1em 0}
+.ve-content div[data-youtube-video]{display:inline-block}
+.ve-content div[data-youtube-video].ProseMirror-selectednode iframe{box-shadow:none}
 #st-editor-alert{background:var(--contt);margin:10px;opacity:1;z-index:1}
 .ve-link-add input,.ve-image-add input{border-radius:4px;color:var(--ftcol);padding:.618rem 1rem}
 [data-theme*=ve-dropdown] .ve-color-picker .react-colorful__last-control{border-bottom-left-radius:4px!important;border-bottom-right-radius:4px!important}
