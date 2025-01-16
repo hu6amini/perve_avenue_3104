@@ -833,5 +833,6 @@ div[style="padding:56.25% 0 0 0;position:relative;"]{height:315px;margin:0;paddi
 .children-2{margin:0;width:100%}
 .top-button{flex-grow:1;margin:0!important;width:100%}
 .top-button input.forminput{max-width:100%!important;min-width:100%!important}
+#topic .post .color{display:flex;flex-direction:column}
 .children-1,.prvposts,.post.send_post{display:none}
 }
