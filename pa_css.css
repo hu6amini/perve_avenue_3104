@@ -616,7 +616,7 @@ select.codebuttons[onchange="tag('[color='+this.options[this.selectedIndex].valu
 .ve-content p.is-editor-empty:first-child::before,[data-theme*=ve-dropdown] ul.ve-dropdown-list>li>button[data-placeholder]::after{font-family:quicksand}
 .ve-container .ve-btn:not(:disabled),.st-editor-area li:first-child .codebuttons,.st-editor-toggle,button[name="full"]{color:var(--mdcol)}
 .ve-container h1,.ve-container h2,.ve-container h3,.ve-container h4,.ve-container h5,.ve-container h6{word-break:break-word}
-.tippy-box:not(#tippy-32 .tippy-box,#tippy-13 .tippy-box,#tippy-37 .tippy-box,#tippy-17 .tippy-box,#tippy-19 .tippy-box,#tippy-21 .tippy-box,#tippy-23 .tippy-box,#tippy-25 .tippy-box,#tippy-27 .tippy-box,#tippy-32 .tippy-box,#tippy-36 .tippy-box,#tippy-39 .tippy-box,#tippy-38 .tippy-box),.tippy-custom .tippy-box{background:var(--tippy);border-radius:4px;color:var(--ftcol)}
+.tippy-box:not(#tippy-32 .tippy-box,#tippy-13 .tippy-box,#tippy-37 .tippy-box,#tippy-17 .tippy-box,#tippy-19 .tippy-box,#tippy-21 .tippy-box,#tippy-23 .tippy-box,#tippy-25 .tippy-box,#tippy-27 .tippy-box,#tippy-32 .tippy-box,#tippy-36 .tippy-box,#tippy-39 .tippy-box,#tippy-38 .tippy-box,.tippy-profile .tippy-box),.tippy-custom .tippy-box{background:var(--tippy);border-radius:4px;color:var(--ftcol)}
 .st-editor-toggle:hover,[data-theme*=ve-dropdown] ul.ve-dropdown-list>li>button.ve-dp-item:not(:disabled),button[name="full"]:hover,label[for="delattach"],input[id="delattach"]::before{color:var(--ftcol)}
 .st-editor-toggle:not(.codebuttons){margin-right:3px}
 .ve-toolbar{border:1px solid var(--ltbrd);border-bottom:none;border-top-left-radius:4px;border-top-right-radius:4px}
