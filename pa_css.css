@@ -43,7 +43,6 @@ input[value="Go!"]:hover:not(.right.Sub input[value="Go!"]),#user input[title="C
 #user .Item[style="text-align:center;line-height:200%;padding-bottom:14px"]{padding:0 0 13px 0!important}
 #user small a[href="https://accounts.forumcommunity.net/?act=Reg&CODE=10"]::before{content:'\f0e0 \00a0';display:inline-block;margin-left:5px}
 .Blocker{background-color:#090A0C61!important}
-.textinput,.forminput,.codebuttons,option,input,button,optgroup,textarea,.footer span:first-child,.nickname{font-family:quicksand!important}
 .color img[src^="https://www.google.com/s2/"]{margin-right:3px;vertical-align:text-bottom}
 .tmsg img[src^="https://www.google.com/s2/"]{border-radius:0!important;bottom:0;left:0;margin:auto;position:absolute;top:0}
 img[src^="https://www.google.com/s2/"]{user-select:none}
