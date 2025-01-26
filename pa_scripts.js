@@ -55,7 +55,7 @@ function replaceElements(){document.querySelectorAll(".emoji_loading").forEach((
 //Attachment Preview
 const fileInput=document.querySelector('body#send #attach input[name="FILE_UPLOAD"]');if(fileInput){const e=document.createElement("div");e.id="attachments-preview",e.style.marginTop="12px",e.style.textAlign="center",e.style.display="flex",fileInput.closest("td").appendChild(e),fileInput.addEventListener("change",(()=>{e.innerHTML="";const t=fileInput.files;if(t&&t.length>0)Array.from(t).forEach((t=>{if(t.type.startsWith("image/")){const n=new FileReader;n.onload=n=>{const l=document.createElement("img");l.src=n.target.result,l.alt=t.name,l.style.maxWidth="100px",l.style.maxHeight="100px",l.style.borderRadius="4px",l.title=t.name,e.appendChild(l)},n.readAsDataURL(t)}else{const n=document.createElement("i");n.className="fa-regular fa-file-zipper",n.style.fontSize="66px",n.style.color="var(--mdcol)",n.style.margin="10px";const l=document.createElement("p");l.textContent=t.name,l.style.fontSize=".875rem",l.style.margin="0";const a=document.createElement("div");a.style.display="inline-block",a.style.textAlign="center",a.style.margin="0",a.appendChild(n),a.appendChild(l),e.appendChild(a)}}));else{const t=document.createElement("p");t.textContent="No file selected.",e.appendChild(t)}}))}
 
-$(document).ready(function() {
+$(document).ready(function() { 
     // Select all the '.post .when' elements
     $('.post .when').each(function() {
         var dateText = $(this).text();  // Get the text content
@@ -87,6 +87,15 @@ $(document).ready(function() {
 
         // Check for Unix Timestamp format (e.g., 1459916492)
         var unixTimestampPattern = /^\d{10}$/;
+
+        // Check for Japan/Chinese format (e.g., 2025年01月25日)
+        var japanChineseDatePattern = /(\d{4})年(\d{2})月(\d{2})日/;
+
+        // Check for Cyrillic month names (e.g., 25 Января 2025)
+        var cyrillicMonthDatePattern = /(\d{1,2})\s([А-Яа-я]+)\s(\d{4})/;
+
+        // Check for Spanish month names (e.g., 25 enero 2025)
+        var spanishMonthDatePattern = /(\d{1,2})\s([a-zA-Z]+)\s(\d{4})/;
 
         // Handle the US format (MM/DD/YYYY, HH:MM AM/PM)
         if (usDatePattern.test(dateText)) {
@@ -140,34 +149,33 @@ $(document).ready(function() {
             var second = match[7];
             formattedDate = year + '-' + month + '-' + day + 'T' + hour + ':' + minute + ':' + second + ':00';
         }
-        // Handle Hijri (Islamic Calendar) format
-        else if (hijriDatePattern.test(dateText)) {
-            var match = hijriDatePattern.exec(dateText);
+        // Handle Japan/Chinese format
+        else if (japanChineseDatePattern.test(dateText)) {
+            var match = japanChineseDatePattern.exec(dateText);
+            var year = match[1];
+            var month = match[2];
+            var day = match[3];
+            formattedDate = year + '-' + month + '-' + day + 'T00:00:00';
+        }
+        // Handle Cyrillic month format (Russian/Arabic)
+        else if (cyrillicMonthDatePattern.test(dateText)) {
+            var match = cyrillicMonthDatePattern.exec(dateText);
             var day = match[1];
             var month = match[2];
             var year = match[3];
             formattedDate = year + '-' + month + '-' + day + 'T00:00:00';
         }
-        // Handle Hebrew format
-        else if (hebrewDatePattern.test(dateText)) {
-            var match = hebrewDatePattern.exec(dateText);
+        // Handle Spanish month format (Latin America)
+        else if (spanishMonthDatePattern.test(dateText)) {
+            var match = spanishMonthDatePattern.exec(dateText);
             var day = match[1];
             var month = match[2];
             var year = match[3];
+            // Convert the month name to lowercase and capitalize it for consistency
+            var monthNames = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"];
+            var monthIndex = monthNames.indexOf(month.toLowerCase());
+            month = (monthIndex + 1).toString().padStart(2, '0');  // Convert to two-digit format
             formattedDate = year + '-' + month + '-' + day + 'T00:00:00';
-        }
-        // Handle Buddhist format
-        else if (buddhistDatePattern.test(dateText)) {
-            var match = buddhistDatePattern.exec(dateText);
-            var day = match[1];
-            var month = match[2];
-            var year = match[3];
-            formattedDate = year + '-' + month + '-' + day + 'T00:00:00';
-        }
-        // Handle Unix timestamp
-        else if (unixTimestampPattern.test(dateText)) {
-            var timestamp = parseInt(dateText);
-            formattedDate = new Date(timestamp * 1000).toISOString();
         }
 
         // Only update the element if a valid date format is found
