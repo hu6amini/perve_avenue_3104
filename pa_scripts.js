@@ -57,7 +57,7 @@ const fileInput=document.querySelector('body#send #attach input[name="FILE_UPLOA
 
 $(document).ready(function() { 
     // Select all the '.post .when' elements
-    $('.post .when').each(function() {
+    $('.post .when,.big_list .when').each(function() {
         var dateText = $(this).text();  // Get the text content
         var formattedDate;
 
@@ -188,3 +188,4 @@ $(document).ready(function() {
     // Initialize timeago on elements with the datetime attribute
     $('time').timeago();
 });
+
