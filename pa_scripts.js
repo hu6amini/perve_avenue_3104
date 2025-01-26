@@ -54,3 +54,129 @@ var e=document.createElement('select');e.title="Insert Font Size tags",e.classNa
 function replaceElements(){document.querySelectorAll(".emoji_loading").forEach((e=>{"&nbsp;"===e.innerHTML.trim()&&(e.innerHTML='<i class="fa-regular fa-loader fa-spin"></i>')})),document.querySelectorAll("img").forEach((e=>{if("https://img.forumfree.net/index_file/loads3.gif"===e.src){const t=document.createElement("i");t.className="fa-regular fa-loader fa-spin",e.replaceWith(t)}})),document.querySelectorAll(".st-emoji-spinner-border").forEach((e=>{const t=document.createElement("i");t.className="fa-regular fa-loader fa-spin",e.replaceWith(t)}));const e=document.querySelector("#notifications-more");if(e&&!e.querySelector(".fa-spin")){const t=document.createElement("i");t.className="fa-regular fa-loader fa-spin",e.appendChild(t)}const t=document.querySelector("#popupmod");if(t){const e=t.querySelector("#Cronmod");if(e){const t=e.querySelector('img[src="https://img.forumfree.net/index_file/load.gif"]');if(t){const e=document.createElement("i");e.className="fa-regular fa-loader fa-spin",t.replaceWith(e)}}}}function waitForElement(e,t){const r=new MutationObserver((o=>{for(const n of o)if("childList"===n.type&&document.querySelector(e)){r.disconnect(),t(document.querySelector(e));break}})),o=document.body;r.observe(o,{childList:!0,subtree:!0});const n=document.querySelector(e);n&&(r.disconnect(),t(n))}replaceElements();const dynamicLoadingObserver=new MutationObserver((e=>{let t=!1;e.forEach((e=>{"childList"===e.type&&e.addedNodes.length&&(t=!0)})),t&&replaceElements()}));dynamicLoadingObserver.observe(document.body,{childList:!0,subtree:!0});
 //Attachment Preview
 const fileInput=document.querySelector('body#send #attach input[name="FILE_UPLOAD"]');if(fileInput){const e=document.createElement("div");e.id="attachments-preview",e.style.marginTop="12px",e.style.textAlign="center",e.style.display="flex",fileInput.closest("td").appendChild(e),fileInput.addEventListener("change",(()=>{e.innerHTML="";const t=fileInput.files;if(t&&t.length>0)Array.from(t).forEach((t=>{if(t.type.startsWith("image/")){const n=new FileReader;n.onload=n=>{const l=document.createElement("img");l.src=n.target.result,l.alt=t.name,l.style.maxWidth="100px",l.style.maxHeight="100px",l.style.borderRadius="4px",l.title=t.name,e.appendChild(l)},n.readAsDataURL(t)}else{const n=document.createElement("i");n.className="fa-regular fa-file-zipper",n.style.fontSize="66px",n.style.color="var(--mdcol)",n.style.margin="10px";const l=document.createElement("p");l.textContent=t.name,l.style.fontSize=".875rem",l.style.margin="0";const a=document.createElement("div");a.style.display="inline-block",a.style.textAlign="center",a.style.margin="0",a.appendChild(n),a.appendChild(l),e.appendChild(a)}}));else{const t=document.createElement("p");t.textContent="No file selected.",e.appendChild(t)}}))}
+
+$(document).ready(function() {
+    // Select all the '.post .when' elements
+    $('.post .when').each(function() {
+        var dateText = $(this).text();  // Get the text content
+        var formattedDate;
+
+        // Check if the date follows US format (MM/DD/YYYY, HH:MM AM/PM)
+        var usDatePattern = /(\d{1,2})\/(\d{1,2})\/(\d{4}),\s*(\d{1,2}):(\d{2})\s*(AM|PM)/;
+        
+        // Check for European format (DD/MM/YYYY, HH:MM)
+        var europeanDatePattern = /(\d{1,2})\/(\d{1,2})\/(\d{4}),\s*(\d{2}):(\d{2})/;
+
+        // Check for YYYY/MM/DD HH:MM format (e.g., 2025/01/25 20:50)
+        var customDatePattern = /(\d{4})\/(\d{1,2})\/(\d{1,2})\s*(\d{2}):(\d{2})/;
+
+        // Check for ISO format (YYYY-MM-DDTHH:mm:ss)
+        var isoDatePattern = /(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})/;
+
+        // Check for RFC 2822 format (e.g., Fri, 25 Jan 2025 14:30:00 +0000)
+        var rfc2822DatePattern = /([A-Za-z]+),\s*(\d{1,2})\s([A-Za-z]+)\s(\d{4})\s(\d{2}):(\d{2}):(\d{2})\s([+\-]\d{4})/;
+
+        // Check for Hijri (Islamic Calendar) format (e.g., 25/05/1446)
+        var hijriDatePattern = /(\d{1,2})\/(\d{1,2})\/(\d{4})/;
+
+        // Check for Hebrew format (e.g., 25 Tevet 5785)
+        var hebrewDatePattern = /(\d{1,2})\s([A-Za-z]+)\s(\d{4})/;
+
+        // Check for Buddhist format (e.g., 25 January 2568)
+        var buddhistDatePattern = /(\d{1,2})\s([A-Za-z]+)\s(\d{4})/;
+
+        // Check for Unix Timestamp format (e.g., 1459916492)
+        var unixTimestampPattern = /^\d{10}$/;
+
+        // Handle the US format (MM/DD/YYYY, HH:MM AM/PM)
+        if (usDatePattern.test(dateText)) {
+            var match = usDatePattern.exec(dateText);
+            var month = match[1];
+            var day = match[2];
+            var year = match[3];
+            var hour = match[4];
+            var minute = match[5];
+            var ampm = match[6];
+            if (ampm === 'PM' && hour < 12) {
+                hour = parseInt(hour) + 12;
+            } else if (ampm === 'AM' && hour === '12') {
+                hour = 0;
+            }
+            formattedDate = year + '-' + month + '-' + day + 'T' + hour + ':' + minute + ':00';
+        } 
+        // Handle European format (DD/MM/YYYY, HH:MM)
+        else if (europeanDatePattern.test(dateText)) {
+            var match = europeanDatePattern.exec(dateText);
+            var day = match[1];
+            var month = match[2];
+            var year = match[3];
+            var hour = match[4];
+            var minute = match[5];
+            formattedDate = year + '-' + month + '-' + day + 'T' + hour + ':' + minute + ':00';
+        }
+        // Handle custom format (YYYY/MM/DD HH:MM)
+        else if (customDatePattern.test(dateText)) {
+            var match = customDatePattern.exec(dateText);
+            var year = match[1];
+            var month = match[2];
+            var day = match[3];
+            var hour = match[4];
+            var minute = match[5];
+            formattedDate = year + '-' + month + '-' + day + 'T' + hour + ':' + minute + ':00';
+        } 
+        // Handle ISO format (YYYY-MM-DDTHH:mm:ss)
+        else if (isoDatePattern.test(dateText)) {
+            var match = isoDatePattern.exec(dateText);
+            formattedDate = dateText;  // It's already in ISO format
+        } 
+        // Handle RFC 2822 format
+        else if (rfc2822DatePattern.test(dateText)) {
+            var match = rfc2822DatePattern.exec(dateText);
+            var day = match[2];
+            var month = match[3];
+            var year = match[4];
+            var hour = match[5];
+            var minute = match[6];
+            var second = match[7];
+            formattedDate = year + '-' + month + '-' + day + 'T' + hour + ':' + minute + ':' + second + ':00';
+        }
+        // Handle Hijri (Islamic Calendar) format
+        else if (hijriDatePattern.test(dateText)) {
+            var match = hijriDatePattern.exec(dateText);
+            var day = match[1];
+            var month = match[2];
+            var year = match[3];
+            formattedDate = year + '-' + month + '-' + day + 'T00:00:00';
+        }
+        // Handle Hebrew format
+        else if (hebrewDatePattern.test(dateText)) {
+            var match = hebrewDatePattern.exec(dateText);
+            var day = match[1];
+            var month = match[2];
+            var year = match[3];
+            formattedDate = year + '-' + month + '-' + day + 'T00:00:00';
+        }
+        // Handle Buddhist format
+        else if (buddhistDatePattern.test(dateText)) {
+            var match = buddhistDatePattern.exec(dateText);
+            var day = match[1];
+            var month = match[2];
+            var year = match[3];
+            formattedDate = year + '-' + month + '-' + day + 'T00:00:00';
+        }
+        // Handle Unix timestamp
+        else if (unixTimestampPattern.test(dateText)) {
+            var timestamp = parseInt(dateText);
+            formattedDate = new Date(timestamp * 1000).toISOString();
+        }
+
+        // Only update the element if a valid date format is found
+        if (formattedDate) {
+            var timeElement = $('<time>').attr('datetime', formattedDate).text(dateText);
+            $(this).html(timeElement);
+        }
+    });
+
+    // Initialize timeago on elements with the datetime attribute
+    $('time').timeago();
+});
