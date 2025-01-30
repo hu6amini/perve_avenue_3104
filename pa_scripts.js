@@ -64,7 +64,7 @@ $(document).ready(function() {
     });
 
     // Select all the '.post .when' elements
-    $('.post .when, .big_list .when').each(function() {
+    $('.post .when, .big_list .when,.st-emoji-notice-time').each(function() {
         var dateText = $(this).text().trim();  // Get the text content and trim extra spaces
         var formattedDate;
 
