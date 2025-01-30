@@ -59,12 +59,12 @@ function waitForElement(t,e,i=1e4){const o=Date.now(),checkForElement=()=>{const
 
 $(document).ready(function() {
     // Remove the inner <span> (e.g., "Posted on") in .post .when elements
-    $('.post .when span,#search .title2.top .lt.Sub .when').each(function() {
+    $('.post .when span').each(function() {
         $(this).remove();  // Remove the inner span
     });
 
     // Select all the '.post .when' elements
-    $('.post .when, .big_list .when, #search .title2.top .lt.Sub .when').each(function() {
+    $('.post .when, .big_list .when').each(function() {
         var dateText = $(this).text().trim();  // Get the text content and trim extra spaces
         var formattedDate;
 
