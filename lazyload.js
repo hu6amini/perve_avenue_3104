@@ -1,1 +1,6 @@
-!function(){function e(t){if(t.getAttribute("data-src")&&t.getAttribute("decoding")==="async")return;if(!t.getAttribute("data-src")){t.setAttribute("data-src",t.src);t.removeAttribute("src")}if(!t.getAttribute("decoding"))t.setAttribute("decoding","async");t.classList.add("lazyload")}var t=new MutationObserver(function(t){t.forEach(function(t){t.addedNodes.forEach(function(t){t.nodeType===Node.ELEMENT_NODE&&t.tagName==="IMG"&&e(t)})})});t.observe(document.documentElement,{childList:!0,subtree:!0}),document.addEventListener("DOMContentLoaded",function(){document.querySelectorAll("img:not(.lazyload)").forEach(function(t){e(t)})})}();
+(function() {
+  var script = document.createElement('script');
+  script.src = 'https://cdn.jsdelivr.net/gh/hu6amini/perve_avenue_2065@main/lazyload.js';
+  script.async = true; // Adding async to make sure it doesn't block rendering
+  document.head.appendChild(script);
+})();
