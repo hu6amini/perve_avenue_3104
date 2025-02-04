@@ -11,8 +11,186 @@ const processElements=e=>{e.forEach((e=>{[...e.classList].some((e=>e.startsWith(
 //WYSIWYG Emojione
 const parentSelectors=["ul.List.st-editor-area.st-editor-area-desktop.st-editor-area-active","ul.list.st-editor-area.st-editor-area-desktop.st-editor-area-active"],editorSelector=".tiptap.ProseMirror";function waitForParent(e){return new Promise((t=>{const r=new MutationObserver((()=>{for(let o of e){const e=document.querySelector(o);if(e){r.disconnect(),t(e);break}}}));r.observe(document.body,{childList:!0,subtree:!0})}))}function placeCursorAfter(e){const t=document.createRange(),r=window.getSelection();t.setStartAfter(e),t.collapse(!0),r.removeAllRanges(),r.addRange(t)}function convertEmojis(e){e.querySelectorAll("p").forEach((e=>{if(""===e.textContent.trim())return;const t=emojione.toImage(e.innerHTML);if(t!==e.innerHTML){e.innerHTML="";const r=document.createElement("p");r.innerHTML=t,e.replaceWith(r),placeCursorAfter(r)}}))}waitForParent(parentSelectors).then((()=>{const e=document.querySelector(editorSelector);if(e){new MutationObserver((()=>convertEmojis(e))).observe(e,{childList:!0,subtree:!0,characterData:!0}),e.addEventListener("keyup",(()=>convertEmojis(e))),e.addEventListener("paste",(()=>{setTimeout((()=>convertEmojis(e)),0)})),convertEmojis(e)}}));
 //Post Avatars (function(){const AVATAR_COLORS=['#ff7770','#ff6b6b','#ff5154','#ffcb69','#fdc26d','#ffa96c','#ff9f1c','#ff8f5c','#9ce37d','#74c365','#16c172','#3ab795','#4ecdc4','#2dc7ff','#0eb1d2','#009bf5','#a3bcf9','#9b9ece','#9792e3','#8075ff','#b455b0','#a755c2','#a5acb5','#889696'];function getColorForCharacterCount(count){const rangeSize=Math.ceil(AVATAR_COLORS.length/26);return AVATAR_COLORS[Math.min(Math.floor(count/rangeSize),AVATAR_COLORS.length-1)];}function createAvatarSpan(userName,parentElement){const firstLetter=userName.charAt(0).toUpperCase(),avatarSpan=document.createElement('span');avatarSpan.className='avatar';avatarSpan.innerHTML=firstLetter;avatarSpan.style.backgroundColor=getColorForCharacterCount(userName.length);avatarSpan.style.color='#F7FFF7';parentElement.innerHTML='';parentElement.appendChild(avatarSpan);}function replaceAvatarsInPosts(){const posts=document.querySelectorAll('.post');posts.forEach(post=>{const avatarElement=post.querySelector('.left .avatar'),userLink=post.querySelector('.nick a'),userNickElement=post.querySelector('.nick');let userName;if(userLink){userName=userLink.textContent.trim();}else if(userNickElement){userName=userNickElement.innerHTML.trim();}if(avatarElement){const img=avatarElement.querySelector('img');if(img){const imgSrc=img.src,imgCheck=new Image();imgCheck.src=imgSrc;imgCheck.onload=function(){const defaultAvatarSrc="https://res.cloudinary.com/dbdf6gwgo/image/upload/v1674337715/forum/Avatar/default_avatar_zpw3zz.svg",robotAvatarSrc="https://res.cloudinary.com/dbdf6gwgo/image/upload/v1676109015/forum/Avatar/robot_snynw7.svg";if(imgSrc===defaultAvatarSrc||imgSrc===robotAvatarSrc){createAvatarSpan(userName,avatarElement);}};imgCheck.onerror=function(){createAvatarSpan(userName,avatarElement);};}else{createAvatarSpan(userName,avatarElement);}}else if(userName){const detailsElement=post.querySelector('.center .left .details');if(detailsElement&&!detailsElement.querySelector('.avatar')){const existingParagraph=detailsElement.querySelector('p'),existingNick=detailsElement.querySelector('.nick');createAvatarSpan(userName,detailsElement);if(existingParagraph)detailsElement.appendChild(existingParagraph);if(existingNick)detailsElement.appendChild(existingNick);}}});}replaceAvatarsInPosts();})();
-//First Letter Avatars 
-!function(){const e=["#ff7770","#ff6b6b","#ff5154","#ffcb69","#fdc26d","#ffa96c","#ff9f1c","#ff8f5c","#9ce37d","#74c365","#16c172","#3ab795","#4ecdc4","#2dc7ff","#0eb1d2","#009bf5","#a3bcf9","#9b9ece","#9792e3","#8075ff","#b455b0","#a755c2","#a5acb5","#889696"];function createAvatarLink(e,r){const t=e.charAt(0).toUpperCase(),o=document.createElement("a");o.href=r,o.className="avatar";const a=document.createElement("span");a.className="avatar",a.innerHTML=t;const n=getColorForCharacterCount(e.length);return a.style.backgroundColor=n,a.style.color="#F7FFF7",o.appendChild(a),o}function getColorForCharacterCount(r){const t=Math.ceil(1/e.length),o=Math.min(Math.floor(r/t),e.length-1);return e[o]}function fetchAvatarForUser(e,r){const t=e.href;fetch(t).then((e=>e.text())).then((o=>{const a=(new DOMParser).parseFromString(o,"text/html").querySelector(".profile .avatar img");if(a){const o="https://res.cloudinary.com/dbdf6gwgo/image/upload/v1674337715/forum/Avatar/default_avatar_zpw3zz.svg",n="https://res.cloudinary.com/dbdf6gwgo/image/upload/v1676109015/forum/Avatar/robot_snynw7.svg",c=new Image;c.src=a.src,c.onload=function(){if(a.src===o||a.src===n){const o=createAvatarLink(e.textContent.trim(),t);r.appendChild(o)}else{const e=document.createElement("a");e.href=t,e.className="avatar",e.appendChild(c),r.appendChild(e)}},c.onerror=function(){const o=createAvatarLink(e.textContent.trim(),t);r.appendChild(o)}}else{const o=createAvatarLink(e.textContent.trim(),t);r.appendChild(o)}})).catch((e=>console.error("Error fetching profile:",e)))}!function checkAndFetchAvatars(){document.querySelectorAll("#group .big_list li, #members .big_list li, .side_topics .thumbs a").forEach((e=>{const r=e.querySelector(".aa.thumbs a"),t=e.querySelector(".bb .nick a");if(r&&t){const e=new Image;e.src=r.querySelector("img")?.src||"",e.onload=function(){if(r.querySelector("img")&&("https://res.cloudinary.com/dbdf6gwgo/image/upload/v1674337715/forum/Avatar/default_avatar_zpw3zz.svg"===r.querySelector("img").src||"https://res.cloudinary.com/dbdf6gwgo/image/upload/v1676109015/forum/Avatar/robot_snynw7.svg"===r.querySelector("img").src)){const e=createAvatarLink(t.textContent.trim(),t.href);r.innerHTML="",r.appendChild(e)}},e.onerror=function(){const e=createAvatarLink(t.textContent.trim(),t.href);r.innerHTML="",r.appendChild(e)}}})),document.querySelectorAll(".side_topics .thumbs a").forEach((e=>{const r=e.closest(".side_topics").querySelector(".who a");if(e&&r){const t=new Image;t.src=e.querySelector("img")?.src||"",t.onload=function(){if(e.querySelector("img")&&("https://res.cloudinary.com/dbdf6gwgo/image/upload/v1674337715/forum/Avatar/default_avatar_zpw3zz.svg"===e.querySelector("img").src||"https://res.cloudinary.com/dbdf6gwgo/image/upload/v1676109015/forum/Avatar/robot_snynw7.svg"===e.querySelector("img").src)){const t=createAvatarLink(r.textContent.trim(),r.href);e.innerHTML="",e.appendChild(t)}},t.onerror=function(){const t=createAvatarLink(r.textContent.trim(),r.href);e.innerHTML="",e.appendChild(t)}}}))}(),document.querySelectorAll(".big_list .zz").forEach((e=>{const r=e.querySelector(".who");r&&fetchAvatarForUser(r.querySelector("a"),e)})),document.querySelectorAll(".stats.List .users a").forEach((e=>{fetchAvatarForUser(e,e)})),document.querySelectorAll("#tagObject li").forEach((e=>{const r=e.querySelector(".nickname");r&&fetchAvatarForUser(r,e)})),document.querySelectorAll("#send .summary .nick a").forEach((e=>{fetchAvatarForUser(e,e.parentElement)})),function replaceProfileAvatar(){const e=document.querySelector("#profile .profile span.nick"),r=document.querySelector("#profile .profile span.avatar");if(e&&r){const t=r.querySelector("img");if(!t||"https://res.cloudinary.com/dbdf6gwgo/image/upload/v1674337715/forum/Avatar/default_avatar_zpw3zz.svg"===t.src){const t=e.innerHTML.trim(),o=createAvatarLink(t,"#"),a=getColorForCharacterCount(t.length);o.querySelector("span").style.backgroundColor=a;const n=document.createElement("span");n.className="avatar",n.innerHTML=o.querySelector("span").innerHTML,n.style.backgroundColor=a,r.innerHTML="",r.appendChild(n)}}}(),function fetchAvatarForTopicSlider(){document.querySelectorAll(".topic_slider .thumbs a").forEach((e=>{const r=e.querySelector("img");if(r&&"https://res.cloudinary.com/dbdf6gwgo/image/upload/v1674337715/forum/Avatar/default_avatar_zpw3zz.svg"===r.src){const r=e.href;fetch(r).then((e=>e.text())).then((t=>{const o=(new DOMParser).parseFromString(t,"text/html").querySelector(".profile .nick");if(o){const t=createAvatarLink(o.innerHTML.trim(),r);e.innerHTML="",e.appendChild(t)}})).catch((e=>console.error("Error fetching topic slider avatar:",e)))}}))}(),function fetchAvatarForProfileFriends(){document.querySelectorAll(".profile-friends.thumbs a").forEach((e=>{const r=e.querySelector("img");if(r&&"https://res.cloudinary.com/dbdf6gwgo/image/upload/v1674337715/forum/Avatar/default_avatar_zpw3zz.svg"===r.src){const r=e.href;fetch(r).then((e=>e.text())).then((t=>{const o=(new DOMParser).parseFromString(t,"text/html").querySelector(".profile .nick");if(o){const t=createAvatarLink(o.textContent.trim(),r);e.innerHTML="",e.appendChild(t)}})).catch((e=>console.error("Error fetching profile for friends:",e)))}}))}()}();
+//First Letter Avatars !function(){const e=["#ff7770","#ff6b6b","#ff5154","#ffcb69","#fdc26d","#ffa96c","#ff9f1c","#ff8f5c","#9ce37d","#74c365","#16c172","#3ab795","#4ecdc4","#2dc7ff","#0eb1d2","#009bf5","#a3bcf9","#9b9ece","#9792e3","#8075ff","#b455b0","#a755c2","#a5acb5","#889696"];function createAvatarLink(e,r){const t=e.charAt(0).toUpperCase(),o=document.createElement("a");o.href=r,o.className="avatar";const a=document.createElement("span");a.className="avatar",a.innerHTML=t;const n=getColorForCharacterCount(e.length);return a.style.backgroundColor=n,a.style.color="#F7FFF7",o.appendChild(a),o}function getColorForCharacterCount(r){const t=Math.ceil(1/e.length),o=Math.min(Math.floor(r/t),e.length-1);return e[o]}function fetchAvatarForUser(e,r){const t=e.href;fetch(t).then((e=>e.text())).then((o=>{const a=(new DOMParser).parseFromString(o,"text/html").querySelector(".profile .avatar img");if(a){const o="https://res.cloudinary.com/dbdf6gwgo/image/upload/v1674337715/forum/Avatar/default_avatar_zpw3zz.svg",n="https://res.cloudinary.com/dbdf6gwgo/image/upload/v1676109015/forum/Avatar/robot_snynw7.svg",c=new Image;c.src=a.src,c.onload=function(){if(a.src===o||a.src===n){const o=createAvatarLink(e.textContent.trim(),t);r.appendChild(o)}else{const e=document.createElement("a");e.href=t,e.className="avatar",e.appendChild(c),r.appendChild(e)}},c.onerror=function(){const o=createAvatarLink(e.textContent.trim(),t);r.appendChild(o)}}else{const o=createAvatarLink(e.textContent.trim(),t);r.appendChild(o)}})).catch((e=>console.error("Error fetching profile:",e)))}!function checkAndFetchAvatars(){document.querySelectorAll("#group .big_list li, #members .big_list li, .side_topics .thumbs a").forEach((e=>{const r=e.querySelector(".aa.thumbs a"),t=e.querySelector(".bb .nick a");if(r&&t){const e=new Image;e.src=r.querySelector("img")?.src||"",e.onload=function(){if(r.querySelector("img")&&("https://res.cloudinary.com/dbdf6gwgo/image/upload/v1674337715/forum/Avatar/default_avatar_zpw3zz.svg"===r.querySelector("img").src||"https://res.cloudinary.com/dbdf6gwgo/image/upload/v1676109015/forum/Avatar/robot_snynw7.svg"===r.querySelector("img").src)){const e=createAvatarLink(t.textContent.trim(),t.href);r.innerHTML="",r.appendChild(e)}},e.onerror=function(){const e=createAvatarLink(t.textContent.trim(),t.href);r.innerHTML="",r.appendChild(e)}}})),document.querySelectorAll(".side_topics .thumbs a").forEach((e=>{const r=e.closest(".side_topics").querySelector(".who a");if(e&&r){const t=new Image;t.src=e.querySelector("img")?.src||"",t.onload=function(){if(e.querySelector("img")&&("https://res.cloudinary.com/dbdf6gwgo/image/upload/v1674337715/forum/Avatar/default_avatar_zpw3zz.svg"===e.querySelector("img").src||"https://res.cloudinary.com/dbdf6gwgo/image/upload/v1676109015/forum/Avatar/robot_snynw7.svg"===e.querySelector("img").src)){const t=createAvatarLink(r.textContent.trim(),r.href);e.innerHTML="",e.appendChild(t)}},t.onerror=function(){const t=createAvatarLink(r.textContent.trim(),r.href);e.innerHTML="",e.appendChild(t)}}}))}(),document.querySelectorAll(".big_list .zz").forEach((e=>{const r=e.querySelector(".who");r&&fetchAvatarForUser(r.querySelector("a"),e)})),document.querySelectorAll(".stats.List .users a").forEach((e=>{fetchAvatarForUser(e,e)})),document.querySelectorAll("#tagObject li").forEach((e=>{const r=e.querySelector(".nickname");r&&fetchAvatarForUser(r,e)})),document.querySelectorAll("#send .summary .nick a").forEach((e=>{fetchAvatarForUser(e,e.parentElement)})),function replaceProfileAvatar(){const e=document.querySelector("#profile .profile span.nick"),r=document.querySelector("#profile .profile span.avatar");if(e&&r){const t=r.querySelector("img");if(!t||"https://res.cloudinary.com/dbdf6gwgo/image/upload/v1674337715/forum/Avatar/default_avatar_zpw3zz.svg"===t.src){const t=e.innerHTML.trim(),o=createAvatarLink(t,"#"),a=getColorForCharacterCount(t.length);o.querySelector("span").style.backgroundColor=a;const n=document.createElement("span");n.className="avatar",n.innerHTML=o.querySelector("span").innerHTML,n.style.backgroundColor=a,r.innerHTML="",r.appendChild(n)}}}(),function fetchAvatarForTopicSlider(){document.querySelectorAll(".topic_slider .thumbs a").forEach((e=>{const r=e.querySelector("img");if(r&&"https://res.cloudinary.com/dbdf6gwgo/image/upload/v1674337715/forum/Avatar/default_avatar_zpw3zz.svg"===r.src){const r=e.href;fetch(r).then((e=>e.text())).then((t=>{const o=(new DOMParser).parseFromString(t,"text/html").querySelector(".profile .nick");if(o){const t=createAvatarLink(o.innerHTML.trim(),r);e.innerHTML="",e.appendChild(t)}})).catch((e=>console.error("Error fetching topic slider avatar:",e)))}}))}(),function fetchAvatarForProfileFriends(){document.querySelectorAll(".profile-friends.thumbs a").forEach((e=>{const r=e.querySelector("img");if(r&&"https://res.cloudinary.com/dbdf6gwgo/image/upload/v1674337715/forum/Avatar/default_avatar_zpw3zz.svg"===r.src){const r=e.href;fetch(r).then((e=>e.text())).then((t=>{const o=(new DOMParser).parseFromString(t,"text/html").querySelector(".profile .nick");if(o){const t=createAvatarLink(o.textContent.trim(),r);e.innerHTML="",e.appendChild(t)}})).catch((e=>console.error("Error fetching profile for friends:",e)))}}))}()}();
+const colors = [
+  "#ff7770", "#ff6b6b", "#ff5154", "#ffcb69", "#fdc26d", "#ffa96c", "#ff9f1c", "#ff8f5c",
+  "#9ce37d", "#74c365", "#16c172", "#3ab795", "#4ecdc4", "#2dc7ff", "#0eb1d2", "#009bf5",
+  "#a3bof9", "#9b9ece", "#9792e3", "#8075ff", "#b455b0", "#a755c2", "#a5acb5", "#889696"
+];
+
+const DEFAULT_AVATAR_URL = "https://res.cloudinary.com/dbdf6gwgo/image/upload/v1674337715/forum/Avatar/default_avatar_zpw3zz.svg";
+const ROBOT_AVATAR_URL = "https://res.cloudinary.com/dbdf6gwgo/image/upload/v1676109015/forum/Avatar/robot_snynw7.svg";
+
+function getColorForCharacterCount(length) {
+  const step = Math.ceil(1 / colors.length);
+  const index = Math.min(Math.floor(length / step), colors.length - 1);
+  return colors[index];
+}
+
+function createAvatarLink(name, url) {
+  const initial = name.charAt(0).toUpperCase();
+  const avatarLink = document.createElement("a");
+  avatarLink.href = url;
+  avatarLink.className = "avatar";
+
+  const avatarSpan = document.createElement("span");
+  avatarSpan.className = "avatar";
+  avatarSpan.textContent = initial;
+  avatarSpan.style.backgroundColor = getColorForCharacterCount(name.length);
+  avatarSpan.style.color = "#F7FFF7";
+
+  avatarLink.appendChild(avatarSpan);
+  return avatarLink;
+}
+
+async function fetchAvatarForUser(userLink, container) {
+  try {
+    const response = await fetch(userLink.href);
+    const text = await response.text();
+    const doc = new DOMParser().parseFromString(text, "text/html");
+    const avatarImg = doc.querySelector(".profile .avatar img");
+
+    if (avatarImg && ![DEFAULT_AVATAR_URL, ROBOT_AVATAR_URL].includes(avatarImg.src)) {
+      const img = new Image();
+      img.src = avatarImg.src;
+      img.onload = () => {
+        const avatarLink = document.createElement("a");
+        avatarLink.href = userLink.href;
+        avatarLink.className = "avatar";
+        avatarLink.appendChild(img);
+        container.appendChild(avatarLink);
+      };
+      img.onerror = () => {
+        const avatarLink = createAvatarLink(userLink.textContent.trim(), userLink.href);
+        container.appendChild(avatarLink);
+      };
+    } else {
+      const avatarLink = createAvatarLink(userLink.textContent.trim(), userLink.href);
+      container.appendChild(avatarLink);
+    }
+  } catch (error) {
+    console.error("Error fetching profile:", error);
+  }
+}
+
+async function checkAndFetchAvatars() {
+  const elements = document.querySelectorAll("#group .big_list li, #members .big_list li, .side_topics .thumbs a");
+  for (const element of elements) {
+    const avatarLink = element.querySelector(".aa.thumbs a");
+    const userLink = element.querySelector(".bb .nick a");
+
+    if (avatarLink && userLink) {
+      const img = avatarLink.querySelector("img");
+      if (img && [DEFAULT_AVATAR_URL, ROBOT_AVATAR_URL].includes(img.src)) {
+        const avatar = createAvatarLink(userLink.textContent.trim(), userLink.href);
+        avatarLink.innerHTML = "";
+        avatarLink.appendChild(avatar);
+      }
+    }
+  }
+
+  const sideTopics = document.querySelectorAll(".side_topics .thumbs a");
+  for (const topic of sideTopics) {
+    const userLink = topic.closest(".side_topics").querySelector(".who a");
+    if (topic && userLink) {
+      const img = topic.querySelector("img");
+      if (img && [DEFAULT_AVATAR_URL, ROBOT_AVATAR_URL].includes(img.src)) {
+        const avatar = createAvatarLink(userLink.textContent.trim(), userLink.href);
+        topic.innerHTML = "";
+        topic.appendChild(avatar);
+      }
+    }
+  }
+}
+
+async function replaceProfileAvatar() {
+  const profileNick = document.querySelector("#profile .profile span.nick");
+  const profileAvatar = document.querySelector("#profile .profile span.avatar");
+
+  if (profileNick && profileAvatar) {
+    const img = profileAvatar.querySelector("img");
+    if (!img || img.src === DEFAULT_AVATAR_URL) {
+      const name = profileNick.textContent.trim();
+      const avatar = createAvatarLink(name, "#");
+      avatar.querySelector("span").style.backgroundColor = getColorForCharacterCount(name.length);
+      profileAvatar.innerHTML = "";
+      profileAvatar.appendChild(avatar.querySelector("span"));
+    }
+  }
+}
+
+async function fetchAvatarForTopicSlider() {
+  const topicSliders = document.querySelectorAll(".topic_slider .thumbs a");
+  for (const slider of topicSliders) {
+    const img = slider.querySelector("img");
+    if (img && img.src === DEFAULT_AVATAR_URL) {
+      try {
+        const response = await fetch(slider.href);
+        const text = await response.text();
+        const doc = new DOMParser().parseFromString(text, "text/html");
+        const nick = doc.querySelector(".profile .nick");
+        if (nick) {
+          const avatar = createAvatarLink(nick.textContent.trim(), slider.href);
+          slider.innerHTML = "";
+          slider.appendChild(avatar);
+        }
+      } catch (error) {
+        console.error("Error fetching topic slider avatar:", error);
+      }
+    }
+  }
+}
+
+async function fetchAvatarForProfileFriends() {
+  const profileFriends = document.querySelectorAll(".profile-friends.thumbs a");
+  for (const friend of profileFriends) {
+    const img = friend.querySelector("img");
+    if (img && img.src === DEFAULT_AVATAR_URL) {
+      try {
+        const response = await fetch(friend.href);
+        const text = await response.text();
+        const doc = new DOMParser().parseFromString(text, "text/html");
+        const nick = doc.querySelector(".profile .nick");
+        if (nick) {
+          const avatar = createAvatarLink(nick.textContent.trim(), friend.href);
+          friend.innerHTML = "";
+          friend.appendChild(avatar);
+        }
+      } catch (error) {
+        console.error("Error fetching profile for friends:", error);
+      }
+    }
+  }
+}
+
+(async () => {
+  await checkAndFetchAvatars();
+  await replaceProfileAvatar();
+  await fetchAvatarForTopicSlider();
+  await fetchAvatarForProfileFriends();
+
+  document.querySelectorAll(".big_list .zz").forEach((element) => {
+    const userLink = element.querySelector(".who a");
+    if (userLink) {
+      fetchAvatarForUser(userLink, element);
+    }
+  });
+
+  document.querySelectorAll(".stats.List .users a").forEach((element) => {
+    fetchAvatarForUser(element, element);
+  });
+
+  document.querySelectorAll("#tagObject li").forEach((element) => {
+    const userLink = element.querySelector(".nickname");
+    if (userLink) {
+      fetchAvatarForUser(userLink, element);
+    }
+  });
+
+  document.querySelectorAll("#send .summary .nick a").forEach((element) => {
+    fetchAvatarForUser(element, element.parentElement);
+  });
+})();
 //Avatar Pack 
 !function(){const e=["#ff7770","#ff6b6b","#ff5154","#ffcb69","#fdc26d","#ffa96c","#ff9f1c","#ff8f5c","#9ce37d","#74c365","#16c172","#3ab795","#4ecdc4","#2dc7ff","#0eb1d2","#009bf5","#a3bcf9","#9b9ece","#9792e3","#8075ff","#b455b0","#a755c2","#a5acb5","#889696"];function createAvatar(t){const r=t.charAt(0).toUpperCase(),a=document.createElement("span");a.className="avatar",a.innerHTML=r;const o=function getColorForCharacterCount(t){const r=Math.ceil(e.length/26),a=Math.min(Math.floor(t/r),e.length-1);return e[a]}(t.length);return a.style.backgroundColor=o,a.style.color="#f7fff7bf",a}function handleAvatarReplacement(e,t,r){const a=new Image;a.src=e.src,a.onload=function(){if("https://res.cloudinary.com/dbdf6gwgo/image/upload/v1674337715/forum/Avatar/default_avatar_zpw3zz.svg"===e.src){const e=createAvatar(t);r.innerHTML="",r.appendChild(e)}},a.onerror=function(){const e=createAvatar(t);r.innerHTML="",r.appendChild(e)}}function replaceDefaultAvatars(){document.querySelectorAll("#notifications-modal .notification-row").forEach((e=>{const t=e.querySelector(".avatar img"),r=e.querySelector(".notification-text b");t&&r&&handleAvatarReplacement(t,r.textContent.trim(),e.querySelector(".avatar"))}))}function replaceProfileThumbsAvatars(){document.querySelectorAll("#pop_profile .thumbs a").forEach((e=>{const t=e.querySelector("img.default_avatar"),r=e.getAttribute("href");t&&"https://res.cloudinary.com/dbdf6gwgo/image/upload/v1674337715/forum/Avatar/default_avatar_zpw3zz.svg"===t.src&&fetch(r).then((e=>e.text())).then((r=>{const a=(new DOMParser).parseFromString(r,"text/html").querySelector(".profile .nick");if(a){const r=a.textContent.trim();handleAvatarReplacement(t,r,e)}})).catch((e=>console.error("Error fetching profile:",e)))}))}function handlePopupAvatars(){document.querySelectorAll(".popup.pop_points .users li a").forEach((e=>{const t=e.getAttribute("href");e.parentNode.querySelector(".avatar img");e.parentNode.querySelector(".avatar")||fetch(t).then((e=>e.text())).then((r=>{const a=(new DOMParser).parseFromString(r,"text/html"),o=a.querySelector(".profile .nick");if(o){const r=o.textContent.trim(),n=a.querySelector(".profile .avatar img");if(n){const a=new Image;a.src=n.src,a.onload=function(){const o=document.createElement("a");if(o.className="avatar",o.href=t,"https://res.cloudinary.com/dbdf6gwgo/image/upload/v1674337715/forum/Avatar/default_avatar_zpw3zz.svg"!==a.src){const e=a.cloneNode();o.appendChild(e)}else{const e=createAvatar(r);o.appendChild(e)}e.parentNode.querySelector(".avatar")||e.parentNode.insertBefore(o,e)},a.onerror=function(){const a=createAvatar(r),o=document.createElement("a");o.className="avatar",o.href=t,o.appendChild(a),e.parentNode.querySelector(".avatar")||e.parentNode.insertBefore(o,e)}}}})).catch((e=>console.error("Error fetching profile:",e)))}))}function waitForElement(e,t){const r=new MutationObserver((()=>{const a=document.querySelector(e);a&&(r.disconnect(),t(a))}));r.observe(document.body,{childList:!0,subtree:!0})}const t=new MutationObserver((()=>{replaceDefaultAvatars()}));waitForElement("#notifications-modal",(e=>{t.observe(e,{childList:!0,subtree:!0}),replaceDefaultAvatars()})),waitForElement("#pop_profile",(e=>{new MutationObserver((()=>{replaceProfileThumbsAvatars()})).observe(e,{childList:!0,subtree:!0}),replaceProfileThumbsAvatars()})),waitForElement(".popup.pop_points",(e=>{new MutationObserver((()=>{handlePopupAvatars()})).observe(e,{childList:!0,subtree:!0}),handlePopupAvatars()}))}();
 //Avatar Pack 2 
