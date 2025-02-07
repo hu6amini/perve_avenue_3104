@@ -63,5 +63,5 @@ input[type="submit"],button[type="submit"]:not(.children-2 button,.log,.error .s
 #lastslider{background:var(--contt)!important}
 #notifications-modal .modal-title{background-color:var(--menul)}
 .color span,.buttons span{color:var(--ftcol)!important}
-.nav .fa-regular,.home .controls .prev:hover,.home .controls .next:hover,.home .indicator div.active{color:var(--redft)}
+.nav .fa-regular{color:var(--redft)}
 }
