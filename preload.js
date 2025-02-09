@@ -24,6 +24,15 @@ function loadScript(src, integrity, crossorigin, referrerPolicy, async, defer, c
         if (document.querySelector('script[src="' + src + '"]')) {
             return resolve(); // Prevent redundant loading
         }
+        var link = document.createElement("link");
+        link.rel = "preload";
+        link.href = src;
+        link.as = "script"; // Preload as script
+        if (integrity) link.integrity = integrity;
+        if (crossorigin) link.crossOrigin = crossorigin;
+        if (referrerPolicy) link.referrerPolicy = referrerPolicy;
+        document.head.appendChild(link); // Preload the script
+
         var script = document.createElement("script");
         script.src = src;
         if (integrity) script.integrity = integrity;
@@ -49,7 +58,7 @@ Promise.all([
               "sha512-yHknP1/AwR+yx26cB1y0cjvQUMvEa2PFzt1c9LlS4pRQ5NOTZFWbhBig+X9G9eYW/8m0/4OXNx8pxJ6z57x0dw==", 
               "anonymous", "no-referrer")
 ])
-// **Then load scripts**
+// **Then preload scripts**
 .then(function() {
     return Promise.all([
         loadScript("https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js", 
