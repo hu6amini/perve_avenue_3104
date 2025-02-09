@@ -6,6 +6,17 @@ function processEmojisInColorClass(){document.querySelectorAll('.color').forEach
 function addAsyncDecoding(){document.querySelectorAll("img").forEach(t=>{t.hasAttribute("decoding")||t.setAttribute("decoding","async"),t.hasAttribute("loading")||t.hasAttribute("data-src")||t.classList.contains("lazyload")||t.closest(".slick_carousel")||t.setAttribute("loading","lazy")}),document.querySelectorAll("iframe:not([loading])").forEach(t=>t.setAttribute("loading","lazy"))}let debounceTimeout;function debounceMutation(){clearTimeout(debounceTimeout),debounceTimeout=setTimeout(()=>{addAsyncDecoding()},200)}const imasyncObserver=new MutationObserver(debounceMutation);imasyncObserver.observe(document.body,{childList:!0,subtree:!0,attributes:!1,characterData:!1});
 //Light gallery
 const postColors=document.querySelectorAll(".post .color");postColors.forEach(t=>{t.querySelectorAll('img:not(.emojione):not(.signature img):not([src^="https://img.forumfree.net/html/emoticons/new"]):not([src^="https://img.forumfree.net/html/mime_types"])').forEach(t=>{if(!(t.alt&&t.alt.startsWith(":")||"a"===t.parentNode.tagName.toLowerCase()&&t.src.startsWith("https://www.google.com/s2/favicons"))){const e=t.parentNode;if("a"===e.tagName.toLowerCase())t.classList.contains("lazyload")&&t.hasAttribute("data-src")?e.setAttribute("data-lightbox","gallery"):(e.href!==t.src&&e.setAttribute("href",t.src),e.setAttribute("data-lightbox","gallery"));else{const o=document.createElement("a");o.href=t.src||t.getAttribute("data-src"),o.setAttribute("data-lightbox","gallery"),e.insertBefore(o,t),o.appendChild(t)}}});lightGallery(t,{selector:'a[data-lightbox="gallery"]'})});
+//Slick carousel
+$('.slick_carousel').slick({
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  autoplay: true,
+  autoplaySpeed: 4000,
+dots: true,
+  infinite: true,
+centerMode: true,
+lazyLoad: 'ondemand',
+});
 //Favicons
 function updateFaviconsForLinks(e){e.forEach((e=>{if(!(e.closest(".spoiler .code_top a")||e.closest(".fancyborder a")||e.closest(".quote_top a")||e.closest(".ve-content [data-type=mention]")||e.querySelector("img"))){var o=e.href.includes("youtu.be")?"https://www.google.com/s2/favicons?domain=youtube.com":"https://www.google.com/s2/favicons?domain="+e.href;e.style.backgroundImage="url('"+o+"')",e.style.backgroundSize="16px 16px",e.style.backgroundPosition="left center",e.style.backgroundRepeat="no-repeat",e.style.paddingLeft="19px",e.matches(".quote a, .tmsg a")&&(e.style.backgroundSize="14px 14px",e.style.paddingLeft="17px")}}))}updateFaviconsForLinks(document.querySelectorAll(".color a, span.tmsg a"));const faviconObserver=new MutationObserver((e=>{e.forEach((e=>{updateFaviconsForLinks(e.target.querySelectorAll(".color a, span.tmsg a"))}))}));faviconObserver.observe(document.body,{childList:!0,subtree:!0});
 //Reply counter
