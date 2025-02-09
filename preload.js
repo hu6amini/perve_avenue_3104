@@ -22,11 +22,11 @@ Promise.all([
 ]).then(() => new Promise(n => {
     document.addEventListener("DOMContentLoaded", n, { once: true });
 })).then(() => Promise.all([
-    loadScript("https://cdn.jsdelivr.net/gh/hu6amini/perve_avenue_2225@main/ui_enhancements.js", null, "anonymous", null, false, null, true), // defer
-    loadScript("https://cdn.jsdelivr.net/gh/hu6amini/perve_avenue_2225@main/avatars.js", null, "anonymous", null, false, null, true), // defer
-    loadScript("https://cdn.jsdelivr.net/gh/hu6amini/perve_avenue_2225@main/media.js", null, "anonymous", null, false, null, true), // defer
-    loadScript("https://cdn.jsdelivr.net/gh/hu6amini/perve_avenue_2225@main/formatting.js", null, "anonymous", null, false, null, true), // defer
-    loadScript("https://cdn.jsdelivr.net/gh/hu6amini/perve_avenue_2225@main/tooltips.js", null, "anonymous", null, false, null, true), // defer
-    loadScript("https://cdn.jsdelivr.net/gh/hu6amini/perve_avenue_2225@main/links.js", null, "anonymous", null, false, null, true), // defer
-    loadScript("https://cdn.jsdelivr.net/gh/hu6amini/perve_avenue_2225@main/utilities.js", null, "anonymous", null, false, null, true) // defer
+    loadScript("https://cdn.jsdelivr.net/gh/hu6amini/perve_avenue_2232@main/ui_enhancements.js", null, "anonymous", null, false, null, true), // defer
+    loadScript("https://cdn.jsdelivr.net/gh/hu6amini/perve_avenue_2232@main/avatars.js", null, "anonymous", null, false, null, true), // defer
+    loadScript("https://cdn.jsdelivr.net/gh/hu6amini/perve_avenue_2232@main/media.js", null, "anonymous", null, false, null, true), // defer
+    loadScript("https://cdn.jsdelivr.net/gh/hu6amini/perve_avenue_2232@main/formatting.js", null, "anonymous", null, false, null, true), // defer
+    loadScript("https://cdn.jsdelivr.net/gh/hu6amini/perve_avenue_2232@main/tooltips.js", null, "anonymous", null, false, null, true), // defer
+    loadScript("https://cdn.jsdelivr.net/gh/hu6amini/perve_avenue_2232@main/links.js", null, "anonymous", null, false, null, true), // defer
+    loadScript("https://cdn.jsdelivr.net/gh/hu6amini/perve_avenue_2232@main/utilities.js", null, "anonymous", null, false, null, true) // defer
 ])).then(() => loadScript("https://nb.forumfree.it/scripts/ace/slider.js", null, null, null, false, null, true)).catch(() => {});
