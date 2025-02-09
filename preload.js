@@ -22,5 +22,5 @@ Promise.all([
 ]).then(() => new Promise(n => {
     document.addEventListener("DOMContentLoaded", n, { once: true });
 })).then(() => Promise.all([
-    loadScript("https://cdn.jsdelivr.net/gh/hu6amini/perve_avenue_2234@main/pa_scripts.js", null, "anonymous", null, false, null, true) // defer
+    loadScript("https://cdn.jsdelivr.net/gh/hu6amini/perve_avenue_2235@main/pa_scripts.js", null, "anonymous", null, false, null, true) // defer
 ])).then(() => loadScript("https://nb.forumfree.it/scripts/ace/slider.js", null, null, null, false, null, true)).catch(() => {});
