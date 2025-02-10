@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // Load Perve Avenue and ACE Slider last
         let paScript = document.createElement("script");
-        paScript.src = "https://cdn.jsdelivr.net/gh/hu6amini/perve_avenue_2276@main/pa_scripts.js";
+        paScript.src = "https://cdn.jsdelivr.net/gh/hu6amini/perve_avenue_2277@main/pa_scripts.js";
         paScript.defer = true;
         document.body.appendChild(paScript);
 
