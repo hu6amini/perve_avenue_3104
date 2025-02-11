@@ -84,7 +84,7 @@ Promise.all([
 // **Load additional scripts after DOM is ready**
 .then(function() {
     return Promise.all([
-        loadScript("https://cdn.jsdelivr.net/gh/hu6amini/perve_avenue_2292@main/pa_scripts.js", 
+        loadScript("https://cdn.jsdelivr.net/gh/hu6amini/perve_avenue_2293@main/pa_scripts.js", 
                    null, "anonymous", null, false, true) // defer
     ]);
 })
