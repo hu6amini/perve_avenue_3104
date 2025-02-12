@@ -1,6 +1,6 @@
 div[class="Fixed"]{margin-top:100px;top:0;position:sticky!important}
 .ve-content.color{display:flex}
-.tiptap.ProseMirror{flex:1}
+.tiptap.ProseMirror{flex:1;min-height: 100px}
 #user .main_list img[alt="Avatar"]{background-color:var(--contt);border-radius:4px;height:192px;object-fit:cover;object-position:top;overflow:hidden;width:192px}
 .color img:not(img[alt="fav"],img[src^="https://img.forumfree.net/html/emoticons/new/"],[class*=e1a-],img[alt$=":"],.res_tmb img,.emojione), .color a img:not(img[src^="https://www.google.com/s2/"],img[src^="https://img.forumfree.net/html/emoticons/new/"]), .color p img:not(img[alt="fav"],img[src^="https://img.forumfree.net/html/emoticons/new/"],[class*=e1a-],img[alt$=":"],.res_tmb img,.emojione) {background-color:transparent;border:0;border-radius:7px;font-size:0;padding:3px;position:relative;vertical-align:text-bottom!important;z-index:1}
 .ve-content.color img{user-select:all}
