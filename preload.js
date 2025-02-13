@@ -56,6 +56,9 @@ Promise.all([
               "anonymous", "no-referrer"),
     loadStyle("https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css", 
               "sha512-yHknP1/AwR+yx26cB1y0cjvQUMvEa2PFzt1c9LlS4pRQ5NOTZFWbhBig+X9G9eYW/8m0/4OXNx8pxJ6z57x0dw==", 
+              "anonymous", "no-referrer"),
+    loadStyle("https://cdnjs.cloudflare.com/ajax/libs/lite-youtube-embed/0.3.3/lite-yt-embed.min.css", 
+              "sha512-jGFXuWMxJUKzdfBmoyqCXz9k2AU3Z/ZNoayoUPEBAtJZjHbTbw50AxTR1ICVPQJbSamH9ny1JwOur0x4WOdcWQ==", 
               "anonymous", "no-referrer")
 ])
 // **Then preload scripts**
@@ -72,6 +75,9 @@ Promise.all([
                    "anonymous", "no-referrer", false, true), // defer
         loadScript("https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js", 
                    "sha512-HGOnQO9+SP1V92SrtZfjqxxtLmVzqZpjFFekvzZVWoiASSQgSr4cw9Kqd2+l8Llp4Gm0G8GIFJ4ddwZilcdb8A==", 
+                   "anonymous", "no-referrer", false, true), // defer
+        loadScript("https://cdnjs.cloudflare.com/ajax/libs/lite-youtube-embed/0.3.3/lite-yt-embed.js", 
+                   "sha512-WKiiKu2dHNBXgIad9LDYeXL80USp6v+PmhRT5Y5lIcWonM2Avbn0jiWuXuh7mL2d5RsU3ZmIxg5MiWMEMykghA==", 
                    "anonymous", "no-referrer", false, true) // defer
     ]);
 })
