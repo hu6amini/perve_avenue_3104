@@ -834,6 +834,8 @@ div[style="padding:56.25% 0 0 0;position:relative;"]{height:315px;margin:0;paddi
 #user table[style="width:75%"]{width:100%!important}
 .quote span[style="font-size: 19.5pt"]{font-size:17.06pt!important}
 .tippy-info [class^="tippy-"]:not(.tippy-nick,.tippy-group)::before{color:var(--ltcol);display:inline-flex;justify-content:center;width:18px}
+.post .color iframe[src*="youtube.com"]{display:none!important;visibility:hidden!important}
+.post .color .lite-embed iframe[src*="youtube.com"]{display:block!important;visibility:visible!important}
 
 @media (max-width: 768px){
 .prvchat{width:100%!important}
