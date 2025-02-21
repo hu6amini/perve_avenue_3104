@@ -49,7 +49,11 @@ function loadScript(src, integrity, crossorigin, referrerPolicy, async, defer, c
     });
 }
 
-// **Preload styles first**
+// Set lazySizes configuration before loading the script
+window.lazySizesConfig = window.lazySizesConfig || {};
+window.lazySizesConfig.init = false; // Prevents auto-init
+
+// Load styles first
 Promise.all([
     loadStyle("https://cdnjs.cloudflare.com/ajax/libs/lightgallery-js/1.4.0/css/lightgallery.min.css", 
               "sha512-kwJUhJJaTDzGp6VTPBbMQWBFUof6+pv0SM3s8fo+E6XnPmVmtfwENK0vHYup3tsYnqHgRDoBDTJWoq7rnQw2+g==", 
@@ -61,41 +65,41 @@ Promise.all([
               "sha512-jGFXuWMxJUKzdfBmoyqCXz9k2AU3Z/ZNoayoUPEBAtJZjHbTbw50AxTR1ICVPQJbSamH9ny1JwOur0x4WOdcWQ==", 
               "anonymous", "no-referrer")
 ])
-// **Then preload scripts**
+// Then preload scripts
 .then(function() {
     return Promise.all([
         loadScript("https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js", 
                    "sha512-q583ppKrCRc7N5O0n2nzUiJ+suUv7Et1JGels4bXOaMFQcamPk9HjdUknZuuFjBNs7tsMuadge5k9RzdmO+1GQ==", 
-                   "anonymous", "no-referrer", false, true), // defer
+                   "anonymous", "no-referrer", false, true),
         loadScript("https://cdnjs.cloudflare.com/ajax/libs/emojione/4.5.0/lib/js/emojione.min.js", 
                    "sha512-E2Ai/A9+KcoBm0lvfnd5krbr7TWUigQGWTfcoMToNpfmCvQKkZdTbpwyIM4PFbCGMtSmMjE/DAXGjVXpWGdFaQ==", 
-                   "anonymous", "no-referrer", false, true), // defer
+                   "anonymous", "no-referrer", false, true),
         loadScript("https://cdnjs.cloudflare.com/ajax/libs/lightgallery-js/1.4.0/js/lightgallery.min.js", 
                    "sha512-b4rL1m5b76KrUhDkj2Vf14Y0l1NtbiNXwV+SzOzLGv6Tz1roJHa70yr8RmTUswrauu2Wgb/xBJPR8v80pQYKtQ", 
-                   "anonymous", "no-referrer", false, true), // defer
+                   "anonymous", "no-referrer", false, true),
         loadScript("https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js", 
                    "sha512-HGOnQO9+SP1V92SrtZfjqxxtLmVzqZpjFFekvzZVWoiASSQgSr4cw9Kqd2+l8Llp4Gm0G8GIFJ4ddwZilcdb8A==", 
-                   "anonymous", "no-referrer", false, true), // defer
+                   "anonymous", "no-referrer", false, true),
         loadScript("https://cdnjs.cloudflare.com/ajax/libs/lite-youtube-embed/0.3.3/lite-yt-embed.js", 
                    "sha512-WKiiKu2dHNBXgIad9LDYeXL80USp6v+PmhRT5Y5lIcWonM2Avbn0jiWuXuh7mL2d5RsU3ZmIxg5MiWMEMykghA==", 
-                   "anonymous", "no-referrer", false, true) // defer
+                   "anonymous", "no-referrer", false, true)
     ]);
 })
-// **Wait for DOMContentLoaded before loading remaining scripts**
+// Wait for DOMContentLoaded before loading remaining scripts
 .then(function() {
     return new Promise(function(resolve) {
         document.addEventListener("DOMContentLoaded", resolve, { once: true });
     });
 })
-// **Load additional scripts after DOM is ready**
+// Load additional scripts after DOM is ready
 .then(function() {
+    // Initialize lazysizes after it has been loaded
+    lazySizes.init();
     return Promise.all([
-        loadScript("https://cdn.jsdelivr.net/gh/hu6amini/perve_avenue_2339@main/pa_scripts.js", 
-                   null, "anonymous", null, false, true) // defer
+        loadScript("https://cdn.jsdelivr.net/gh/hu6amini/perve_avenue_2340@main/pa_scripts.js", 
+                   null, "anonymous", null, false, true),
+        loadScript("https://nb.forumfree.it/scripts/ace/slider.js", null, null, null, false, true)
     ]);
-})
-.then(function() {
-    return loadScript("https://nb.forumfree.it/scripts/ace/slider.js", null, null, null, false, true);
 })
 .catch(function(err) {
     console.error("Script loading error:", err);
