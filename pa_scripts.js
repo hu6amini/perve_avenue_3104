@@ -9,27 +9,7 @@ function waitForElement(t,e,i=1e4){const o=Date.now(),checkForElement=()=>{const
 //Light gallery
 const postColors=document.querySelectorAll(".post .color,.summary .list li .color.Item");postColors.forEach(t=>{t.querySelectorAll('img:not(.emojione):not(.signature img):not([src^="https://img.forumfree.net/html/emoticons/new"]):not([src^="https://img.forumfree.net/html/mime_types"])').forEach(t=>{if(!(t.alt&&t.alt.startsWith(":")||"a"===t.parentNode.tagName.toLowerCase()&&t.src.startsWith("https://www.google.com/s2/favicons"))){const e=t.parentNode;if("a"===e.tagName.toLowerCase())t.classList.contains("lazyload")&&t.hasAttribute("data-src")?e.setAttribute("data-lightbox","gallery"):(e.href!==t.src&&e.setAttribute("href",t.src),e.setAttribute("data-lightbox","gallery"));else{const o=document.createElement("a");o.href=t.src||t.getAttribute("data-src"),o.setAttribute("data-lightbox","gallery"),e.insertBefore(o,t),o.appendChild(t)}}});lightGallery(t,{selector:'a[data-lightbox="gallery"]'})});
 //Slick carousel
-$('.slick_carousel').slick({
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 3820,
-    dots: true,
-    infinite: true,
-    centerMode: true,
-    lazyLoad: 'progressive', // Load images before they become visible
-    pauseOnFocus: false
-}).on('beforeChange', function(event, slick, currentSlide, nextSlide) {
-    // Find the next slide's images
-    let nextSlideEl = slick.$slides.eq(nextSlide);
-    
-    // Trigger lazysizes manually on the upcoming slide
-    nextSlideEl.find('.lazyload').each(function() {
-        if (!this.classList.contains('lazyloaded')) {
-            this.classList.add('lazyload'); // Re-trigger lazysizes if needed
-        }
-    });
-});
+$('.slick_carousel').slick({slidesToShow:1,slidesToScroll:1,autoplay:true,autoplaySpeed:3820,dots:true,infinite:true,centerMode:true,lazyLoad:'ondemand',pauseOnFocus:false});
 //Favicons 
 function updateFaviconsForLinks(e){e.forEach((e=>{if(!(e.closest(".spoiler .code_top a")||e.closest(".fancyborder a")||e.closest(".quote_top a")||e.closest(".ve-content [data-type=mention]")||e.querySelector("img"))){var o=e.href.includes("youtu.be")?"https://www.google.com/s2/favicons?domain=youtube.com":"https://www.google.com/s2/favicons?domain="+e.href;e.style.backgroundImage="url('"+o+"')",e.style.backgroundSize="16px 16px",e.style.backgroundPosition="left center",e.style.backgroundRepeat="no-repeat",e.style.paddingLeft="19px",e.matches(".quote a,.tmsg a")&&(e.style.backgroundSize="14px 14px",e.style.paddingLeft="17px")}}))}updateFaviconsForLinks(document.querySelectorAll(".post .color a,.summary .color a,#loading .color a,#search .color a,span.tmsg a"));const faviconObserver=new MutationObserver((e=>{e.forEach((e=>{updateFaviconsForLinks(e.target.querySelectorAll(".post .color a,.summary .color a,#loading .color a,#search .color a,span.tmsg a"))}))}));faviconObserver.observe(document.body,{childList:!0,subtree:!0});
 //Reply counter 
