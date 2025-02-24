@@ -81,22 +81,6 @@ Promise.all([
                    "anonymous", "no-referrer", false, true) // defer
     ]);
 })
-// **Wait for DOMContentLoaded before loading remaining scripts**
-.then(function() {
-    return new Promise(function(resolve) {
-        document.addEventListener("DOMContentLoaded", resolve, { once: true });
-    });
-})
-// **Load additional scripts after DOM is ready**
-.then(function() {
-    return Promise.all([
-        loadScript("https://cdn.jsdelivr.net/gh/hu6amini/perve_avenue_2341@main/pa_scripts.js", 
-                   null, "anonymous", null, false, true) // defer
-    ]);
-})
-.then(function() {
-    return loadScript("https://nb.forumfree.it/scripts/ace/slider.js", null, null, null, false, true);
-})
 .catch(function(err) {
     console.error("Script loading error:", err);
 });
