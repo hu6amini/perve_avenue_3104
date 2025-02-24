@@ -1,15 +1,10 @@
 //Menuwrap icons
 function waitForElement(e,t){const n=new MutationObserver((i=>{for(const o of i)if("childList"===o.type&&document.querySelector(e)){n.disconnect(),t(document.querySelector(e));break}})),i=document.querySelector(".menuwrap");i&&n.observe(i,{childList:!0,subtree:!0})}function addIdsToMenuItems(e){const t=e.querySelector(".left");t&&(t.style.visibility="visible"),e.querySelectorAll(".left li.menu").forEach((e=>{const t=e.querySelector("a");if(t){const n=t.getAttribute("href"),i=(t.innerHTML.trim(),t.querySelector("span")?.innerHTML.trim());e.querySelector(".nick")?e.id="nick":"https://msg.forumcommunity.net/?act=Msg&CODE=01&c=655775"===n?e.id="messenger":"https://msg.forumcommunity.net/?act=UserCP&CODE=26&c=655775"===n?e.id="topics":"#notifications"===n?e.id="notif":e.querySelector('form[action="/?act=Mod"]')||["&nbsp;Moderation","&nbsp;Moderazione","&nbsp;Moderación","&nbsp;Modération","&nbsp;Mäßigung","&nbsp;Moderação"].includes(i)?e.id="mod":(["&nbsp;Administration","&nbsp;Amministrazione","&nbsp;Administración","&nbsp;Verwaltung","&nbsp;Administração"].includes(i)||"https://www.forumcommunity.net/?cid=655775"===n)&&(e.id="admin"),"&nbsp;Messenger"===i&&(e.id="messenger")}})),e.querySelectorAll(".left li:not(.menu)").forEach((e=>{const t=e.querySelector("a");t&&("HOME"===t.textContent.trim()?e.id="pahome":"/latestupdates"===t.getAttribute("href")&&(e.id="updates"))}))}waitForElement(".menuwrap",addIdsToMenuItems);
-//Image Async 
-function addAsyncDecoding(){document.querySelectorAll("img").forEach(t=>{t.hasAttribute("decoding")||t.setAttribute("decoding","async"),t.hasAttribute("loading")||t.hasAttribute("data-src")||t.classList.contains("lazyload")||t.closest(".slick_carousel")||t.setAttribute("loading","lazy")}),document.querySelectorAll("iframe:not([loading])").forEach(t=>t.setAttribute("loading","lazy"))}addAsyncDecoding();let debounceTimeout;function debounceMutation(){clearTimeout(debounceTimeout),debounceTimeout=setTimeout(()=>{addAsyncDecoding()},200)}const imasyncObserver=new MutationObserver(debounceMutation);imasyncObserver.observe(document.body,{childList:!0,subtree:!0,attributes:!1,characterData:!1});
-//Tooltips
-function waitForElement(t,e,i=1e4){const o=Date.now(),checkForElement=()=>{const n=document.querySelectorAll(t);n.length>0?n.forEach(e):Date.now()-o<i?requestAnimationFrame(checkForElement):console.warn('Element with selector "'+t+'" did not appear within '+i+"ms.")};checkForElement()}function initTippy(t){t._tippy||tippy(t,{placement:"bottom",theme:"dark",animation:"fade",offset:[0,10],observe:!0,arrow:!1,onCreate(t){t.popper.classList.add("tippy-custom")}})}function addTooltip(t){waitForElement(t,(t=>{if(!t.hasAttribute("data-tippy-content")&&t.getAttribute("title")){const e=t.getAttribute("title");t.setAttribute("data-tippy-content",e),t.removeAttribute("title")}initTippy(t)}))}const tooltipObserver=new MutationObserver((t=>{t.forEach((t=>{t.addedNodes.forEach((t=>{t.nodeType===Node.ELEMENT_NODE&&t.hasAttribute("data-tippy-content")&&initTippy(t)}))}))}));function isMobileDevice(){return window.matchMedia("(max-width: 768px)").matches}isMobileDevice()||(tooltipObserver.observe(document.body,{childList:!0,subtree:!0}),waitForElement("body",(()=>{addTooltip(".st-editor-toggle"),addTooltip('button[name="full"]'),addTooltip("#preview_button"),waitForElement('.top-button .topbutton input[type="submit"]',(t=>{const e=t.closest("form").querySelector('input[type="submit"]').value,i=t.closest(".top-button");i.setAttribute("data-tippy-content",e),initTippy(i)})),waitForElement("#mark-send button",(t=>{t.setAttribute("data-tippy-content","Find"),initTippy(t)})),waitForElement('.menuwrap a[href="#notifications"]',(t=>{t.setAttribute("data-tippy-content","Notifications"),initTippy(t)})),waitForElement(".menuwrap a.st-emoji-link-void.st-emoji-notice-modal-toggle",(t=>{t.setAttribute("data-tippy-content","Reactions"),initTippy(t)})),waitForElement(".navsub .lastpost a",(t=>{t.setAttribute("data-tippy-content","Go to first unread post"),initTippy(t)})),waitForElement(".navsub .last a",(t=>{t.setAttribute("data-tippy-content","Go to last page"),initTippy(t)})),waitForElement(".navsub .first a",(t=>{t.setAttribute("data-tippy-content","Go to first page"),initTippy(t)})),waitForElement('.big_list .zz input[type="checkbox"]',(t=>{t.setAttribute("data-tippy-content","Select topic"),initTippy(t)})),waitForElement('#send .send .darkbar button[name="preview"]',(t=>{t.setAttribute("data-tippy-content","Preview"),initTippy(t)})),waitForElement(".menuwrap .log",(t=>{t.setAttribute("data-tippy-content","Log in"),initTippy(t)})),waitForElement('.tag img[alt="x"]',(t=>{t.setAttribute("data-tippy-content","Delete"),t.removeAttribute("title"),initTippy(t)})),addTooltip('.menuwrap a[href="#notifications"]'),addTooltip(".menuwrap a.st-emoji-link-void.st-emoji-notice-modal-toggle"),addTooltip(".menuwrap .log"),addTooltip('#send .send .darkbar button[name="preview"]'),addTooltip(".navsub .lastpost a"),addTooltip(".navsub .last a"),addTooltip(".navsub .first a"),addTooltip('.big_list .zz input[type="checkbox"]'),addTooltip('#send .send .right.Sub img[alt="File Attachments"]'),addTooltip('.tag img[alt="x"]'),addTooltip('.post .title2.bottom .right.Item.Justify .rt.Sub input[type="checkbox"],.post .title2.bottom .right.Item.Justify .rt.Sub label'),addTooltip('#send .send button[name="preview"]'),addTooltip(".post .title2.top .right img.bullet_delete"),addTooltip('#send .send .right.Sub img[data-emojipicker="#Post"]');document.querySelectorAll("[data-tippy-content]").forEach((t=>{initTippy(t)}))})));
-//Emojione 
-function processEmojisInColorClass(){document.querySelectorAll(".post .color,#loading .color,.summary .color,.st-emoji-epost-content.color,#notifications-modal .notification-text").forEach(e=>{e.dataset.emojiProcessed||(e.innerHTML=emojione.toImage(e.innerHTML),e.dataset.emojiProcessed="true")})}processEmojisInColorClass();const emojiObserver=new MutationObserver(e=>{e.forEach(e=>{e.addedNodes.forEach(e=>{1===e.nodeType&&(e.matches(".post .color,#loading .color,.summary .color,.st-emoji-epost-content.color,#notifications-modal .notification-text")?requestIdleCallback(()=>{e.innerHTML=emojione.toImage(e.innerHTML),e.dataset.emojiProcessed="true"}):requestIdleCallback(()=>{e.querySelectorAll(".post .color,#loading .color,.summary .color,.st-emoji-epost-content.color,#notifications-modal .notification-text").forEach(e=>{e.dataset.emojiProcessed||(e.innerHTML=emojione.toImage(e.innerHTML),e.dataset.emojiProcessed="true")})}))})})});emojiObserver.observe(document.body,{childList:!0,subtree:!0});
-//Favicons 
-function updateFaviconsForLinks(e){e.forEach((e=>{if(!(e.closest(".spoiler .code_top a")||e.closest(".fancyborder a")||e.closest(".quote_top a")||e.closest(".ve-content [data-type=mention]")||e.querySelector("img"))){var o=e.href.includes("youtu.be")?"https://www.google.com/s2/favicons?domain=youtube.com":"https://www.google.com/s2/favicons?domain="+e.href;e.style.backgroundImage="url('"+o+"')",e.style.backgroundSize="16px 16px",e.style.backgroundPosition="left center",e.style.backgroundRepeat="no-repeat",e.style.paddingLeft="19px",e.matches(".quote a,.tmsg a")&&(e.style.backgroundSize="14px 14px",e.style.paddingLeft="17px")}}))}updateFaviconsForLinks(document.querySelectorAll(".post .color a,.summary .color a,#loading .color a,#search .color a,span.tmsg a"));const faviconObserver=new MutationObserver((e=>{e.forEach((e=>{updateFaviconsForLinks(e.target.querySelectorAll(".post .color a,.summary .color a,#loading .color a,#search .color a,span.tmsg a"))}))}));faviconObserver.observe(document.body,{childList:!0,subtree:!0});
-//Light gallery 
-const postColors=document.querySelectorAll(".post .color,.summary .list li .color.Item");postColors.forEach(t=>{t.querySelectorAll('img:not(.emojione):not(.signature img):not([src^="https://img.forumfree.net/html/emoticons/new"]):not([src^="https://img.forumfree.net/html/mime_types"])').forEach(t=>{if(!(t.alt&&t.alt.startsWith(":")||"a"===t.parentNode.tagName.toLowerCase()&&t.src.startsWith("https://www.google.com/s2/favicons"))){const e=t.parentNode;if("a"===e.tagName.toLowerCase())t.classList.contains("lazyload")&&t.hasAttribute("data-src")?e.setAttribute("data-lightbox","gallery"):(e.href!==t.src&&e.setAttribute("href",t.src),e.setAttribute("data-lightbox","gallery"));else{const o=document.createElement("a");o.href=t.src||t.getAttribute("data-src"),o.setAttribute("data-lightbox","gallery"),e.insertBefore(o,t),o.appendChild(t)}}});lightGallery(t,{selector:'a[data-lightbox="gallery"]'})});
+//Image Async function addAsyncDecoding(){document.querySelectorAll("img").forEach(t=>{t.hasAttribute("decoding")||t.setAttribute("decoding","async"),t.hasAttribute("loading")||t.hasAttribute("data-src")||t.classList.contains("lazyload")||t.closest(".slick_carousel")||t.setAttribute("loading","lazy")}),document.querySelectorAll("iframe:not([loading])").forEach(t=>t.setAttribute("loading","lazy"))}addAsyncDecoding();let debounceTimeout;function debounceMutation(){clearTimeout(debounceTimeout),debounceTimeout=setTimeout(()=>{addAsyncDecoding()},200)}const imasyncObserver=new MutationObserver(debounceMutation);imasyncObserver.observe(document.body,{childList:!0,subtree:!0,attributes:!1,characterData:!1});
+//Tooltips function waitForElement(t,e,i=1e4){const o=Date.now(),checkForElement=()=>{const n=document.querySelectorAll(t);n.length>0?n.forEach(e):Date.now()-o<i?requestAnimationFrame(checkForElement):console.warn('Element with selector "'+t+'" did not appear within '+i+"ms.")};checkForElement()}function initTippy(t){t._tippy||tippy(t,{placement:"bottom",theme:"dark",animation:"fade",offset:[0,10],observe:!0,arrow:!1,onCreate(t){t.popper.classList.add("tippy-custom")}})}function addTooltip(t){waitForElement(t,(t=>{if(!t.hasAttribute("data-tippy-content")&&t.getAttribute("title")){const e=t.getAttribute("title");t.setAttribute("data-tippy-content",e),t.removeAttribute("title")}initTippy(t)}))}const tooltipObserver=new MutationObserver((t=>{t.forEach((t=>{t.addedNodes.forEach((t=>{t.nodeType===Node.ELEMENT_NODE&&t.hasAttribute("data-tippy-content")&&initTippy(t)}))}))}));function isMobileDevice(){return window.matchMedia("(max-width: 768px)").matches}isMobileDevice()||(tooltipObserver.observe(document.body,{childList:!0,subtree:!0}),waitForElement("body",(()=>{addTooltip(".st-editor-toggle"),addTooltip('button[name="full"]'),addTooltip("#preview_button"),waitForElement('.top-button .topbutton input[type="submit"]',(t=>{const e=t.closest("form").querySelector('input[type="submit"]').value,i=t.closest(".top-button");i.setAttribute("data-tippy-content",e),initTippy(i)})),waitForElement("#mark-send button",(t=>{t.setAttribute("data-tippy-content","Find"),initTippy(t)})),waitForElement('.menuwrap a[href="#notifications"]',(t=>{t.setAttribute("data-tippy-content","Notifications"),initTippy(t)})),waitForElement(".menuwrap a.st-emoji-link-void.st-emoji-notice-modal-toggle",(t=>{t.setAttribute("data-tippy-content","Reactions"),initTippy(t)})),waitForElement(".navsub .lastpost a",(t=>{t.setAttribute("data-tippy-content","Go to first unread post"),initTippy(t)})),waitForElement(".navsub .last a",(t=>{t.setAttribute("data-tippy-content","Go to last page"),initTippy(t)})),waitForElement(".navsub .first a",(t=>{t.setAttribute("data-tippy-content","Go to first page"),initTippy(t)})),waitForElement('.big_list .zz input[type="checkbox"]',(t=>{t.setAttribute("data-tippy-content","Select topic"),initTippy(t)})),waitForElement('#send .send .darkbar button[name="preview"]',(t=>{t.setAttribute("data-tippy-content","Preview"),initTippy(t)})),waitForElement(".menuwrap .log",(t=>{t.setAttribute("data-tippy-content","Log in"),initTippy(t)})),waitForElement('.tag img[alt="x"]',(t=>{t.setAttribute("data-tippy-content","Delete"),t.removeAttribute("title"),initTippy(t)})),addTooltip('.menuwrap a[href="#notifications"]'),addTooltip(".menuwrap a.st-emoji-link-void.st-emoji-notice-modal-toggle"),addTooltip(".menuwrap .log"),addTooltip('#send .send .darkbar button[name="preview"]'),addTooltip(".navsub .lastpost a"),addTooltip(".navsub .last a"),addTooltip(".navsub .first a"),addTooltip('.big_list .zz input[type="checkbox"]'),addTooltip('#send .send .right.Sub img[alt="File Attachments"]'),addTooltip('.tag img[alt="x"]'),addTooltip('.post .title2.bottom .right.Item.Justify .rt.Sub input[type="checkbox"],.post .title2.bottom .right.Item.Justify .rt.Sub label'),addTooltip('#send .send button[name="preview"]'),addTooltip(".post .title2.top .right img.bullet_delete"),addTooltip('#send .send .right.Sub img[data-emojipicker="#Post"]');document.querySelectorAll("[data-tippy-content]").forEach((t=>{initTippy(t)}))})));
+//Emojione function processEmojisInColorClass(){document.querySelectorAll(".post .color,#loading .color,.summary .color,.st-emoji-epost-content.color,#notifications-modal .notification-text").forEach(e=>{e.dataset.emojiProcessed||(e.innerHTML=emojione.toImage(e.innerHTML),e.dataset.emojiProcessed="true")})}processEmojisInColorClass();const emojiObserver=new MutationObserver(e=>{e.forEach(e=>{e.addedNodes.forEach(e=>{1===e.nodeType&&(e.matches(".post .color,#loading .color,.summary .color,.st-emoji-epost-content.color,#notifications-modal .notification-text")?requestIdleCallback(()=>{e.innerHTML=emojione.toImage(e.innerHTML),e.dataset.emojiProcessed="true"}):requestIdleCallback(()=>{e.querySelectorAll(".post .color,#loading .color,.summary .color,.st-emoji-epost-content.color,#notifications-modal .notification-text").forEach(e=>{e.dataset.emojiProcessed||(e.innerHTML=emojione.toImage(e.innerHTML),e.dataset.emojiProcessed="true")})}))})})});emojiObserver.observe(document.body,{childList:!0,subtree:!0});
+//Favicons function updateFaviconsForLinks(e){e.forEach((e=>{if(!(e.closest(".spoiler .code_top a")||e.closest(".fancyborder a")||e.closest(".quote_top a")||e.closest(".ve-content [data-type=mention]")||e.querySelector("img"))){var o=e.href.includes("youtu.be")?"https://www.google.com/s2/favicons?domain=youtube.com":"https://www.google.com/s2/favicons?domain="+e.href;e.style.backgroundImage="url('"+o+"')",e.style.backgroundSize="16px 16px",e.style.backgroundPosition="left center",e.style.backgroundRepeat="no-repeat",e.style.paddingLeft="19px",e.matches(".quote a,.tmsg a")&&(e.style.backgroundSize="14px 14px",e.style.paddingLeft="17px")}}))}updateFaviconsForLinks(document.querySelectorAll(".post .color a,.summary .color a,#loading .color a,#search .color a,span.tmsg a"));const faviconObserver=new MutationObserver((e=>{e.forEach((e=>{updateFaviconsForLinks(e.target.querySelectorAll(".post .color a,.summary .color a,#loading .color a,#search .color a,span.tmsg a"))}))}));faviconObserver.observe(document.body,{childList:!0,subtree:!0});
+//Light gallery const postColors=document.querySelectorAll(".post .color,.summary .list li .color.Item");postColors.forEach(t=>{t.querySelectorAll('img:not(.emojione):not(.signature img):not([src^="https://img.forumfree.net/html/emoticons/new"]):not([src^="https://img.forumfree.net/html/mime_types"])').forEach(t=>{if(!(t.alt&&t.alt.startsWith(":")||"a"===t.parentNode.tagName.toLowerCase()&&t.src.startsWith("https://www.google.com/s2/favicons"))){const e=t.parentNode;if("a"===e.tagName.toLowerCase())t.classList.contains("lazyload")&&t.hasAttribute("data-src")?e.setAttribute("data-lightbox","gallery"):(e.href!==t.src&&e.setAttribute("href",t.src),e.setAttribute("data-lightbox","gallery"));else{const o=document.createElement("a");o.href=t.src||t.getAttribute("data-src"),o.setAttribute("data-lightbox","gallery"),e.insertBefore(o,t),o.appendChild(t)}}});lightGallery(t,{selector:'a[data-lightbox="gallery"]'})});
 //Slick carousel $('.slick_carousel').slick({slidesToShow:1,slidesToScroll:1,autoplay:true,autoplaySpeed:3820,dots:true,infinite:true,centerMode:true,lazyLoad:'ondemand',pauseOnFocus:false});
 //Reply counter 
 function processPostElements(){const e=document.querySelectorAll(".post"),t=(()=>{const e=new URLSearchParams(window.location.search);return parseInt(e.get("st")||0)+1})();e.forEach(((e,r)=>{createReplyCounter(e,t+r,"after")}))}function createReplyCounter(e,t,r){if(e.querySelector(".reply_counter"))return;const o=document.createElement("b");o.className="reply_counter",o.textContent="#"+t;const s=e.querySelector(".mini_buttons.rt.Sub");s&&("after"===r?s.appendChild(o):s.insertBefore(o,s.firstChild))}processPostElements();const postObserver=new MutationObserver((e=>{e.forEach((e=>{e.addedNodes.forEach((e=>{e.nodeType===Node.ELEMENT_NODE&&e.matches(".post")&&processPostElements()}))}))}));postObserver.observe(document.body,{childList:!0,subtree:!0});
@@ -38,3 +33,172 @@ const fileInput=document.querySelector('body#send #attach input[name="FILE_UPLOA
 //HTML colors
 var colors=["AliceBlue","AntiqueWhite","Aqua","Aquamarine","Azure","Beige","Bisque","BlanchedAlmond","BurlyWood","CadetBlue","Chartreuse","Chocolate","Coral","CornflowerBlue","Cornsilk","Crimson","Cyan","DarkCyan","DarkGoldenRod","DarkGray","DarkKhaki","Darkorange","DarkSalmon","DarkSeaGreen","DarkTurquoise","DarkViolet","DeepPink","DeepSkyBlue","DimGray","DodgerBlue","FloralWhite","ForestGreen","Fuchsia","Gainsboro","GhostWhite","Gold","GoldenRod","GreenYellow","HoneyDew","HotPink","IndianRed","Ivory","Khaki","Lavender","LavenderBlush","LawnGreen","LemonChiffon","LightBlue","LightCoral","LightCyan","LightGoldenRodYellow","LightGray","LightGreen","LightPink","LightSalmon","LightSeaGreen","LightSkyBlue","LightSlateGray","LightSteelBlue","LightYellow","Lime","LimeGreen","Linen","Magenta","MediumAquaMarine","MediumOrchid","MediumPurple","MediumSeaGreen","MediumSlateBlue","MediumSpringGreen","MediumTurquoise","MediumVioletRed","MintCream","MistyRose","Moccasin","NavajoWhite","OldLace","Olive","OliveDrab","OrangeRed","Orchid","PaleGoldenRod","PaleGreen","PaleTurquoise","PaleVioletRed","PapayaWhip","PeachPuff","Peru","Pink","Plum","PowderBlue","RosyBrown","RoyalBlue","Salmon","SandyBrown","SeaGreen","SeaShell","Sienna","Silver","SkyBlue","SlateBlue","SlateGray","Snow","SpringGreen","SteelBlue","Tan","Teal","Thistle","Tomato","Turquoise","Violet","Wheat","WhiteSmoke","YellowGreen"];document.querySelectorAll('.send select[title="Insert Font Color tags"]').forEach((function(e){colors.forEach((function(l){var o=document.createElement("option");o.text=l,o.value=l,o.style.color=l,e.add(o)}))}));var selectElement=document.querySelector(".tag select.codebuttons");selectElement&&colors.forEach((function(e){var l=document.createElement("option");l.text=e,l.value=e,l.style.color=e,selectElement.add(l)})); 
 //Timeago 
+$(document).ready(function() {
+    // Remove the inner <span> (e.g., "Posted on") in .post .when elements
+    $('.post .when span,.summary .when span').each(function() {
+        $(this).remove();  // Remove the inner span
+    });
+
+    // Select all the '.post .when' elements
+    $('.post .when, .big_list .when,.summary .when').each(function() {
+        var dateText = $(this).text().trim();  // Get the text content and trim extra spaces
+        var formattedDate;
+
+        // Check if the date follows US format (MM/DD/YYYY, HH:MM AM/PM)
+        var usDatePattern = /(\d{1,2})\/(\d{1,2})\/(\d{4}),\s*(\d{1,2}):(\d{2})\s*(AM|PM)/;
+
+        // Check for European format (DD/MM/YYYY, HH:MM)
+        var europeanDatePattern = /(\d{1,2})\/(\d{1,2})\/(\d{4}),\s*(\d{2}):(\d{2})/;
+
+        // Check for YYYY/MM/DD HH:MM format (e.g., 2025/01/25 20:50)
+        var customDatePattern = /(\d{4})\/(\d{1,2})\/(\d{1,2})\s*(\d{2}):(\d{2})/;
+
+        // Check for ISO format (YYYY-MM-DDTHH:mm:ss)
+        var isoDatePattern = /(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})/;
+
+        // Check for RFC 2822 format (e.g., Fri, 25 Jan 2025 14:30:00 +0000)
+        var rfc2822DatePattern = /([A-Za-z]+),\s*(\d{1,2})\s([A-Za-z]+)\s(\d{4})\s(\d{2}):(\d{2}):(\d{2})\s([+\-]\d{4})/;
+
+        // Check for Hebrew format (e.g., 25 Tevet 5785)
+        var hebrewDatePattern = /(\d{1,2})\s([A-Za-z]+)\s(\d{4})/;
+
+        // Check for Japan/Chinese format (e.g., 2025年01月25日)
+        var japanChineseDatePattern = /(\d{4})年(\d{2})月(\d{2})日/;
+
+        // Check for Cyrillic month names (e.g., 25 Января 2025)
+        var cyrillicMonthDatePattern = /(\d{1,2})\s([А-Яа-я]+)\s(\d{4})/;
+
+        // Check for Spanish month names (e.g., 25 enero 2025)
+        var spanishMonthDatePattern = /(\d{1,2})\s([a-zA-Z]+)\s(\d{4})/;
+
+        // Check for Russian short format (DD-МММ-YY HH:MM)
+        var russianShortPattern = /(\d{1,2})-(\p{L}{3})-(\d{2})\s*(\d{2}):(\d{2})/u;
+
+        // Handle US format
+        if (usDatePattern.test(dateText)) {
+            var match = usDatePattern.exec(dateText);
+            var month = match[1];
+            var day = match[2];
+            var year = match[3];
+            var hour = match[4];
+            var minute = match[5];
+            var ampm = match[6];
+            if (ampm === 'PM' && hour < 12) {
+                hour = parseInt(hour) + 12;
+            } else if (ampm === 'AM' && hour === '12') {
+                hour = 0;
+            }
+            formattedDate = year + '-' + month + '-' + day + 'T' + hour + ':' + minute + ':00';
+        }
+        // Handle European format
+        else if (europeanDatePattern.test(dateText)) {
+            var match = europeanDatePattern.exec(dateText);
+            var day = match[1];
+            var month = match[2];
+            var year = match[3];
+            var hour = match[4];
+            var minute = match[5];
+            formattedDate = year + '-' + month + '-' + day + 'T' + hour + ':' + minute + ':00';
+        }
+        // Handle custom format
+        else if (customDatePattern.test(dateText)) {
+            var match = customDatePattern.exec(dateText);
+            var year = match[1];
+            var month = match[2];
+            var day = match[3];
+            var hour = match[4];
+            var minute = match[5];
+            formattedDate = year + '-' + month + '-' + day + 'T' + hour + ':' + minute + ':00';
+        }
+        // Handle ISO format
+        else if (isoDatePattern.test(dateText)) {
+            var match = isoDatePattern.exec(dateText);
+            formattedDate = dateText;  // It's already in ISO format
+        }
+        // Handle RFC 2822 format
+        else if (rfc2822DatePattern.test(dateText)) {
+            var match = rfc2822DatePattern.exec(dateText);
+            var day = match[2];
+            var month = match[3];
+            var year = match[4];
+            var hour = match[5];
+            var minute = match[6];
+            var second = match[7];
+            formattedDate = year + '-' + month + '-' + day + 'T' + hour + ':' + minute + ':' + second + ':00';
+        }
+        // Handle Hebrew format
+        else if (hebrewDatePattern.test(dateText)) {
+            var match = hebrewDatePattern.exec(dateText);
+            var day = match[1];
+            var month = match[2];
+            var year = match[3];
+            formattedDate = year + '-' + month + '-' + day + 'T00:00:00';
+        }
+        // Handle Japan/Chinese format
+        else if (japanChineseDatePattern.test(dateText)) {
+            var match = japanChineseDatePattern.exec(dateText);
+            var year = match[1];
+            var month = match[2];
+            var day = match[3];
+            formattedDate = year + '-' + month + '-' + day + 'T00:00:00';
+        }
+        // Handle Cyrillic month format (Russian/Arabic)
+        else if (cyrillicMonthDatePattern.test(dateText)) {
+            var match = cyrillicMonthDatePattern.exec(dateText);
+            var day = match[1];
+            var month = match[2];
+            var year = match[3];
+            formattedDate = year + '-' + month + '-' + day + 'T00:00:00';
+        }
+        // Handle Spanish month format (Latin America)
+        else if (spanishMonthDatePattern.test(dateText)) {
+            var match = spanishMonthDatePattern.exec(dateText);
+            var day = match[1];
+            var month = match[2];
+            var year = match[3];
+            // Convert the month name to lowercase and capitalize it for consistency
+            var monthNames = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"];
+            var monthIndex = monthNames.indexOf(month.toLowerCase());
+            month = (monthIndex + 1).toString().padStart(2, '0');  // Convert to two-digit format
+            formattedDate = year + '-' + month + '-' + day + 'T00:00:00';
+        }
+        // Handle Russian short format
+        else if (russianShortPattern.test(dateText)) {
+            var match = russianShortPattern.exec(dateText);
+            var day = match[1];
+            var month = match[2];
+            var year = match[3];
+            var hour = match[4];
+            var minute = match[5];
+
+            // Russian month names mapping
+            var russianMonths = {
+                'Янв': '01',
+                'Фев': '02',
+                'Мар': '03',
+                'Апр': '04',
+                'Май': '05',
+                'Июн': '06',
+                'Июл': '07',
+                'Авг': '08',
+                'Сен': '09',
+                'Окт': '10',
+                'Ноя': '11',
+                'Дек': '12'
+            };
+
+            var numericMonth = russianMonths[month] || '01';  // Default to January if not found
+            year = '20' + year;  // Convert to full year
+            formattedDate = year + '-' + numericMonth + '-' + day + 'T' + hour + ':' + minute + ':00';
+        }
+
+        // Only update the element if a valid date format is found
+        if (formattedDate) {
+            var timeElement = $('<time>').attr('datetime', formattedDate).text(dateText);
+            $(this).html(timeElement);
+        }
+    });
+
+    // Initialize timeago on elements with the datetime attribute
+    $('time').timeago();
+});
