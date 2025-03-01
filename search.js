@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // Load Perve Avenue and ACE Slider last
         let paScript = document.createElement("script");
-        paScript.src = "https://cdn.jsdelivr.net/gh/hu6amini/perve_avenue_2377@main/pa_scripts.js";
+        paScript.src = "https://cdn.jsdelivr.net/gh/hu6amini/perve_avenue_2378@main/pa_scripts.js";
         paScript.defer = true;
         document.body.appendChild(paScript);
 
@@ -23,3 +23,6 @@ document.addEventListener("DOMContentLoaded", function() {
         document.body.appendChild(aceSlider);
     }
 });
+
+//Youtube lite
+function replaceYouTubeIframes(){const e=document.querySelectorAll('.post .color iframe');e.forEach(e=>{const t=e.src;if(t&&t.includes('youtube.com/embed/')){const n=t.split('/embed/')[1].split('?')[0];e.setAttribute('data-lite-src',t),e.removeAttribute('src');const o=document.createElement('lite-youtube');o.setAttribute('videoid',n),e.replaceWith(o)}})}replaceYouTubeIframes();
