@@ -19,7 +19,39 @@ var e=document.createElement('select');e.title="Insert Font Size tags",e.classNa
 //Quote top
 function modifyQuoteTop(e){const o=e.textContent,t=e.querySelector("a");if(o.includes("@")){const r=o.replace(/(.*)\s*\(([^@]+)@[^)]+\)\s*/,"$2 said:");e.innerHTML=r,e.style.color="var(--mdcol)",t&&(e.appendChild(t),t.style.color="var(--mdcol)")}else{const o=e.querySelector(".quote_top b");o&&(o.style.opacity=1)}}document.querySelectorAll(".color .quote_top").forEach(modifyQuoteTop);const quoteTopObserver=new MutationObserver((e=>{e.forEach((e=>{e.addedNodes.forEach((e=>{e.nodeType===Node.ELEMENT_NODE&&e.querySelectorAll(".quote_top").forEach(modifyQuoteTop)}))}))}));quoteTopObserver.observe(document.body,{childList:!0,subtree:!0});
 //Quote
-$(document).ready((function(){function applyReadmore(e){$(e).find(".color .quote").not(".ve-content.color .quote").readmore({speed:618,collapsedHeight:170,moreLink:'<a href="#">Show More...</a>',lessLink:"",afterToggle:function(e,o,t){t&&$(e).remove()}})}applyReadmore(document);new MutationObserver((e=>{e.forEach((e=>{e.addedNodes.forEach((e=>{($(e).is(".color")||$(e).find(".color .quote").not(".ve-content.color .quote").length)&&applyReadmore(e)}))}))})).observe(document.body,{childList:!0,subtree:!0})}));
+$(document).ready(function() {
+  function applyReadmore(target) {
+    $(target).find(".color .quote").not(".ve-content.color .quote").readmore({
+      speed: 618,
+      collapsedHeight: 170,
+      moreLink: '<a href="#">Show More...</a>',
+      lessLink: '',
+      afterToggle: function(trigger, element, expanded) {
+        if (expanded) {
+          $(trigger).remove(); 
+        }
+      }
+    });
+  }
+
+  // Apply Readmore.js to initial .color .quote elements, excluding .ve-content.color .quote
+  applyReadmore(document);
+
+  // MutationObserver to watch for dynamically added .color .quote elements
+  const quoteObserver = new MutationObserver(mutations => {
+    mutations.forEach(mutation => {
+      mutation.addedNodes.forEach(node => {
+        if ($(node).is(".color")) {
+          applyReadmore(node); // Apply Readmore.js to quotes inside .color
+        } else if ($(node).find(".color .quote").not(".ve-content.color .quote").length) {
+          applyReadmore(node); // Apply Readmore.js if .color .quote exists inside, excluding .ve-content.color .quote
+        }
+      });
+    });
+  });
+
+  quoteObserver.observe(document.body, { childList: true, subtree: true });
+});
 //Youtube lite
 function replaceYouTubeIframes(){const e=document.querySelectorAll('.post .color iframe');e.forEach(e=>{const t=e.src;if(t&&t.includes('youtube.com/embed/')){const n=t.split('/embed/')[1].split('?')[0];e.setAttribute('data-lite-src',t),e.removeAttribute('src');const o=document.createElement('lite-youtube');o.setAttribute('videoid',n),e.replaceWith(o)}})}replaceYouTubeIframes();
 //Skin
