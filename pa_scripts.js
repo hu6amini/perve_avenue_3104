@@ -39,7 +39,7 @@ function expandQuotes(e) {
     }
 }
 
-// Handle "Show More" button clicks using event delegation
+// Event delegation for "Show More" button clicks
 document.body.addEventListener("click", function (event) {
     if (event.target.matches(".quotebtn button")) {
         const quote = event.target.closest(".quote");
@@ -53,27 +53,55 @@ document.body.addEventListener("click", function (event) {
     }
 });
 
+// Modify quote_top function
+function modifyQuoteTop(e) {
+    if (isInsideVeContentColor(e)) return;
+
+    const o = e.textContent;
+    const t = e.querySelector("a");
+
+    if (o.includes("@")) {
+        const n = o.replace(/(.*)\s*\(([^@]+)@[^)]+\)\s*/, "$2 said:");
+        e.innerHTML = n;
+        e.style.color = "var(--mdcol)";
+        if (t) {
+            e.appendChild(t);
+            t.style.color = "var(--mdcol)";
+        }
+    } else {
+        const o = e.querySelector(".quote_top b");
+        if (o) o.style.opacity = 1;
+    }
+}
+
 // Apply to existing .quote elements
 document.querySelectorAll(".color .quote").forEach(expandQuotes);
+document.querySelectorAll(".color .quote_top").forEach(modifyQuoteTop);
 
 // Observe dynamically added elements
-const quoteObserver = new MutationObserver((mutations) => {
+const observer = new MutationObserver((mutations) => {
     mutations.forEach((mutation) => {
         mutation.addedNodes.forEach((node) => {
             if (node.nodeType === Node.ELEMENT_NODE) {
+                // Expand quotes
                 if (node.matches(".quote")) {
                     expandQuotes(node);
                 }
                 node.querySelectorAll(".quote").forEach((el) => {
                     if (!el.querySelector(".quotebtn")) expandQuotes(el);
                 });
+
+                // Modify quote tops
+                if (node.matches(".quote_top")) {
+                    modifyQuoteTop(node);
+                }
+                node.querySelectorAll(".quote_top").forEach(modifyQuoteTop);
             }
         });
     });
 });
 
-quoteObserver.observe(document.body, { childList: true, subtree: true });
-
+observer.observe(document.body, { childList: true, subtree: true });
 //Youtube lite
 function replaceYouTubeIframes(){const e=document.querySelectorAll('.post .color iframe');e.forEach(e=>{const t=e.src;if(t&&t.includes('youtube.com/embed/')){const n=t.split('/embed/')[1].split('?')[0];e.setAttribute('data-lite-src',t),e.removeAttribute('src');const o=document.createElement('lite-youtube');o.setAttribute('videoid',n),e.replaceWith(o)}})}replaceYouTubeIframes();
 //Skin
