@@ -4,43 +4,6 @@ function waitForElement(e,t){const n=new MutationObserver((i=>{for(const o of i)
 function addAsyncDecoding(){document.querySelectorAll("img").forEach(t=>{!t.hasAttribute("decoding")&&(t.setAttribute("decoding","async")),!t.hasAttribute("loading")&&!t.hasAttribute("data-src")&&!t.classList.contains("lazyload")&&!t.classList.contains("lazyloading")&&!t.classList.contains("lazyloaded")&&!t.closest(".slick_carousel")&&t.setAttribute("loading","lazy")}),document.querySelectorAll("iframe:not([loading])").forEach(t=>t.setAttribute("loading","lazy"))}addAsyncDecoding();let debounceTimeout;function debounceMutation(){clearTimeout(debounceTimeout),debounceTimeout=setTimeout(()=>{addAsyncDecoding()},200)}const imasyncObserver=new MutationObserver(debounceMutation);imasyncObserver.observe(document.body,{childList:!0,subtree:!0,attributes:!1,characterData:!1});
 //Emojione 
 function processEmojisInColorClass(){document.querySelectorAll(".post .color,#loading .color,.summary .color,.st-emoji-epost-content.color,#notifications-modal .notification-text").forEach(e=>{e.dataset.emojiProcessed||(e.innerHTML=emojione.toImage(e.innerHTML),e.dataset.emojiProcessed="true")})}processEmojisInColorClass();const emojiObserver=new MutationObserver(e=>{e.forEach(e=>{e.addedNodes.forEach(e=>{1===e.nodeType&&(e.matches(".post .color,#loading .color,.summary .color,.st-emoji-epost-content.color,#notifications-modal .notification-text")?requestIdleCallback(()=>{e.innerHTML=emojione.toImage(e.innerHTML),e.dataset.emojiProcessed="true"}):requestIdleCallback(()=>{e.querySelectorAll(".post .color,#loading .color,.summary .color,.st-emoji-epost-content.color,#notifications-modal .notification-text").forEach(e=>{e.dataset.emojiProcessed||(e.innerHTML=emojione.toImage(e.innerHTML),e.dataset.emojiProcessed="true")})}))})})});emojiObserver.observe(document.body,{childList:!0,subtree:!0});
-//Quote 
-function applyReadMore() {
-    $('.quote').not('.tiptap.ProseMirror .quote').readmore({
-      speed: 382,
-      collapsedHeight: 170
-    });
-  }
-
-  // Apply Readmore.js on initial load
-  $(document).ready(applyReadMore);
-
-  // MutationObserver to detect new .quote elements
-  const quo = new MutationObserver(mutations => {
-    mutations.forEach(mutation => {
-      mutation.addedNodes.forEach(node => {
-        if (node.nodeType === 1) { // Ensure it's an element
-          // Use jQuery to filter for new .quote elements
-          const newQuotes = $(node).find('.quote').add(node).filter('.quote').not('.tiptap.ProseMirror .quote');
-          if (newQuotes.length) {
-            newQuotes.readmore({
-              speed: 382,
-              collapsedHeight: 170
-            });
-          }
-        }
-      });
-    });
-  });
-
-  // Observe the specific container where AJAX content is added (e.g., #ajaxObject)
-  const ajaxContainer = document.getElementById('ajaxObject');
-  if (ajaxContainer) {
-    quo.observe(ajaxContainer, { childList: true, subtree: true });
-  }
-
-  // Also continue observing the body to catch other dynamic content
-  quo.observe(document.body, { childList: true, subtree: true });
 //Favicons 
 function updateFaviconsForLinks(o){o.forEach((o=>{if(!(o.closest(".spoiler .code_top a")||o.closest(".fancyborder a")||o.closest(".quote_top a")||o.closest(".ve-content [data-type=mention]")||o.querySelector("img")||o.matches(".color div[align='center'] a")&&o.hasAttribute("data-readmore-toggle"))){var e=o.href.includes("youtu.be")?"https://www.google.com/s2/favicons?domain=youtube.com":"https://www.google.com/s2/favicons?domain="+o.href;o.style.backgroundImage="url('"+e+"')",o.style.backgroundSize="16px 16px",o.style.backgroundPosition="left center",o.style.backgroundRepeat="no-repeat",o.style.paddingLeft="19px",o.matches(".quote a,.tmsg a")&&(o.style.backgroundSize="14px 14px",o.style.paddingLeft="17px")}}))}updateFaviconsForLinks(document.querySelectorAll(".post .color a,.summary .color a,#loading .color a,#search .color a,span.tmsg a"));const faviconObserver=new MutationObserver((o=>{o.forEach((o=>{updateFaviconsForLinks(o.target.querySelectorAll(".post .color a,.summary .color a,#loading .color a,#search .color a,span.tmsg a"))}))}));faviconObserver.observe(document.body,{childList:!0,subtree:!0});
 //Light gallery 
@@ -53,8 +16,8 @@ function processPostElements(){const e=document.querySelectorAll(".post"),t=(()=
 let timeoutId;function scrollToSmooth(o){window.scrollTo({top:o,behavior:"smooth"})}function showGotoElement(o){o.classList.add("active"),o.style.zIndex="9999"}function hideGotoElement(o){o.classList.remove("active")}function initSmoothScrolling(){document.querySelector(".p_up").addEventListener("click",(()=>{scrollToSmooth(0)})),document.querySelector(".p_down").addEventListener("click",(()=>{scrollToSmooth(document.body.scrollHeight)}));const o=document.querySelector(".goto");window.addEventListener("scroll",(()=>{clearTimeout(timeoutId),showGotoElement(o),timeoutId=setTimeout((()=>{hideGotoElement(o)}),3e3)})),o.addEventListener("mouseenter",(()=>{clearTimeout(timeoutId),showGotoElement(o)})),o.addEventListener("mouseleave",(()=>{timeoutId=setTimeout((()=>{hideGotoElement(o)}),3e3)}))}initSmoothScrolling();const smoothScrollObserver=new MutationObserver((o=>{o.forEach((o=>{o.addedNodes.forEach((o=>{o.nodeType===Node.ELEMENT_NODE&&o.matches(".p_up, .p_down, .goto")&&initSmoothScrolling()}))}))}));smoothScrollObserver.observe(document.body,{childList:!0,subtree:!0});
 //Fast send buttons
 var e=document.createElement('select');e.title="Insert Font Size tags",e.className="codebuttons",e.setAttribute('onchange',"tag('[size='+this.options[this.selectedIndex].value+']','[/size]'); this.selectedIndex=0");var t=[{value:"0",text:"SIZE"},{value:"2",text:"Very Small"},{value:"3.5",text:"Small"},{value:"5",text:"Regular"},{value:"8",text:"Large"},{value:"12.5",text:"Extra Large"}];t.forEach(function(t){var n=document.createElement('option');n.value=t.value,n.textContent=t.text,e.appendChild(n)});var n=document.querySelector('.fast.send select[title="Insert Font Color tags"]');n&&n.parentNode.insertBefore(e,n);var o=document.querySelector('#send .send select[title="Insert Font Size tags"]');o&&(o.innerHTML='',t.forEach(function(e){var t=document.createElement('option');t.value=e.value,t.textContent=e.text,o.appendChild(t)}));var i=`<button type="button" accesskey="s" title="Insert Strikethrough Text (alt + s)" onclick="tag('<del>','</del>')" class="codebuttons"><del>&nbsp;S&nbsp;</del></button><button type="button" accesskey="a" title="Insert superscript (alt + a)" onclick="tag('<sup>','</sup>')" class="codebuttons">&nbsp;x²<span style="font-size:6px">&nbsp;</span></button><button type="button" accesskey="p" title="Insert subscript (alt + p)" onclick="tag('<sub>','</sub>')" class="codebuttons">&nbsp;x<span style="position:relative;top:0.5em">²</span><span style="font-size:6px">&nbsp;</span></button><button type="button" accesskey="l" title="Create a list (alt + l)" onclick="tag_list()" class="codebuttons"><img src="https://img.forumfree.net/index_file/bb_ol.gif" style="width:22px;height:14px" alt=""></button>`;var c=document.querySelector('.fast.send button[title="Insert Underlined Text (alt + u)"]');c&&c.insertAdjacentHTML('afterend',i);var a=document.createElement('select');a.title="Insert Font Face tags",a.className="codebuttons",a.setAttribute('onchange',"tag('[font='+this.options[this.selectedIndex].value+']','[/font]'); this.selectedIndex=0");var r=[{value:"0",text:"FONT"},{value:"Arial",text:"Arial"},{value:"Times",text:"Times"},{value:"Courier",text:"Courier"},{value:"Impact",text:"Impact"},{value:"Geneva",text:"Geneva"},{value:"Optima",text:"Optima"}];r.forEach(function(e){var t=document.createElement('option');t.value=e.value,t.textContent=e.text,a.appendChild(t)});var l=document.querySelector('.fast.send input[type="button"][accesskey="t"][value="@Tag"]');l&&l.insertAdjacentElement('afterend',a);
-//Quote top
-function modifyQuoteTop(e){const o=e.textContent,t=e.querySelector("a");if(o.includes("@")){const r=o.replace(/(.*)\s*\(([^@]+)@[^)]+\)\s*/,"$2 said:");e.innerHTML=r,e.style.color="var(--mdcol)",t&&(e.appendChild(t),t.style.color="var(--mdcol)")}else{const o=e.querySelector(".quote_top b");o&&(o.style.opacity=1)}}document.querySelectorAll(".color .quote_top").forEach(modifyQuoteTop);const quoteTopObserver=new MutationObserver((e=>{e.forEach((e=>{e.addedNodes.forEach((e=>{e.nodeType===Node.ELEMENT_NODE&&e.querySelectorAll(".quote_top").forEach(modifyQuoteTop)}))}))}));quoteTopObserver.observe(document.body,{childList:!0,subtree:!0});
+//Quote
+function isInsideVeContentColor(e){return null!==e.closest(".ve-content.color")}function expandQuotes(e){if(!isInsideVeContentColor(e)&&!e.querySelector(".quotebtn")&&e.scrollHeight>170){e.style.maxHeight="170px",e.style.overflow="hidden",e.style.transition="max-height 0.382s ease-in-out";const o=document.createElement("div");o.className="quotebtn";const t=document.createElement("button");t.innerHTML="Show More...",t.type="button",t.setAttribute("onclick"," \n const quote = this.closest('.quote'); \n quote.style.maxHeight = quote.scrollHeight + 'px'; \n setTimeout(() => { \n quote.style.maxHeight = 'none'; \n quote.style.overflow = 'visible'; \n this.parentElement.remove(); \n }, 382); \n "),o.appendChild(t),e.appendChild(o)}}document.querySelectorAll(".color .quote").forEach(expandQuotes);const quoteObserver=new MutationObserver((e=>{e.forEach((e=>{e.addedNodes.forEach((e=>{e.nodeType===Node.ELEMENT_NODE&&(e.matches(".quote")&&expandQuotes(e),e.querySelectorAll(".quote").forEach((e=>{e.querySelector(".quotebtn")||expandQuotes(e)})))}))}))}));quoteObserver.observe(document.body,{childList:!0,subtree:!0}),document.querySelectorAll(".color .quote_top").forEach(modifyQuoteTop);const quoteTopObserver=new MutationObserver((e=>{e.forEach((e=>{e.addedNodes.forEach((e=>{e.nodeType===Node.ELEMENT_NODE&&e.querySelectorAll(".quote_top").forEach(modifyQuoteTop)}))}))}));function modifyQuoteTop(e){if(isInsideVeContentColor(e))return;const o=e.textContent,t=e.querySelector("a");if(o.includes("@")){const n=o.replace(/(.*)\s*\(([^@]+)@[^)]+\)\s*/,"$2 said:");e.innerHTML=n,e.style.color="var(--mdcol)",t&&(e.appendChild(t),t.style.color="var(--mdcol)")}else{const o=e.querySelector(".quote_top b");o&&(o.style.opacity=1)}}quoteTopObserver.observe(document.body,{childList:!0,subtree:!0});
 //Youtube lite
 function replaceYouTubeIframes(){const e=document.querySelectorAll('.post .color iframe');e.forEach(e=>{const t=e.src;if(t&&t.includes('youtube.com/embed/')){const n=t.split('/embed/')[1].split('?')[0];e.setAttribute('data-lite-src',t),e.removeAttribute('src');const o=document.createElement('lite-youtube');o.setAttribute('videoid',n),e.replaceWith(o)}})}replaceYouTubeIframes();
 //Skin
