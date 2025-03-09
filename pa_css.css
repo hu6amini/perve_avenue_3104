@@ -744,7 +744,7 @@ button[name="full"] img{max-height:16px;max-width:16px;position:absolute}
 #PollTitle{border-radius:4px}
 .Sortable.ui-sortable{border-bottom:1px solid var(--ltbrd);border-top:1px solid var(--ltbrd);margin-bottom:12px;margin-top:12px}
 [id^="Option"]{display:flex}
-ul.stats.List .users li{min-height:24px;padding-left:29px;position:relative}
+ul.stats.List .users li,.side_stats.sidebox .users li{min-height:24px;padding-left:29px;position:relative}
 ul.stats.List .users a.avatar{left:0;position:absolute;top:0}
 .popup.pop_points img[alt="← undo"]{margin-right:10px}
 a.leftitem,.sidebar a,a.rightitem{display:inline-block!important}
