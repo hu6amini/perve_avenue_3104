@@ -11,7 +11,347 @@ const postColors=document.querySelectorAll(".post .color,.summary .list li .colo
 //Slick carousel 
 $('.slick_carousel').slick({slidesToShow:1,slidesToScroll:1,autoplay:true,autoplaySpeed:3820,dots:true,infinite:true,centerMode:true,lazyLoad:'ondemand',pauseOnFocus:false});
 //Avatar pack_1
-!function(){const e=["#ff7770","#ff6b6b","#ff5154","#ffcb69","#fdc26d","#ffa96c","#ff9f1c","#ff8f5c","#9ce37d","#74c365","#16c172","#3ab795","#4ecdc4","#2dc7ff","#0eb1d2","#009bf5","#a3bcf9","#9b9ece","#9792e3","#8075ff","#b455b0","#a755c2","#a5acb5","#889696"],t=["https://res.cloudinary.com/dbdf6gwgo/image/upload/v1674337715/forum/Avatar/default_avatar_zpw3zz.svg","https://res.cloudinary.com/dbdf6gwgo/image/upload/v1676109015/forum/Avatar/robot_snynw7.svg"],a=new Map,r=new WeakMap,o=new WeakMap;function createAvatarSpan(t){const a=function getFirstValidCharacter(e){const t=e.match(/[A-Za-z]/);if(t)return t[0].toUpperCase();const a=e.match(/[0-9]/);return a?a[0]:e.match(/[^A-Za-z0-9]/)?.[0]||"?"}(t),r=document.createElement("span");return r.className="avatar",r.textContent=a,r.style.backgroundColor=function getColorForCharacterCount(t){const a=Math.ceil(1/e.length),r=Math.min(Math.floor(t/a),e.length-1);return e[r]}(t.length),r}function createAvatarElement(e,a,r,o){const s=document.createElement("a");if(s.className="avatar",s.href=r,e&&!t.includes(e.src)){const t=document.createElement("img");t.setAttribute("data-src",e.src),t.classList.add("lazyload"),t.decoding="async",s.appendChild(t)}else{const e=o||a.textContent.trim();s.appendChild(createAvatarSpan(e))}return s}function fetchAvatarForUser(e,t,r){const o=e.href;if(a.has(o)){const{profileAvatarImg:e,fullName:s}=a.get(o);insertAvatar(createAvatarElement(e,t,o,s),r)}else fetch(o).then((e=>e.text())).then((e=>{const s=(new DOMParser).parseFromString(e,"text/html"),c=s.querySelector(".profile .avatar img"),n=s.querySelector(".profile .nick")?.textContent.trim();a.set(o,{profileAvatarImg:c,fullName:n});insertAvatar(createAvatarElement(c,t,o,n),r)})).catch((e=>{console.error("Error fetching profile:",e);insertAvatar(createAvatarElement(null,t,o),r)}))}function insertAvatar(e,t){const a=r.get(t)?.summary||t.closest(".summary .list li"),o=r.get(t)?.popup||t.closest(".popup.pop_points ol.users li"),s=r.get(t)?.boardStats||t.closest(".stats .zz .users li"),c=r.get(t)?.sideStats||t.closest(".side_stats.sidebox .users li"),n=r.get(t)?.tagObject||t.closest("#tagObject li"),l=r.get(t)?.emojiPostAuthor||t.closest(".st-emoji-epost-author"),i=r.get(t)?.sendMainBg||t.closest(".send .mainbg");if(a){const a=t.querySelector(".left.Sub.Item");if(a){const t=document.createElement("div");t.className="summary_details";const r=a.querySelector(".nick");r&&t.appendChild(r),t.appendChild(e),a.insertBefore(t,a.firstChild)}}else if(o&&document.body.matches("#topic, #search"))t.insertBefore(e,t.firstChild);else if(s&&document.body.matches("#board"))t.insertBefore(e,t.firstChild);else if(c&&document.body.matches("#blog"))t.insertBefore(e,t.firstChild);else if(n&&document.body.matches("#board"))t.insertBefore(e,t.firstChild);else if(l&&document.body.matches("#topic"))t.insertBefore(e,t.firstChild);else if(i){const a=document.createElement("div");a.className="send_av",a.appendChild(e),t.querySelector(".send_av")||t.insertBefore(a,t.firstChild)}else if(t.closest(".send")){const a=document.createElement("div");a.className="send_av",a.appendChild(e),t.previousElementSibling&&t.previousElementSibling.classList.contains("send_av")||t.parentNode.insertBefore(a,t)}else t.previousElementSibling&&t.previousElementSibling.classList.contains("avatar")||t.parentNode.insertBefore(e,t)}function replaceBigListAvatars(e){if(document.body.matches("#board, #forum, #blog, #search")){const t=o.get(e)?.userLink||e.querySelector('a[href*="act=Profile&MID="]');t&&(o.set(e,{userLink:t}),fetchAvatarForUser(t,t,e))}}function replacePopupAvatars(e){if(document.body.matches("#topic, #search")){const t=o.get(e)?.userLink||e.querySelector('a[href*="act=Profile&MID="]');t&&(o.set(e,{userLink:t}),fetchAvatarForUser(t,t,e))}}function replaceEmojiPostAuthorAvatars(e){if(document.body.matches("#topic")){const t=o.get(e)?.userLink||e.querySelector('a[href*="act=Profile&MID="]');t&&(o.set(e,{userLink:t}),fetchAvatarForUser(t,t,e))}}function replaceBoardStatsAvatars(e){const t=o.get(e)?.userLink||e.querySelector('a[href*="act=Profile&MID="]');t&&document.body.matches("#board")&&(o.set(e,{userLink:t}),fetchAvatarForUser(t,t,e))}function replaceSideStatsAvatars(e){const t=o.get(e)?.userLink||e.querySelector('a[href*="act=Profile&MID="]');t&&document.body.matches("#blog")&&(o.set(e,{userLink:t}),fetchAvatarForUser(t,t,e))}function replaceTagObjectAvatars(e){const t=o.get(e)?.userLink||e.querySelector('a[href*="act=Profile&MID="]');t&&document.body.matches("#board")&&(o.set(e,{userLink:t}),fetchAvatarForUser(t,t,e))}function replaceSummaryListAvatars(e){if(document.body.matches("#send")){const t=o.get(e)?.userLink||e.querySelector('a[href*="act=Profile&MID="]');t&&(o.set(e,{userLink:t}),fetchAvatarForUser(t,t,e))}}function replacePostDetailsAvatars(){if(document.body.matches("#topic, #send")){const e=document.createDocumentFragment();document.querySelectorAll(".post .details").forEach((t=>{if(!t.querySelector(".avatar")){const a=t.querySelector(".nick:not(a)");if(a&&!a.querySelector('a[href*="act=Profile&MID="]')){const r=createAvatarSpan(a.textContent.trim());e.appendChild(r),t.insertBefore(e,t.firstChild)}}}))}}!function avtObserveNewElements(){new MutationObserver((e=>{e.forEach((e=>{e.addedNodes.forEach((e=>{1===e.nodeType&&(e.matches(".big_list .zz .who")&&document.body.matches("#board, #forum, #blog, #search")?replaceBigListAvatars(e):e.matches(".popup.pop_points ol.users li")&&document.body.matches("#topic, #search")?replacePopupAvatars(e):e.matches(".st-emoji-epost-author")&&document.body.matches("#topic")?replaceEmojiPostAuthorAvatars(e):e.matches(".stats .zz .users li")&&document.body.matches("#board")?replaceBoardStatsAvatars(e):e.matches(".side_stats.sidebox .users li")&&document.body.matches("#blog")?replaceSideStatsAvatars(e):e.matches("#tagObject li")&&document.body.matches("#board")?replaceTagObjectAvatars(e):e.matches(".summary .list li")&&document.body.matches("#send")?replaceSummaryListAvatars(e):e.matches(".post .details")&&document.body.matches("#topic, #send")?replacePostDetailsAvatars():(document.body.matches("#board, #forum, #blog, #search")&&e.querySelectorAll(".big_list .zz .who").forEach(replaceBigListAvatars),document.body.matches("#topic, #search")&&e.querySelectorAll(".popup.pop_points ol.users li").forEach(replacePopupAvatars),document.body.matches("#topic")&&e.querySelectorAll(".st-emoji-epost-author").forEach(replaceEmojiPostAuthorAvatars),document.body.matches("#board")&&(e.querySelectorAll(".stats .zz .users li").forEach(replaceBoardStatsAvatars),e.querySelectorAll("#tagObject li").forEach(replaceTagObjectAvatars)),document.body.matches("#blog")&&e.querySelectorAll(".side_stats.sidebox .users li").forEach(replaceSideStatsAvatars),document.body.matches("#send")&&e.querySelectorAll(".summary .list li").forEach(replaceSummaryListAvatars),document.body.matches("#topic, #send")&&e.querySelectorAll(".post .details").forEach(replacePostDetailsAvatars)))}))}))})).observe(document.body,{childList:!0,subtree:!0}),document.body.matches("#board, #forum, #blog, #search")&&document.querySelectorAll(".big_list .zz .who").forEach(replaceBigListAvatars),document.body.matches("#topic, #search")&&document.querySelectorAll(".popup.pop_points ol.users li").forEach(replacePopupAvatars),document.body.matches("#topic")&&document.querySelectorAll(".st-emoji-epost-author").forEach(replaceEmojiPostAuthorAvatars),document.body.matches("#board")&&(document.querySelectorAll(".stats .zz .users li").forEach(replaceBoardStatsAvatars),document.querySelectorAll("#tagObject li").forEach(replaceTagObjectAvatars)),document.body.matches("#blog")&&document.querySelectorAll(".side_stats.sidebox .users li").forEach(replaceSideStatsAvatars),document.body.matches("#send")&&document.querySelectorAll(".summary .list li").forEach(replaceSummaryListAvatars),document.body.matches("#topic, #send")&&document.querySelectorAll(".post .details").forEach(replacePostDetailsAvatars),function replaceSendMainBgAvatars(){if(document.body.matches("#topic, #send, #blog")){const e=o.get(document)?.userLink||document.querySelector('.menuwrap .left .menu:first-child a[href*="act=Profile&MID="]'),t=o.get(document)?.sendMainBg||document.querySelector(".send .mainbg");e&&t&&(o.set(document,{userLink:e,sendMainBg:t}),fetchAvatarForUser(e,e,t))}}()}()}();
+!function() {
+  const colors = ["#ff7770", "#ff6b6b", "#ff5154", "#ffcb69", "#fdc26d", "#ffa96c", "#ff9f1c", "#ff8f5c", "#9ce37d", "#74c365", "#16c172", "#3ab795", "#4ecdc4", "#2dc7ff", "#0eb1d2", "#009bf5", "#a3bcf9", "#9b9ece", "#9792e3", "#8075ff", "#b455b0", "#a755c2", "#a5acb5", "#889696"];
+
+  const defaultAvatars = [
+    "https://res.cloudinary.com/dbdf6gwgo/image/upload/v1674337715/forum/Avatar/default_avatar_zpw3zz.svg",
+    "https://res.cloudinary.com/dbdf6gwgo/image/upload/v1676109015/forum/Avatar/robot_snynw7.svg"
+  ];
+
+  // Cache for profile avatars
+  const profileCache = new Map();
+
+  // Cache for closest() results
+  const closestCache = new WeakMap();
+
+  // Cache for querySelector() results
+  const querySelectorCache = new WeakMap();
+
+  function getFirstValidCharacter(name) {
+    const letters = name.match(/[A-Za-z]/);
+    if (letters) return letters[0].toUpperCase();
+
+    const numbers = name.match(/[0-9]/);
+    if (numbers) return numbers[0];
+
+    return name.match(/[^A-Za-z0-9]/)?.[0] || "?";
+  }
+
+  function createAvatarSpan(name) {
+    const char = getFirstValidCharacter(name);
+    const span = document.createElement("span");
+    span.className = "avatar";
+    span.textContent = char;
+    span.style.backgroundColor = getColorForCharacterCount(name.length);
+    span.style.color = "#F7FFF7";
+    return span;
+  }
+
+  function getColorForCharacterCount(length) {
+    const step = Math.ceil(1 / colors.length);
+    const index = Math.min(Math.floor(length / step), colors.length - 1);
+    return colors[index];
+  }
+
+  function createAvatarElement(profileAvatarImg, userElement, profileUrl, fullName) {
+    const avatarElement = document.createElement("a");
+    avatarElement.className = "avatar";
+    avatarElement.href = profileUrl; // Set the href to the profile URL
+
+    if (profileAvatarImg && !defaultAvatars.includes(profileAvatarImg.src)) {
+      // Use actual profile avatar
+      const img = document.createElement("img");
+      img.setAttribute("data-src", profileAvatarImg.src); // Lazy loading
+      img.classList.add("lazyload");
+      img.decoding = "async";
+      avatarElement.appendChild(img);
+    } else {
+      // Create first-letter avatar
+      const name = fullName || userElement.textContent.trim();
+      avatarElement.appendChild(createAvatarSpan(name));
+    }
+
+    return avatarElement;
+  }
+
+  function fetchAvatarForUser(profileLink, userElement, insertBeforeElement) {
+    const profileUrl = profileLink.href;
+
+    // Check if the profile is already cached
+    if (profileCache.has(profileUrl)) {
+      const { profileAvatarImg, fullName } = profileCache.get(profileUrl);
+      const avatarElement = createAvatarElement(profileAvatarImg, userElement, profileUrl, fullName);
+      insertAvatar(avatarElement, insertBeforeElement);
+    } else {
+      // Fetch profile data
+      fetch(profileUrl)
+        .then(response => response.text())
+        .then(html => {
+          const profileDoc = new DOMParser().parseFromString(html, "text/html");
+          const profileAvatarImg = profileDoc.querySelector(".profile .avatar img");
+          const fullName = profileDoc.querySelector(".profile .nick")?.textContent.trim();
+          profileCache.set(profileUrl, { profileAvatarImg, fullName }); // Cache the result
+          const avatarElement = createAvatarElement(profileAvatarImg, userElement, profileUrl, fullName);
+          insertAvatar(avatarElement, insertBeforeElement);
+        })
+        .catch(error => {
+          console.error("Error fetching profile:", error);
+          // Fallback: Create a first-letter avatar
+          const avatarElement = createAvatarElement(null, userElement, profileUrl);
+          insertAvatar(avatarElement, insertBeforeElement);
+        });
+    }
+  }
+
+  function insertAvatar(avatarElement, insertBeforeElement) {
+    // Cache closest() results
+    const isSummaryList = closestCache.get(insertBeforeElement)?.summary || insertBeforeElement.closest(".summary .list li");
+    const isPopup = closestCache.get(insertBeforeElement)?.popup || insertBeforeElement.closest(".popup.pop_points ol.users li");
+    const isBoardStats = closestCache.get(insertBeforeElement)?.boardStats || insertBeforeElement.closest(".stats .zz .users li");
+    const isSideStats = closestCache.get(insertBeforeElement)?.sideStats || insertBeforeElement.closest(".side_stats.sidebox .users li");
+    const isTagObject = closestCache.get(insertBeforeElement)?.tagObject || insertBeforeElement.closest("#tagObject li");
+    const isEmojiPostAuthor = closestCache.get(insertBeforeElement)?.emojiPostAuthor || insertBeforeElement.closest(".st-emoji-epost-author");
+    const isSendMainBg = closestCache.get(insertBeforeElement)?.sendMainBg || insertBeforeElement.closest(".send .mainbg");
+
+    // Insert the avatar at the start of the .left.Sub.Item for summary list avatars
+    if (isSummaryList) {
+      const leftSubItem = insertBeforeElement.querySelector(".left.Sub.Item");
+      if (leftSubItem) {
+        // Wrap the avatar and .nick in a .summary_details div
+        const summaryDetailsDiv = document.createElement("div");
+        summaryDetailsDiv.className = "summary_details";
+
+        // Move the .nick element into the .summary_details div
+        const nickElement = leftSubItem.querySelector(".nick");
+        if (nickElement) {
+          summaryDetailsDiv.appendChild(nickElement);
+        }
+
+        // Add the avatar to the .summary_details div
+        summaryDetailsDiv.appendChild(avatarElement);
+
+        // Insert the .summary_details div at the start of .left.Sub.Item
+        leftSubItem.insertBefore(summaryDetailsDiv, leftSubItem.firstChild);
+      }
+    } else if (isPopup && document.body.matches("#topic, #search")) {
+      // Insert the avatar at the start of the <li> for popup avatars ONLY if body has ID #topic or #search
+      insertBeforeElement.insertBefore(avatarElement, insertBeforeElement.firstChild);
+    } else if (isBoardStats && document.body.matches("#board")) {
+      // Insert the avatar at the start of the <li> for board stats avatars ONLY if body has ID #board
+      insertBeforeElement.insertBefore(avatarElement, insertBeforeElement.firstChild);
+    } else if (isSideStats && document.body.matches("#blog")) {
+      // Insert the avatar at the start of the <li> for side_stats.sidebox avatars ONLY if body has ID #blog
+      insertBeforeElement.insertBefore(avatarElement, insertBeforeElement.firstChild);
+    } else if (isTagObject && document.body.matches("#board")) {
+      // Insert the avatar at the start of the <li> for tag avatars ONLY if body has ID #board
+      insertBeforeElement.insertBefore(avatarElement, insertBeforeElement.firstChild);
+    } else if (isEmojiPostAuthor && document.body.matches("#topic")) {
+      // Insert the avatar at the start of the <li> for emoji post authors ONLY if body has ID #topic
+      insertBeforeElement.insertBefore(avatarElement, insertBeforeElement.firstChild);
+    } else if (isSendMainBg) {
+      // Wrap avatar in a .send_av div and insert at the start of .mainbg
+      const sendAvDiv = document.createElement("div");
+      sendAvDiv.className = "send_av";
+      sendAvDiv.appendChild(avatarElement);
+
+      // Insert the .send_av div at the start of .mainbg
+      if (!insertBeforeElement.querySelector(".send_av")) {
+        insertBeforeElement.insertBefore(sendAvDiv, insertBeforeElement.firstChild);
+      }
+    } else if (insertBeforeElement.closest(".send")) {
+      // Wrap avatar in a .send_av div ONLY if inside a .send element
+      const sendAvDiv = document.createElement("div");
+      sendAvDiv.className = "send_av";
+      sendAvDiv.appendChild(avatarElement);
+
+      // Insert the .send_av div before the specified element
+      if (!insertBeforeElement.previousElementSibling || !insertBeforeElement.previousElementSibling.classList.contains("send_av")) {
+        insertBeforeElement.parentNode.insertBefore(sendAvDiv, insertBeforeElement);
+      }
+    } else {
+      // Insert the avatar directly if not inside a .send element
+      if (!insertBeforeElement.previousElementSibling || !insertBeforeElement.previousElementSibling.classList.contains("avatar")) {
+        insertBeforeElement.parentNode.insertBefore(avatarElement, insertBeforeElement);
+      }
+    }
+  }
+
+  function replaceBigListAvatars(element) {
+    if (document.body.matches("#board, #forum, #blog, #search")) {
+      const userLink = querySelectorCache.get(element)?.userLink || element.querySelector('a[href*="act=Profile&MID="]');
+      if (userLink) {
+        querySelectorCache.set(element, { userLink });
+        fetchAvatarForUser(userLink, userLink, element);
+      }
+    }
+  }
+
+  function replacePopupAvatars(element) {
+    if (document.body.matches("#topic, #search")) {
+      const userLink = querySelectorCache.get(element)?.userLink || element.querySelector('a[href*="act=Profile&MID="]');
+      if (userLink) {
+        querySelectorCache.set(element, { userLink });
+        fetchAvatarForUser(userLink, userLink, element);
+      }
+    }
+  }
+
+  function replaceEmojiPostAuthorAvatars(element) {
+    if (document.body.matches("#topic")) {
+      const userLink = querySelectorCache.get(element)?.userLink || element.querySelector('a[href*="act=Profile&MID="]');
+      if (userLink) {
+        querySelectorCache.set(element, { userLink });
+        fetchAvatarForUser(userLink, userLink, element);
+      }
+    }
+  }
+
+  function replaceBoardStatsAvatars(element) {
+    const userLink = querySelectorCache.get(element)?.userLink || element.querySelector('a[href*="act=Profile&MID="]');
+    if (userLink && document.body.matches("#board")) {
+      querySelectorCache.set(element, { userLink });
+      fetchAvatarForUser(userLink, userLink, element);
+    }
+  }
+
+  function replaceSideStatsAvatars(element) {
+    const userLink = querySelectorCache.get(element)?.userLink || element.querySelector('a[href*="act=Profile&MID="]');
+    if (userLink && document.body.matches("#blog")) {
+      querySelectorCache.set(element, { userLink });
+      fetchAvatarForUser(userLink, userLink, element);
+    }
+  }
+
+  function replaceTagObjectAvatars(element) {
+    const userLink = querySelectorCache.get(element)?.userLink || element.querySelector('a[href*="act=Profile&MID="]');
+    if (userLink && document.body.matches("#board")) {
+      querySelectorCache.set(element, { userLink });
+      fetchAvatarForUser(userLink, userLink, element);
+    }
+  }
+
+  function replaceSummaryListAvatars(element) {
+    if (document.body.matches("#send")) {
+      const userLink = querySelectorCache.get(element)?.userLink || element.querySelector('a[href*="act=Profile&MID="]');
+      if (userLink) {
+        querySelectorCache.set(element, { userLink });
+        fetchAvatarForUser(userLink, userLink, element);
+      }
+    }
+  }
+
+  function replacePostDetailsAvatars() {
+    if (document.body.matches("#topic, #send")) {
+      const fragment = document.createDocumentFragment();
+      document.querySelectorAll(".post .details").forEach(detailsElement => {
+        // Check if an avatar already exists in this .post .details
+        if (!detailsElement.querySelector(".avatar")) {
+          const nickElement = detailsElement.querySelector(".nick:not(a)");
+          if (nickElement && !nickElement.querySelector('a[href*="act=Profile&MID="]')) {
+            const name = nickElement.textContent.trim();
+            const avatarElement = createAvatarSpan(name);
+            fragment.appendChild(avatarElement);
+            detailsElement.insertBefore(fragment, detailsElement.firstChild);
+          }
+        }
+      });
+    }
+  }
+
+  function replaceSendMainBgAvatars() {
+    if (document.body.matches("#topic, #send, #blog")) {
+      const userLink = querySelectorCache.get(document)?.userLink || document.querySelector('.menuwrap .left .menu:first-child a[href*="act=Profile&MID="]');
+      const sendMainBg = querySelectorCache.get(document)?.sendMainBg || document.querySelector('.send .mainbg');
+      if (userLink && sendMainBg) {
+        querySelectorCache.set(document, { userLink, sendMainBg });
+        fetchAvatarForUser(userLink, userLink, sendMainBg);
+      }
+    }
+  }
+
+  function avtObserveNewElements() {
+    const avt = new MutationObserver(mutations => {
+      mutations.forEach(mutation => {
+        mutation.addedNodes.forEach(node => {
+          if (node.nodeType === 1) {
+            if (node.matches(".big_list .zz .who") && document.body.matches("#board, #forum, #blog, #search")) {
+              replaceBigListAvatars(node);
+            } else if (node.matches(".popup.pop_points ol.users li") && document.body.matches("#topic, #search")) {
+              replacePopupAvatars(node);
+            } else if (node.matches(".st-emoji-epost-author") && document.body.matches("#topic")) {
+              replaceEmojiPostAuthorAvatars(node);
+            } else if (node.matches(".stats .zz .users li") && document.body.matches("#board")) {
+              replaceBoardStatsAvatars(node);
+            } else if (node.matches(".side_stats.sidebox .users li") && document.body.matches("#blog")) {
+              replaceSideStatsAvatars(node);
+            } else if (node.matches("#tagObject li") && document.body.matches("#board")) {
+              replaceTagObjectAvatars(node);
+            } else if (node.matches(".summary .list li") && document.body.matches("#send")) {
+              replaceSummaryListAvatars(node);
+            } else if (node.matches(".post .details") && document.body.matches("#topic, #send")) {
+              replacePostDetailsAvatars();
+            } else {
+              if (document.body.matches("#board, #forum, #blog, #search")) {
+                node.querySelectorAll(".big_list .zz .who").forEach(replaceBigListAvatars);
+              }
+              if (document.body.matches("#topic, #search")) {
+                node.querySelectorAll(".popup.pop_points ol.users li").forEach(replacePopupAvatars);
+              }
+              if (document.body.matches("#topic")) {
+                node.querySelectorAll(".st-emoji-epost-author").forEach(replaceEmojiPostAuthorAvatars);
+              }
+              if (document.body.matches("#board")) {
+                node.querySelectorAll(".stats .zz .users li").forEach(replaceBoardStatsAvatars);
+                node.querySelectorAll("#tagObject li").forEach(replaceTagObjectAvatars);
+              }
+              if (document.body.matches("#blog")) {
+                node.querySelectorAll(".side_stats.sidebox .users li").forEach(replaceSideStatsAvatars);
+              }
+              if (document.body.matches("#send")) {
+                node.querySelectorAll(".summary .list li").forEach(replaceSummaryListAvatars);
+              }
+              if (document.body.matches("#topic, #send")) {
+                node.querySelectorAll(".post .details").forEach(replacePostDetailsAvatars);
+              }
+            }
+          }
+        });
+      });
+    });
+
+    avt.observe(document.body, { childList: true, subtree: true });
+
+    // Process existing elements immediately
+    if (document.body.matches("#board, #forum, #blog, #search")) {
+      document.querySelectorAll(".big_list .zz .who").forEach(replaceBigListAvatars);
+    }
+    if (document.body.matches("#topic, #search")) {
+      document.querySelectorAll(".popup.pop_points ol.users li").forEach(replacePopupAvatars);
+    }
+    if (document.body.matches("#topic")) {
+      document.querySelectorAll(".st-emoji-epost-author").forEach(replaceEmojiPostAuthorAvatars);
+    }
+    if (document.body.matches("#board")) {
+      document.querySelectorAll(".stats .zz .users li").forEach(replaceBoardStatsAvatars);
+      document.querySelectorAll("#tagObject li").forEach(replaceTagObjectAvatars);
+    }
+    if (document.body.matches("#blog")) {
+      document.querySelectorAll(".side_stats.sidebox .users li").forEach(replaceSideStatsAvatars);
+    }
+    if (document.body.matches("#send")) {
+      document.querySelectorAll(".summary .list li").forEach(replaceSummaryListAvatars);
+    }
+    if (document.body.matches("#topic, #send")) {
+      document.querySelectorAll(".post .details").forEach(replacePostDetailsAvatars);
+    }
+
+    // Ensure avatars for send .mainbg on initial load
+    replaceSendMainBgAvatars();
+  }
+
+  avtObserveNewElements();
+}();
 //Reply counter 
 function processPostElements(){const e=document.querySelectorAll(".post"),t=(()=>{const e=new URLSearchParams(window.location.search);return parseInt(e.get("st")||0)+1})();e.forEach(((e,r)=>{createReplyCounter(e,t+r,"after")}))}function createReplyCounter(e,t,r){if(e.querySelector(".reply_counter"))return;const o=document.createElement("b");o.className="reply_counter",o.textContent="#"+t;const s=e.querySelector(".mini_buttons.rt.Sub");s&&("after"===r?s.appendChild(o):s.insertBefore(o,s.firstChild))}processPostElements();const postObserver=new MutationObserver((e=>{e.forEach((e=>{e.addedNodes.forEach((e=>{e.nodeType===Node.ELEMENT_NODE&&e.matches(".post")&&processPostElements()}))}))}));postObserver.observe(document.body,{childList:!0,subtree:!0});
 //Goto
