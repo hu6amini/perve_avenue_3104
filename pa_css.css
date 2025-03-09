@@ -417,7 +417,7 @@ input.forminput[value="Search this forum"]{font-size:0;height:.875rem;margin-lef
 .cs-btn.cs-btn-outer-red::before{content:'\f1f6 \00a0';display:inline-block}
 .cs-btn.cs-btn-outer-green::before,#notifications-modal .notification-container:not(.readed) .dot::before{content:'\f061 \00a0';display:inline-block}
 .cs-btn.cs-btn-outer-red.st-emoji-notice-delete::before{content:'\f12d \00a0';display:inline-block;font-size:.75rem}
-.cs-modal-footer{background:var(--contt);border-radius:0 0 4px 4px;border-top:1px solid var(--ltbrd);height:45px;overflow-y:hidden!important;padding:0 10px!important}
+.st-emoji-modal .cs-modal-footer{background:var(--contt);border-radius:0 0 4px 4px;border-top:1px solid var(--ltbrd);height:45px;overflow-y:hidden!important;padding:0 10px!important}
 .cs-toast.slide-in.st-emoji-toast.cs-toast-info{background:var(--menul)!important;box-shadow:var(--shado)!important}
 .cs-toast-info .cs-toast-timer{background-color:var(--contt)!important;background-image:linear-gradient(to bottom, var(--ltgry) 50%, var(--contt) 50%)!important}
 .cs-toast-header{border-bottom:1px solid var(--ltbrd)!important}
