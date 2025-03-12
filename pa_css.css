@@ -27,9 +27,9 @@ input[type="submit"]:hover,button[type="submit"]:hover:not(.children-2 button:ho
 button[value="Register"],button[value="Log In"],#user .Item.title2,#user span[style="color:#D22"]{font-size:.875rem!important}
 .buttons .reply,.buttons .newpost,.ui-datepicker .ui-datepicker-buttonpane button,button[onclick="$(this).notifications('mark_as_all_read');"],.cs-btn.cs-btn-blue,.cs-btn.cs-btn-green{background:transparent;background-color:transparent!important;border:2px solid var(--ltcol)!important;border-color:var(--ltcol)!important;border-radius:4px;box-shadow:none;color:var(--ftcol)!important;cursor:pointer;font-size:.875rem;font-weight:700;line-height:1;margin:0;padding:.430rem 1rem;text-transform:uppercase}
 .el-cancel,.el-confirm{background:transparent;background-color:transparent!important;border:2px solid var(--ltcol)!important;border-color:var(--ltcol)!important;border-radius:4px!important;box-shadow:none;color:var(--ftcol)!important;cursor:pointer;font-size:0;line-height:1;margin:0;padding:.430rem 1rem!important;text-transform:uppercase}
-.el-cancel::before{content:'\f05e \00a0'}
+.el-cancel::before{content:'\f05e \00a0';font-size:.875rem}
 .el-cancel::after{content:'Cancel'}
-.el-confirm::before{content:'\f058 \00a0'}
+.el-confirm::before{content:'\f058 \00a0';font-size:.875rem}
 .el-confirm::after{content:'Confirm'}
 .el-cancel::after,.el-confirm::after{font-family:quicksand;font-size:.875rem;font-weight:700}
 .buttons .reply:hover,.buttons .newpost:hover,.mark_as_all_read button:hover,.ui-datepicker .ui-datepicker-buttonpane button:hover,#theme-toggle-button:hover,.cs-btn.cs-btn-blue:hover,.cs-btn.cs-btn-green:hover,button[onclick="$(this).notifications('mark_as_all_read');"]:hover,.el-cancel:hover,.el-confirm:hover{background:var(--bthov)!important;text-decoration:none}
