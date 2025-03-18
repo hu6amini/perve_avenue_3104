@@ -451,8 +451,9 @@ img[src="https://img.forumfree.net/home/images/avatar_email.png"]{background:url
 .ffb_embedlink_initialized > div:last-child > div:first-child > a > img{border-radius:7px;left:0;margin:0;max-width:560px}
 .ffb_embedlink div + div{background:var(--txtim);box-sizing:border-box;display:flex;flex-direction:column;font-size:.875rem;padding:6px 12px} 
 .ffb_embedlink div:nth-of-type(2) > div{border:none;padding:0}
-.ffb_embedlink_initialized > div:last-child > div:first-child{max-height:100%;max-width:100%}
+.ffb_embedlink_initialized > div:last-child > div:first-child{justify-content:flex-start;height:auto;max-width:300px}
 .ffb_embedlink a{background:none!important; font-weight:700;padding-left:0!important}
+.ffb_embedlink>div:last-child>div:nth-child(2)>a:first-child{color:var(--ftcol);font-family:'Lora';font-size:1.5rem}
 .ffb_embedlink_initialized > div:last-child > div:first-child > a{display:block!important;max-height:100%;max-width:100%;overflow:visible}
 .Sub.Item[style="width:28%"]{color:var(--ltcol);font-size:.875rem;font-weight:400}
 .Sub.Item.handle.ui-sortable-handle,.Sub.Item.handle.ui-sortable-handle b,.Sub.Item.handle,.Sub.Item.handle b{color:var(--ftcol);font-size:.813rem;font-weight:400}
