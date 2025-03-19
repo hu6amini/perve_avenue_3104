@@ -457,7 +457,7 @@ img[src="https://img.forumfree.net/home/images/avatar_email.png"]{background:url
 .ffb_embedlink_initialized > div:last-child > div:first-child > a{display:block!important;max-height:100%;max-width:100%;overflow:visible}
 .ffb_embedlink>div[style="display:none"]{gap:3px}
 .ffb_embedlink div+div>div+div a:last-of-type::before{content:'Read more';font-family:quicksand;font-size:.875rem;font-weight:700}
-.ffb_embedlink div+div>div+div a:last-of-type::after{content:'\00a0 \f054'}
+.ffb_embedlink div+div>div+div a:last-of-type::after{content:'\00a0 \f054';font-size:.875rem}
 .Sub.Item[style="width:28%"]{color:var(--ltcol);font-size:.875rem;font-weight:400}
 .Sub.Item.handle.ui-sortable-handle,.Sub.Item.handle.ui-sortable-handle b,.Sub.Item.handle,.Sub.Item.handle b{color:var(--ftcol);font-size:.813rem;font-weight:400}
 #markdiv .list-users > div{align-items:center;border:1px solid var(--ltbrd);border-radius:4px;display:flex!important;flex-direction:column;gap:10px;justify-content:center;margin:0!important;min-width:106px;padding:10px}
