@@ -459,7 +459,7 @@ img[src="https://img.forumfree.net/home/images/avatar_email.png"]{background:url
 .ffb_embedlink_initialized > div:last-child > div:first-child > a{display:block!important;max-height:100%;max-width:100%;overflow:visible}
 .ffb_embedlink>div[style="display:none"],.ve-content.color .ffb_embedlink>div:first-child,.ve-content.color .ffb_embedlink>div:first-child,#loading .ffb_embedlink>div:first-child{background-color:transparent!important;border:none!important;gap:3px}
 .ve-content.color .ffb_embedlink>div:first-child p{align-items:center;display:flex;gap:3px}
-.ffb_embedlink p+a,.ve-content.color .ffb_embedlink div:last-of-type p:last-of-type a:last-of-type:not(.ffb_embedlink_preview){font-size:0!important;margin-top:10px}
+.ffb_embedlink p+a,.ve-content.color .ffb_embedlink div:last-of-type p:last-of-type a:last-of-type:not(.ffb_embedlink_preview){display:inline-block;font-size:0!important;margin-top:10px}
 .ffb_embedlink p+a::before,.ve-content.color .ffb_embedlink div:last-of-type p:last-of-type a:last-of-type:not(.ffb_embedlink_preview)::before{content:'Read more';font-family:quicksand;font-size:.875rem;font-weight:700}
 .ffb_embedlink p+a::after,.ve-content.color .ffb_embedlink div:last-of-type p:last-of-type a:last-of-type:not(.ffb_embedlink_preview)::after{content:'\00a0 \f054';font-size:.875rem}
 .ffb_embedlink>div:last-child>div:nth-child(2) *{line-height:1.618}
