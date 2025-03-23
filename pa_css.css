@@ -857,7 +857,7 @@ div[style="padding:56.25% 0 0 0;position:relative;"]{height:315px;margin:0;paddi
 .post .color iframe[src*="youtube.com"]{display:none!important;visibility:hidden!important}
 .post .color .lite-embed iframe[src*="youtube.com"]{display:block!important;visibility:visible!important}
 #msg .cp .aa .avatar img[src="https://img.forumfree.net/style_images/default_avatar.png"]{background-size:40px!important}
-.st-emoji-preview img[data-rid="0"]{transform:scale(0.727)}
+.st-emoji-preview img[data-rid="0"]{transform:scale(0.727);transform-origin:left center}
 
 
 @media (max-width: 768px){
