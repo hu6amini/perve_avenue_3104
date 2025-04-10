@@ -631,7 +631,7 @@ select.codebuttons[onchange="tag('[color='+this.options[this.selectedIndex].valu
 .fast.send #ffupload_icon,#send a[href="https://www.forumcommunity.net/?wiki=BBCode"],#msg a[href="https://www.forumcommunity.net/?wiki=BBCode"],#user a[href="http://forumcommunity.net/?wiki=BBCODE"]{order:19}
 .fast.send a[href="https://www.forumcommunity.net/?wiki=BBCode"]{order:20}
 .fast.send span#ADDCRON,#send span#ADDCRON{order:21}
-.post .title2.top .right{align-items:center;cursor:default;display:flex;font-size:0;padding:12px 12px 0;width:100%}
+.post .title2.top .right{align-items:center;cursor:default;display:flex;flex-wrap:wrap;font-size:0;padding:12px 12px 0;width:100%}
 .post .title2.top .right .lt.Sub{line-height:1;margin:0;white-space:nowrap}
 .post .title2.top .right .mini_buttons.points.Sub:not(#blog .post .title2.top .right .mini_buttons.points.Sub),#search .post .title2.top .points{margin:0 0 0 10px}
 .post .title2.top .right .mini_buttons.rt.Sub{line-height:1rem;margin:0 0 0 auto;white-space:nowrap}
