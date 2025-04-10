@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function() {
         // Load Perve Avenue and ACE Slider only after the last script has loaded
         lastScript.onload = function () {
             let paScript = document.createElement("script");
-            paScript.src = "https://cdn.jsdelivr.net/gh/hu6amini/perve_avenue_2573@main/pa_scripts.js";
+            paScript.src = "https://cdn.jsdelivr.net/gh/hu6amini/perve_avenue_2574@main/pa_scripts.js";
             paScript.defer = true;
             document.body.appendChild(paScript);
 
