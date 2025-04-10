@@ -410,8 +410,8 @@ input.forminput[value="Search this forum"]{font-size:0;height:.875rem;margin-lef
 #user a[style="color:#D22;border:0"]:not(#user a[style="color:#D22;border:0"]:hover){color:var(--lncol)!important}
 #msg td a:not(#attach td a,#msg .post td a),.cp a:not(.notification-container .bb a,.pages li a,.info a,.alert a,.cp .main_list .Item[style="padding: 1em; font-size: 1.1em; color: indianred"] a),.cp a i{font-size:.938rem;font-weight:700;text-transform:capitalize}
 .cs-modal .st-emoji-notice-list{display:flex!important;flex-direction:column!important;gap:0!important;list-style-type:none!important;margin:0!important;padding: 0!important;position:relative!important;z-index:1!important}
-.cs-modal .st-emoji-notice-empty-message{background:none!important;color:var(--ltcol)!important;padding:10px 0!important;text-shadow:none!important}
-.cs-modal .st-emoji-notice-empty{font-size:.813rem;margin-bottom:0;margin:0 10px!important;margin-top:0}
+.cs-modal .st-emoji-notice-empty-message{background:none!important;color:var(--ltcol)!important;padding:10px!important;text-shadow:none!important}
+.cs-modal .st-emoji-notice-empty{font-size:.813rem;margin-bottom:0;margin:0!important;margin-top:0}
 .cs-modal .st-emoji-notice-item{align-items:center;border:none!important;border-radius:0!important;border-top: 1px solid var(--ltbrd)!important;display:flex;flex-direction:row;flex-wrap:nowrap;gap:12px;margin:0!important;padding:10px!important;position:relative!important;transition:all .3s ease!important;width:100%}
 .st-emoji-notice-history .st-emoji-notice-item,.st-emoji-notice-empty{background:none!important}
 .st-emoji-notice-item:not(.st-emoji-notice-history .st-emoji-notice-item,.st-emoji-notice-empty),.st-emoji-notice-item img:not(.st-emoji-notice-history .st-emoji-notice-item img,.st-emoji-notice-empty img){background-color:var(--hovbd)}
