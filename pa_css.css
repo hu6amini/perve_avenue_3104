@@ -617,8 +617,10 @@ select.codebuttons[onchange="tag('[color='+this.options[this.selectedIndex].valu
 .fast.send .codebuttons[accesskey="q"],#send .codebuttons[accesskey="q"],#msg .codebuttons[accesskey="w"],#user .codebuttons[accesskey="q"]{order:9}
 .fast.send .codebuttons[accesskey="k"],#send .codebuttons[accesskey="k"],#msg .codebuttons[accesskey="g"]{order:10}
 #user .codebuttons[accesskey="k"]{margin-right:25px;order:10}
-.fast.send .codebuttons[accesskey="h"],#send .codebuttons[accesskey="h"],#user .codebuttons[accesskey="w"]{margin-right:25px;order:11}
-.fast.send .codebuttons[accesskey="w"],#send .codebuttons[accesskey="w"],#user .codebuttons[accesskey="g"],#msg .codebuttons[onchange="tag('[font='+this.options[this.selectedIndex].value+']','[/font]'); this.selectedIndex=0"]{order:12}
+#user .codebuttons[accesskey="w"]{order:11}
+.fast.send .codebuttons[accesskey="h"],#send .codebuttons[accesskey="h"]{margin-right:25px;order:11}
+.fast.send .codebuttons[accesskey="w"],#send .codebuttons[accesskey="w"],#msg .codebuttons[onchange="tag('[font='+this.options[this.selectedIndex].value+']','[/font]'); this.selectedIndex=0"]{order:12}
+#user .codebuttons[accesskey="g"]{margin-right:25px;order:12}
 .fast.send .codebuttons[accesskey="g"],#send .codebuttons[accesskey="g"],#msg .codebuttons[onchange="tag('[size='+this.options[this.selectedIndex].value+']','[/size]'); this.selectedIndex=0"],#user .codebuttons[onchange="tag('[font='+this.options[this.selectedIndex].value+']','[/font]'); this.selectedIndex=0"]{order:13}
 button.cs-replier-item.codebuttons,#user .codebuttons[onchange="tag('[size='+this.options[this.selectedIndex].value+']','[/size]'); this.selectedIndex=0"]{order:14}
 #msg .codebuttons[onchange="tag('[color='+this.options[this.selectedIndex].value+']','[/color]'); this.selectedIndex=0"]{margin-right:25px;order:14}
