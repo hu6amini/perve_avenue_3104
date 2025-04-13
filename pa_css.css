@@ -624,16 +624,15 @@ select.codebuttons[onchange="tag('[color='+this.options[this.selectedIndex].valu
 .fast.send .codebuttons[accesskey="g"],#send .codebuttons[accesskey="g"],#user .codebuttons[onchange="tag('[font='+this.options[this.selectedIndex].value+']','[/font]'); this.selectedIndex=0"]{order:13}
 #msg .codebuttons[accesskey="g"]{margin-right:25px;order:13}
 button.cs-replier-item.codebuttons,#user .codebuttons[onchange="tag('[size='+this.options[this.selectedIndex].value+']','[/size]'); this.selectedIndex=0"],#msg .codebuttons[onchange="tag('[font='+this.options[this.selectedIndex].value+']','[/font]'); this.selectedIndex=0"]{order:14}
-#msg .codebuttons[onchange="tag('[color='+this.options[this.selectedIndex].value+']','[/color]'); this.selectedIndex=0"]{margin-right:25px;order:14}
 .fast.send img[alt="Clickable Smilies"],#msg .codebuttons[onchange="tag('[size='+this.options[this.selectedIndex].value+']','[/size]'); this.selectedIndex=0"]{order:15}
 #send .codebuttons[onclick="add_mark();return;"],#user .codebuttons[onchange="tag('[color='+this.options[this.selectedIndex].value+']','[/color]'); this.selectedIndex=0"]{margin-right:25px;order:15}
 #send select[onchange="tag('[font='+this.options[this.selectedIndex].value+']','[/font]'); this.selectedIndex=0"],#user #ffupload_icon{order:16}
-.fast.send .codebuttons[accesskey="t"]{margin-right:25px;order:16}
-.fast.send select[onchange="tag('[font='+this.options[this.selectedIndex].value+']','[/font]'); this.selectedIndex=0"],#send .codebuttons[onchange="tag('[size='+this.options[this.selectedIndex].value+']','[/size]'); this.selectedIndex=0"],#user a[href="http://forumcommunity.net/?wiki=BBCODE"]{order:17}
+.fast.send .codebuttons[accesskey="t"],#msg .codebuttons[onchange="tag('[color='+this.options[this.selectedIndex].value+']','[/color]'); this.selectedIndex=0"]{margin-right:25px;order:16}
+.fast.send select[onchange="tag('[font='+this.options[this.selectedIndex].value+']','[/font]'); this.selectedIndex=0"],#send .codebuttons[onchange="tag('[size='+this.options[this.selectedIndex].value+']','[/size]'); this.selectedIndex=0"],#user a[href="http://forumcommunity.net/?wiki=BBCODE"],#msg #ffupload_icon{order:17}
 #user .codebuttons[accesskey="h"]{margin-right:25px;order:17}
-.fast.send select[onchange="tag('[size='+this.options[this.selectedIndex].value+']','[/size]'); this.selectedIndex=0"],#msg #ffupload_icon{order:18}
+.fast.send select[onchange="tag('[size='+this.options[this.selectedIndex].value+']','[/size]'); this.selectedIndex=0"],#msg a[href="https://www.forumcommunity.net/?wiki=BBCode"]{order:18}
 #send .codebuttons[onchange="tag('[color='+this.options[this.selectedIndex].value+']','[/color]'); this.selectedIndex=0"]{margin-right:25px;order:18}
-#msg a[href="https://www.forumcommunity.net/?wiki=BBCode"],#send #ffupload_icon{order:19}
+#send #ffupload_icon{order:19}
 .fast.send select[onchange="tag('[color='+this.options[this.selectedIndex].value+']','[/color]'); this.selectedIndex=0"]{margin-right:25px;order:19}
 .fast.send #ffupload_icon,#send a[href="https://www.forumcommunity.net/?wiki=BBCode"]{order:20}
 .fast.send a[href="https://www.forumcommunity.net/?wiki=BBCode"],#send span#ADDCRON{order:21}
