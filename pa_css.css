@@ -624,8 +624,8 @@ button.cs-replier-item.codebuttons{order:14}
 #send .codebuttons[onchange="tag('[color='+this.options[this.selectedIndex].value+']','[/color]'); this.selectedIndex=0"],#msg .codebuttons[onchange="tag('[color='+this.options[this.selectedIndex].value+']','[/color]'); this.selectedIndex=0"],#user .codebuttons[onchange="tag('[color='+this.options[this.selectedIndex].value+']','[/color]'); this.selectedIndex=0"]{margin-right:25px;order:14}
 .fast.send img[alt="Clickable Smilies"],#msg .codebuttons[accesskey="q"],#user .codebuttons[accesskey="q"]{order:15}
 #msg .codebuttons[accesskey="k"],#user .codebuttons[accesskey="k"]{order:16}
-.fast.send .codebuttons[accesskey="t"],#send .codebuttons[accesskey="t"]{margin-right:25px;order:16}
-.fast.send select[onchange="tag('[font='+this.options[this.selectedIndex].value+']','[/font]'); this.selectedIndex=0"]{order:17}
+.fast.send .codebuttons[accesskey="t"],#send .codebuttons[onclick="add_mark();return;"]{margin-right:25px;order:16}
+.fast.send select[onchange="tag('[font='+this.options[this.selectedIndex].value+']','[/font]'); this.selectedIndex=0"],#send select[onchange="tag('[font='+this.options[this.selectedIndex].value+']','[/font]'); this.selectedIndex=0"]{order:17}
 #msg .codebuttons[accesskey="h"],#user .codebuttons[accesskey="h"]{margin-right:25px;order:17}
 .fast.send select[onchange="tag('[size='+this.options[this.selectedIndex].value+']','[/size]'); this.selectedIndex=0"],#send #ffupload_icon,#msg #ffupload_icon,#user #ffupload_icon{order:18}
 #msg a[href="https://www.forumcommunity.net/?wiki=BBCode"],#user a[href="http://forumcommunity.net/?wiki=BBCODE"]{order:19}
