@@ -620,12 +620,12 @@ select.codebuttons[onchange="tag('[color='+this.options[this.selectedIndex].valu
 .fast.send .codebuttons[accesskey="g"],#msg .codebuttons[onchange="tag('[size='+this.options[this.selectedIndex].value+']','[/size]'); this.selectedIndex=0"],#user .codebuttons[onchange="tag('[size='+this.options[this.selectedIndex].value+']','[/size]'); this.selectedIndex=0"],#send .codebuttons[onchange="tag('[size='+this.options[this.selectedIndex].value+']','[/size]'); this.selectedIndex=0"]{order:13}
 button.cs-replier-item.codebuttons{order:14}
 .fast.send img[alt="Clickable Smilies"],#send .codebuttons[onchange="tag('[color='+this.options[this.selectedIndex].value+']','[/color]'); this.selectedIndex=0"],#msg .codebuttons[onchange="tag('[color='+this.options[this.selectedIndex].value+']','[/color]'); this.selectedIndex=0"],#user .codebuttons[onchange="tag('[color='+this.options[this.selectedIndex].value+']','[/color]'); this.selectedIndex=0"]{margin-right:25px;order:14}
-.fast.send select[onchange="tag('[font='+this.options[this.selectedIndex].value+']','[/font]'); this.selectedIndex=0"],#send .codebuttons[accesskey="q"],#msg .codebuttons[accesskey="q"],#user .codebuttons[accesskey="q"]{order:15}
-.fast.send .codebuttons[onchange="tag('[color='+this.options[this.selectedIndex].value+']','[/color]'); this.selectedIndex=0"]{margin-right:25px;order:15}
-#send .codebuttons[accesskey="k"],#msg .codebuttons[accesskey="k"],#user .codebuttons[accesskey="k"]{order:16}
-.fast.send .codebuttons[accesskey="t"]{margin-right:25px;order:16}
-.fast.send select[onchange="tag('[font='+this.options[this.selectedIndex].value+']','[/font]'); this.selectedIndex=0"],#send .codebuttons[accesskey="h"],#msg .codebuttons[accesskey="h"],#user .codebuttons[accesskey="h"]{margin-right:25px;order:17}
+#send .codebuttons[accesskey="q"],#msg .codebuttons[accesskey="q"],#user .codebuttons[accesskey="q"]{order:15}
+.fast.send .codebuttons[accesskey="t"]{margin-right:25px;order:15}
+.fast.send select[onchange="tag('[font='+this.options[this.selectedIndex].value+']','[/font]'); this.selectedIndex=0"],#send .codebuttons[accesskey="k"],#msg .codebuttons[accesskey="k"],#user .codebuttons[accesskey="k"]{order:16}
+.fast.send select[onchange="tag('[size='+this.options[this.selectedIndex].value+']','[/size]'); this.selectedIndex=0"],#msg .codebuttons[accesskey="h"],#user .codebuttons[accesskey="h"]{margin-right:25px;order:17}
 #send #ffupload_icon,#msg #ffupload_icon,#user #ffupload_icon{order:18}
+.fast.send select[onchange="tag('[color='+this.options[this.selectedIndex].value+']','[/color]'); this.selectedIndex=0"]{margin-right:25px;order:18}
 .fast.send #ffupload_icon,#send a[href="https://www.forumcommunity.net/?wiki=BBCode"],#msg a[href="https://www.forumcommunity.net/?wiki=BBCode"],#user a[href="http://forumcommunity.net/?wiki=BBCODE"]{order:19}
 .fast.send a[href="https://www.forumcommunity.net/?wiki=BBCode"]{order:20}
 .fast.send span#ADDCRON,#send span#ADDCRON{order:21}
