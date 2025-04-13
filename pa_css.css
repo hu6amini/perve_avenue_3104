@@ -614,23 +614,23 @@ select.codebuttons[onchange="tag('[color='+this.options[this.selectedIndex].valu
 .fast.send .codebuttons[accesskey="p"],#send .codebuttons[accesskey="p"],#msg .codebuttons[accesskey="p"],#user .codebuttons[accesskey="p"]{margin-right:25px;order:6}
 .fast.send .codebuttons[accesskey="l"],#send .codebuttons[accesskey="l"],#msg .codebuttons[accesskey="l"],#user .codebuttons[accesskey="l"]{order:7}
 .fast.send .codebuttons[accesskey="c"],#send .codebuttons[accesskey="c"],#msg .codebuttons[accesskey="c"],#user .codebuttons[accesskey="c"]{margin-right:25px;order:8}
-.fast.send .codebuttons[accesskey="q"],#send .codebuttons[accesskey="q"],#msg .codebuttons[accesskey="w"],#user .codebuttons[accesskey="w"]{order:9}
-.fast.send .codebuttons[accesskey="k"],#send .codebuttons[accesskey="k"],#msg .codebuttons[accesskey="g"],#user .codebuttons[accesskey="g"]{order:10}
-.fast.send .codebuttons[accesskey="h"],#send .codebuttons[accesskey="h"]{margin-right:25px;order:11}
-#msg .codebuttons[onchange="tag('[font='+this.options[this.selectedIndex].value+']','[/font]'); this.selectedIndex=0"],#user .codebuttons[onchange="tag('[font='+this.options[this.selectedIndex].value+']','[/font]'); this.selectedIndex=0"]{order:12}
-.fast.send .codebuttons[accesskey="w"],#send .codebuttons[accesskey="w"]{order:12}
-.fast.send .codebuttons[accesskey="g"],#send .codebuttons[accesskey="g"],#msg .codebuttons[onchange="tag('[size='+this.options[this.selectedIndex].value+']','[/size]'); this.selectedIndex=0"],#user .codebuttons[onchange="tag('[size='+this.options[this.selectedIndex].value+']','[/size]'); this.selectedIndex=0"]{order:13}
-button.cs-replier-item.codebuttons{order:14}
-#msg .codebuttons[onchange="tag('[color='+this.options[this.selectedIndex].value+']','[/color]'); this.selectedIndex=0"],#user .codebuttons[onchange="tag('[color='+this.options[this.selectedIndex].value+']','[/color]'); this.selectedIndex=0"]{margin-right:25px;order:14}
-.fast.send img[alt="Clickable Smilies"],#msg .codebuttons[accesskey="q"],#user .codebuttons[accesskey="q"]{order:15}
-#send .codebuttons[onclick="add_mark();return;"]{margin-right:25px;order:15}
-#msg .codebuttons[accesskey="k"],#user .codebuttons[accesskey="k"],#send select[onchange="tag('[font='+this.options[this.selectedIndex].value+']','[/font]'); this.selectedIndex=0"]{order:16}
+.fast.send .codebuttons[accesskey="q"],#send .codebuttons[accesskey="q"],#msg .codebuttons[accesskey="w"],#user .codebuttons[accesskey="q"]{order:9}
+.fast.send .codebuttons[accesskey="k"],#send .codebuttons[accesskey="k"],#msg .codebuttons[accesskey="g"]{order:10}
+#user .codebuttons[accesskey="k"]{margin-right:25px;order:10}
+.fast.send .codebuttons[accesskey="h"],#send .codebuttons[accesskey="h"],#user .codebuttons[accesskey="w"]{margin-right:25px;order:11}
+.fast.send .codebuttons[accesskey="w"],#send .codebuttons[accesskey="w"],#user .codebuttons[accesskey="g"],#msg .codebuttons[onchange="tag('[font='+this.options[this.selectedIndex].value+']','[/font]'); this.selectedIndex=0"]{order:12}
+.fast.send .codebuttons[accesskey="g"],#send .codebuttons[accesskey="g"],#msg .codebuttons[onchange="tag('[size='+this.options[this.selectedIndex].value+']','[/size]'); this.selectedIndex=0"],#user .codebuttons[onchange="tag('[font='+this.options[this.selectedIndex].value+']','[/font]'); this.selectedIndex=0"]{order:13}
+button.cs-replier-item.codebuttons,,#user .codebuttons[onchange="tag('[size='+this.options[this.selectedIndex].value+']','[/size]'); this.selectedIndex=0"]{order:14}
+#msg .codebuttons[onchange="tag('[color='+this.options[this.selectedIndex].value+']','[/color]'); this.selectedIndex=0"]{margin-right:25px;order:14}
+.fast.send img[alt="Clickable Smilies"],#msg .codebuttons[accesskey="q"]{order:15}
+#send .codebuttons[onclick="add_mark();return;"],,#user .codebuttons[onchange="tag('[color='+this.options[this.selectedIndex].value+']','[/color]'); this.selectedIndex=0"]{margin-right:25px;order:15}
+#msg .codebuttons[accesskey="k"],#send select[onchange="tag('[font='+this.options[this.selectedIndex].value+']','[/font]'); this.selectedIndex=0"],#user #ffupload_icon{order:16}
 .fast.send .codebuttons[accesskey="t"]{margin-right:25px;order:16}
-.fast.send select[onchange="tag('[font='+this.options[this.selectedIndex].value+']','[/font]'); this.selectedIndex=0"],#send .codebuttons[onchange="tag('[size='+this.options[this.selectedIndex].value+']','[/size]'); this.selectedIndex=0"]{order:17}
+.fast.send select[onchange="tag('[font='+this.options[this.selectedIndex].value+']','[/font]'); this.selectedIndex=0"],#send .codebuttons[onchange="tag('[size='+this.options[this.selectedIndex].value+']','[/size]'); this.selectedIndex=0"],,#user a[href="http://forumcommunity.net/?wiki=BBCODE"]{order:17}
 #msg .codebuttons[accesskey="h"],#user .codebuttons[accesskey="h"]{margin-right:25px;order:17}
-.fast.send select[onchange="tag('[size='+this.options[this.selectedIndex].value+']','[/size]'); this.selectedIndex=0"],#msg #ffupload_icon,#user #ffupload_icon{order:18}
+.fast.send select[onchange="tag('[size='+this.options[this.selectedIndex].value+']','[/size]'); this.selectedIndex=0"],#msg #ffupload_icon{order:18}
 #send .codebuttons[onchange="tag('[color='+this.options[this.selectedIndex].value+']','[/color]'); this.selectedIndex=0"]{margin-right:25px;order:18}
-#msg a[href="https://www.forumcommunity.net/?wiki=BBCode"],#user a[href="http://forumcommunity.net/?wiki=BBCODE"],#send #ffupload_icon{order:19}
+#msg a[href="https://www.forumcommunity.net/?wiki=BBCode"],#send #ffupload_icon{order:19}
 .fast.send select[onchange="tag('[color='+this.options[this.selectedIndex].value+']','[/color]'); this.selectedIndex=0"]{margin-right:25px;order:19}
 .fast.send #ffupload_icon,#send a[href="https://www.forumcommunity.net/?wiki=BBCode"]{order:20}
 .fast.send a[href="https://www.forumcommunity.net/?wiki=BBCode"],#send span#ADDCRON{order:21}
