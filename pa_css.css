@@ -1,4 +1,3 @@
-body#board,body#forum,body#topic,body#blog,body#send{visibility:hidden}
 div[class="Fixed"]{margin-top:100px;top:0;position:sticky!important}
 .ve-content.color{display:flex}
 .tiptap.ProseMirror{flex:1;min-height:98px}
