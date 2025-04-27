@@ -1,10 +1,9 @@
 (function() {
-    // Hide content until all images are processed
+    // Hide content until processing is done
     document.documentElement.style.visibility = 'hidden';
     
     const imageDimensionsCache = new Map();
     let pendingImageLoads = 0;
-    let isProcessing = false;
     
     // Check if image should be skipped
     const shouldSkipImage = function(img) {
@@ -25,9 +24,53 @@
                '\'%3E%3C/svg%3E';
     };
     
-    // Convert image to lazyload format
-    const convertToLazyload = function(img, src, width, height) {
-        // Immediately replace src with placeholder to prevent loading
+    // Process image with immediate dimension extraction
+    const processImage = async function(img) {
+        if (shouldSkipImage(img)) return;
+        
+        const src = img.src;
+        if (!src || src.indexOf('data:') === 0) return;
+        
+        // If we have cached dimensions, process immediately
+        if (imageDimensionsCache.has(src)) {
+            const {width, height} = imageDimensionsCache.get(src);
+            applyLazyAttributes(img, src, width, height);
+            return;
+        }
+        
+        // Extract dimensions immediately
+        pendingImageLoads++;
+        try {
+            const dimensions = await getImageDimensions(src);
+            imageDimensionsCache.set(src, dimensions);
+            applyLazyAttributes(img, src, dimensions.width, dimensions.height);
+        } catch {
+            applyLazyAttributes(img, src); // Fallback without dimensions
+        }
+        pendingImageLoads--;
+        if (pendingImageLoads === 0) {
+            document.documentElement.style.visibility = 'visible';
+        }
+    };
+    
+    // Get image dimensions with Promise
+    const getImageDimensions = function(src) {
+        return new Promise((resolve, reject) => {
+            const loader = new Image();
+            loader.onload = function() {
+                resolve({
+                    width: loader.naturalWidth,
+                    height: loader.naturalHeight
+                });
+            };
+            loader.onerror = reject;
+            loader.src = src;
+        });
+    };
+    
+    // Apply lazy loading attributes
+    const applyLazyAttributes = function(img, src, width, height) {
+        // Immediately block image loading
         img.src = createPlaceholder(width, height);
         img.setAttribute('data-src', src);
         img.classList.add('lazyload');
@@ -39,102 +82,56 @@
         }
     };
     
-    // Process single image with dimension extraction
-    const processImage = function(img) {
-        if (shouldSkipImage(img)) return;
+    // Process all images with async/await
+    const processAllImages = async function() {
+        const images = document.querySelectorAll('img:not([data-src]):not(.lazyload)');
         
-        var src = img.src;
-        if (!src || src.indexOf('data:') === 0) return;
-        
-        // If we have cached dimensions, process immediately
-        if (imageDimensionsCache.has(src)) {
-            var dimensions = imageDimensionsCache.get(src);
-            convertToLazyload(img, src, dimensions.width, dimensions.height);
+        if (images.length === 0) {
+            document.documentElement.style.visibility = 'visible';
             return;
         }
         
-        // Otherwise load image to get dimensions
-        pendingImageLoads++;
-        var loader = new Image();
-        loader.onload = function() {
-            var dimensions = {
-                width: loader.naturalWidth,
-                height: loader.naturalHeight
-            };
-            imageDimensionsCache.set(src, dimensions);
-            convertToLazyload(img, src, dimensions.width, dimensions.height);
-            pendingImageLoads--;
-            checkAllImagesProcessed();
-        };
-        loader.onerror = function() {
-            convertToLazyload(img, src);
-            pendingImageLoads--;
-            checkAllImagesProcessed();
-        };
-        loader.src = src;
-    };
-    
-    // Check if all images have been processed
-    const checkAllImagesProcessed = function() {
+        await Promise.all(Array.from(images).map(img => processImage(img)));
+        
+        // Final check in case some images loaded faster than others
         if (pendingImageLoads === 0) {
             document.documentElement.style.visibility = 'visible';
         }
-    };
-    
-    // Process all images on page
-    const processAllImages = function() {
-        if (isProcessing) return;
-        isProcessing = true;
-        
-        var images = document.querySelectorAll('img:not([data-src]):not(.lazyload)');
-        for (var i = 0; i < images.length; i++) {
-            processImage(images[i]);
-        }
-        
-        // If no images needed loading, show page immediately
-        if (pendingImageLoads === 0) {
-            document.documentElement.style.visibility = 'visible';
-        }
-        
-        isProcessing = false;
     };
     
     // MutationObserver for dynamic content
-    var lazyim = new MutationObserver(function(mutations) {
-        for (var m = 0; m < mutations.length; m++) {
-            var addedNodes = mutations[m].addedNodes;
-            for (var n = 0; n < addedNodes.length; n++) {
-                var node = addedNodes[n];
-                if (node.nodeType === 1) {
+    const lazyim = new MutationObserver(function(mutations) {
+        mutations.forEach(async (mutation) => {
+            const addedNodes = Array.from(mutation.addedNodes);
+            for (const node of addedNodes) {
+                if (node.nodeType === 1) { // Element node
                     if (node.tagName === 'IMG') {
-                        processImage(node);
+                        await processImage(node);
                     } else if (node.querySelectorAll) {
-                        var childImages = node.querySelectorAll('img:not([data-src]):not(.lazyload)');
-                        for (var c = 0; c < childImages.length; c++) {
-                            processImage(childImages[c]);
-                        }
+                        const childImages = node.querySelectorAll('img:not([data-src]):not(.lazyload)');
+                        await Promise.all(Array.from(childImages).map(img => processImage(img)));
                     }
                 }
             }
-        }
+        });
     });
     
-    // Initialize based on ready state
+    // Initialize
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', processAllImages);
     } else {
         processAllImages();
     }
     
-    // Observe document for changes
+    // Observe document
     lazyim.observe(document.documentElement, {
         childList: true,
         subtree: true
     });
     
-    // Event listeners for common updates
-    var events = ['ajaxComplete', 'ajaxSuccess', 'load', 'pageshow'];
-    for (var e = 0; e < events.length; e++) {
-        window.addEventListener(events[e], processAllImages, { passive: true });
-    }
+    // Handle dynamic content events
+    const events = ['ajaxComplete', 'ajaxSuccess', 'load', 'pageshow'];
+    events.forEach(event => {
+        window.addEventListener(event, processAllImages, { passive: true });
+    });
 })();
