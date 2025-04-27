@@ -1,67 +1,117 @@
 (function() {
-    // 1. Immediately hide content and block image loading
+    // Hide content until all images are processed
     document.documentElement.style.visibility = 'hidden';
     
-    // 2. 1x1 transparent GIF (43 bytes - smallest possible placeholder)
-    const placeholder = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+    const imageDimensionsCache = new Map();
+    let pendingImageLoads = 0;
+    let isProcessing = false;
     
-    // 3. Skip conditions (optimized checks)
+    // Check if image should be skipped
     const shouldSkipImage = function(img) {
-        return img.hasAttribute("data-src") || 
-               img.classList.contains("lazyload") ||
-               img.src.startsWith("data:") ||
-               img.closest(".slick_carousel, #st-visual-editor, .send");
+        return img.closest(".slick_carousel") || 
+               img.closest("#st-visual-editor") || 
+               img.closest(".send") ||
+               img.hasAttribute("data-src") || 
+               img.classList.contains("lazyload") || 
+               img.getAttribute("decoding") === "async" || 
+               img.src.indexOf("data:") === 0;
     };
     
-    // 4. Convert to lazyload with dimension preservation
-    const convertToLazyload = function(img) {
-        // Capture dimensions from multiple possible sources
-        const width = img.getAttribute('width') || img.width || img.naturalWidth;
-        const height = img.getAttribute('height') || img.height || img.naturalHeight;
-        const src = img.src;
-        
-        // Immediately swap to placeholder
-        img.src = placeholder;
+    // Create SVG placeholder
+    const createPlaceholder = function(width, height) {
+        return 'data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'' + 
+               (width || 1) + '\' height=\'' + (height || 1) + 
+               '\' viewBox=\'0 0 ' + (width || 1) + ' ' + (height || 1) + 
+               '\'%3E%3C/svg%3E';
+    };
+    
+    // Convert image to lazyload format
+    const convertToLazyload = function(img, src, width, height) {
+        // Immediately replace src with placeholder to prevent loading
+        img.src = createPlaceholder(width, height);
         img.setAttribute('data-src', src);
         img.classList.add('lazyload');
         img.setAttribute('decoding', 'async');
         
-        // Lock dimensions to prevent layout shifts
-        if (width) img.setAttribute('width', width);
-        if (height) img.setAttribute('height', height);
+        if (width && height) {
+            img.setAttribute('width', width);
+            img.setAttribute('height', height);
+        }
     };
     
-    // 5. Fast batch processing with debouncing
-    let processing = false;
-    const processAllImages = function() {
-        if (processing) return;
-        processing = true;
+    // Process single image with dimension extraction
+    const processImage = function(img) {
+        if (shouldSkipImage(img)) return;
         
-        const images = document.querySelectorAll('img:not([data-src]):not(.lazyload)');
-        for (let i = 0, len = images.length; i < len; i++) {
-            if (!shouldSkipImage(images[i])) {
-                convertToLazyload(images[i]);
-            }
+        var src = img.src;
+        if (!src || src.indexOf('data:') === 0) return;
+        
+        // If we have cached dimensions, process immediately
+        if (imageDimensionsCache.has(src)) {
+            var dimensions = imageDimensionsCache.get(src);
+            convertToLazyload(img, src, dimensions.width, dimensions.height);
+            return;
         }
         
-        document.documentElement.style.visibility = 'visible';
-        processing = false;
+        // Otherwise load image to get dimensions
+        pendingImageLoads++;
+        var loader = new Image();
+        loader.onload = function() {
+            var dimensions = {
+                width: loader.naturalWidth,
+                height: loader.naturalHeight
+            };
+            imageDimensionsCache.set(src, dimensions);
+            convertToLazyload(img, src, dimensions.width, dimensions.height);
+            pendingImageLoads--;
+            checkAllImagesProcessed();
+        };
+        loader.onerror = function() {
+            convertToLazyload(img, src);
+            pendingImageLoads--;
+            checkAllImagesProcessed();
+        };
+        loader.src = src;
     };
     
-    // 6. Optimized MutationObserver
-    const lazyim = new MutationObserver(function(mutations) {
-        for (let m = 0; m < mutations.length; m++) {
-            const nodes = mutations[m].addedNodes;
-            for (let n = 0; n < nodes.length; n++) {
-                const node = nodes[n];
+    // Check if all images have been processed
+    const checkAllImagesProcessed = function() {
+        if (pendingImageLoads === 0) {
+            document.documentElement.style.visibility = 'visible';
+        }
+    };
+    
+    // Process all images on page
+    const processAllImages = function() {
+        if (isProcessing) return;
+        isProcessing = true;
+        
+        var images = document.querySelectorAll('img:not([data-src]):not(.lazyload)');
+        for (var i = 0; i < images.length; i++) {
+            processImage(images[i]);
+        }
+        
+        // If no images needed loading, show page immediately
+        if (pendingImageLoads === 0) {
+            document.documentElement.style.visibility = 'visible';
+        }
+        
+        isProcessing = false;
+    };
+    
+    // MutationObserver for dynamic content
+    var lazyim = new MutationObserver(function(mutations) {
+        for (var m = 0; m < mutations.length; m++) {
+            var addedNodes = mutations[m].addedNodes;
+            for (var n = 0; n < addedNodes.length; n++) {
+                var node = addedNodes[n];
                 if (node.nodeType === 1) {
-                    if (node.tagName === 'IMG' && !shouldSkipImage(node)) {
-                        convertToLazyload(node);
-                    }
-                    if (node.querySelectorAll) {
-                        const imgs = node.querySelectorAll('img:not([data-src]):not(.lazyload)');
-                        for (let i = 0; i < imgs.length; i++) {
-                            if (!shouldSkipImage(imgs[i])) convertToLazyload(imgs[i]);
+                    if (node.tagName === 'IMG') {
+                        processImage(node);
+                    } else if (node.querySelectorAll) {
+                        var childImages = node.querySelectorAll('img:not([data-src]):not(.lazyload)');
+                        for (var c = 0; c < childImages.length; c++) {
+                            processImage(childImages[c]);
                         }
                     }
                 }
@@ -69,20 +119,22 @@
         }
     });
     
-    // 7. Initialize with optimal event sequence
-    if (document.readyState === 'complete' || document.readyState === 'interactive') {
-        setTimeout(processAllImages, 0);
+    // Initialize based on ready state
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', processAllImages);
     } else {
-        document.addEventListener('DOMContentLoaded', processAllImages, {once: true});
+        processAllImages();
     }
     
-    // 8. Observe document with optimized parameters
-    lazyim.observe(document, {
+    // Observe document for changes
+    lazyim.observe(document.documentElement, {
         childList: true,
-        subtree: true,
-        attributeFilter: ['src']
+        subtree: true
     });
     
-    // 9. Fallback for dynamic content
-    window.addEventListener('load', processAllImages);
+    // Event listeners for common updates
+    var events = ['ajaxComplete', 'ajaxSuccess', 'load', 'pageshow'];
+    for (var e = 0; e < events.length; e++) {
+        window.addEventListener(events[e], processAllImages, { passive: true });
+    }
 })();
