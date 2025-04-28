@@ -1,7 +1,6 @@
 div[class="Fixed"]{background-color:var(--contt);margin-top:100px;top:0;position:sticky!important;visibility:visible}
 html[style="visibility: hidden;"] .pa_loader{visibility:visible}
 html[style="visibility: hidden;"] .menuwrap .left{visibility:hidden!important}
-html[style="visibility: visible;"]{visibility:visible!important}
 #board img[src="https://res.cloudinary.com/dbdf6gwgo/image/upload/v1674337715/forum/Avatar/default_avatar_zpw3zz.svg"],#topic img[src="https://res.cloudinary.com/dbdf6gwgo/image/upload/v1674337715/forum/Avatar/default_avatar_zpw3zz.svg"],#blog img[src="https://res.cloudinary.com/dbdf6gwgo/image/upload/v1674337715/forum/Avatar/default_avatar_zpw3zz.svg"],#send img[src="https://res.cloudinary.com/dbdf6gwgo/image/upload/v1674337715/forum/Avatar/default_avatar_zpw3zz.svg"],#profile img[src="https://res.cloudinary.com/dbdf6gwgo/image/upload/v1674337715/forum/Avatar/default_avatar_zpw3zz.svg"],#forum img[src="https://res.cloudinary.com/dbdf6gwgo/image/upload/v1674337715/forum/Avatar/default_avatar_zpw3zz.svg"]{opacity:0}
 .ve-content.color{display:flex}
 .tiptap.ProseMirror{flex:1;min-height:98px}
