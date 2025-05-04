@@ -473,7 +473,7 @@ img[src="https://img.forumfree.net/home/images/avatar_email.png"]{background:url
 .ffb_embedlink>div:not(.ffb_embedlink div[style="display: none;"]){gap:0}
 .ffb_embedlink div[style="display: none;"]{gap:3px}
 .ffb_embedlink>div:first-child img{height:16px;width:auto}
-.ffb_embedlink div a[style="display: none;"],.ffb_embedlink div a[style="display: none;"] a{align-items:center;display:inline-flex!important;justify-content:center}
+#search .ffb_embedlink div[style="display: none;"],.ffb_embedlink div[style="display: none;"] a{align-items:center;display:inline-flex!important;justify-content:center}
 input#embed-url-input{background:var(--txtim);border:none;border-radius:4px;color:var(--lncol);cursor:text;padding:10px!important}
 .el-modal .cs-modal-body{margin:0 10px 10px}
 .Sub.Item[style="width:28%"]{color:var(--ltcol);font-size:.875rem;font-weight:400}
