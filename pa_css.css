@@ -472,6 +472,8 @@ img[src="https://img.forumfree.net/home/images/avatar_email.png"]{background:url
 .ffb_embedlink>div:last-child>div:nth-child(2) *{line-height:1.618}
 .ffb_embedlink>div:not(.ffb_embedlink div[style="display: none;"]){gap:0}
 .ffb_embedlink div[style="display: none;"]{gap:3px}
+.ffb_embedlink>div:first-child img{height:16px;width:auto}
+.ffb_embedlink div a[style="display: none;"],.ffb_embedlink div a[style="display: none;"] a{align-items:center;display:inline-flex!important;justify-content:center}
 input#embed-url-input{background:var(--txtim);border:none;border-radius:4px;color:var(--lncol);cursor:text;padding:10px!important}
 .el-modal .cs-modal-body{margin:0 10px 10px}
 .Sub.Item[style="width:28%"]{color:var(--ltcol);font-size:.875rem;font-weight:400}
@@ -782,7 +784,7 @@ ul.stats.List .users,.side_stats.sidebox .users{display:flex;flex-wrap:wrap;gap:
 ul.stats.List .users li,.side_stats.sidebox .users li{display:inline-block;height:24px;line-height:24px;padding-left:29px;position:relative}
 ul.stats.List .users a.avatar,.side_stats.sidebox .users li a.avatar{left:0;position:absolute;top:0}
 .popup.pop_points img[alt="← undo"]{margin-right:10px}
-a.leftitem,.sidebar a,a.rightitem,#search .ffb_embedlink div[style="display: none;"],#search .ffb_embedlink div a[style="display: none;"]{display:inline-block!important}
+a.leftitem,.sidebar a,a.rightitem,#search .ffb_embedlink div[style="display: none;"]{display:inline-block!important}
 a.leftitem::before,.sidebar a:not(#Right.sidebar a)::before,a.rightitem::before,.sidebar #openmod::before{display:inline-flex;justify-content:center;margin-left:5px;width:22px}
 .menuwrap .left .menu li a[href="https://msg.forumcommunity.net/?act=Msg&CODE=16&c=655775"]{font-weight:400!important}
 .menuwrap .left .menu li a[href="https://msg.forumcommunity.net/?act=Msg&CODE=04&c=655775"]::before{content:'\f064'}
