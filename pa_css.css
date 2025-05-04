@@ -708,7 +708,7 @@ button.cs-replier-item.codebuttons,#user .codebuttons[onchange="tag('[size='+thi
 .ve-btn.ve-btn-paragraph::before,.ve-dp-item[data-placeholder="Paragraph"]::before{content:'\f1dd'}
 .ve-btn.ve-btn-hard-break::before{content:'\e090'}
 .ve-btn.ve-btn-horizontal-rule::before{content:'\f86c'}
-.ve-btn.ve-btn-link::before,#tippy-17 li:nth-of-type(1) button.ve-dp-item::before,[data-theme*=ve-dropdown] ul.ve-dropdown-list>li>button.ve-dp-item[data-placeholder="Add URL"]::before{content:'\f0c1'}
+.ve-btn.ve-btn-link::before,#tippy-17 li:nth-of-type(1) button.ve-dp-item::before,[data-theme*=ve-dropdown] ul.ve-dropdown-list>li>button.ve-dp-item[data-placeholder="Add URL"]::before,.ve-dp-item[data-placeholder="Insert from url"]::before,{content:'\f0c1'}
 .ve-btn.ve-btn-color::before{content:'\f53f'}
 .ve-btn.ve-btn-history-undo::before,.ve-color-suggestions .ve-btn::before{content:'\f0e2'}
 .ve-btn.ve-btn-history-redo::before{content:'\f01e'}
@@ -754,8 +754,8 @@ button[name="full"] img{max-height:16px;max-width:16px;position:absolute}
 .ve-dp-item[data-placeholder="Cell"]::before{content:'\e475'}
 .ve-dp-item[data-placeholder="Column"]::before,#tippy-19 .ve-dp-item.has-children[data-placeholder="Insert"]::before,#tippy-35 .ve-dp-item.has-children[data-placeholder="Insert"]::before{content:'\f0db'}
 .ve-dp-item[data-placeholder="Row"]::before{content:'\e292'}
-.lc-icon-chevron-right::before{content:'\f054'}
-#tippy-17 li:nth-of-type(2) button.ve-dp-item::before{content:'\f0ee'}
+.lc-icon-chevron-right::before{content:'\f054';font-family:'Font Awesome 6 Pro'}
+#tippy-17 li:nth-of-type(2) button.ve-dp-item::before,.ve-dp-item[data-placeholder="FFUpload"]::before{content:'\f0ee'}
 [data-theme*=ve-dropdown] ul.ve-dropdown-list>li>button.has-children .deep-dropdown-icon{height:13px;width:13px}
 .lucide.lucide-chevron-right.deep-dropdown-icon{background-color:currentColor;mask-image:url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"%3E%3Cpath d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"%3E%3C/path%3E%3C/svg%3E');mask-position:center;mask-repeat:no-repeat;mask-size:contain}
 [data-theme*=ve-dropdown] ul.ve-shortcuts-list li:not(:last-of-type),[data-theme*=ve-dropdown] .ve-shortcuts-list li:last-of-type{border-bottom:none;padding:8px 13px}
