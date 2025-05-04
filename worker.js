@@ -1,0 +1,1 @@
+self.addEventListener("message",async function(e){const t=e.data;try{const e=await fetch(t),s=await e.text(),r=(new DOMParser).parseFromString(s,"text/html"),a=r.querySelector(".profile .avatar img"),n=r.querySelector(".profile .nick")?.textContent.trim();postMessage({url:t,imgEl:a,name:n,failed:!(!a&&!n)})}catch(e){postMessage({url:t,failed:!0})}});
