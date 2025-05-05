@@ -1,0 +1,1 @@
+document.documentElement.lang||(document.documentElement.lang="en");
