@@ -1,6 +1,6 @@
 div[class="Fixed"]{background-color:var(--contt);margin-top:100px;top:0;position:sticky!important;visibility:visible}
 #board img[src="https://res.cloudinary.com/dbdf6gwgo/image/upload/v1674337715/forum/Avatar/default_avatar_zpw3zz.svg"],#topic img[src="https://res.cloudinary.com/dbdf6gwgo/image/upload/v1674337715/forum/Avatar/default_avatar_zpw3zz.svg"],#blog img[src="https://res.cloudinary.com/dbdf6gwgo/image/upload/v1674337715/forum/Avatar/default_avatar_zpw3zz.svg"],#send img[src="https://res.cloudinary.com/dbdf6gwgo/image/upload/v1674337715/forum/Avatar/default_avatar_zpw3zz.svg"],#profile img[src="https://res.cloudinary.com/dbdf6gwgo/image/upload/v1674337715/forum/Avatar/default_avatar_zpw3zz.svg"],#forum img[src="https://res.cloudinary.com/dbdf6gwgo/image/upload/v1674337715/forum/Avatar/default_avatar_zpw3zz.svg"]{opacity:0}
-.title2.bottom .right.Item.Justify,.st-emoji.st-emoji-rep.st-emoji-desktop.st-emoji-post{display:none}
+.post .title2.top .right .points,.post .title2.top .right .st-emoji{display:none}
 .ve-content.color{display:flex}
 .tiptap.ProseMirror{flex:1;min-height:98px}
 .cs-modal{z-index:101!important}
