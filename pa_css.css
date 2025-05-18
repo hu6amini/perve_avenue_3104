@@ -783,7 +783,7 @@ button[name="full"] img{max-height:16px;max-width:16px;position:absolute}
 #PollTitle{border-radius:4px}
 .Sortable.ui-sortable{border-bottom:1px solid var(--ltbrd);border-top:1px solid var(--ltbrd);margin-bottom:12px;margin-top:12px}
 [id^="Option"]{display:flex}
-ul.stats.List .users,.side_stats.sidebox .users{display:flex;flex-wrap:wrap;gap:10px;margin:10px 0}
+ul.stats.List .users,.side_stats.sidebox .users{display:flex;gap:10px;margin:10px 0}
 ul.stats.List .users li,.side_stats.sidebox .users li{display:inline-block;height:24px;line-height:24px;padding-left:29px;position:relative}
 ul.stats.List .users a.avatar,.side_stats.sidebox .users li a.avatar{left:0;position:absolute;top:0}
 .popup.pop_points img[alt="← undo"]{margin-right:10px}
