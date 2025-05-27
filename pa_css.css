@@ -770,7 +770,7 @@ button[name="full"] img{max-height:16px;max-width:16px;position:absolute}
 .forminput[value="Filter forums"]{background:#3D4751;border:1px solid var(--dkbrd)!important;border-radius:4px;font-size:.875rem;font-weight:400;padding:7px 12px;transition:all .5s ease;width:110px!important} 
 .forminput[value="Filter forums"]:hover{background:#586574!important;border:1px solid var(--dkbrd)!important;color:var(--ftcol)!important} 
 #login .container [method="post"]{background-color:var(--contt);border-radius:4px;box-shadow:inset var(--ltshd) 0 1px 0, var(--dkshd) 0 2px 2px, var(--mdshd) 0 4px 14px;margin-bottom:15px!important;padding:0}
-.send [rows].textinput:not(#pollRow textarea),.ve-content.color{background-color:var(--txtim);border:1px solid var(--ltbrd);border-radius:0 0 4px 4px;color:var(--ftcol);font-size:1rem;max-height:650px;min-height:100px; overflow-y:auto;resize:none}
+.send [rows].textinput:not(#pollRow textarea,#msg textarea#Post),.ve-content.color{background-color:var(--txtim);border:1px solid var(--ltbrd);border-radius:0 0 4px 4px;color:var(--ftcol);font-size:1rem;max-height:650px;min-height:100px; overflow-y:auto;resize:none}
 .send [rows].textinput:not(#pollRow textarea){height:0}
 #pollRow textarea{background-color:var(--txtim);border:1px solid var(--ltbrd);border-radius:4px;font-size:1rem;width:100%!important}
 .ve-content.color{height:auto}
