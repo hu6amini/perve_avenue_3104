@@ -1,6 +1,6 @@
 .mobile .post{flex-direction:column}
 .moblie .post .center .left div,.mobile .post .center .left p{max-width:none!important}
-.mobile #topic .post .details,.mobile #blog .post .details{flex-flow:row;justify-content:left;margin:0;position:relative;top: 0}
+#topic.mobile .post .details,#blog.mobile .post .details{border-bottom:1px solid var(--ltbrd);flex-flow:row;justify-content:left;margin:0;position:relative;top: 0}
 .mobile .post .avatar {border-radius:100%!important;height:48px!important;width:48px}
 .mobile .post .center .left,.mobile .post tbody,.mobile .post .center,.mobile .post>table{display:contents}
 #topic.mobile .post .details,#blog.mobile .post .details{flex-flow:row;justify-content:left;margin:0;order:1}
@@ -10,7 +10,7 @@
 
 @media(max-width: 768px) {
 .post{flex-direction:column}
-#topic .post .details,#blog .post .details{flex-flow:row!important;justify-content:left!important;margin:0!important;order:1;position:relative!important;top:0!important}
+#topic .post .details,#blog .post .details{border-bottom:1px solid var(--ltbrd);flex-flow:row!important;justify-content:left!important;margin:0!important;order:1;position:relative!important;top:0!important}
 .post .title2.top{order:2}
 .post .right.Item{order:3}
 .post .title2.bottom{order:4}
