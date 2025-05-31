@@ -9,6 +9,7 @@
 .post .avatar{border-radius:100%!important;height:48px!important;left:12px;position:absolute;top:12px;width:48px!important}
 #topic .post .u_group,#blog .post .u_group{width:100%}
 .u_group dd{padding:0 12px;width:fit-content!important}
+#topic .post .u_status,#blog .post .u_status{left:48px;position:absolute!important;top:48px}
 #topic .post .nick,#blog .post .nick,#topic .post .details dl:not(.u_location,.box_offline .u_status),#blog .post .left .details dl:not(.u_location,.box_offline .u_status){display:inline-block!important}
 #topic .post .nick+p,#blog .post .nick+p,#topic .post .u_location,#blog .post .u_location{display:none}
 }
