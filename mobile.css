@@ -10,11 +10,11 @@
 
 @media(max-width: 768px) {
 .post{flex-direction:column}
-#topic .post .details,#blog .post .details{order:1}
+#topic .post .details,#blog .post .details{flex-flow:row!important;margin:0!important;order:1;position:relative!important;top:0!important}
 .post .title2.top{order:2}
 .post .right.Item{order:3}
 .post .title2.bottom{order:4}
 .post .center .left,.post tbody,.post .center,.post>table{display:contents!important}
 .post .center .left div,.post .center .left p{max-width:none!important}
  #topic .post .details,#blog .post .details{flex-flow:row;justify-content:left;margin:0;position:relative;top:0}
-.post .avatar{border-radius:100%!important;height:48px!important;width:48px}}
+.post .avatar{border-radius:100%!important;height:48px!important;width:48px!important}}
