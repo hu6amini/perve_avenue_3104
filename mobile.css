@@ -1,5 +1,5 @@
 .mobile .post{flex-direction:column}
-.moblie .post .center .left div,.mobile .post .center .left p,.mobile .post .left.Item *{max-width:none!important}
+.moblie .post .center .left div,.mobile .post .center .left p,.mobile .post .left.Item .u_group,.mobile .post .left.Item .u_posts,,.mobile .post .left.Item .u_reputation{max-width:none!important}
 #topic.mobile .post .details,#blog.mobile .post .details{border-bottom:1px solid var(--ltbrd);display:block;padding-left:72px;text-align:left;width:100%}
 .mobile .post .avatar {border-radius:100%!important;height:48px!important;left:12px;position:absolute;top:12px;width:48px}
 .mobile .post .center .left,.mobile .post tbody,.mobile .post .center,.mobile .post>table{display:contents}
@@ -17,7 +17,7 @@
 .post .right.Item{order:3}
 .post .title2.bottom{order:4}
 .post .center .left,.post tbody,.post .center,.post>table{display:contents!important}
-.post .center .left div,.post .center .left p,.post .left.Item *{max-width:none!important}
+.post .center .left div,.post .center .left p,.post .left.Item .u_group,.post .left.Item .u_posts,.post .left.Item .u_reputation{max-width:none!important}
 .post .avatar{border-radius:100%!important;height:48px!important;left:12px;position:absolute;top:12px;width:48px!important}
 #topic .post .nick,#blog .post .nick,#topic .post .details dl:not(.u_location),#blog .post .left .details dl:not(.u_location){display:inline-block!important}
 #topic .post .nick+p,#blog .post .nick+p,#topic .post .u_location,#blog .post .u_location{display:none}
