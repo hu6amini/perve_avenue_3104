@@ -10,7 +10,7 @@
 .mobile .u_group{width:100%}
 .mobile .u_group dd{padding:0 12px;width:fit-content}
 #topic.mobile .post .nick,#blog.mobile .nick,#topic.mobile .post .details dl:not(.u_location,.box_offline .u_status),#blog.mobile .post .left .details dl{display:inline-block}
-#topic.mobile .post .nick+p,#blog.mobile .nick+p,#topic.mobile .post .u_location,#blog.mobile .post .u_location{display:none}
+#topic.mobile .post .nick+p,#blog.mobile .nick+p,#topic.mobile .post .u_location,#blog.mobile .post .u_location,#topic.mobile .post .bottomborder,#topic.mobile .post .signature,#blog.mobile .post .bottomborder,#blog.mobile .post .signature{display:none}
 
 @media(max-width: 768px) {
 .post{flex-direction:column}
