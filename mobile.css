@@ -19,6 +19,6 @@
 .post .center .left,.post tbody,.post .center,.post>table{display:contents!important}
 .post .center .left div,.post .center .left p{max-width:none!important}
 .post .avatar{border-radius:100%!important;height:48px!important;left:12px;position:absolute;top:12px;width:48px!important}
-#topic .post .nick,#blog .post .nick,#topic .post .details dl,#blog .post .details dl{display:inline-block!important}
+#topic .post .nick,#blog .post .nick,#topic .post .details dl:not(.u_location),#blog .post .details dl:not(.u_location){display:inline-block!important}
 #topic .post .nick+p,#blog .post .nick+p,#topic .post .u_location,#blog .post .u_location{display:none}
 }
