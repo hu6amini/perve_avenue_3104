@@ -7,7 +7,7 @@
 .mobile .post .title2.top{order:2}
 .mobile .post .right.Item {order:3}
 .mobile .post .title2.bottom{order:4}
-#topic.mobile .post .nick,#blog.mobile .nick{display:inline-block}
+#topic.mobile .post .nick,#blog.mobile .nick,#topic.mobile .post .details dl,#blog.mobile .post .details dl{display:inline-block!important}
 #topic.mobile .post .nick+p,#blog.mobile .nick+p{display:none}
 
 @media(max-width: 768px) {
@@ -19,6 +19,6 @@
 .post .center .left,.post tbody,.post .center,.post>table{display:contents!important}
 .post .center .left div,.post .center .left p{max-width:none!important}
 .post .avatar{border-radius:100%!important;height:48px!important;left:12px;position:absolute;top:12px;width:48px!important}
-#topic .post .nick,#blog .post .nick{display:inline-block}
+#topic .post .nick,#blog .post .nick,#topic .post .details dl,#blog .post .details dl{display:inline-block!important}
 #topic .post .nick+p,#blog .post .nick+p{display:none}
 }
