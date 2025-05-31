@@ -1,6 +1,6 @@
 @media(max-width: 768px) {
 .post{flex-direction:column}
-#topic .post .details,#blog .post .details{border-bottom:1px solid var(--ltbrd);display:block!important;margin:0!important;order:1;padding-left:72px!important;position:relative!important;text-align:left;top:0!important;width:100%}
+#topic .post .details,#blog .post .details{border-bottom:1px solid var(--ltbrd);display:block!important;margin:0!important;min-height:72px;order:1;padding-left:72px!important;position:relative!important;text-align:left;top:0!important;width:100%}
 .post .title2.top{order:2}
 .post .right.Item{order:3}
 .post .title2.bottom{order:4}
