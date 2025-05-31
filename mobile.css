@@ -1,0 +1,18 @@
+.moblie .post .center .left div, .mobile .post .center .left p {max-width:none!important}
+.mobile #topic .post .details, .mobile #blog .post .details {flex-flow:row; justify-content:left; margin: 0; position:relative; top: 0}
+.mobile .post .avatar {border-radius: 100%!important; height: 48px!important; width: 48px}
+.mobile .post .center .left,.mobile .post tbody {display:contents}
+#topic.mobile .post .details,#blog.mobile .post .details {order: 1}
+.mobile .post .title2.top {order: 2}
+.mobile .post .right.Item {order: 3}
+.mobile .post .title2.bottom{order:4}
+
+@media(max-width: 768px) {
+#topic .post .details, #blog .post .details {order: 1}
+.post .title2.top {order: 2}
+.post .right.Item {order: 3}
+.post .title2.bottom{order:4}
+.post .center .left,.post tbody {display:contents}
+.post .center .left div, .post .center .left p {max-width:none!important}
+ #topic .post .details, #blog .post .details {flex-flow:row; justify-content:left; margin: 0; position:relative; top: 0}
+.post .avatar {border-radius: 100%!important; height: 48px!important; width: 48px}}
