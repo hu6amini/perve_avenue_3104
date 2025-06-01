@@ -9,9 +9,10 @@
 .post .avatar{border-radius:100%!important;height:48px!important;left:12px;position:absolute;top:12px;width:48px!important}
 #topic .post .u_group,#blog .post .u_group{width:100%}
 .summary .list li{display:flex;flex-direction:column}
-.summary .list li .left{flex:0;flex-direction:row;width:100%!important}
-.summary_details{gap:12px;max-width:none!important;position:relative!important}
-.summary .avatar{height:48px;order:1;position:relative;width:48px}
+.summary .list li .left{flex:0;flex-direction:row;padding:0!important;width:100%!important}
+.summary_details{border-bottom:1px solid var(--ltbrd);gap:12px;justify-content:left!important;max-width:none!important;padding:12px;position:relative!important;top:0!important}
+.summary .avatar{height:48px!important;order:1;position:relative!important;width:48px!important}
+.summary .nick{padding-top:0!important}
 .u_group dd{padding:0 12px;width:fit-content!important}
 #topic .post .u_status,#blog .post .u_status{left:41px;position:absolute!important;top:45px}
 #topic .post .nick,#blog .post .nick,#topic .post .details dl:not(.u_location,.box_offline .u_status,.box_online .u_status),#blog .post .left .details dl:not(.u_location,.box_offline .u_status,.box_online .u_status){display:inline-block!important}
