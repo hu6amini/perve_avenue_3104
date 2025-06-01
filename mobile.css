@@ -1,13 +1,17 @@
 @media(max-width: 768px) {
 .post{flex-direction:column}
 #topic .post .details,#blog .post .details{border-bottom:1px solid var(--ltbrd);display:block!important;margin:0!important;min-height:72px;order:1;padding-left:72px!important;position:relative!important;text-align:left;top:0!important;width:100%}
-.post .title2.top{order:2}
+.post .title2.top,.summary .nick{order:2}
 .post .right.Item{order:3}
 .post .title2.bottom{order:4}
 .post .center .left,.post tbody,.post .center,.post>table{display:contents!important}
 .post .center .left div,.post .center .left p,.post .left.Item .u_group,.post .left.Item .u_posts,.post .left.Item .u_reputation,.post .left.Item .u_group dd{max-width:none!important}
 .post .avatar{border-radius:100%!important;height:48px!important;left:12px;position:absolute;top:12px;width:48px!important}
 #topic .post .u_group,#blog .post .u_group{width:100%}
+.summary .list li{display:flex;flex-direction:column}
+.summary .list li .left{flex:0;flex-direction:row;width:100%!important}
+.summary_details{gap:12px;max-width:none!important;position:relative!important}
+.summary .avatar{height:48px;order:1;position:relative;width:48px}
 .u_group dd{padding:0 12px;width:fit-content!important}
 #topic .post .u_status,#blog .post .u_status{left:41px;position:absolute!important;top:45px}
 #topic .post .nick,#blog .post .nick,#topic .post .details dl:not(.u_location,.box_offline .u_status,.box_online .u_status),#blog .post .left .details dl:not(.u_location,.box_offline .u_status,.box_online .u_status){display:inline-block!important}
