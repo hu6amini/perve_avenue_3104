@@ -10,7 +10,7 @@
 #topic .post .u_group,#blog .post .u_group{width:100%}
 .summary .list li{display:flex;flex-direction:column}
 .summary .list li .left{flex:0;flex-direction:row;padding:0!important;width:100%!important}
-.summary_details{border-bottom:1px solid var(--ltbrd);gap:12px;justify-content:left!important;max-width:none!important;padding:12px;position:relative!important;top:0!important}
+.summary_details{border-bottom:1px solid var(--ltbrd);gap:12px;justify-content:left!important;max-width:none!important;min-height:72px;padding:12px;position:relative!important;top:0!important}
 .summary .avatar{height:48px!important;order:1;position:relative!important;width:48px!important}
 .summary .nick{padding-top:0!important}
 .u_group dd{padding:0 12px;width:fit-content!important}
