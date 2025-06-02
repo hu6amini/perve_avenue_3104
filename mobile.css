@@ -7,12 +7,13 @@
 .post .title2.bottom{order:4}
 .post .center .left,.post tbody,.post .center,.post>table{display:contents!important}
 .post .center .left div,.post .center .left p,.post .left.Item .u_group,.post .left.Item .u_posts,.post .left.Item .u_reputation,.post .left.Item .u_group dd{max-width:none!important}
-.post .avatar{border-radius:100%!important;height:48px!important;left:12px;position:absolute;top:12px;width:48px!important}
+.post .avatar{border-radius:100%!important;font-size:1.844rem!important;height:48px!important;left:12px;position:absolute;top:12px;width:48px!important}
+.box_visitatore .details p{bottom:12px;padding:0 12px;position:absolute;width:fit-content}
 #topic .post .u_group,#blog .post .u_group{width:100%}
 .summary .list li{display:flex;flex-direction:column}
 .summary .list li .left{border-bottom:1px solid var(--ltbrd);flex:0;flex-direction:row;min-height:73px;padding:0!important;width:100%!important}
 .summary_details{gap:12px;height:100%;justify-content:left!important;max-width:none!important;padding:12px;position:relative!important;top:0!important}
-.summary .avatar{height:48px!important;order:1;position:relative!important;width:48px!important}
+.summary .avatar{font-size:1.844rem!important;height:48px!important;order:1;position:relative!important;width:48px!important}
 .summary .nick{padding-top:0!important}
 .u_group dd{padding:0 12px;width:fit-content!important}
 #topic .post .u_status,#blog .post .u_status{left:41px;position:absolute!important;top:45px}
