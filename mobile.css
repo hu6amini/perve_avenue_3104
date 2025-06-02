@@ -8,7 +8,7 @@
 .post .center .left,.post tbody,.post .center,.post>table{display:contents!important}
 .post .center .left div,.post .center .left p,.post .left.Item .u_group,.post .left.Item .u_posts,.post .left.Item .u_reputation,.post .left.Item .u_group dd{max-width:none!important}
 .post .avatar{border-radius:100%!important;font-size:1.844rem!important;height:48px!important;left:12px;position:absolute;top:12px;width:48px!important}
-.box_visitatore .details p{bottom:12px;padding:0 12px;position:absolute;width:fit-content}
+.box_visitatore .details p{bottom:12px;padding:0 12px;position:absolute;width:fit-content!important}
 #topic .post .u_group,#blog .post .u_group{width:100%}
 .summary .list li{display:flex;flex-direction:column}
 .summary .list li .left{border-bottom:1px solid var(--ltbrd);flex:0;flex-direction:row;min-height:73px;padding:0!important;width:100%!important}
