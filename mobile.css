@@ -1,5 +1,5 @@
 @media(max-width: 768px) {
-#search.posts .topic .post,.post,#blog .comments .post,.summary .list > *,.topic .mback,#search.posts .mback,.board .mainbg::before,.online .mainbg::before,.members .mainbg::before,#topic .skin_tbl::before,.guest.error.no_view_topic .msg .mainbg::before,.guest.error.no_permission .msg .mainbg::before,.error .mainbg::before,#search.posts .skin_tbl::before,.group .mainbg::before,.forum .mainbg::before,.search .skin_tbl::before,#mod .cp .skin_tbl::before{border-radius:0!important}
+#search.posts .topic .post,.post,#blog .comments .post,.summary .list > *,.topic .mback,#search.posts .mback,.board .mainbg::before,.online .mainbg::before,.members .mainbg::before,#topic .skin_tbl::before,.guest.error.no_view_topic .msg .mainbg::before,.guest.error.no_permission .msg .mainbg::before,.error .mainbg::before,#search.posts .skin_tbl::before,.group .mainbg::before,.forum .mainbg::before,.search .skin_tbl::before,#mod .cp .skin_tbl::before,.send,.send::before,.skin-section,.tag{border-radius:0!important}
 .post{flex-direction:column}
 #topic .post .details,#blog .post .details{border-bottom:1px solid var(--ltbrd);display:block!important;margin:0!important;min-height:72px;order:1;padding-left:72px!important;position:relative!important;text-align:left;top:0!important;width:100%}
 .post .title2.top,.summary .nick{order:2}
