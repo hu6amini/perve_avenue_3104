@@ -861,11 +861,11 @@ a.a2a_dd.nolink::before{content:'\f1e0'}
 #usercp .textinput[name="contacts"]{margin:8px 0 13px 0;width:100%}
 #usercp .textinput[name="Interests"]{margin-top:8px;width:100%}
 #usercp .list-group li[style="text-align:center;padding-bottom:15px"],#usercp form[name="REPLIER"] li:last-of-type{border-top:1px solid var(--ltbrd);padding:7px 12px 12px!important;text-align:right!important}
-#usercp #menu-notif + form:not(form[enctype="multipart/form-data"]){margin-top:15px}
+#usercp #menu-notif + form:not(form[enctype="multipart/form-data"]){margin-top:13px}
 #usercp #menu-notif + form:not(form[enctype="multipart/form-data"])::before{background-color:var(--redft);background-blend-mode:overlay;background-image:var(--gradi);border-top:1px solid var(--ltbrd);box-shadow:var(--redft) 0 0 25px;content:'';display:block;height:6px;min-width:100%;position:relative;z-index:1}
 #usercp form[name="REPLIER"] li[style="text-align:center"]:not(textarea){text-align:left!important}
 #usercp input.forminput:not(input[type="checkbox"],#FILE_UPLOAD){margin:7px 0 12px 0;width:100%}
-.color div[align="center"]:not(.spoiler.ffbspoiler,.quote div[align="center"]),.ve-content.color blockquote{margin-bottom:15px!important}
+.color div[align="center"]:not(.spoiler.ffbspoiler,.quote div[align="center"]),.ve-content.color blockquote{margin-bottom:13px!important}
 div[style="padding:56.25% 0 0 0;position:relative;"]{height:315px;margin:0;padding:0!important;width:560px}
 #popupmod #Cronmod{display:block;font-size:2rem;height:100%}
 #attach td[width="60%"],#user .Item[style="text-align:center;line-height:200%;padding-bottom:14px"] form[method="post"],#msg #attach .Item[style="text-align:center;line-height:200%;padding:10px 0 18px 0"]{border:1px solid var(--ltbrd);border-radius:4px;display:block;padding:12px!important;text-align:left!important}
