@@ -5,7 +5,7 @@ div[class="Fixed"]{background-color:var(--contt);margin-top:100px;top:0;position
 .tiptap.ProseMirror{flex:1;min-height:98px}
 .cs-modal{z-index:101!important}
 #user .main_list img[alt="Avatar"]{background-color:var(--contt);border-radius:4px;height:192px;object-fit:cover;object-position:top;overflow:hidden;width:192px}
-.color img:not(img[alt="fav"],img[src^="https://img.forumfree.net/html/emoticons/new/"],[class*=e1a-],img[alt$=":"],.res_tmb img,.emojione,.ffb_embedlink img), .color a img:not(img[src^="https://www.google.com/s2/"],img[src^="https://img.forumfree.net/html/emoticons/new/"],.ffb_embedlink a img), .color p img:not(img[alt="fav"],img[src^="https://img.forumfree.net/html/emoticons/new/"],[class*=e1a-],img[alt$=":"],.res_tmb img,.emojione,.ffb_embedlink p img){background-color:transparent;border:0;border-radius:7px;font-size:0;padding:3px;position:relative;vertical-align:text-bottom!important;z-index:1}
+.color img:not(img[alt="fav"],img[src^="https://img.forumfree.net/html/emoticons/new/"],[class*=e1a-],img[alt$=":"],.res_tmb img,.emojione,.ffb_embedlink img), .color a img:not(img[src^="https://www.google.com/s2/"],img[src^="https://img.forumfree.net/html/emoticons/new/"],.ffb_embedlink a img), .color p img:not(img[alt="fav"],img[src^="https://img.forumfree.net/html/emoticons/new/"],[class*=e1a-],img[alt$=":"],.res_tmb img,.emojione,.ffb_embedlink p img){background-color:transparent;border:0;border-radius:6px;font-size:0;padding:3px;position:relative;vertical-align:text-bottom!important;z-index:1}
 .ve-content.color img{user-select:all}
 img[alt$=":"],.web a .emojione{height:22px;margin:0;vertical-align:text-bottom!important;width:22px}
 .quote img[alt$=":"],.tmsg img[alt$=":"],.quote .emojione{height:19px;width:19px}
