@@ -643,11 +643,11 @@ button.cs-replier-item.codebuttons,#user .codebuttons[onchange="tag('[size='+thi
 .fast.send #ffupload_icon,#send a[href="https://www.forumcommunity.net/?wiki=BBCode"]{order:20}
 .fast.send a[href="https://www.forumcommunity.net/?wiki=BBCode"],#send span#ADDCRON{order:21}
 .fast.send span#ADDCRON{order:22}
-.post .title2.top .right{align-items:center;cursor:default;display:flex;flex-wrap:wrap;font-size:0;padding:12px 12px 0;width:100%}
+.post .title2.top .right{align-items:center;cursor:default;display:flex;flex-wrap:wrap;font-size:0;padding:13px 13px 0;width:100%}
 .post .title2.top .right .lt.Sub{line-height:1;margin:0;white-space:nowrap}
 .post .title2.top .right .mini_buttons.points.Sub:not(#blog .post .title2.top .right .mini_buttons.points.Sub),#search .post .title2.top .points{margin:0 0 0 10px}
 .post .title2.top .right .mini_buttons.rt.Sub{line-height:1rem;margin:0 0 0 auto;white-space:nowrap}
-.post .title2.bottom .right.Item.Justify,.article .title2.bottom.Item.Justify{align-items:center;display:flex;font-size:0;padding:12px;width:100%}
+.post .title2.bottom .right.Item.Justify,.article .title2.bottom.Item.Justify{align-items:center;display:flex;font-size:0;padding:13px;width:100%}
 .post .title2.bottom .right.Item.Justify .mini_buttons.lt.Sub{align-items:center;display:flex;flex-wrap:wrap;margin-left:0}
 .post .title2.bottom .right.Item.Justify .mini_buttons.lt.Sub a:not(:last-child){margin-right:5px}
 .post .title2.bottom .right.Item.Justify .rt.Sub{align-items:center;display:flex;flex-wrap:wrap;gap:5px;margin-left:auto;margin-right:0}
