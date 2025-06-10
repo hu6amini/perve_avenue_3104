@@ -1,5 +1,6 @@
 #search.mobile .topic .post,.mobile .post,#blog.mobile .comments .post,.mobile .summary .list > *,.mobile .topic .mback,#search.mobile .mback,.mobile .board .mainbg::before,.mobile .online .mainbg::before,.mobile .members .mainbg::before,#topic.mobile .skin_tbl::before,.mobile.guest.error.no_view_topic .msg .mainbg::before,.mobile.guest.error.no_permission .msg .mainbg::before,.mobile .error .mainbg::before,#search.mobile .skin_tbl::before,.mobile .group .mainbg::before,.mobile .forum .mainbg::before,.mobile .search .skin_tbl::before,#mod.mobile .cp .skin_tbl::before,.mobile .send,.mobile .send::before,.mobile .skin-section,.mobile .tag{border-radius:0!important}
 .mobile .buttons{margin-top:13px}
+.mobile .topic .navsub.bottom{padding:0 13px 0 13px}
 
 @media(max-width: 768px) {
 #search.mobile .topic .post,.mobile .post,#blog.mobile .comments .post,.mobile .summary .list > *,.mobile .topic .mback,#search.mobile .mback,.mobile .board .mainbg::before,.mobile .online .mainbg::before,.mobile .members .mainbg::before,#topic .skin_tbl::before,.guest.error.no_view_topic .msg .mainbg::before,.guest.error.no_permission .msg .mainbg::before,.error .mainbg::before,#search.posts .skin_tbl::before,.group .mainbg::before,.forum .mainbg::before,.search .skin_tbl::before,#mod .cp .skin_tbl::before,.send,.send::before,.skin-section,.tag{border-radius:0!important}
@@ -19,6 +20,7 @@
 .summary_details{gap:12px;height:100%;justify-content:left!important;max-width:none!important;padding:12px;position:relative!important;top:0!important}
 .summary .avatar{font-size:1.844rem!important;height:48px!important;order:1;position:relative!important;width:48px!important}
 .summary .nick{padding-top:0!important}
+.topic .navsub.bottom{padding:0 13px 0 13px}
 .u_group dd{padding:0 12px;width:fit-content!important}
 #topic .post .u_status,#blog .post .u_status{left:41px;position:absolute!important;top:45px}
 #topic .post .nick,#blog .post .nick,#topic .post .details dl:not(.u_location,.box_offline .u_status,.box_online .u_status),#blog .post .left .details dl:not(.u_location,.box_offline .u_status,.box_online .u_status){display:inline-block!important}
