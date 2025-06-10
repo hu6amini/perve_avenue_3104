@@ -1,4 +1,5 @@
 #search.mobile .topic .post,.mobile .post,#blog.mobile .comments .post,.mobile .summary .list > *,.mobile .topic .mback,#search.mobile .mback,.mobile .board .mainbg::before,.mobile .online .mainbg::before,.mobile .members .mainbg::before,#topic.mobile .skin_tbl::before,.mobile.guest.error.no_view_topic .msg .mainbg::before,.mobile.guest.error.no_permission .msg .mainbg::before,.mobile .error .mainbg::before,#search.mobile .skin_tbl::before,.mobile .group .mainbg::before,.mobile .forum .mainbg::before,.mobile .search .skin_tbl::before,#mod.mobile .cp .skin_tbl::before,.mobile .send,.mobile .send::before,.mobile .skin-section,.mobile .tag{border-radius:0!important}
+.mobile .buttons{margin-top:13px}
 
 @media(max-width: 768px) {
 #search.mobile .topic .post,.mobile .post,#blog.mobile .comments .post,.mobile .summary .list > *,.mobile .topic .mback,#search.mobile .mback,.mobile .board .mainbg::before,.mobile .online .mainbg::before,.mobile .members .mainbg::before,#topic .skin_tbl::before,.guest.error.no_view_topic .msg .mainbg::before,.guest.error.no_permission .msg .mainbg::before,.error .mainbg::before,#search.posts .skin_tbl::before,.group .mainbg::before,.forum .mainbg::before,.search .skin_tbl::before,#mod .cp .skin_tbl::before,.send,.send::before,.skin-section,.tag{border-radius:0!important}
@@ -12,6 +13,7 @@
 .post .avatar{border-radius:100%!important;font-size:1.844rem!important;height:48px!important;left:12px;position:absolute;top:12px;width:48px!important}
 .box_visitatore .details p{bottom:12px;padding:0 12px;position:absolute;width:fit-content!important}
 #topic .post .u_group,#blog .post .u_group{width:100%}
+.buttons{margin-top:13px}
 .summary .list li{display:flex;flex-direction:column}
 .summary .list li .left{border-bottom:1px solid var(--ltbrd);flex:0;flex-direction:row;min-height:73px;padding:0!important;width:100%!important}
 .summary_details{gap:12px;height:100%;justify-content:left!important;max-width:none!important;padding:12px;position:relative!important;top:0!important}
