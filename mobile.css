@@ -2,7 +2,8 @@
 .mobile .buttons{margin-top:13px}
 .mobile .topic .navsub.bottom{padding:0 13px 0 13px}
 .mobile .menuwrap{height:56px!important}
-.mobile #home{height:91px!important}
+.mobile #home{height:91px!important} 
+.mobile #home svg{height:35px!important}
 
 @media(max-width: 768px) {
 #search.mobile .topic .post,.mobile .post,#blog.mobile .comments .post,.mobile .summary .list > *,.mobile .topic .mback,#search.mobile .mback,.mobile .board .mainbg::before,.mobile .online .mainbg::before,.mobile .members .mainbg::before,#topic .skin_tbl::before,.guest.error.no_view_topic .msg .mainbg::before,.guest.error.no_permission .msg .mainbg::before,.error .mainbg::before,#search.posts .skin_tbl::before,.group .mainbg::before,.forum .mainbg::before,.search .skin_tbl::before,#mod .cp .skin_tbl::before,.send,.send::before,.skin-section,.tag{border-radius:0!important}
