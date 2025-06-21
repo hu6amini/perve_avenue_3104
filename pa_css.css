@@ -488,10 +488,10 @@ input#embed-url-input{background:var(--txtim);border:none;border-radius:4px;colo
 .Sub a[href="/?act=UserCP&CODE=02&c=655775"]::before{content:'\f0f3 \00a0'}
 .Sub a[href="/?act=UserCP&CODE=28&c=655775"]::before{content:'\f023 \00a0'}
 #user span[style="color:indianred"]::before{color:var(--redft);content:'\f057 \00a0';margin-left:5px}
-.prvcomb td[width="16%"][valign="middle"][nowrap] .codebuttons{border-radius:4px;font-size:0;height:30px;width:30px!important}
+.prvcomb td[width="16%"][valign="middle"][nowrap] .codebuttons{border-radius:5px;font-size:0;height:30px;width:30px!important}
 .prvcomb td[width="16%"][valign="middle"][nowrap] .codebuttons:not(.tag button.codebuttons:nth-of-type(3),.tag input.codebuttons:nth-of-type(1),.tag select.codebuttons:nth-of-type(1)){margin:1px!important}
 .tag button.codebuttons:nth-of-type(3),.tag input.codebuttons:nth-of-type(1),.tag select.codebuttons:nth-of-type(1){margin:1px 25px 1px 1px!important}
-.prvcomb td[width="16%"][valign="middle"][nowrap]{align-items:center;background-color:var(--contt);border:1px solid var(--ltbrd);border-bottom:none;border-top-left-radius:4px;border-top-right-radius:4px;display:flex;flex-wrap:wrap;padding:0 6px;width:100%}
+.prvcomb td[width="16%"][valign="middle"][nowrap]{align-items:center;background-color:var(--contt);border:1px solid var(--ltbrd);border-bottom:none;border-top-left-radius:5px;border-top-right-radius:5px;display:flex;flex-wrap:wrap;padding:0 6px;width:100%}
 .guest.error.no_view_topic .darkbar,.guest.error.no_permission .darkbar:not(.skin_tbl[style="width:60%;min-width:500px"]),.error.profile_guest .darkbar.Item{border-top:1px solid var(--ltbrd)} 
 .guest.error .darkbar.Item, .error.profile_guest .darkbar.Item{padding:8px 12px 12px}
 .error li.Item,#tippy-19 li:not(.st-emoji-list li),#tippy-21 ul.ve-dropdown-list,#mod .Sub.Item[style="width:67%"] + .list,#board .zz:not(.board.List .zz,.stats.List .zz),.send .list:not(.list.st-editor-area.st-editor-area-desktop,.list.st-editor-area.st-editor-area-desktop.st-editor-area-active,.send .cronRow .list,.cp.send .list){padding:12px}
