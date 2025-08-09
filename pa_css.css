@@ -652,7 +652,8 @@ button.cs-replier-item.codebuttons,#user .codebuttons[onchange="tag('[size='+thi
 .post .title2.bottom .right.Item.Justify .mini_buttons.lt.Sub a:not(:last-child){margin-right:5px}
 .post .title2.bottom .right.Item.Justify .rt.Sub{align-items:center;display:flex;flex-wrap:wrap;gap:5px;margin-left:auto;margin-right:0}
 .st-editor-container{display:block;margin-bottom:8px!important;padding: 0!important}
-.ve-content p.is-editor-empty:first-child::before,[data-theme*=ve-dropdown] ul.ve-dropdown-list>li>button[data-placeholder]:not([data-theme*=ve-dropdown] ul.ve-dropdown-list > li > button[data-fontfamily])::after,.FFA-head span{font-family:quicksand}
+.ve-content p.is-editor-empty:first-child::before,[data-theme*=ve-dropdown] ul.ve-dropdown-list>li>button[data-placeholder]:not([data-theme*=ve-dropdown] ul.ve-dropdown-list > li > button[data-fontfamily])::after{font-family:quicksand}
+.FFA-head span{font-family:quicksand!important}
 .ve-container .ve-btn:not(:disabled),.st-editor-area li:first-child .codebuttons,.st-editor-toggle,button[name="full"]{color:var(--mdcol)}
 .ve-container h1,.ve-container h2,.ve-container h3,.ve-container h4,.ve-container h5,.ve-container h6{word-break:break-word}
 .tippy-box:not(#tippy-32 .tippy-box,#tippy-13 .tippy-box,#tippy-37 .tippy-box,#tippy-17 .tippy-box,#tippy-19 .tippy-box,#tippy-21 .tippy-box,#tippy-23 .tippy-box,#tippy-25 .tippy-box,#tippy-27 .tippy-box,#tippy-32 .tippy-box,#tippy-36 .tippy-box,#tippy-39 .tippy-box,#tippy-38 .tippy-box,.tippy-profile .tippy-box),.tippy-custom .tippy-box,.tippy-box[data-theme*=ve-tooltip]{background:var(--tippy);border-radius:4px;color:var(--ftcol)}
