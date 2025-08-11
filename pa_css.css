@@ -442,7 +442,8 @@ img[src="https://img.forumfree.net/home/images/avatar_email.png"]{background:url
 #notifications-modal #notifications-empty::before,.cs-modal .st-emoji-notice-empty-message::before{content:'\f05a \00a0';display:inline-block}
 #notifications-box{align-items:center;display:flex!important;flex-direction:column;overflow-x:hidden!important}
 #notifications-modal .notification-container,.ve-content div[data-type=spoiler].code::after{width:100%}
-.footer{margin:0 13px;padding:0 13px;width:100%}
+.footer{margin:0 13px;width:100%}
+.mobile .footer{padding:0 13px}
 #notifications-more{background:none!important;box-shadow:none!important;min-height:50px;transition:none}
 .notification-container .aa:not(#msg .notification-container .aa){padding:0!important;width:4px!important}
 .notification-container .aa .avatar:not(#msg .notification-container .aa .avatar){height:48px!important;width:48px!important}
