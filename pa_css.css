@@ -757,6 +757,7 @@ button[name="full"] img{max-height:16px;max-width:16px;position:absolute}
 .ve-dp-item[data-placeholder="Cell"]::before{content:'\e475'}
 .ve-dp-item[data-placeholder="Column"]::before,#tippy-19 .ve-dp-item.has-children[data-placeholder="Insert"]::before,#tippy-35 .ve-dp-item.has-children[data-placeholder="Insert"]::before{content:'\f0db'}
 .ve-dp-item[data-placeholder="Row"]::before{content:'\e292'}
+[data-theme*=ve-dropdown] ul.ve-dropdown-list{padding:8px!important}
 .lc-icon-chevron-right::before{content:'\f054';font-family:'Font Awesome 6 Pro'!important}
 #tippy-17 li:nth-of-type(2) button.ve-dp-item::before,.ve-dp-item[data-placeholder="FFUpload"]::before{content:'\f0ee'}
 [data-theme*=ve-dropdown] ul.ve-dropdown-list>li>button.has-children .deep-dropdown-icon{height:13px;width:13px}
