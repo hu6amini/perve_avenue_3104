@@ -1,15 +1,1 @@
-document.addEventListener("DOMContentLoaded",function(){if(document.body.id==="search"){const e=["https://cdnjs.cloudflare.com/ajax/libs/emojione/4.5.0/lib/js/emojione.min.js","https://cdnjs.cloudflare.com/ajax/libs/lightgallery-js/1.4.0/js/lightgallery.min.js","https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js","https://cdnjs.cloudflare.com/ajax/libs/lite-youtube-embed/0.3.3/lite-yt-embed.js","https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js","https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js","https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.43/moment-timezone-with-data.min.js"];let t;e.forEach((e=>{let s=document.createElement("script");s.src=e,s.defer=!0,document.body.appendChild(s),t=s})),t.onload=function(){let e=document.createElement("script");e.src="https://cdn.jsdelivr.net/gh/hu6amini/perve_avenue_2891@main/pa_scripts.js",e.defer=!0,document.body.appendChild(e);let s=document.createElement("script");s.src="https://nb.forumfree.it/scripts/ace/slider.js",s.defer=!0,document.body.appendChild(s)}}});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+document.addEventListener("DOMContentLoaded",(function(){if(document.body.id==="search"){const s=["https://cdnjs.cloudflare.com/ajax/libs/emojione/4.5.0/lib/js/emojione.min.js","https://cdnjs.cloudflare.com/ajax/libs/lightgallery-js/1.4.0/js/lightgallery.min.js","https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js","https://cdnjs.cloudflare.com/ajax/libs/lite-youtube-embed/0.3.3/lite-yt-embed.js","https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js","https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js","https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.43/moment-timezone-with-data.min.js"];Promise.all(s.map(e)).then((()=>{e("https://cdn.jsdelivr.net/gh/hu6amini/perve_avenue_2892@main/pa_scripts.js");e("https://nb.forumfree.it/scripts/ace/slider.js")})).catch((e=>{console.error("Script loading failed:",e)}));function e(e){return new Promise(((s,t)=>{const o=document.createElement("script");o.src=e;o.defer=true;o.onload=s;o.onerror=()=>t(new Error(`Failed to load ${e}`));document.body.appendChild(o)}))}}}));
