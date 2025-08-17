@@ -16,18 +16,20 @@ document.addEventListener("DOMContentLoaded", function() {
     ];
 
     // Load all libraries with proper error handling
-    Promise.all(libraries.map(url => new Promise((resolve, reject) => {
-      const script = document.createElement("script");
-      script.src = url;
-      script.defer = true;
-      script.onload = resolve;
-      script.onerror = () => {
-        console.error(`Failed to load script: ${url}`);
-        reject(new Error(`Script load failed: ${url}`));
-      };
-      document.body.appendChild(script);
+    Promise.all(libraries.map(function(url) {
+      return new Promise(function(resolve, reject) {
+        const script = document.createElement("script");
+        script.src = url;
+        script.defer = true;
+        script.onload = resolve;
+        script.onerror = function() {
+          console.error("Failed to load script: " + url);
+          reject(new Error("Script load failed: " + url));
+        };
+        document.body.appendChild(script);
+      });
     }))
-    .then(() => {
+    .then(function() {
       // Verify moment.js is loaded before proceeding
       if (typeof moment === 'undefined' || typeof moment.tz === 'undefined') {
         throw new Error("Moment.js or moment-timezone failed to load");
@@ -35,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
       // Load main forum scripts AFTER dependencies are confirmed ready
       const paScript = document.createElement("script");
-      paScript.src = "https://cdn.jsdelivr.net/gh/hu6amini/perve_avenue_2896@main/pa_scripts.js";
+      paScript.src = "https://cdn.jsdelivr.net/gh/hu6amini/perve_avenue_2897@main/pa_scripts.js";
       paScript.defer = true;
       document.body.appendChild(paScript);
 
@@ -44,7 +46,7 @@ document.addEventListener("DOMContentLoaded", function() {
       sliderScript.defer = true;
       document.body.appendChild(sliderScript);
     })
-    .catch(error => {
+    .catch(function(error) {
       console.error("Script loading failed:", error);
       // Optional: Implement fallback behavior here
     });
