@@ -447,7 +447,8 @@ img[src="https://img.forumfree.net/home/images/avatar_email.png"]{background:url
 #notifications-more{background:none!important;box-shadow:none!important;min-height:50px;transition:none}
 .notification-container .aa:not(#msg .notification-container .aa){padding:0!important;width:4px!important}
 .notification-container .aa .avatar:not(#msg .notification-container .aa .avatar){height:48px!important;width:48px!important}
-#msg a.forminput[href="/?act=Msg&CODE=16&c=655775"]::before{content:'\f0f3 \00a0';display:inline-block}
+#msg a.forminput[href="/?act=Msg&CODE=16&c=655775"]::before,.st-emoji-link-void[data-toggle="emoji-notice-modal"]::before{content:'\f0f3 \00a0';display:inline-block}
+.st-emoji-link-void[data-toggle="emoji-notice-subscription"]::before{content:'\f8fa \00a0';display:inline-block}
 #ajaxUObject span[style="color:#491"]{color:var(--green)!important}
 #ajaxUObject span[style="color:#491"]::before{content:'\f00c \00a0'}
 #ajaxUObject span[style="color:#E12"]{color:var(--redft)!important}
