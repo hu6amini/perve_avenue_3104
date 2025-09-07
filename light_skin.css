@@ -66,4 +66,20 @@ input[type="submit"],button[type="submit"]:not(.children-2 button,.log,.error .s
 #notifications-modal .modal-title{background-color:var(--menul)}
 .color span,.buttons span{color:var(--ftcol)!important}
 .nav .fa-regular{color:var(--redft)}
+.pages2 a:link:hover,.pages2 a:visited:hover,.top-button:hover{background:var(--focus)}
+#c9070818 .mainbg::before,#subscribe{background-color:#FFE66D}
+.menu li a:hover,.menu li:hover > a{background-color:var(--hovbd)}
+.fast.send input[value="Add Reply"],#search .title.bottom a,.darkbar input.forminput,.group .right .codebuttons,.menuwrap em:not(.login em),#board .on .web a::before{color:var(--contt)!important}
+.send .forminput[type="submit"]:hover,.favbutton .codebuttons:hover{background-color:#FF4747!important}
+.post .center .right::before,.post.fast_post::before,.send:not(.send.alternative)::before{border-right-color:#CBCDCF}
+a,.gruppo1,.gruppo2,.gruppo3,.gruppo4,.nick,span{text-shadow:none!important}
+.cls-1{fill:var(--contt)}
+.cs-modal-head::before,#emoticon-popup1::before,#lastslider::before,.lastarticles .center::before,.latestupdates .fa-regular.fa-newspaper,.favbutton i,.color mark,#loading .top b::before,#msg #loading b:nth-of-type(1)::before,.popup.pop_points::before{color:var(--contt)}
+.darkbar .forminput[name="preview"]{background-color:var(--ltgry)!important}
+.spoiler .code .quote,.spoiler .code .quote_top,.quote .spoiler .code,.quote .quote,.quote .quote_top,.quote .ffb_embedlink_initialized > div:first-child,.quote .ffb_embedlink div:nth-of-type(2),.quote .spoiler .code_top{background:var(--backg)!important}
+.pages2 a:link,.pages2 a:visited{background:var(--txtim)}
+.top-button input.forminput:hover{background:none!important}
+.top-button{background:var(--contt)}
+.buttons .reply,.buttons .newpost{border: 2px solid var(--ltbrd)!important}
 }
+
