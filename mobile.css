@@ -2,7 +2,8 @@
 .mobile .buttons{margin-top:13px}
 .mobile .topic .navsub.bottom{padding:0 13px 0 13px}
 .mobile .menuwrap,.mobile #home svg{height:56px!important}
-.mobile #home{height:91px!important} 
+.mobile #home{height:91px!important}
+.header .logo{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 755.6 200'%3E%3Cpath d='M31.24,137.49V200H0V0H56.24q28.49,0,48.65,20.11T125,68.73q0,28.5-20.11,48.61T56.27,137.46Zm25-106.22h-25v75h25a37.5,37.5,0,0,0,0-75ZM189.72,200h-31V0h125V31.24h-94V75H234.2v31.24H189.72v62.5H284.2V200Zm185-200q28.5,0,48.62,20.11t20.11,48.62q0,14.47-8.37,30.89T414.92,124.5q9.24,8.25,15.75,23.11T437.13,175v25H405.91V175a37.55,37.55,0,0,0-37.5-37.5H349.68V200H318.44V0Zm-25,106.22h25a37.5,37.5,0,0,0,0-75h-25ZM549.4,200h-31L494.9,100,471.41,0h32l3.75,15.53,3.74,15.75,11.49,49.24,11.49,49.24,11.51-49.24,11.49-49.24,3.75-15.75L564.39,0h32l-23.5,100-23.5,100Zm111.73,0h-31V0h125V31.24h-94V75h44.49v31.24h-44.5v62.5H755.6V200Z' fill='%23F7FFF7'%2F%3E%3C/svg%3E")!important;background-position:0 50%;background-repeat:no-repeat;background-size:auto 50px;height:81px;margin:auto;position:relative;width:calc(100% - 92px);z-index:998}
 
 @media(max-width: 768px) {
 #search.mobile .topic .post,.mobile .post,#blog.mobile .comments .post,.mobile .summary .list > *,.mobile .topic .mback,#search.mobile .mback,.mobile .board .mainbg::before,.mobile .online .mainbg::before,.mobile .members .mainbg::before,#topic .skin_tbl::before,.guest.error.no_view_topic .msg .mainbg::before,.guest.error.no_permission .msg .mainbg::before,.error .mainbg::before,#search.posts .skin_tbl::before,.group .mainbg::before,.forum .mainbg::before,.search .skin_tbl::before,#mod .cp .skin_tbl::before,.send,.send::before,.skin-section,.tag{border-radius:0!important}
@@ -29,3 +30,4 @@
 #topic .post .nick,#blog .post .nick,#topic .post .details dl:not(.u_location,.box_offline .u_status,.box_online .u_status),#blog .post .left .details dl:not(.u_location,.box_offline .u_status,.box_online .u_status){display:inline-block!important}
 #topic .post .nick+p,#blog .post .nick+p,#topic .post .u_location,#blog .post .u_location{display:none}
 }
+
