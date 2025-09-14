@@ -424,7 +424,7 @@ label[for="DST"]{display:block;margin:15px 0}
 .cs-modal .st-emoji-notice-message,.st-emoji-profile-modal .st-emoji-post-info{font-size:.813rem!important;line-height:1.618;margin:0;min-height:43px;order:1;text-align:left}
 .cs-modal .st-emoji-notice-time{color:var(--ltcol);font-size:.75rem;margin:0;order:3;text-align:right}
 .cs-buttons{justify-content:center!important}
-.cs-buttons.st-emoji-notice-btn{gap:10px;order:2;position:relative;width:fit-content!important}
+.cs-buttons.st-emoji-notice-btn{gap:13px;margin:0;order:2;position:relative;width:fit-content!important}
 .cs-btn.cs-btn-outer-red{border:none!important;color:var(--ltcol)!important;font-size:.75rem;margin:0!important;padding:0!important;transition:none;width:auto!important}
 .cs-modal .st-emoji-notice-history-title{border-bottom:none!important;color:var(--ftcol);display:table;font-size:.875rem!important;margin:0!important;padding:10px!important;position:relative!important;text-align:left!important}
 .cs-modal .st-emoji-notice-history-title::before{content:'\f1da \00a0'}
