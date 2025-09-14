@@ -421,7 +421,7 @@ label[for="DST"]{display:block;margin:15px 0}
 .st-emoji-notice-content{flex-direction:row}
 .st-emoji-colored{border-radius:0!important;padding:0!important}
 .st-emoji-user-info{flex-direction:column}
-.cs-modal .st-emoji-notice-message,.st-emoji-profile-modal .st-emoji-post-info{color:var(--ftcol);font-size:.813rem!important;line-height:1.618;margin:0;min-height:43px;order:1;text-align:left}
+.cs-modal .st-emoji-notice-message,.st-emoji-profile-modal .st-emoji-post-info{font-size:.813rem!important;line-height:1.618;margin:0;min-height:43px;order:1;text-align:left}
 .cs-modal .st-emoji-notice-time{color:var(--ltcol);font-size:.75rem;margin:0;order:3;text-align:right}
 .cs-buttons{justify-content:center!important}
 .cs-buttons.st-emoji-notice-btn{gap:10px;order:2;position:relative;width:fit-content!important}
