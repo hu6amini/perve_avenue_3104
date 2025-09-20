@@ -12,7 +12,8 @@ img[alt$=":"],.web a .emojione{height:22px;margin:0;vertical-align:text-bottom!i
 [class*=e1a-]{margin:0!important;vertical-align:text-bottom!important}
 div[style="position:relative;height:0;padding-bottom:56.25%"]{height:auto!important;margin:0;max-height:270px;max-width:480px;padding:0!important;width:100%}
 .post .color div[style="position:relative;height:0;padding-bottom:56.25%"] iframe[src*="youtube.com/embed/"],.summary .color div[style="position:relative;height:0;padding-bottom:56.25%"] iframe[src*="youtube.com/embed/"],#loading .color div[style="position:relative;height:0;padding-bottom:56.25%"] iframe[src*="youtube.com/embed/"]{height:0!important;padding-bottom:56.25%;position:relative!important}
-iframe[src*="youtube.com/embed/"]{max-height:270px;max-width:480px!important}
+iframe[src*="youtube.com/embed/"]:not(.st-emoji-post-item iframe[src*="youtube.com/embed/"]){max-height:270px;max-width:480px!important}
+.st-emoji-post-item iframe{max-height:100%;max-width:100%}
 .signature [class*=e1a-]{transform:scale(0.8136);transform-origin:bottom left}
 .signature .emojione{height:18px;width:18px}
 .quote [class*=e1a-],.quote img[src^="https://img.forumfree.net/html/emoticons/new/"],.tmsg [class*=e1a-],.tmsg img[src^="https://img.forumfree.net/html/emoticons/new/"]{transform:scale(.8636);transform-origin:left bottom}
