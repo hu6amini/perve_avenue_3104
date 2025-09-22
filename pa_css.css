@@ -44,7 +44,7 @@ select{background:none;border:1px solid var(--ltbrd);border-radius:4px;box-shado
 #msg .big_list li div[class="Sub Item"]{order:6;width:auto!important;z-index:1}
 .send button{white-space:nowrap}
 .right.Sub.preview{align-items:center;display:inline-flex;gap:3px}
-.profile_info,.cp.send li.Item[style="padding:5px 1.5% 2px 1.5%"] > .Justify,.ffb_embedlink_initialized div + div > div,#blog .post .title2.top .right .mini_buttons.points.Sub,.ffb_embedlink>div:last-child>div:first-child,.ffb_embedlink>div:last-child>div:nth-child(2),.ffb_embedlink>div:first-child img,.article .title2.bottom .left.Sub{margin:0}
+.profile_info,.cp.send li.Item[style="padding:5px 1.5% 2px 1.5%"] > .Justify,.ffb_embedlink_initialized div + div > div,#blog .post .title2.top .right .mini_buttons.points.Sub,.ffb_embedlink>div:last-child>div:first-child,.ffb_embedlink>div:last-child>div:nth-child(2),.ffb_embedlink>div:first-child img,.article .title2.bottom .left.Sub,.fui.st-emoji-filter-pop.fui-interactive .st-emoji-checkbox{margin:0}
 input[value="Go!"]:hover:not(.right.Sub input[value="Go!"]),#user input[title="Character Map"]:hover{background-color:var(--grhov)!important}
 .sunbar.center[onclick="addButtonPollFF()"] > .Sub.Item[style="width:68%"]{width:100%!important;white-space:nowrap}
 .sunbar.center[onclick="addButtonPollFF()"]{align-items:center;display:inline-flex;height:36px;justify-content:center;width:auto}
@@ -904,6 +904,8 @@ div[class="atwho-view"]{z-index:11!important}
 .st-emoji-checkbox .lbl[for="filter-rid-9"]{background-image:url(https://upload.forumfree.net/i/fc11517378/emojis/red_pepper.png)}
 .st-emoji-checkbox .lbl[for="filter-rid-11"]{background-image:url(https://upload.forumfree.net/i/fc11517378/emojis/banana.png)}
 .st-emoji-checkbox .lbl{background-position:left;background-repeat:no-repeat;background-size:22px 22px;font-size:0;height:22px;margin-left:8px;padding-left:22px}
+.fui.st-emoji-filter-pop.fui-interactive .fui-container{min-width:auto;padding:13px!important}
+.fui.st-emoji-filter-pop.fui-interactive .st-emoji-filter-list{gap:8px}
 
 /*ads*/
 .FFA-head span{font-family:quicksand!important}
