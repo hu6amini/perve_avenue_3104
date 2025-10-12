@@ -45,179 +45,57 @@ function waitForElement(t,e,i=1e4){const o=Date.now(),checkForElement=()=>{const
 //User tooltips
 async function fetchUserDetails(e){try{const t=await fetch(e);if(!t.ok)throw new Error("Failed to fetch "+e);const o=await t.arrayBuffer(),a=new TextDecoder("windows-1252").decode(o),r=(new DOMParser).parseFromString(a,"text/html"),i=r.querySelector(".profile span.avatar")?r.querySelector(".profile span.avatar").innerHTML.replace(/<img/g,'<img decoding="async"'):"",l=r.querySelector(".profile span.nick")?r.querySelector(".profile span.nick").textContent:"Unknown User",s=r.querySelector(".profile-group dd.Sub.Item")?.textContent.trim()||"",n=r.querySelector(".profile-title dd.Sub.Item")?.textContent.trim()||"",p=r.querySelector(".profile-location dd.Sub.Item")?.textContent.trim()||"";function cleanNumberText(e){return e.replace(/^\+/,"").replace(/\s*\(.*?\)/g,"").trim()}function cleanDateText(e){return e.split(",")[0].trim()}const c=r.querySelector(".profile-joined")?{label:r.querySelector(".profile-joined dt")?.textContent.trim()||"Joined",value:cleanDateText(r.querySelector(".profile-joined dd")?.textContent||"")}:null,d=r.querySelector(".profile-posts")?{label:r.querySelector(".profile-posts dt")?.textContent.trim()||"Posts",value:cleanNumberText(r.querySelector(".profile-posts dd")?.textContent||"")}:null,u=r.querySelector(".profile-rep.u_reputation")?{label:r.querySelector(".profile-rep.u_reputation dt")?.textContent.trim()||"Reputation",value:cleanNumberText(r.querySelector(".profile-rep.u_reputation dd")?.textContent||"")}:null;return{avatar:i,nick:l,group:s,title:n,loc:p,joined:c,posts:d,rep:u,lastAction:r.querySelector(".profile-lastaction")?{label:r.querySelector(".profile-lastaction dt")?.textContent.trim()||"Last Action",value:cleanDateText(r.querySelector(".profile-lastaction dd")?.textContent||"")}:null}}catch(v){return console.error("Error fetching user details: "+v),null}}function initUserTooltips(){if(document.body.classList.contains("mobile"))return;async function checkImageStatus(e){return new Promise((t=>{if(!e)return t(!1);const o=new Image;o.onload=()=>t(!0),o.onerror=()=>t(!1),o.src=e}))}function e(e){const n=e.href||"https://perveavenue.forumcommunity.net/?act=Profile&MID="+e.className.replace("user","");tippy(e,{allowHTML:!0,placement:"bottom",theme:"dark",animation:"fade",offset:[0,10],arrow:!1,onShow:async function(t){e.dataset.tooltipLoaded||(t.popper.classList.add("hidden"),fetchUserDetails(n).then((async o=>{if(!o)return t.setContent('<div class="tooltip-error">Error loading user info</div>'),e.dataset.tooltipLoaded="true",t.popper.classList.remove("tippy-profile"),t.popper.classList.remove("hidden"),void t.popper.classList.add("tippy-profile-error");let a="",r="";o.group.toLowerCase().includes("global moderator")?(a="global-moderator",r="global-moderator"):o.group.toLowerCase().includes("administrator")?(a="administrator",r="administrator"):o.group.toLowerCase().includes("moderator")?(a="moderator",r="moderator"):o.group.toLowerCase().includes("game dev")?(a="game-dev",r="game-dev"):(a="utente",r="utente");const i=o.avatar;let l="";if(i){const e=["https://res.cloudinary.com/dbdf6gwgo/image/upload/v1674337715/forum/Avatar/default_avatar_zpw3zz.svg","https://res.cloudinary.com/dbdf6gwgo/image/upload/v1676109015/forum/Avatar/robot_snynw7.svg","https://img.forumfree.net/style_images/default_avatar.png","https://img.forumfree.net/style_images/default_avatar_bot.png"];const t=/(src=["'])([^"']*)/.exec(i);if(t&&t[2]){const n=t[2],c=e.some(e=>n.includes(e)),s=await checkImageStatus(n);if(c||!s){const e=o.nick.charAt(0).toUpperCase(),c=["#ff7770","#ff6b6b","#ff5154","#ffcb69","#fdc26d","#ffa96c","#ff9f1c","#ff8f5c","#9ce37d","#74c365","#16c172","#3ab795","#4ecdc4","#2dc7ff","#0eb1d2","#009bf5","#a3bcf9","#9b9ece","#9792e3","#8075ff","#b455b0","#a755c2","#a5acb5","#889696"],a=Math.min(Math.floor(o.nick.length/Math.ceil(1/c.length)),c.length-1);l='<span class="avatar" style="background-color:'+c[a]+'">'+e+"</span>"}else{l=i}}else{l=i}}const s=l||i;return t.setContent('<div class="tooltip-user-details"><div class="tippy-details"><div class="tooltip-avatar">'+s+'</div><div class="tippy-info"><div class="tippy-nick '+r+'">'+o.nick+"</div>"+(o.group?'<div class="tippy-group '+a+'">'+o.group+"</div>":"")+(o.title?'<div class="tippy-title">'+o.title+"</div>":"")+(o.loc?'<div class="tippy-location">'+o.loc+"</div>":"")+'</div></div><div class="tippy-score">'+(o.posts?'<div class="tippy-posts"><span class="tippy-posts-label">'+o.posts.label+'</span><span class="tippy-posts-value">'+o.posts.value+"</span></div>":"")+(o.rep?'<div class="tippy-rep"><span class="tippy-rep-label">'+o.rep.label+'</span><span class="tippy-rep-value">'+o.rep.value+"</span></div>":"")+(o.joined?'<div class="tippy-joined"><span class="tippy-joined-label">'+o.joined.label+'</span><span class="tippy-joined-value">'+o.joined.value+"</span></div>":"")+(o.lastAction?'<div class="tippy-last-action"><span class="tippy-last-action-label">'+o.lastAction.label+'</span><span class="tippy-last-action-value">'+o.lastAction.value+"</span></div>":"")+"</div></div>"),e.dataset.tooltipLoaded="true",t.popper.classList.remove("hidden")})))},onCreate:function(e){e.popper.classList.add("tippy-profile","hidden")}})}let n=document.querySelectorAll(".post .avatar, .big_list .who a, .big_list .avatar, .tag .nickname, .side_topics .who a, .lastarticles .topic > span a, .send_av a.avatar, .tag .list a.avatar, .big_list .zz .avatar, .stats .users a, .side_topics .thumbs a, #search .mtitle b, body#profile .profile-friends.thumbs a, body#group .big_list .aa.thumbs a, body#group .big_list .bb .nick a, body#members .big_list .aa.thumbs a, body#members .big_list .bb .nick a, .lastarticles .thumbs a");document.querySelectorAll("body#profile .profile-friends.thumbs a img").forEach(e=>e.removeAttribute("title")),document.body.id==="online"&&(n=[...n,...document.querySelectorAll(".big_list li .aa.thumbs a, .big_list li .nick a")]),document.body.matches("#board")&&(n=[...n,...document.querySelectorAll(".lastreg a")]),n.forEach(e);const t=new MutationObserver((function(t){t.forEach((function(t){t.addedNodes.forEach((function(t){t.nodeType===Node.ELEMENT_NODE&&(t.matches(".post .nick a, .send_av a.avatar, .tag .list a.avatar, .big_list .zz .avatar, .stats .users a, .side_topics .thumbs a, #search .mtitle b, body#profile .profile-friends.thumbs a, body#group .big_list .aa.thumbs a, body#group .big_list .bb .nick a, body#members .big_list .aa.thumbs a, body#members .big_list .bb .nick a, .lastarticles .thumbs a")?e(t):t.querySelectorAll(".post .nick a, .send_av a.avatar, .tag .list a.avatar, .big_list .zz .avatar, .stats .users a, .side_topics .thumbs a, #search .mtitle b, body#profile .profile-friends.thumbs a, body#group .big_list .aa.thumbs a, body#group .bb .nick a, body#members .big_list .aa.thumbs a, body#members .bb .nick a, .lastarticles .thumbs a").forEach(e))}))}))}));t.observe(document.body,{childList:!0,subtree:!0})}initUserTooltips();
 
-document.addEventListener("DOMContentLoaded", function() {
-    if (document.body.id !== "search") return;
+// IMMEDIATE TEST SCRIPT - runs without waiting for anything
+console.log("=== IMMEDIATE SEARCH TEST STARTED ===");
 
-    console.log("=== SEARCH PAGE TIMESTAMP TEST ===");
+function runSearchTests() {
+    console.log("Search test function executing...");
+    console.log("Body ID:", document.body.id);
+    console.log("Body classes:", document.body.className);
     
-    let successCount = 0;
-    const totalTests = 6;
-    
-    // Test 1: Direct selector (most common)
-    function testDirectSelector() {
-        const elements = document.querySelectorAll('.post .title2.top .when');
-        console.log(`Test 1 - Direct selector: Found ${elements.length} elements`);
+    if (document.body.id === "search") {
+        console.log("✓ Search page detected!");
         
-        elements.forEach((el, index) => {
-            const originalContent = el.innerHTML;
-            el.innerHTML = 'SUCCESS - Test 1: Direct selector';
+        // Test 1: Basic selector
+        const whenElements = document.querySelectorAll('.when');
+        console.log(`Found ${whenElements.length} .when elements`);
+        
+        whenElements.forEach((el, index) => {
+            console.log(`Element ${index + 1}:`, el.outerHTML);
+            el.innerHTML = 'SUCCESS - Immediate Test';
             el.style.backgroundColor = '#90EE90';
-            el.style.padding = '2px';
-            console.log(`  Modified element ${index + 1}:`, originalContent);
-            successCount++;
+            el.style.border = '2px solid red';
+            el.style.padding = '5px';
+            el.style.fontWeight = 'bold';
         });
         
-        return elements.length > 0;
-    }
-    
-    // Test 2: Broader selector
-    function testBroadSelector() {
-        const elements = document.querySelectorAll('.when');
-        console.log(`Test 2 - Broad selector: Found ${elements.length} elements`);
-        
-        elements.forEach((el, index) => {
-            if (!el.innerHTML.includes('SUCCESS')) {
-                const originalContent = el.innerHTML;
-                el.innerHTML = 'SUCCESS - Test 2: Broad selector';
-                el.style.backgroundColor = '#ADD8E6';
-                el.style.padding = '2px';
-                console.log(`  Modified element ${index + 1}:`, originalContent);
-                successCount++;
-            }
-        });
-        
-        return elements.length > 0;
-    }
-    
-    // Test 3: Parent traversal
-    function testParentTraversal() {
+        // Test 2: Check post structure
         const posts = document.querySelectorAll('.post');
-        console.log(`Test 3 - Parent traversal: Found ${posts.length} posts`);
-        let modified = 0;
+        console.log(`Found ${posts.length} .post elements`);
         
-        posts.forEach((post, postIndex) => {
-            const whenElement = post.querySelector('.title2.top .when') || 
-                               post.querySelector('.when');
-            if (whenElement && !whenElement.innerHTML.includes('SUCCESS')) {
-                const originalContent = whenElement.innerHTML;
-                whenElement.innerHTML = 'SUCCESS - Test 3: Parent traversal';
-                whenElement.style.backgroundColor = '#FFB6C1';
-                whenElement.style.padding = '2px';
-                console.log(`  Modified post ${postIndex + 1}:`, originalContent);
-                modified++;
-                successCount++;
-            }
+        posts.forEach((post, index) => {
+            const whenInPost = post.querySelector('.when');
+            console.log(`Post ${index + 1} has .when:`, !!whenInPost);
         });
         
-        return modified > 0;
+    } else {
+        console.log("✗ Not a search page");
     }
-    
-    // Test 4: Text content search
-    function testTextContentSearch() {
-        const allElements = document.querySelectorAll('*');
-        let modified = 0;
-        
-        allElements.forEach(el => {
-            if (el.classList && el.classList.contains('when') && 
-                !el.innerHTML.includes('SUCCESS')) {
-                const originalContent = el.innerHTML;
-                el.innerHTML = 'SUCCESS - Test 4: Text search';
-                el.style.backgroundColor = '#FFFFE0';
-                el.style.padding = '2px';
-                console.log(`  Modified via text search:`, originalContent);
-                modified++;
-                successCount++;
-            }
-        });
-        
-        console.log(`Test 4 - Text content search: Modified ${modified} elements`);
-        return modified > 0;
-    }
-    
-    // Test 5: Table structure traversal
-    function testTableTraversal() {
-        const tables = document.querySelectorAll('table[width="100%"][cellpadding="0"][cellspacing="0"]');
-        console.log(`Test 5 - Table traversal: Found ${tables.length} tables`);
-        let modified = 0;
-        
-        tables.forEach((table, tableIndex) => {
-            const whenElement = table.querySelector('.when');
-            if (whenElement && !whenElement.innerHTML.includes('SUCCESS')) {
-                const originalContent = whenElement.innerHTML;
-                whenElement.innerHTML = 'SUCCESS - Test 5: Table traversal';
-                whenElement.style.backgroundColor = '#E6E6FA';
-                whenElement.style.padding = '2px';
-                console.log(`  Modified table ${tableIndex + 1}:`, originalContent);
-                modified++;
-                successCount++;
-            }
-        });
-        
-        return modified > 0;
-    }
-    
-    // Test 6: Mutation Observer for dynamic content
-    function testMutationObserver() {
-        console.log('Test 6 - Mutation Observer: Active and watching for new .when elements');
-        
-        const observer = new MutationObserver(function(mutations) {
-            mutations.forEach(function(mutation) {
-                mutation.addedNodes.forEach(function(node) {
-                    if (node.nodeType === 1) { // Element node
-                        const whenElements = node.querySelectorAll ? 
-                            node.querySelectorAll('.when') : [];
-                        if (node.classList && node.classList.contains('when')) {
-                            whenElements.push(node);
-                        }
-                        
-                        whenElements.forEach(el => {
-                            if (!el.innerHTML.includes('SUCCESS')) {
-                                const originalContent = el.innerHTML;
-                                el.innerHTML = 'SUCCESS - Test 6: Dynamic content';
-                                el.style.backgroundColor = '#FFD700';
-                                el.style.padding = '2px';
-                                console.log('  Modified dynamic element:', originalContent);
-                                successCount++;
-                            }
-                        });
-                    }
-                });
-            });
-        });
-        
-        observer.observe(document.body, {
-            childList: true,
-            subtree: true
-        });
-        
-        return true; // Observer is active
-    }
-    
-    // Run all tests
-    setTimeout(() => {
-        console.log('\n--- Running Tests ---');
-        const results = [
-            testDirectSelector(),
-            testBroadSelector(),
-            testParentTraversal(),
-            testTextContentSearch(),
-            testTableTraversal(),
-            testMutationObserver()
-        ];
-        
-        console.log('\n=== TEST RESULTS ===');
-        console.log(`Successful modifications: ${successCount}`);
-        console.log(`Tests that found elements: ${results.filter(r => r).length}/${totalTests}`);
-        console.log('Check the page for colored "SUCCESS" text to see which methods worked');
-        
-        // Final check for any remaining unmodified .when elements
-        setTimeout(() => {
-            const remaining = document.querySelectorAll('.when:not(:contains("SUCCESS"))');
-            console.log(`Remaining unmodified .when elements: ${remaining.length}`);
-            if (remaining.length > 0) {
-                console.log('Unmodified elements:', remaining);
-            }
-        }, 1000);
-        
-    }, 100); // Small delay to ensure DOM is ready
-});
+}
+
+// Run immediately
+console.log("Current readyState:", document.readyState);
+
+if (document.readyState === 'loading') {
+    console.log("Document still loading, waiting for DOMContentLoaded");
+    document.addEventListener('DOMContentLoaded', runSearchTests);
+} else {
+    console.log("Document already ready, running immediately");
+    runSearchTests();
+}
+
+// Also try a timeout as backup
+setTimeout(runSearchTests, 1000);
+setTimeout(runSearchTests, 3000);
+
+console.log("=== TEST SCRIPT LOADED ===");
