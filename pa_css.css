@@ -11,8 +11,8 @@ div[class="Fixed"]{background-color:var(--contt);margin-top:100px;top:0;position
 img[alt$=":"],.web a .emojione{height:22px;margin:0;vertical-align:text-bottom!important;width:22px}
 .quote img[alt$=":"],.tmsg img[alt$=":"],.quote .emojione{height:19px;width:19px}
 [class*=e1a-]{margin:0!important;vertical-align:text-bottom!important}
-div[style="position:relative;height:0;padding-bottom:56.25%"]{height:auto!important;margin:0;max-height:270px;max-width:480px;padding:0!important;width:100%}
-.post .color div[style="position:relative;height:0;padding-bottom:56.25%"] iframe[src*="youtube.com/embed/"],.summary .color div[style="position:relative;height:0;padding-bottom:56.25%"] iframe[src*="youtube.com/embed/"],#loading .color div[style="position:relative;height:0;padding-bottom:56.25%"] iframe[src*="youtube.com/embed/"]{height:0!important;padding-bottom:56.25%;position:relative!important}
+div[style="position:relative;height:0;padding-bottom:56.25%"],div[style="padding:56.25% 0 0 0;position:relative;"]{height:auto!important;margin:0;max-height:270px;max-width:480px;padding:0!important;width:100%}
+.post .color div[style="position:relative;height:0;padding-bottom:56.25%"] iframe[src*="youtube.com/embed/"],.summary .color div[style="position:relative;height:0;padding-bottom:56.25%"] iframe[src*="youtube.com/embed/"],#loading .color div[style="position:relative;height:0;padding-bottom:56.25%"] iframe[src*="youtube.com/embed/"],div[style="padding:56.25% 0 0 0;position:relative;"] iframe{height:0!important;padding-bottom:56.25%;position:relative!important}
 iframe[src*="youtube.com/embed/"]:not(.st-emoji-post-item iframe[src*="youtube.com/embed/"]){max-height:270px;max-width:480px!important}
 .st-emoji-post-item iframe{max-height:100%;max-width:100%}
 .signature [class*=e1a-]{transform:scale(0.8136);transform-origin:bottom left}
@@ -874,7 +874,6 @@ a.a2a_dd.nolink::before{content:'\f1e0'}
 #usercp form[name="REPLIER"] li[style="text-align:center"]:not(textarea){text-align:left!important}
 #usercp input.forminput:not(input[type="checkbox"],#FILE_UPLOAD){margin:7px 0 12px 0;width:100%}
 .color div[align="center"]:not(.spoiler.ffbspoiler,.quote div[align="center"]),.ve-content.color blockquote{margin-bottom:13px!important}
-div[style="padding:56.25% 0 0 0;position:relative;"]{height:315px;margin:0;padding:0!important;width:560px}
 #popupmod #Cronmod{display:block;font-size:2rem;height:100%}
 #attach td[width="60%"],#user .Item[style="text-align:center;line-height:200%;padding-bottom:14px"] form[method="post"],#msg #attach .Item[style="text-align:center;line-height:200%;padding:10px 0 18px 0"]{border:1px solid var(--ltbrd);border-radius:4px;display:block;padding:12px!important;text-align:left!important}
 #attach td[width="40%"]{display:block;text-align:left}
@@ -883,7 +882,7 @@ div[style="padding:56.25% 0 0 0;position:relative;"]{height:315px;margin:0;paddi
 #user table[style="width:75%"]{width:100%!important}
 .quote span[style="font-size: 19.5pt"]{font-size:17.06pt!important}
 .tippy-info [class^="tippy-"]:not(.tippy-nick,.tippy-group)::before{color:var(--ltcol);display:inline-flex;justify-content:center;width:18px}
-.post .color iframe[src*="youtube.com"]:not(lite-youtube iframe){visibility:hidden!important}
+.post .color iframe[src*="youtube.com"]:not(lite-youtube iframe),.post .color iframe[src*="vimeo.com"]{visibility:hidden!important}
 .post .color .lite-embed iframe[src*="youtube.com"]{display:block!important;visibility:visible!important}
 #msg .cp .aa .avatar img[src="https://img.forumfree.net/style_images/default_avatar.png"]{background-size:40px!important}
 .st-emoji-rep .st-emoji-preview.st-emoji-animate img[alt="emoji preview"]{transform:scale(0.727);transform-origin:left center}
