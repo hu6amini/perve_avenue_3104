@@ -695,7 +695,7 @@ blockquote.quote.is-empty::before{color:var(--yello);content:'\f10d';line-height
 #tippy-32 [data-theme*=ve-dropdown] ul.ve-dropdown-list,#tippy-17 [data-theme*=ve-dropdown] ul.ve-dropdown-list,#tippy-27 [data-theme*=ve-dropdown] ul.ve-dropdown-list,#tippy-9 [data-theme*=ve-dropdown] ul.ve-dropdown-list,#tippy-13 [data-theme*=ve-dropdown] ul.ve-dropdown-list,#tippy-19 [data-theme*=ve-dropdown] ul.ve-dropdown-list,#tippy-35 [data-theme*=ve-dropdown] ul.ve-dropdown-list,.ve-dropdown-link .ve-link-add,.post .title2.bottom .left.Item,#msg #smilies td,.Sortable.ui-sortable .Sub.Item[style="width:68%"],#board .stats .zz.right.Sub.Item,.cp.send .darkbar.Item,.st-emoji-pop .st-emoji-content,.fui.st-emoji-filter-pop.fui-interactive .st-emoji-filter-item{padding:0}
 #tippy-32 [data-theme*=ve-popover],#tippy-17 [data-theme*=ve-popover],#tippy-27 [data-theme*=ve-popover],#tippy-9 [data-theme*=ve-popover],#tippy-13 [data-theme*=ve-popover],#tippy-19 [data-theme*=ve-popover],#tippy-35 [data-theme*=ve-popover]{overflow:hidden}
 .ve-content pre.code::after{content:'code';text-transform:uppercase}
-.ve-content blockquote.quote:not([data-author])::after{content:'\f10d \00a0 quote';text-transform:uppercase}
+.ve-content blockquote.quote:not([data-author])::after{content:'quote';text-transform:uppercase}
 .ve-content ul,.ve-content ol,.color ul,.color ol{margin:1em 0}
 .ve-content div[data-youtube-video]{display:inline-block}
 .ve-content div[data-youtube-video].ProseMirror-selectednode iframe{box-shadow:0 0 0 .25rem var(--lncol)}
