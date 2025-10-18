@@ -678,7 +678,8 @@ button.cs-replier-item.codebuttons,#user .codebuttons[onchange="tag('[size='+thi
 .ve-dropdown-list li,.ve-dropdown-list>li,ul.ve-shortcuts-list li,ul.ve-color-suggestions > li,ul.ve-emoji-list li,.cs-toast:not(.cs-toast-dark) .cs-toast-content{background:none!important}
 .group-1,.group-2,.group-3,.group-4,.group-5,.group-6,.notification-text{margin-left:0}
 .ve-toolbar-inactive .btn{height:30px;width:30px}
-.ve-content blockquote.quote::after,.ve-content pre.code::after,.ve-content spoiler.code::after,div[data-type="spoiler"]::after{font-family:quicksand;font-weight:700;left:0;padding:.844rem;right:0;top:0!important}
+.ve-content blockquote.quote::after,.ve-content pre.code::after,.ve-content spoiler.code::after,div[data-type="spoiler"]::after{font-family:quicksand;font-weight:700;left:0;padding:1.625rem;right:0;top:0!important}
+blockquote.quote.is-empty::before{color:var(--yello);content:'\f10d';line-height:40px;position:absolute;top:0}
 .ve-content pre.code::after,.ve-content spoiler.code::after,div[data-type="spoiler"]::after{color:var(--ftcol);font-size:1rem!important}
 .ve-content blockquote.quote[data-author]::after{content:attr(data-author) " said: "!important}
 .ve-content blockquote.quote::after{color:var(--mdcol);font-size:.813rem;text-transform:unset}
@@ -694,7 +695,7 @@ button.cs-replier-item.codebuttons,#user .codebuttons[onchange="tag('[size='+thi
 #tippy-32 [data-theme*=ve-dropdown] ul.ve-dropdown-list,#tippy-17 [data-theme*=ve-dropdown] ul.ve-dropdown-list,#tippy-27 [data-theme*=ve-dropdown] ul.ve-dropdown-list,#tippy-9 [data-theme*=ve-dropdown] ul.ve-dropdown-list,#tippy-13 [data-theme*=ve-dropdown] ul.ve-dropdown-list,#tippy-19 [data-theme*=ve-dropdown] ul.ve-dropdown-list,#tippy-35 [data-theme*=ve-dropdown] ul.ve-dropdown-list,.ve-dropdown-link .ve-link-add,.post .title2.bottom .left.Item,#msg #smilies td,.Sortable.ui-sortable .Sub.Item[style="width:68%"],#board .stats .zz.right.Sub.Item,.cp.send .darkbar.Item,.st-emoji-pop .st-emoji-content,.fui.st-emoji-filter-pop.fui-interactive .st-emoji-filter-item{padding:0}
 #tippy-32 [data-theme*=ve-popover],#tippy-17 [data-theme*=ve-popover],#tippy-27 [data-theme*=ve-popover],#tippy-9 [data-theme*=ve-popover],#tippy-13 [data-theme*=ve-popover],#tippy-19 [data-theme*=ve-popover],#tippy-35 [data-theme*=ve-popover]{overflow:hidden}
 .ve-content pre.code::after{content:'code';text-transform:uppercase}
-.ve-content blockquote.quote:not([data-author])::after{content:'quote';text-transform:uppercase}
+.ve-content blockquote.quote:not([data-author])::after{content:'\f10d \00a0 quote';text-transform:uppercase}
 .ve-content ul,.ve-content ol,.color ul,.color ol{margin:1em 0}
 .ve-content div[data-youtube-video]{display:inline-block}
 .ve-content div[data-youtube-video].ProseMirror-selectednode iframe{box-shadow:0 0 0 .25rem var(--lncol)}
