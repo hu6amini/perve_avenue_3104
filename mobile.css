@@ -10,7 +10,7 @@
 .mobile #home svg{height:35px!important}
 .post{flex-direction:column}
 #topic .post .details,#blog .post .details{border-bottom:1px solid var(--ltbrd);display:block!important;margin:0!important;min-height:72px;order:1;padding-left:72px!important;position:relative!important;text-align:left;top:0!important;width:100%}
-.post .title2.top,.summary .nick{order:2}
+.post .title2.top:not(#search .post .title2.top),.summary .nick{order:2}
 .post .right.Item{order:3}
 .post .title2.bottom{order:4}
 .post .center .left,.post tbody,.post .center,.post>table{display:contents!important}
@@ -30,4 +30,5 @@
 #topic .post .nick,#blog .post .nick,#topic .post .details dl:not(.u_location,.box_offline .u_status,.box_online .u_status),#blog .post .left .details dl:not(.u_location,.box_offline .u_status,.box_online .u_status){display:inline-block!important}
 #topic .post .nick+p,#blog .post .nick+p,#topic .post .u_location,#blog .post .u_location{display:none}
 }
+
 
