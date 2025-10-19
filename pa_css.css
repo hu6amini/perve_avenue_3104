@@ -908,6 +908,8 @@ div[class="atwho-view"]{z-index:11!important}
 .st-emoji-checkbox .lbl{background-position:left;background-repeat:no-repeat;background-size:22px 22px;font-size:0;height:22px;margin-left:8px;padding-left:22px}
 .fui.st-emoji-filter-pop.fui-interactive .fui-container{min-width:auto;padding:13px!important}
 .fui.st-emoji-filter-pop.fui-interactive .st-emoji-filter-list{gap:8px;padding:0}
+#search .post td.Item:not(.title2.top>td.Item){padding-bottom:58px!important;position:relative}
+#search .post .reactions{bottom:13px;position:absolute;width:calc(100% - 26px)}
 
 /*ads*/
 .FFA-head span{font-family:quicksand!important}
