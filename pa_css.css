@@ -669,7 +669,7 @@ button.cs-replier-item.codebuttons,#user .codebuttons[onchange="tag('[size='+thi
 .st-editor-toggle:not(.codebuttons){margin-right:3px}
 .ve-toolbar{border:1px solid var(--ltbrd);border-bottom:none;border-top-left-radius:5px;border-top-right-radius:5px}
 .st-editor-area:not(ul.list-group .st-editor-area),.ve-image-add,.ve-dropdown-link,#tippy-23 [data-theme*=ve-dropdown] ul.ve-dropdown-list,#tippy-25 [data-theme*=ve-dropdown] ul.ve-dropdown-list{padding:13px!important}
-.ve-container .ve-btn[data-active=true]{background:none;border:none;color:var(--lncol)}
+.ve-container .ve-btn[data-active=true]{background:none!important;border:none;color:var(--lncol)!important}
 .ve-content p.is-editor-empty:first-child::before,[data-theme*=ve-dropdown] ul.ve-dropdown-list>li>button:disabled,.profile-friends.thumbs a[rel="#pop_profile"],a.leftitem::before,.sidebar a::before,a.rightitem::before,.sidebar #openmod::before{color:var(--ltcol)}
 .ve-link-add input,.ve-image-add input,[data-theme*=ve-dropdown] .ve-color-utils .ve-color-hex-input{background-color:var(--txtim)!important;border-radius:4px!important;color:var(--ftcol);text-align:left!important}
 .ve-container:not(.ve-touch-device) .ve-btn:not(.ve-static):not([data-active]):not(:disabled):hover,.ve-container:not(.ve-touch-device) .ve-btn:not(.ve-static)[data-active=false]:not(:disabled):hover,.ve-bubble-menu .ve-formats-item[aria-expanded=true] button:not([data-active=true]),.ve-image-add .ve-btn:hover,.cs-btn:hover{background:var(--ltgry)!important;color:var(--ftcol)!important}
