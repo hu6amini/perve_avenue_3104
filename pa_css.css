@@ -912,7 +912,7 @@ div[class="atwho-view"]{z-index:11!important}
 .fui.st-emoji-filter-pop.fui-interactive .st-emoji-filter-list{gap:8px;padding:0}
 #search .post td.Item:not(.title2.top>td.Item){padding-bottom:58px!important;position:relative}
 #search .post .reactions{bottom:13px;position:absolute;width:calc(100% - 26px)}
-.tiptap.ProseMirror h1,.tiptap.ProseMirror h2,.tiptap.ProseMirror h3,.tiptap.ProseMirror h4,.tiptap.ProseMirror h5,.tiptap.ProseMirror h6{font-weight:400}
+.tiptap.ProseMirror h1,.tiptap.ProseMirror h2,.tiptap.ProseMirror h3,.tiptap.ProseMirror h4,.tiptap.ProseMirror h5,.tiptap.ProseMirror h6{font-weight:400!important}
 
 /*ads*/
 .FFA-head span{font-family:quicksand!important}
