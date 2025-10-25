@@ -1,0 +1,23 @@
+name: Purge jsDelivr Cache
+
+on:
+  push:
+    branches:
+      - main  # Run whenever you push to the main branch
+
+jobs:
+  purge:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Purge jsDelivr cache for all assets
+        run: |
+          echo "Purging jsDelivr cache for perve_avenue assets..."
+          curl -s "https://purge.jsdelivr.net/gh/hu6amini/perve_avenue@latest/all.min.css"
+          curl -s "https://purge.jsdelivr.net/gh/hu6amini/perve_avenue@latest/eng.js"
+          curl -s "https://purge.jsdelivr.net/gh/hu6amini/perve_avenue@latest/light_skin.css"
+          curl -s "https://purge.jsdelivr.net/gh/hu6amini/perve_avenue@latest/mobile.css"
+          curl -s "https://purge.jsdelivr.net/gh/hu6amini/perve_avenue@latest/pa_css.css"
+          curl -s "https://purge.jsdelivr.net/gh/hu6amini/perve_avenue@latest/pa_scripts.js"
+          curl -s "https://purge.jsdelivr.net/gh/hu6amini/perve_avenue@latest/script_loader.js"
+          echo "✅ jsDelivr purge requests sent successfully."
