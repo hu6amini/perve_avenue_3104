@@ -774,7 +774,7 @@ button[name="full"] img{max-height:16px;max-width:16px;position:absolute}
 [data-theme*=ve-dropdown] ul.ve-dropdown-list>li>button.has-children .deep-dropdown-icon{height:13px;width:13px}
 .lucide.lucide-chevron-right.deep-dropdown-icon{background-color:currentColor;mask-image:url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"%3E%3Cpath d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"%3E%3C/path%3E%3C/svg%3E');mask-position:center;mask-repeat:no-repeat;mask-size:contain}
 [data-theme*=ve-dropdown] ul.ve-shortcuts-list li:not(:last-of-type),[data-theme*=ve-dropdown] .ve-shortcuts-list li:last-of-type{border-bottom:none;padding:8px 13px}
-[data-tippy-root]{transition:none!important}
+[data-tippy-root],.cs-fui[data-slide]{transition:none!important}
 .st-editor-area > div[style="margin-bottom:15px"]{display:inline;margin-bottom:0!important}
 .btn-social span > img[src="https://img.forumfree.net/vectors/google_logo_vector.svg"]:hover,.btn-social span > img[src="https://img.forumfree.net/vectors/fb_logo_vector.svg"]:hover,.send img[title="Clickable Smilies"]:hover,.fast.send img[title="Clickable Smilies"]:hover,.send img[title="File Attachments"]:hover{opacity:1}
 #send img[src="https://mod.forumfree.it/img/supporto/date_add.png"] {left: 12px!important; margin-left: 1px} 
