@@ -660,7 +660,7 @@ button.cs-replier-item.codebuttons,#user .codebuttons[onchange="tag('[size='+thi
 .post .title2.bottom .right.Item.Justify .mini_buttons.lt.Sub{align-items:center;display:flex;flex-wrap:wrap;margin-left:0}
 .post .title2.bottom .right.Item.Justify .mini_buttons.lt.Sub a:not(:last-child){margin-right:5px}
 .post .title2.bottom .right.Item.Justify .rt.Sub{align-items:center;display:flex;flex-wrap:wrap;gap:5px;margin-left:auto;margin-right:0}
-.cs-fui.ve-popover.cs-fui-p-0.ve-dropdown.ve-popover-w-auto,.ff-modal,.imgen,.linkgen{background:var(--menul)!important;border:1px solid var(--dkbrd)!important;border-radius:4px!important;box-shadow:var(--shado)!important;padding:13px!important}
+.cs-fui.ve-popover.cs-fui-p-0.ve-dropdown.ve-popover-w-auto,.ff-modal,.imgen,.linkgen,.cs-fui.ve-popover .cs-fui-container{background:var(--menul)!important;border:1px solid var(--dkbrd)!important;border-radius:4px!important;box-shadow:var(--shado)!important;padding:13px!important}
 .st-editor-container{display:block;margin-bottom:8px!important;padding: 0!important}
 .ve-content p.is-editor-empty:first-child::before,[data-theme*=ve-dropdown] ul.ve-dropdown-list>li>button[data-placeholder]:not([data-theme*=ve-dropdown] ul.ve-dropdown-list > li > button[data-fontfamily])::after{font-family:quicksand}
 .ve-container .ve-btn:not(:disabled),.st-editor-area li:first-child .codebuttons,.st-editor-toggle,button[name="full"],.cs-btn{color:var(--mdcol)!important}
