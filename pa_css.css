@@ -721,7 +721,7 @@ button.cs-replier-item.codebuttons,#user .codebuttons[onchange="tag('[size='+thi
 .ve-btn.ve-btn-paragraph::before,.ve-dp-item[data-placeholder="Paragraph"]::before{content:'\f1dd'}
 .ve-btn.ve-btn-hard-break::before{content:'\e090'}
 .ve-btn.ve-btn-horizontal-rule::before{content:'\f86c'}
-.ve-btn.ve-btn-link::before,#tippy-17 li:nth-of-type(1) button.ve-dp-item::before,[data-theme*=ve-dropdown] ul.ve-dropdown-list>li>button.ve-dp-item[data-placeholder="Add URL"]::before,.ve-dp-item[data-placeholder="Insert from url"]::before{content:'\f0c1'}
+.ve-btn.ve-btn-link::before,#tippy-17 li:nth-of-type(1) button.ve-dp-item::before,[data-theme*=ve-dropdown] ul.ve-dropdown-list>li>button.ve-dp-item[data-placeholder="Add URL"]::before,.ve-dp-item[data-placeholder="Insert from url"]::before,button.ve-dp-item[data-placeholder="Add URL"]::before{content:'\f0c1'}
 .ve-btn.ve-btn-color::before{content:'\f53f'}
 .ve-btn.ve-btn-history-undo::before,.ve-color-suggestions .ve-btn::before{content:'\f0e2'}
 .ve-btn.ve-btn-history-redo::before{content:'\f01e'}
