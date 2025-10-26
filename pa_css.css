@@ -672,7 +672,7 @@ button.cs-replier-item.codebuttons,#user .codebuttons[onchange="tag('[size='+thi
 .st-editor-toggle:hover,[data-theme*=ve-dropdown] ul.ve-dropdown-list>li>button.ve-dp-item:not(:disabled),button[name="full"]:hover,label[for="delattach"],input[id="delattach"]::before,.ffb_embedlink p{color:var(--ftcol)}
 .st-editor-toggle:not(.codebuttons){margin-right:3px}
 .ve-toolbar{border:1px solid var(--ltbrd);border-bottom:none;border-top-left-radius:5px;border-top-right-radius:5px}
-.st-editor-area:not(ul.list-group .st-editor-area),.ve-image-add,.ve-dropdown-link,#tippy-23 [data-theme*=ve-dropdown] ul.ve-dropdown-list,#tippy-25 [data-theme*=ve-dropdown] ul.ve-dropdown-list,.ff-modal,.imgen,.linkgen{padding:13px!important}
+.st-editor-area:not(ul.list-group .st-editor-area),.ve-image-add,.ve-dropdown-link,#tippy-23 [data-theme*=ve-dropdown] ul.ve-dropdown-list,#tippy-25 [data-theme*=ve-dropdown] ul.ve-dropdown-list,.ff-modal:not(#notifications-modal),.imgen,.linkgen{padding:13px!important}
 .ve-container .ve-btn[data-active=true]{background:none!important;border:none;color:var(--lncol)!important}
 [data-theme*=ve-dropdown] ul.ve-dropdown-list>li>button:disabled,.profile-friends.thumbs a[rel="#pop_profile"],a.leftitem::before,.sidebar a::before,a.rightitem::before,.sidebar #openmod::before{color:var(--ltcol)}
 .ve-content p.is-editor-empty:first-child::before,button.ve-dp-item:disabled{color:var(--ltcol)!important}
