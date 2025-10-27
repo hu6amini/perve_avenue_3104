@@ -52,3 +52,4 @@ async function fetchUserDetails(e){try{const t=await fetch(e);if(!t.ok)throw new
 (function(){const e=document.querySelector("#board .stats.List .zz.right.Sub.Item div");if(e){e.style.visibility="visible",e.style.display="block",e.style.opacity="1";const t=e.querySelector("span");t&&t.previousSibling&&(t.previousSibling.nodeType===Node.TEXT_NODE?t.previousSibling.textContent="":t.previousSibling.nodeType===Node.ELEMENT_NODE&&t.previousSibling.remove());e.querySelectorAll("span").forEach(((e,t)=>{const n=e.nextSibling;n&&n.nodeType===Node.TEXT_NODE&&","===n.textContent.trim()&&(n.textContent="")}))}})();
 
 
+
