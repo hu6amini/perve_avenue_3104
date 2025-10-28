@@ -418,7 +418,7 @@ label[for="DST"]{display:block;margin:15px 0}
 .cs-modal .st-emoji-notice-empty-message{background:none!important;color:var(--ltcol)!important;padding:10px!important;text-shadow:none!important}
 .cs-modal .st-emoji-notice-empty{font-size:.813rem;margin-bottom:0;margin:0!important;margin-top:0}
 .cs-modal .st-emoji-notice-item{align-items:center;border:none!important;border-radius:0!important;border-top: 1px solid var(--ltbrd)!important;display:flex;flex-direction:row;flex-wrap:nowrap;gap:13px;margin:0!important;padding:13px!important;position:relative!important;transition:all .3s ease!important;width:100%}
-.st-emoji-notice-history .st-emoji-notice-item,.st-emoji-notice-empty,#topic .ve-dropdown-list li,#blog .ve-dropdown-list li,#send .ve-dropdown-list li{background:none!important}
+.st-emoji-notice-history .st-emoji-notice-item,.st-emoji-notice-empty,#topic .ve-dropdown-list li,#blog .ve-dropdown-list li,#send .ve-dropdown-list li,.st-emoji-profile-modal .st-emoji-post-title{background:none!important}
 .st-emoji-notice-item:not(.st-emoji-notice-history .st-emoji-notice-item,.st-emoji-notice-empty),.st-emoji-notice-item img:not(.st-emoji-notice-history .st-emoji-notice-item img,.st-emoji-notice-empty img){background-color:var(--hovbd)}
 .cs-modal .st-emoji-notice-avatar{background:none!important;border:none!important;border-radius:100%!important;height:48px!important;left:0!important;min-width:48px;order:1;overflow:hidden;padding:0!important;position:relative!important;top:0!important;width:48px!important}
 .st-emoji-notice-content,.st-emoji-user-info{display:flex;flex-wrap:wrap;justify-content:space-between;order:2}
