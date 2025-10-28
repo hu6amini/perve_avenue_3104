@@ -916,6 +916,7 @@ div[class="atwho-view"]{z-index:11!important}
 #search .post td.Item:not(.title2.top>td.Item){padding-bottom:58px!important;position:relative}
 #search .post .reactions{bottom:13px;position:absolute;width:calc(100% - 26px)}
 .tiptap.ProseMirror h1,.tiptap.ProseMirror h2,.tiptap.ProseMirror h3,.tiptap.ProseMirror h4,.tiptap.ProseMirror h5,.tiptap.ProseMirror h6{font-weight:400}
+.reactions .st-emoji-preview img:not(.reactions .st-emoji-preview img[alt="emoji preview"]){background-color:var(--txtim);height:20px!important;padding:2px;width:20px!important}
 
 /*ads*/
 .FFA-head span,.ve-dropdown ul.ve-dropdown-list>li>button[data-placeholder]::after{font-family:quicksand!important}
