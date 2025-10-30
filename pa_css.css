@@ -662,7 +662,7 @@ button.cs-replier-item.codebuttons,#user .codebuttons[onchange="tag('[size='+thi
 .post .title2.bottom .right.Item.Justify .rt.Sub{align-items:center;display:flex;flex-wrap:wrap;gap:5px;margin-left:auto;margin-right:0}
 .cs-fui.ve-popover.cs-fui-p-0.ve-dropdown.ve-popover-w-auto,.ff-modal,.imgen,.linkgen,.cs-fui.ve-popover .cs-fui-container{background:var(--menul)!important;border:1px solid var(--dkbrd)!important;border-radius:4px!important;box-shadow:var(--shado)!important}
 .ve-content blockquote.quote::after{text-transform:none!important}
-.ve-content blockquote.quote::after, .ve-content div[data-type=spoiler].code::after{height:40px;line-height:1.618!important;padding:13px!important}
+.ve-content blockquote.quote::after, .ve-content div[data-type=spoiler].code::after{height:40px;padding:13px!important}
 .ve-dropdown ul.ve-dropdown-list>li>button{border-radius:0!important;line-height:1!important;min-height:unset!important;padding:8px 13px!important;transition:none!important}
 .st-editor-container{display:block;margin-bottom:8px!important;padding: 0!important}
 .ve-content p.is-editor-empty:first-child::before,[data-theme*=ve-dropdown] ul.ve-dropdown-list>li>button[data-placeholder]:not([data-theme*=ve-dropdown] ul.ve-dropdown-list > li > button[data-fontfamily])::after{font-family:quicksand}
@@ -688,9 +688,8 @@ button.cs-replier-item.codebuttons,#user .codebuttons[onchange="tag('[size='+thi
 .ve-toolbar-inactive .btn{height:30px;width:30px}
 #st-visual-editor blockquote.quote,#st-visual-editor pre.code,#st-visual-editor spoiler.code,#topic .ve-content div[data-type=spoiler].code,#send .ve-content div[data-type=spoiler].code,#blog .ve-content div[data-type=spoiler].code{border-radius:4px;padding:40px 13px 13px!important}
 .ve-content blockquote.quote::after,.ve-content pre.code::after,.ve-content spoiler.code::after,div[data-type="spoiler"]::after{color:var(--mdcol);font-family:quicksand;font-weight:700;left:0;right:0;top:0!important}
-.ve-content pre.code::after,.ve-content spoiler.code::after,div[data-type="spoiler"]::after{color:var(--ftcol);font-size:1rem!important}
 .ve-content blockquote.quote[data-author]::after{content:attr(data-author) " said: "!important}
-.ve-content blockquote.quote::after{color:var(--mdcol);font-size:.813rem;text-transform:unset}
+.ve-content blockquote.quote:not(.ve-content blockquote.quote[data-author])::after{color:var(--mdcol);font-size:.813rem;text-transform:unset}
 #st-editor-alert .cs-buttons{gap:3px;margin-top:10px!important}
 #st-editor-alert > div{color:var(--mdcol);font-size:.875rem}
 #st-editor-alert > div:not(.cs-buttons)::before{content:'\f071 \00a0'}
@@ -702,7 +701,7 @@ button.cs-replier-item.codebuttons,#user .codebuttons[onchange="tag('[size='+thi
 #tippy-32 [data-theme*=ve-dropdown] ul.ve-dropdown-list,#tippy-17 [data-theme*=ve-dropdown] ul.ve-dropdown-list,#tippy-27 [data-theme*=ve-dropdown] ul.ve-dropdown-list,#tippy-9 [data-theme*=ve-dropdown] ul.ve-dropdown-list,#tippy-13 [data-theme*=ve-dropdown] ul.ve-dropdown-list,#tippy-19 [data-theme*=ve-dropdown] ul.ve-dropdown-list,#tippy-35 [data-theme*=ve-dropdown] ul.ve-dropdown-list,.ve-dropdown-link .ve-link-add,.post .title2.bottom .left.Item,#msg #smilies td,.Sortable.ui-sortable .Sub.Item[style="width:68%"],#board .stats .zz.right.Sub.Item,.cp.send .darkbar.Item,.st-emoji-pop .st-emoji-content,.fui.st-emoji-filter-pop.fui-interactive .st-emoji-filter-item{padding:0}
 #tippy-32 [data-theme*=ve-popover],#tippy-17 [data-theme*=ve-popover],#tippy-27 [data-theme*=ve-popover],#tippy-9 [data-theme*=ve-popover],#tippy-13 [data-theme*=ve-popover],#tippy-19 [data-theme*=ve-popover],#tippy-35 [data-theme*=ve-popover]{overflow:hidden}
 .ve-content pre.code::after{content:'code';text-transform:uppercase}
-.ve-content blockquote.quote:not([data-author])::after{content:'quote';text-transform:uppercase}
+.ve-content blockquote.quote:not([data-author])::after{content:'quote'!important;text-transform:uppercase!important}
 .ve-content ul,.ve-content ol,.color ul,.color ol{margin:1em 0}
 .ve-content div[data-youtube-video]{display:inline-block}
 .ve-content div[data-youtube-video].ProseMirror-selectednode iframe{box-shadow:0 0 0 .25rem var(--lncol)}
