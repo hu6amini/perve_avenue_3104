@@ -686,14 +686,14 @@ button.cs-replier-item.codebuttons,#user .codebuttons[onchange="tag('[size='+thi
 .ve-dropdown-list li,.ve-dropdown-list>li,ul.ve-shortcuts-list li,ul.ve-color-suggestions > li,ul.ve-emoji-list li,.cs-toast:not(.cs-toast-dark) .cs-toast-content{background:none!important}
 .group-1,.group-2,.group-3,.group-4,.group-5,.group-6,.notification-text{margin-left:0}
 .ve-toolbar-inactive .btn{height:30px;width:30px}
-.ve-content blockquote.quote::after,.ve-content pre.code::after,.ve-content spoiler.code::after,div[data-type="spoiler"]::after{font-family:quicksand;font-weight:700;left:0;padding:.844rem;right:0;top:0!important}
+#st-visual-editor blockquote.quote,#st-visual-editor pre.code,#st-visual-editor spoiler.code,#topic .ve-content div[data-type=spoiler].code,#send .ve-content div[data-type=spoiler].code,#blog .ve-content div[data-type=spoiler].code{border-radius:4px;padding:40px 13px 13px!important}
+.ve-content blockquote.quote::after,.ve-content pre.code::after,.ve-content spoiler.code::after,div[data-type="spoiler"]::after{color:var(--mdcol);font-family:quicksand;font-weight:700;left:0;right:0;top:0!important}
 .ve-content pre.code::after,.ve-content spoiler.code::after,div[data-type="spoiler"]::after{color:var(--ftcol);font-size:1rem!important}
 .ve-content blockquote.quote[data-author]::after{content:attr(data-author) " said: "!important}
 .ve-content blockquote.quote::after{color:var(--mdcol);font-size:.813rem;text-transform:unset}
 #st-editor-alert .cs-buttons{gap:3px;margin-top:10px!important}
 #st-editor-alert > div{color:var(--mdcol);font-size:.875rem}
 #st-editor-alert > div:not(.cs-buttons)::before{content:'\f071 \00a0'}
-#st-visual-editor blockquote.quote,#st-visual-editor pre.code,#st-visual-editor spoiler.code,.ve-content div[data-type=spoiler].code{border-radius:4px;padding:40px 10px 10px!important}
 [data-theme*=ve-dropdown] ul.ve-dropdown-list>li,.ve-dropdown-link .ve-link-add,.ve-image-add{align-items:center}
 [data-theme*=ve-dropdown] ul.ve-dropdown-list>li>button{gap:10px}
 .ve-table-gen>div{border:1px solid var(--mdcol)!important;height:12px;margin:2px!important;width:12px}
