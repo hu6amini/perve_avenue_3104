@@ -462,7 +462,7 @@ img[src="https://img.forumfree.net/home/images/avatar_email.png"]{background:url
 #ajaxUObject span[style="color:#E12"]::before{content:'\f00d \00a0'}
 .plus-button::before{background:none!important;color:var(--ltcol);content:'\2b'!important;display:inline-block;font-size:1.125rem;height:auto!important;width:auto!important}
 .ffb_embedlink div:nth-of-type(1) a{color:var(--mdcol);font-size:.813rem;font-weight:700;text-transform:lowercase}
-.el-modal .cs-modal-body .ffb_embedlink div:nth-of-type(1) a{font-size:.813rem!important}
+.el-modal .cs-modal-body .ffb_embedlink div:nth-of-type(1) a,.ve-content blockquote.quote::after,.ve-content div[data-type=spoiler].code::after{font-size:.813rem!important}
 .ffb_embedlink{margin:0 0 15px;max-width:480px;width:100%}
 .ffb_embedlink_initialized > div:first-child,.ve-content.color .ffb_embedlink>div:first-child,.ffb_embedlink div[style="display: none;"]{background:none;border:none;box-sizing:border-box;padding:6px 12px}
 .ffb_embedlink_initialized > div:first-child img,.cs-modal.el-modal .ffb_embedlink>div:first-child img,.ve-content.color .ffb_embedlink>div:first-child img,#loading .ffb_embedlink>div:first-child img{border-radius:0!important;height:14px;margin:0;width:auto}
@@ -661,12 +661,13 @@ button.cs-replier-item.codebuttons,#user .codebuttons[onchange="tag('[size='+thi
 .post .title2.bottom .right.Item.Justify .mini_buttons.lt.Sub a:not(:last-child){margin-right:5px}
 .post .title2.bottom .right.Item.Justify .rt.Sub{align-items:center;display:flex;flex-wrap:wrap;gap:5px;margin-left:auto;margin-right:0}
 .cs-fui.ve-popover.cs-fui-p-0.ve-dropdown.ve-popover-w-auto,.ff-modal,.imgen,.linkgen,.cs-fui.ve-popover .cs-fui-container{background:var(--menul)!important;border:1px solid var(--dkbrd)!important;border-radius:4px!important;box-shadow:var(--shado)!important}
+.ve-content blockquote.quote::after{text-transform:none!important}
+.ve-content blockquote.quote::after, .ve-content div[data-type=spoiler].code::after{height:40px;line-height:1.618!important;padding:13px!important}
 .ve-dropdown ul.ve-dropdown-list>li>button{border-radius:0!important;line-height:1!important;min-height:unset!important;padding:8px 13px!important;transition:none!important}
 .st-editor-container{display:block;margin-bottom:8px!important;padding: 0!important}
 .ve-content p.is-editor-empty:first-child::before,[data-theme*=ve-dropdown] ul.ve-dropdown-list>li>button[data-placeholder]:not([data-theme*=ve-dropdown] ul.ve-dropdown-list > li > button[data-fontfamily])::after{font-family:quicksand}
 .ve-container .ve-btn:not(:disabled),.st-editor-area li:first-child .codebuttons,.st-editor-toggle,button[name="full"],.cs-btn{color:var(--mdcol)!important}
 .ve-container h1,.ve-container h2,.ve-container h3,.ve-container h4,.ve-container h5,.ve-container h6{word-break:break-word}
-.ve-content blockquote.quote::after,.ve-content div[data-type=spoiler].code::after{font-size:.813rem!important;text-transform:none!important}
 .tippy-box:not(#tippy-32 .tippy-box,#tippy-13 .tippy-box,#tippy-37 .tippy-box,#tippy-17 .tippy-box,#tippy-19 .tippy-box,#tippy-21 .tippy-box,#tippy-23 .tippy-box,#tippy-25 .tippy-box,#tippy-27 .tippy-box,#tippy-32 .tippy-box,#tippy-36 .tippy-box,#tippy-39 .tippy-box,#tippy-38 .tippy-box,.tippy-profile .tippy-box),.tippy-custom .tippy-box,.tippy-box[data-theme*=ve-tooltip]{background:var(--tippy);border-radius:4px;color:var(--ftcol)}
 [data-theme=dark] .cs-fui-container{background:var(--tippy)!important;border-radius:5px!important;color:var(--ftcol)!important;font-size:.875rem!important;transform:none!important}
 .st-editor-toggle:hover,[data-theme*=ve-dropdown] ul.ve-dropdown-list>li>button.ve-dp-item:not(:disabled),button[name="full"]:hover,label[for="delattach"],input[id="delattach"]::before,.ffb_embedlink p{color:var(--ftcol)}
