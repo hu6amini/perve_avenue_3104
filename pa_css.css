@@ -421,7 +421,7 @@ label[for="DST"]{display:block;margin:15px 0}
 .cs-modal .st-emoji-notice-empty-message{background:none!important;color:var(--ltcol)!important;padding:10px!important;text-shadow:none!important}
 .cs-modal .st-emoji-notice-empty{font-size:.813rem;margin-bottom:0;margin:0!important;margin-top:0}
 .cs-modal .st-emoji-notice-item{align-items:center;border:none!important;border-radius:0!important;border-top: 1px solid var(--ltbrd)!important;display:flex;flex-direction:row;flex-wrap:nowrap;gap:13px;margin:0!important;padding:13px!important;position:relative!important;transition:all .3s ease!important;width:100%}
-.st-emoji-notice-history .st-emoji-notice-item,.st-emoji-notice-empty,#topic .ve-dropdown-list li,#blog .ve-dropdown-list li,#send .ve-dropdown-list li,.st-emoji-profile-modal .st-emoji-post-title{background:none!important}
+.st-emoji-notice-history .st-emoji-notice-item,.st-emoji-notice-empty,#topic .ve-dropdown-list li,#blog .ve-dropdown-list li,#send .ve-dropdown-list li,.st-emoji-profile-modal .st-emoji-post-title,.lg-outer .lg-item:not(.lg-start-end-progress){background:none!important}
 .st-emoji-notice-item:not(.st-emoji-notice-history .st-emoji-notice-item,.st-emoji-notice-empty),.st-emoji-notice-item img:not(.st-emoji-notice-history .st-emoji-notice-item img,.st-emoji-notice-empty img){background-color:var(--hovbd)}
 .cs-modal .st-emoji-notice-avatar{background:none!important;border:none!important;border-radius:100%!important;height:48px!important;left:0!important;min-width:48px;order:1;overflow:hidden;padding:0!important;position:relative!important;top:0!important;width:48px!important}
 .st-emoji-notice-content,.st-emoji-user-info{display:flex;flex-wrap:wrap;justify-content:space-between;order:2}
@@ -620,7 +620,7 @@ select.codebuttons[onchange="tag('[color='+this.options[this.selectedIndex].valu
 select.codebuttons[onchange="tag('[color='+this.options[this.selectedIndex].value+']','[/color]'); this.selectedIndex=0"],select.codebuttons[onchange="tag('[font='+this.options[this.selectedIndex].value+']','[/font]'); this.selectedIndex=0"],.codebuttons[onchange="tag('[size='+this.options[this.selectedIndex].value+']','[/size]'); this.selectedIndex=0"],.tag select.codebuttons:nth-of-type(1){appearance:none}    
 .send button.codebuttons:not(#send-button,#preview-button,.codebuttons.st-editor-toggle),.send input.codebuttons:not(#mark-send input[type="text"]),.send select.codebuttons,#user .Item[style="padding:5px 0 2px 0;text-align:center"] .codebuttons,.list-group.tagboard .codebuttons,.list-group .codebuttons:not(.codebuttons[type="submit"],.st-editor-toggle,#preview-button){align-items:center;border-radius:4px;display:inline-flex;flex-wrap:wrap;font-size:0;height:30px;justify-content:center;line-height:1;width:30px!important}
 .st-editor-area.st-editor-area-mobile:not(.st-editor-area.st-editor-area-mobile.st-editor-container.st-editor-area-active) input[name="ffm"] + div{align-items:center;border:1px solid var(--ltbrd);border-radius:4px 4px 0 0;display:flex!important;flex-wrap:wrap;justify-content:flex-start;padding:6px}
-#REPLIER_POST input[name="ffm"] + div .codebuttons, #REPLIER_POST input[name="ffm"] + div img,form#REPLIER_POST{margin:0!important}
+#REPLIER_POST input[name="ffm"] + div .codebuttons, #REPLIER_POST input[name="ffm"] + div img,form#REPLIER_POST,.lg-thumb-item{margin:0!important}
 .fast.send .Item + .Item[style="padding: 6px 2%"] .Justify .right.Sub{align-items:center;display:inline-flex;font-size:0;gap:3px}
 .fast.send .codebuttons[accesskey="b"],#send .codebuttons[accesskey="b"],#msg .codebuttons[accesskey="b"],#user .codebuttons[accesskey="b"],#send .send .darkbar button[name="preview"],.profile .nick,#msg .cp.send button[name="preview"],.fast.send .st-editor-toggle,.tag_btn button.codebuttons:nth-of-type(2){order:1}
 .fast.send .codebuttons[accesskey="i"],#send .codebuttons[accesskey="i"],#msg .codebuttons[accesskey="i"],#user .codebuttons[accesskey="i"],#send .send .darkbar button[type="submit"],.send .darkbar button[name="submit_post"],.profile_info,.profile-group,#msg .cp.send input[type="submit"],.fast.send button[name="full"],.tag_btn button.codebuttons:nth-of-type(3),input[value="Submit Modified Post"],input[value="Invia il messaggio modificato"],input[value="Enviar el mensaje modificado"],input[value="Envoie le message modifié"],input[value="Verschicke die abgeänderte Nachricht"],input[value="Salvar alterações"]{order:2}
@@ -920,6 +920,22 @@ div[class="atwho-view"]{z-index:11!important}
 #search .post .reactions{bottom:13px;position:absolute;width:calc(100% - 26px)}
 .tiptap.ProseMirror h1,.tiptap.ProseMirror h2,.tiptap.ProseMirror h3,.tiptap.ProseMirror h4,.tiptap.ProseMirror h5,.tiptap.ProseMirror h6{font-weight:400}
 .reactions .st-emoji-preview img:not(.reactions .st-emoji-preview img[alt="emoji preview"]){background-color:var(--txtim);height:20px!important;padding:2px;width:20px!important}
+.lg-thumb.lg-group{align-items:center;display:flex;gap:5px;justify-content:center;margin-bottom:0;padding:8px!important;width:100%!important}
+.lg-sub-html{color:var(--mdcol);padding:5px;text-shadow:1px 1px 2px #000}
+.lg-outer .lg-content{bottom:0!important;top:0!important}
+.lg-outer .lg-thumb-outer,.lg-show-in .lg-toolbar,.lg-sub-html{background-color:#00000073}
+.lg-outer .lg-thumb-item{border-color:var(--ftcol);border-radius:5px}
+.lg-outer .lg-thumb-item.active,.lg-outer .lg-thumb-item:hover{border-color:var(--redft)}
+.lg-css3.lg-slide.lg-use-css3 .lg-item.lg-current{left:0}
+.lg-download::after{content:'\f019'!important}
+.lg-close::after{content:'\f00d'!important}
+.lg-share::after{content:'\f1e0'!important}
+.lg-autoplay-button::after{content:'\e22f'!important}
+.lg-fullscreen::after{content:'\f320'!important}
+.lg-zoom-in::after{content:'\f00e'!important}
+.lg-zoom-out::after{content:'\f010'!important}
+.lg-next,.lg-prev{background-color:#000;border-radius:5px}
+.lg-item.lg-loaded.lg-current:not(.lg-item.lg-loaded.lg-current.lg-complete)::after,.lg-css3.lg-slide.lg-use-css3 .lg-item.lg-current:not(.lg-item.lg-next-slide.lg-current.lg-loaded.lg-complete,.lg-item.lg-loaded.lg-current.lg-complete)::after,.lg-outer .lg-item:not(.lg-item.lg-loaded.lg-complete)::after,.lg-item:not(.lg-complete)::after{animation:fa-spin 2s linear infinite;content:'\e1d4';font-size:2em;left:0;position:absolute;top:50%;width:100%}
 
 /*ads*/
 .FFA-head span,.ve-dropdown ul.ve-dropdown-list>li>button[data-placeholder]::after{font-family:quicksand!important}
