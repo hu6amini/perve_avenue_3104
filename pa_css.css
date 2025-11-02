@@ -920,7 +920,7 @@ div[class="atwho-view"]{z-index:11!important}
 #search .post .reactions{bottom:13px;position:absolute;width:calc(100% - 26px)}
 .tiptap.ProseMirror h1,.tiptap.ProseMirror h2,.tiptap.ProseMirror h3,.tiptap.ProseMirror h4,.tiptap.ProseMirror h5,.tiptap.ProseMirror h6{font-weight:400}
 .reactions .st-emoji-preview img:not(.reactions .st-emoji-preview img[alt="emoji preview"]){background-color:var(--txtim);height:20px!important;padding:2px;width:20px!important}
-.lg-thumb.lg-group{align-items:center;display:flex;gap:5px;justify-content:center;margin-bottom:0;padding:8px!important;width:100%!important}
+.lg-thumb.lg-group{align-items:center;display:flex!important;gap:5px;justify-content:center;margin-bottom:0!important;padding:8px!important;width:100%!important}
 .lg-sub-html{color:var(--mdcol);padding:5px;text-shadow:1px 1px 2px #000}
 .lg-outer .lg-content{bottom:0!important;top:0!important}
 .lg-outer .lg-thumb-outer,.lg-show-in .lg-toolbar,.lg-sub-html{background-color:#00000073}
