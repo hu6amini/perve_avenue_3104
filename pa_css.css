@@ -15,7 +15,7 @@ iframe:not([src*="youtube.com"],[src*="youtu.be"],[src*="vimeo.com"],[src*="dail
 .ve-content.color img{user-select:all}
 img[alt$=":"],.web a .emojione{height:22px;margin:0;vertical-align:text-bottom!important;width:22px}
 .quote img[alt$=":"],.tmsg img[alt$=":"],.quote .emojione{height:19px;width:19px}
-[class*=e1a-]{contain:layout style paint;margin:0!important;vertical-align:text-bottom!important}
+[class*=e1a-]{contain:layout paint;margin:0!important;vertical-align:text-bottom!important}
 div[style="position:relative;height:0;padding-bottom:56.25%"],div[style="padding:56.25% 0 0 0;position:relative;"]{height:auto!important;margin:0;max-height:270px;max-width:480px;padding:0!important;width:100%}
 .post .color div[style="position:relative;height:0;padding-bottom:56.25%"] iframe[src*="youtube.com/embed/"],.summary .color div[style="position:relative;height:0;padding-bottom:56.25%"] iframe[src*="youtube.com/embed/"],#loading .color div[style="position:relative;height:0;padding-bottom:56.25%"] iframe[src*="youtube.com/embed/"]{height:0!important;padding-bottom:56.25%;position:relative!important}
 div[style="position:relative;height:0;padding-bottom:56.25%"],div[style="padding:56.25% 0 0 0;position:relative;"]{aspect-ratio:16/9}
