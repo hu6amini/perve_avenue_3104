@@ -1,6 +1,5 @@
 html{text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 div[class="Fixed"]{background-color:var(--contt);margin-top:100px;top:0;position:sticky!important;visibility:visible}
-#FFA-box img{content-visibility:auto}
 iframe{height:auto;max-width:100%;content-visibility:auto}
 iframe:not([width]):not([height]),iframe:not([loading="lazy"]){content-visibility:visible}
 iframe:is([src*="youtube.com"],[src*="youtu.be"],[src*="vimeo.com"],[src*="dailymotion.com"],[src*="twitch.tv"],[src*="facebook.com/plugins/video.php"],[src*="instagram.com"],[src*="tiktok.com"],[src*="kick.com"],[src*="player.vimeo.com"],[src*="youtube-nocookie.com"]):not(.st-emoji-post-content .color iframe){aspect-ratio:16 / 9;height:auto;max-height:270px;max-width:480px;width:100%}
