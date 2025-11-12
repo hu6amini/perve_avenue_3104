@@ -927,7 +927,7 @@ div[class="atwho-view"]{z-index:11!important}
 .FFA-element{background:none!important;border:1px solid var(--ltbrd);box-shadow:none!important;margin:0!important;padding:13px!important}
 .FFA-element .FFA-title > a{color:var(--mdcol)!important;font-family:'Bree Serif';font-size:.875rem!important;font-weight:450;line-height:1.618!important;max-height:none!important}
 .FFA-element .FFA-desc > a{color:var(--ltcol)!important;line-height:1.618!important}
-#FFA-box,.footer_links{margin-bottom:0 13px 13px 13px}
+#FFA-box,.footer_links{margin-bottom:13px}
 .FFA-head{margin:13px!important}
 .FFA-row-elements{gap:13px}
 
