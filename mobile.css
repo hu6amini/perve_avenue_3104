@@ -25,7 +25,6 @@ body.mobile .menuwrap{padding:10px;width:100%}
 .post .avatar{border-radius:100%!important;font-size:1.844rem!important;height:48px!important;left:12px;position:absolute;top:12px;width:48px!important}
 .box_visitatore .details p{bottom:12px;padding:0 12px;position:absolute;width:fit-content!important}
 #topic .post .u_group,#blog .post .u_group{width:100%}
-.buttons{margin-top:13px}
 .summary .list li{display:flex;flex-direction:column}
 .summary .list li .left{border-bottom:1px solid var(--ltbrd);flex:0;flex-direction:row;min-height:73px;padding:0!important;width:100%!important}
 .summary_details{gap:12px;height:100%;justify-content:left!important;max-width:none!important;padding:12px;position:relative!important;top:0!important}
@@ -37,6 +36,7 @@ body.mobile .menuwrap{padding:10px;width:100%}
 #topic .post .nick,#blog .post .nick,#topic .post .details dl:not(.u_location,.box_offline .u_status,.box_online .u_status),#blog .post .left .details dl:not(.u_location,.box_offline .u_status,.box_online .u_status){display:inline-block!important}
 #topic .post .nick+p,#blog .post .nick+p,#topic .post .u_location,#blog .post .u_location,#pahome,#messenger,#topics,#admin,#nick,#mod{display:none}
 }
+
 
 
 
