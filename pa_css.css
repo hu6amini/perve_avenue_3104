@@ -706,6 +706,7 @@ button.cs-replier-item.codebuttons,#user .codebuttons[onchange="tag('[size='+thi
 .ve-content ul,.ve-content ol,.color ul,.color ol{margin:1em 0}
 .ve-content div[data-youtube-video]{display:inline-block}
 .ve-content div[data-youtube-video].ProseMirror-selectednode iframe{box-shadow:0 0 0 .25rem var(--lncol)}
+.ve-emoji-list-container{padding:13px 0 0 13px}
 #st-editor-alert{background:var(--contt);margin:10px;opacity:1;z-index:1}
 [data-theme*=ve-dropdown] .ve-color-picker .react-colorful__last-control{border-bottom-left-radius:4px!important;border-bottom-right-radius:4px!important}
 [data-theme*=ve-dropdown] .ve-color-picker .react-colorful__saturation{border-top-left-radius:4px!important;border-top-right-radius:4px!important}
