@@ -516,7 +516,7 @@ input#embed-url-input{background:var(--txtim);border:none;border-radius:4px;colo
 .profile_info,#msgForm{display:flex;flex-direction:column}
 #msg #smilies tbody{display:flex;flex-wrap:wrap;gap:10px;padding:12px}
 .clipbd{align-items:center;animation:slideinout 3.82s forwards;background:var(--ltgry);box-shadow:var(--hfsha);color:var(--ftcol);display:flex;font-size:1.375rem;height:60px;justify-content:center;left:0;opacity:0;padding:15px;position:fixed;right:0;top:-60px;width:100%;z-index:101!important}
-.dropdown-list,.sform{z-index:101}
+.dropdown-list,.search-overlay{z-index:101}
 .title.bottom.Item.Justify form[method="post"],.right.Sub form[method="GET"]{align-items:center;display:flex;flex-wrap:wrap;gap:5px}
 .board .mainbg::before,.online .mainbg::before,.members .mainbg::before,#topic .skin_tbl::before,.guest.error.no_view_topic .msg .mainbg::before,.guest.error.no_permission .msg .mainbg::before,.error .mainbg::before,#search.posts .skin_tbl::before,.group .mainbg::before,.forum .mainbg::before,.search .skin_tbl::before,#mod .cp .skin_tbl::before{background-blend-mode:overlay;background-image:var(--gradi);border-top: 1px solid var(--ltbrd);border-top-left-radius:5px;border-top-right-radius:5px;content:'';display:block;height:6px;position:relative;z-index:2}
 #msgForm::before{background-blend-mode:overlay;background-image:var(--gradi);border-top: 1px solid var(--ltbrd);border-top-left-radius:5px;border-top-right-radius:5px;content:'';display:block;height:6px;left:0;position:absolute;top:-6px;width:100%;z-index:1}
@@ -921,7 +921,6 @@ div[class="atwho-view"]{z-index:11!important}
 .reactions .st-emoji-preview img:not(.reactions .st-emoji-preview img[alt="emoji preview"]){background-color:var(--txtim);height:20px!important;padding:2px;width:20px!important}
 .lg-outer .lg-content{bottom:0!important;top:0!important}
 .lg-item.lg-loaded.lg-current:not(.lg-item.lg-loaded.lg-current.lg-complete)::after,.lg-css3.lg-slide.lg-use-css3 .lg-item.lg-current:not(.lg-item.lg-next-slide.lg-current.lg-loaded.lg-complete,.lg-item.lg-loaded.lg-current.lg-complete)::after,.lg-outer .lg-item:not(.lg-item.lg-loaded.lg-complete)::after,.lg-item:not(.lg-complete)::after{animation:fa-spin 2s linear infinite;content:'\e1d4';font-size:2em;left:0;position:absolute;top:50%;width:100%}
-.search-overlay{z-index:101}
 
 /*ads*/
 .FFA-head span,.ve-dropdown ul.ve-dropdown-list>li>button[data-placeholder]::after{font-family:quicksand!important}
