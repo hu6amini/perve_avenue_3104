@@ -406,7 +406,7 @@ const ForumBoardsModule = (function () {
         } else {
             return '<div class="modern-thumbnail modern-thumbnail--placeholder">' +
                        '<a href="' + escapeHtml(linkUrl) + '" aria-label="' + escapeHtml(label) + '">' +
-                           '<i class="fa-regular fa-comments"></i>' +
+                           '<i class="fa-regular fa-comments" aria-hidden="true"></i>' +
                        '</a>' +
                    '</div>';
         }
@@ -465,8 +465,8 @@ const ForumBoardsModule = (function () {
                     '</h3>' +
                     '<div class="modern-meta">' +
                         '<span class="modern-stats">' +
-                            '<span><i class="fa-regular fa-message"></i> ' + formatNumber(data.topicsCount) + ' topics</span>' +
-                            '<span><i class="fa-regular fa-reply"></i> ' + formatNumber(data.repliesCount) + ' replies</span>' +
+                            '<span><i class="fa-regular fa-message" aria-hidden="true"></i> ' + formatNumber(data.topicsCount) + ' topics</span>' +
+                            '<span><i class="fa-regular fa-reply" aria-hidden="true"></i> ' + formatNumber(data.repliesCount) + ' replies</span>' +
                         '</span>' +
                     '</div>' +
                     lastPostHtml +
@@ -552,7 +552,7 @@ const ForumBoardsModule = (function () {
             '</span>';
 
         var unreadBadge = data.isUnread
-            ? '<span class="topic-unread-badge" title="New replies"><i class="fa-regular fa-circle"></i></span>'
+            ? '<span class="topic-unread-badge" title="New replies"><i class="fa-regular fa-circle" aria-hidden="true"></i></span>'
             : '';
 
         var starterHtml = '';
@@ -563,7 +563,7 @@ const ForumBoardsModule = (function () {
         // Forum location (if present)
         var forumLocationHtml = '';
         if (data.forumName) {
-            forumLocationHtml = '<span class="topic-forum-location">in <a href="' + escapeHtml(data.forumUrl) + '"><i class="fa-regular fa-folder"></i> ' + escapeHtml(data.forumName) + '</a></span>';
+            forumLocationHtml = '<span class="topic-forum-location">in <a href="' + escapeHtml(data.forumUrl) + '"><i class="fa-regular fa-folder" aria-hidden="true"></i> ' + escapeHtml(data.forumName) + '</a></span>';
         }
 
         var lastPosterAvatarHtml = '';
@@ -587,13 +587,13 @@ const ForumBoardsModule = (function () {
                         starterHtml +
                         forumLocationHtml +
                         '<span class="modern-stats">' +
-                            '<span><i class="fa-regular fa-reply"></i> ' + formatNumber(data.replyCount) + ' replies</span>' +
-                            '<span><i class="fa-regular fa-eye"></i> ' + formatNumber(data.viewCount) + ' views</span>' +
+                            '<span><i class="fa-regular fa-reply" aria-hidden="true"></i> ' + formatNumber(data.replyCount) + ' replies</span>' +
+                            '<span><i class="fa-regular fa-eye" aria-hidden="true"></i> ' + formatNumber(data.viewCount) + ' views</span>' +
                         '</span>' +
                     '</div>' +
                     '<div class="modern-last-post">' +
                         '<a href="' + escapeHtml(data.lastPostUrl) + '" class="last-post-date-link">' +
-                            '<i class="fa-regular fa-clock"></i> ' + escapeHtml(data.lastPostRelative) +
+                            '<i class="fa-regular fa-clock" aria-hidden="true"></i> ' + escapeHtml(data.lastPostRelative) +
                         '</a>' +
                         lastPosterHtml +
                     '</div>' +
@@ -792,43 +792,43 @@ const ForumBoardsModule = (function () {
         }
 
         var countsHtml = '<div class="online-counts">' +
-            '<span><i class="fa-regular fa-user"></i> ' + onlineData.counts.members + ' members</span>' +
-            '<span><i class="fa-regular fa-eye"></i> ' + onlineData.counts.guests + ' guests</span>' +
-            (onlineData.counts.anon ? '<span><i class="fa-regular fa-user-secret"></i> ' + onlineData.counts.anon + ' anonymous</span>' : '') +
+            '<span><i class="fa-regular fa-user" aria-hidden="true"></i> ' + onlineData.counts.members + ' members</span>' +
+            '<span><i class="fa-regular fa-eye" aria-hidden="true"></i> ' + onlineData.counts.guests + ' guests</span>' +
+            (onlineData.counts.anon ? '<span><i class="fa-regular fa-user-secret" aria-hidden="true"></i> ' + onlineData.counts.anon + ' anonymous</span>' : '') +
             '</div>';
 
         var statsHtml = '<div class="stats-grid">';
-        statsHtml += '<div class="stat-item"><i class="fa-regular fa-message"></i><span class="stat-value">' + statsData.posts + '</span><span class="stat-label">posts</span></div>';
-        statsHtml += '<div class="stat-item"><i class="fa-regular fa-comments"></i><span class="stat-value">' + statsData.topics + '</span><span class="stat-label">topics</span></div>';
-        statsHtml += '<div class="stat-item"><i class="fa-regular fa-users"></i><span class="stat-value">' + statsData.members + '</span><span class="stat-label">members</span></div>';
-        statsHtml += '<div class="stat-item"><i class="fa-regular fa-eye"></i><span class="stat-value">' + statsData.totalVisits + '</span><span class="stat-label">total visits</span></div>';
+        statsHtml += '<div class="stat-item"><i class="fa-regular fa-message" aria-hidden="true"></i><span class="stat-value">' + statsData.posts + '</span><span class="stat-label">posts</span></div>';
+        statsHtml += '<div class="stat-item"><i class="fa-regular fa-comments" aria-hidden="true"></i><span class="stat-value">' + statsData.topics + '</span><span class="stat-label">topics</span></div>';
+        statsHtml += '<div class="stat-item"><i class="fa-regular fa-users" aria-hidden="true"></i><span class="stat-value">' + statsData.members + '</span><span class="stat-label">members</span></div>';
+        statsHtml += '<div class="stat-item"><i class="fa-regular fa-eye" aria-hidden="true"></i><span class="stat-value">' + statsData.totalVisits + '</span><span class="stat-label">total visits</span></div>';
         if (statsData.monthlyVisits) {
-            statsHtml += '<div class="stat-item"><i class="fa-regular fa-calendar"></i><span class="stat-value">' + statsData.monthlyVisits + '</span><span class="stat-label">monthly visits</span></div>';
+            statsHtml += '<div class="stat-item"><i class="fa-regular fa-calendar" aria-hidden="true"></i><span class="stat-value">' + statsData.monthlyVisits + '</span><span class="stat-label">monthly visits</span></div>';
         }
         if (statsData.topForum) {
-            statsHtml += '<div class="stat-item"><i class="fa-regular fa-trophy"></i><span class="stat-value">' + statsData.topForum + '</span><span class="stat-label">top forum</span></div>';
+            statsHtml += '<div class="stat-item"><i class="fa-regular fa-trophy" aria-hidden="true"></i><span class="stat-value">' + statsData.topForum + '</span><span class="stat-label">top forum</span></div>';
         }
         if (statsData.newestMember) {
-            statsHtml += '<div class="stat-item"><i class="fa-regular fa-user-plus"></i><span class="stat-value"><a href="' + escapeHtml(statsData.newestMember.url) + '">' + escapeHtml(statsData.newestMember.name) + '</a></span><span class="stat-label">newest member</span></div>';
+            statsHtml += '<div class="stat-item"><i class="fa-regular fa-user-plus" aria-hidden="true"></i><span class="stat-value"><a href="' + escapeHtml(statsData.newestMember.url) + '">' + escapeHtml(statsData.newestMember.name) + '</a></span><span class="stat-label">newest member</span></div>';
         }
         if (statsData.mostOnline) {
-            statsHtml += '<div class="stat-item"><i class="fa-regular fa-chart-line"></i><span class="stat-value">' + statsData.mostOnline.count + '</span><span class="stat-label">most online</span></div>';
+            statsHtml += '<div class="stat-item"><i class="fa-regular fa-chart-line" aria-hidden="true"></i><span class="stat-value">' + statsData.mostOnline.count + '</span><span class="stat-label">most online</span></div>';
         }
         statsHtml += '</div>';
 
         return '<section class="modern-stats">' +
             '<header class="stats-header">' +
                 '<h2 class="stats-title">Community stats</h2>' +
-                '<button id="modern-vote-btn" class="modern-btn modern-btn-primary" style="display:none"><i class="fa-regular fa-star"></i></button>' +
+                '<button id="modern-vote-btn" class="modern-btn modern-btn-primary" style="display:none"><i class="fa-regular fa-star" aria-hidden="true"></i></button>' +
             '</header>' +
             '<div class="stats-card">' +
                 '<div class="stats-section online-section">' +
-                    '<h3 class="stats-section-title"><i class="fa-regular fa-bolt"></i> Who\'s online</h3>' +
+                    '<h3 class="stats-section-title"><i class="fa-regular fa-bolt" aria-hidden="true"></i> Who\'s online</h3>' +
                     usersHtml +
                     countsHtml +
                 '</div>' +
                 '<div class="stats-section forum-stats-section">' +
-                    '<h3 class="stats-section-title"><i class="fa-regular fa-chart-simple"></i> Forum statistics</h3>' +
+                    '<h3 class="stats-section-title"><i class="fa-regular fa-chart-simple" aria-hidden="true"></i> Forum statistics</h3>' +
                     statsHtml +
                 '</div>' +
             '</div>' +
@@ -910,7 +910,7 @@ const ForumBoardsModule = (function () {
                     '<header class="board-category-header">' +
                         '<h2 class="board-category-title">' + escapeHtml(catData.categoryName) + '</h2>' +
                         '<button class="category-toggle-btn" aria-label="Toggle category" title="Collapse / expand" data-category-id="' + catData.categoryId + '">' +
-                            '<i class="fa-regular fa-angle-down"></i>' +
+                            '<i class="fa-regular fa-angle-down" aria-hidden="true"></i>' +
                         '</button>' +
                     '</header>' +
                     '<div class="modern-cards-grid">';
@@ -957,7 +957,7 @@ const ForumBoardsModule = (function () {
         var html =
             '<section class="latest-posts-section">' +
                 '<header class="latest-posts-header">' +
-                    '<h2 class="latest-posts-title"><i class="fa-regular fa-clock"></i> Latest posts</h2>' +
+                    '<h2 class="latest-posts-title"><i class="fa-regular fa-clock" aria-hidden="true"></i> Latest posts</h2>' +
                 '</header>' +
                 '<div class="latest-posts-grid">';
 
@@ -1123,7 +1123,7 @@ const ForumBoardsModule = (function () {
                         // "Vote for us in Top Forum for June!" → "Vote for us in June!"
                         buttonText = fullText.replace(/in Top Forum for /i, 'in ');
                     }
-                    modernBtn.innerHTML = '<i class="fa-regular fa-star"></i> ' + buttonText;
+                    modernBtn.innerHTML = '<i class="fa-regular fa-star" aria-hidden="true"></i> ' + buttonText;
                     modernBtn.style.display = '';
                     modernBtn.addEventListener('click', function (e) {
                         e.preventDefault();
