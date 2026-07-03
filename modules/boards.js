@@ -1,11 +1,11 @@
 /* =============================================
-   Forum Boards, Topics, Latest Posts & Stats Modernizer
+   Forum Boards, Topics, Latest Posts, Stats & Online Modernizer
    Emerald Theme – all lists in one module
    ============================================= */
 'use strict';
 
 const ForumBoardsModule = (function () {
-    console.log('🔥 ForumBoardsModule loaded (boards + topics + latest posts + stats + role avatars + observer + vote)');
+    console.log('🔥 ForumBoardsModule loaded (boards + topics + latest posts + stats + online + role avatars + observer + vote)');
 
     // =========================================================================
     // CONFIGURATION
@@ -20,7 +20,6 @@ const ForumBoardsModule = (function () {
         // Topic list (forum view, subscriptions, search)
         FORUM_WRAPPER_SELECTOR: 'div.forum',
         TOPIC_LIST_SELECTOR: 'ol.big_list',
-        // Updated: matches both id-based (forum view) and class-based (search) rows
         TOPIC_ROW_SELECTOR: 'li[id^="t"], li[class*=" t"]',
         TOPIC_CONTAINER_ID: 'modern-topic-list',
 
@@ -32,6 +31,11 @@ const ForumBoardsModule = (function () {
         // Stats (who's online + forum statistics)
         STATS_SELECTOR: 'ul.stats.List',
         STATS_CONTAINER_ID: 'modern-stats',
+
+        // Online page
+        ONLINE_PAGE_SELECTOR: 'div.online',
+        ONLINE_ROW_SELECTOR: 'ol.big_list > li',
+        ONLINE_CONTAINER_ID: 'modern-online-list',
 
         // Shared
         WRAPPER_ID: 'modern-forum-wrapper',
@@ -48,12 +52,13 @@ const ForumBoardsModule = (function () {
         // Collapse
         COLLAPSE_STORAGE_PREFIX: 'board-cat-',
 
-        // Container order
+        // Container order (online container only added when present)
         ORDERED_CONTAINERS: [
             'modern-latest-posts',
             'modern-board-list',
             'modern-topic-list',
-            'modern-stats'
+            'modern-stats',
+            'modern-online-list'
         ],
 
         // Latest posts limit
@@ -200,7 +205,6 @@ const ForumBoardsModule = (function () {
         }
     }
 
-    // Time‑limited fetch that never blocks the UI indefinitely
     async function fetchUserDataWithTimeout(mid, timeoutMs) {
         if (userDataCache.has(mid)) return userDataCache.get(mid);
         const effectiveTimeout = timeoutMs || CONFIG.API_TIMEOUT;
@@ -502,7 +506,6 @@ const ForumBoardsModule = (function () {
         const replyCount = repliesEl ? parseInt(repliesEl.textContent, 10) || 0 : 0;
         const viewCount = viewsEl ? parseInt(viewsEl.textContent, 10) || 0 : 0;
 
-        // Robust date extraction – plain .when or nested a
         const lastPostDateEl = row.querySelector('.zz .when a') || row.querySelector('.zz .when');
         const lastPostDateStr = lastPostDateEl ? lastPostDateEl.textContent.trim() : '';
         var lastPostDate = parseDateFromTitle(lastPostDateStr);
@@ -519,7 +522,6 @@ const ForumBoardsModule = (function () {
         const lastPosterUrl = lastPosterEl ? lastPosterEl.getAttribute('href') : starterUrl;
         const lastPosterMid = extractMidFromUrl(lastPosterUrl);
 
-        // Forum location (for search results / popular topics)
         var forumName = '', forumUrl = '';
         var whereEl = row.querySelector('.bb .where');
         if (whereEl) {
@@ -560,7 +562,6 @@ const ForumBoardsModule = (function () {
             starterHtml = '<span class="topic-starter">by <a href="' + escapeHtml(data.starterUrl) + '">' + escapeHtml(data.starterName) + '</a></span>';
         }
 
-        // Forum location (if present)
         var forumLocationHtml = '';
         if (data.forumName) {
             forumLocationHtml = '<span class="topic-forum-location">in <a href="' + escapeHtml(data.forumUrl) + '"><i class="fa-regular fa-folder" aria-hidden="true"></i> ' + escapeHtml(data.forumName) + '</a></span>';
@@ -773,7 +774,7 @@ const ForumBoardsModule = (function () {
 
         return stats;
     }
-   
+
     function buildModernStats(onlineData, statsData) {
         var usersHtml = '';
         if (onlineData.users.length > 0) {
@@ -794,8 +795,15 @@ const ForumBoardsModule = (function () {
         var countsHtml = '<div class="online-counts">' +
             '<span><i class="fa-regular fa-user" aria-hidden="true"></i> ' + onlineData.counts.members + ' members</span>' +
             '<span><i class="fa-regular fa-eye" aria-hidden="true"></i> ' + onlineData.counts.guests + ' guests</span>' +
-            (onlineData.counts.anon ? '<span><i class="fa-regular fa-user-secret" aria-hidden="true"></i> ' + onlineData.counts.anon + ' anonymous</span>' : '') +
-            '</div>';
+            (onlineData.counts.anon ? '<span><i class="fa-regular fa-user-secret" aria-hidden="true"></i> ' + onlineData.counts.anon + ' anonymous</span>' : '');
+
+        // Append "View all" link if present in legacy stats
+        var viewAllLink = document.querySelector('#online_link a');
+        if (viewAllLink) {
+            var viewAllHref = viewAllLink.getAttribute('href');
+            countsHtml += ' · <a href="' + escapeHtml(viewAllHref) + '" class="online-view-all">View all</a>';
+        }
+        countsHtml += '</div>';
 
         var statsHtml = '<div class="stats-grid">';
         statsHtml += '<div class="stat-item"><i class="fa-regular fa-message" aria-hidden="true"></i><span class="stat-value">' + statsData.posts + '</span><span class="stat-label">posts</span></div>';
@@ -833,6 +841,87 @@ const ForumBoardsModule = (function () {
                 '</div>' +
             '</div>' +
         '</section>';
+    }
+
+    // =========================================================================
+    // ONLINE PAGE EXTRACTION & GENERATION
+    // =========================================================================
+    function extractOnlineUserData(row) {
+        var avatarImg = row.querySelector('.aa.thumbs img');
+        var avatarSrc = avatarImg ? avatarImg.getAttribute('src') : null;
+
+        var nickLink = row.querySelector('.nick a');
+        var username = nickLink ? nickLink.textContent.trim() : 'Unknown';
+        var profileUrl = nickLink ? nickLink.getAttribute('href') : '#';
+        var mid = extractMidFromUrl(profileUrl);
+
+        var activityEl = row.querySelector('.what');
+        var activity = activityEl ? activityEl.textContent.trim() : '';
+
+        var timeEl = row.querySelector('time.when');
+        var relativeTime = timeEl ? timeEl.textContent.trim() : ''; // already relative
+
+        // Determine group from row classes (box_gruppo1, box_amministratore etc.)
+        var groupClass = 'group-member';
+        var classList = row.className.split(/\s+/);
+        if (classList.indexOf('box_amministratore') !== -1) groupClass = 'group-administrator';
+        else if (classList.indexOf('box_founder') !== -1) groupClass = 'group-founder';
+        else if (classList.indexOf('box_gruppo1') !== -1) groupClass = 'group-global-moderator';
+        else if (classList.indexOf('box_gruppo2') !== -1) groupClass = 'group-game-dev';
+        else if (classList.indexOf('box_gruppo3') !== -1) groupClass = 'group-fan';
+
+        return {
+            avatarSrc,
+            username,
+            profileUrl,
+            mid,
+            activity,
+            relativeTime,
+            groupClass
+        };
+    }
+
+    function generateOnlineUserCard(data) {
+        var avatarHtml = '';
+        if (data.mid) {
+            const user = userDataCache.get(data.mid);
+            avatarHtml = generateAvatarHtml(user, data.username, data.mid, CONFIG.AVATAR_SIZE_ONLINE);
+        } else if (data.avatarSrc) {
+            avatarHtml = '<img class="mini-avatar ' + data.groupClass + '" src="' + escapeHtml(data.avatarSrc) +
+                '" alt="' + escapeHtml(data.username) + '" width="' + CONFIG.AVATAR_SIZE_ONLINE +
+                '" height="' + CONFIG.AVATAR_SIZE_ONLINE + '" loading="lazy">';
+        } else {
+            avatarHtml = '<span class="mini-avatar mini-avatar--initial ' + data.groupClass + '" style="background-color:#059669;width:' +
+                CONFIG.AVATAR_SIZE_ONLINE + 'px;height:' + CONFIG.AVATAR_SIZE_ONLINE + 'px;font-size:' + (CONFIG.AVATAR_SIZE_ONLINE * 0.618) + 'px;line-height:' + CONFIG.AVATAR_SIZE_ONLINE + 'px;">?</span>';
+        }
+
+        return '<article class="online-user-card">' +
+            '<div class="online-user-avatar-col">' + avatarHtml + '</div>' +
+            '<div class="online-user-info">' +
+                '<a href="' + escapeHtml(data.profileUrl) + '" class="online-user-name">' + escapeHtml(data.username) + '</a>' +
+                '<div class="online-user-activity">' + escapeHtml(data.activity) + '</div>' +
+                '<time class="online-user-time">' + escapeHtml(data.relativeTime) + '</time>' +
+            '</div>' +
+        '</article>';
+    }
+
+    function buildModernOnlineList(onlineWrapper) {
+        var rows = onlineWrapper.querySelectorAll(CONFIG.ONLINE_ROW_SELECTOR);
+        if (rows.length === 0) return '';
+
+        var html = '<section class="online-list-section">' +
+            '<header class="online-list-header">' +
+                '<h2 class="online-list-title"><i class="fa-regular fa-users" aria-hidden="true"></i> Online users</h2>' +
+            '</header>' +
+            '<div class="online-users-grid">';
+
+        rows.forEach(function (row) {
+            var data = extractOnlineUserData(row);
+            html += generateOnlineUserCard(data);
+        });
+
+        html += '</div></section>';
+        return html;
     }
 
     // =========================================================================
@@ -932,7 +1021,6 @@ const ForumBoardsModule = (function () {
         const rows = topicList.querySelectorAll(CONFIG.TOPIC_ROW_SELECTOR);
         if (rows.length === 0) return '';
 
-        // Now catches: <div class="mtitle"><h1>...</h1></div> AND <h2 class="mtitle">...</h2>
         const forumTitleEl = forumWrapper.querySelector('div.mtitle h1, h1.mtitle, h2.mtitle');
         const forumTitle = forumTitleEl ? forumTitleEl.textContent.trim() : 'Forum';
 
@@ -1120,7 +1208,6 @@ const ForumBoardsModule = (function () {
                     var buttonText = 'Vote for us!';
                     if (submitInput) {
                         var fullText = submitInput.value;
-                        // "Vote for us in Top Forum for June!" → "Vote for us in June!"
                         buttonText = fullText.replace(/in Top Forum for /i, 'in ');
                     }
                     modernBtn.innerHTML = '<i class="fa-regular fa-star" aria-hidden="true"></i> ' + buttonText;
@@ -1131,7 +1218,7 @@ const ForumBoardsModule = (function () {
                         if (hiddenSubmit) hiddenSubmit.click();
                     });
                 }
-            }, 200);  // host replaces [TOPBUTTON] asynchronously
+            }, 200);
 
             console.log('[BoardsModule] Stats modernized');
         } catch (err) {
@@ -1141,8 +1228,46 @@ const ForumBoardsModule = (function () {
         }
     }
 
+    async function convertOnlinePage() {
+        if (conversionInProgress) return;
+        conversionInProgress = true;
+        try {
+            const container = getOrCreateContainer(CONFIG.ONLINE_CONTAINER_ID);
+            if (!container) return;
+
+            const legacyOnline = document.querySelector(CONFIG.ONLINE_PAGE_SELECTOR);
+            if (!legacyOnline) return;
+
+            var rows = legacyOnline.querySelectorAll(CONFIG.ONLINE_ROW_SELECTOR);
+            var mids = [];
+            for (var i = 0; i < rows.length; i++) {
+                var nickLink = rows[i].querySelector('.nick a');
+                if (nickLink) {
+                    var mid = extractMidFromUrl(nickLink.getAttribute('href'));
+                    if (mid) mids.push(mid);
+                }
+            }
+
+            try {
+                await Promise.all(mids.map(function (mid) {
+                    return fetchUserDataWithTimeout(mid);
+                }));
+            } catch (e) {
+                console.warn('[BoardsModule] Online user fetch failed');
+            }
+
+            var modernHtml = buildModernOnlineList(legacyOnline);
+            container.innerHTML = modernHtml || '';
+            console.log('[BoardsModule] Online page modernized');
+        } catch (err) {
+            console.error('[BoardsModule] Online page error:', err);
+        } finally {
+            conversionInProgress = false;
+        }
+    }
+
     // =========================================================================
-    // OBSERVER INTEGRATION – now each registration is individually guarded
+    // OBSERVER INTEGRATION
     // =========================================================================
     function registerObservers() {
         if (!globalThis.forumObserver) return;
@@ -1191,6 +1316,17 @@ const ForumBoardsModule = (function () {
             console.error('[BoardsModule] Failed to register stats observer:', e);
         }
 
+        try {
+            globalThis.forumObserver.register({
+                id: 'boards-module-online-page',
+                selector: CONFIG.ONLINE_PAGE_SELECTOR,
+                priority: 'high',
+                callback: function () { convertOnlinePage(); }
+            });
+        } catch (e) {
+            console.error('[BoardsModule] Failed to register online page observer:', e);
+        }
+
         console.log('[BoardsModule] Registered with ForumCoreObserver');
     }
 
@@ -1202,8 +1338,8 @@ const ForumBoardsModule = (function () {
         var hasBoard = !!document.querySelector(CONFIG.BOARD_LIST_SELECTOR);
         var hasForum = !!document.querySelector(CONFIG.FORUM_WRAPPER_SELECTOR);
         var hasStats = !!document.querySelector(CONFIG.STATS_SELECTOR);
+        var hasOnline = !!document.querySelector(CONFIG.ONLINE_PAGE_SELECTOR);
 
-        // On search pages, only convert if we actually have a topic list with rows
         if (document.body.id === 'search') {
             if (hasForum) {
                 const wrapper = document.querySelector(CONFIG.FORUM_WRAPPER_SELECTOR);
@@ -1216,6 +1352,7 @@ const ForumBoardsModule = (function () {
         if (hasBoard) await convertBoards();
         if (hasForum) await convertTopics();
         if (hasStats) await convertStats();
+        if (hasOnline) await convertOnlinePage();
 
         reorderContainers();
         registerObservers();
