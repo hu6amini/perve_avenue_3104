@@ -846,40 +846,55 @@ const ForumBoardsModule = (function () {
     // =========================================================================
     // ONLINE PAGE EXTRACTION & GENERATION
     // =========================================================================
-    function extractOnlineUserData(row) {
-        var avatarImg = row.querySelector('.aa.thumbs img');
-        var avatarSrc = avatarImg ? avatarImg.getAttribute('src') : null;
+function extractOnlineUserData(row) {
+    var avatarImg = row.querySelector('.aa.thumbs img');
+    var avatarSrc = avatarImg ? avatarImg.getAttribute('src') : null;
 
-        var nickLink = row.querySelector('.nick a');
-        var username = nickLink ? nickLink.textContent.trim() : 'Unknown';
-        var profileUrl = nickLink ? nickLink.getAttribute('href') : '#';
-        var mid = extractMidFromUrl(profileUrl);
+    var nickLink = row.querySelector('.nick a');
+    var username = nickLink ? nickLink.textContent.trim() : 'Unknown';
+    var profileUrl = nickLink ? nickLink.getAttribute('href') : '#';
+    var mid = extractMidFromUrl(profileUrl);
 
-        var activityEl = row.querySelector('.what');
-        var activity = activityEl ? activityEl.textContent.trim() : '';
+    var activityEl = row.querySelector('.what');
+    var activity = activityEl ? activityEl.textContent.trim() : '';
 
-        var timeEl = row.querySelector('time.when');
-        var relativeTime = timeEl ? timeEl.textContent.trim() : ''; // already relative
-
-        // Determine group from row classes (box_gruppo1, box_amministratore etc.)
-        var groupClass = 'group-member';
-        var classList = row.className.split(/\s+/);
-        if (classList.indexOf('box_amministratore') !== -1) groupClass = 'group-administrator';
-        else if (classList.indexOf('box_founder') !== -1) groupClass = 'group-founder';
-        else if (classList.indexOf('box_gruppo1') !== -1) groupClass = 'group-global-moderator';
-        else if (classList.indexOf('box_gruppo2') !== -1) groupClass = 'group-game-dev';
-        else if (classList.indexOf('box_gruppo3') !== -1) groupClass = 'group-fan';
-
-        return {
-            avatarSrc,
-            username,
-            profileUrl,
-            mid,
-            activity,
-            relativeTime,
-            groupClass
-        };
+    // Time: prefer the already‑relative <time> element, else parse the absolute date
+    var timeEl = row.querySelector('time.when');
+    var relativeTime = '';
+    if (timeEl) {
+        relativeTime = timeEl.textContent.trim();
+    } else {
+        var whenDiv = row.querySelector('.yy .when');
+        if (whenDiv) {
+            var rawDate = whenDiv.textContent.trim();
+            var parsed = parseDateFromTitle(rawDate) || parseItalianDate(rawDate);
+            relativeTime = parsed ? getRelativeTimeString(parsed) : '';
+        }
     }
+
+    // System / browser info (e.g. "Chrome 149 - Windows")
+    var systemInfoEl = row.querySelector('.bb h3 div');
+    var systemInfo = systemInfoEl ? systemInfoEl.textContent.trim() : '';
+
+    // Group class from row classes
+    var groupClass = 'group-member';
+    var classList = row.className.split(/\s+/);
+    if (classList.indexOf('box_amministratore') !== -1) groupClass = 'group-administrator';
+    else if (classList.indexOf('box_founder') !== -1) groupClass = 'group-founder';
+    else if (classList.indexOf('box_gruppo1') !== -1) groupClass = 'group-global-moderator';
+    else if (classList.indexOf('box_gruppo2') !== -1) groupClass = 'group-game-dev';
+    else if (classList.indexOf('box_gruppo3') !== -1) groupClass = 'group-fan';
+
+    return {
+        avatarSrc,
+        username,
+        profileUrl,
+        mid,
+        activity,
+        relativeTime,
+        groupClass
+    };
+}
 
     function generateOnlineUserCard(data) {
         var avatarHtml = '';
