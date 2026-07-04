@@ -806,8 +806,16 @@ if (onlineData.users.length > 0) {
     var maxAvatars = 10;
     var limitedUsers = onlineData.users.slice(0, maxAvatars);
     var avatarItems = limitedUsers.map(function (u) {
-        // ... avatar HTML generation (unchanged) ...
-    }).join('');
+    var avatarHtml;
+    if (u.mid) {
+        const user = userDataCache.get(u.mid);
+        avatarHtml = generateAvatarHtml(user, u.username, u.mid, CONFIG.AVATAR_SIZE_ONLINE);
+    } else {
+        var initial = u.username.charAt(0).toUpperCase();
+        avatarHtml = '<span class="mini-avatar mini-avatar--initial ' + u.groupClass + '" style="width:' + CONFIG.AVATAR_SIZE_ONLINE + 'px;height:' + CONFIG.AVATAR_SIZE_ONLINE + 'px;line-height:' + CONFIG.AVATAR_SIZE_ONLINE + 'px;">' + initial + '</span>';
+    }
+    return '<a href="' + escapeHtml(u.profileUrl) + '" class="online-user-avatar" title="' + escapeHtml(u.username) + '">' + avatarHtml + '</a>';
+}).join('');
 
     var ellipsisHtml = '';
     if (onlineData.users.length > maxAvatars) {
