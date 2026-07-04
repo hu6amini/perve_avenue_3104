@@ -230,6 +230,8 @@
 .fa-bolt::before {content: "\f0e7"; }
 .fa-calendar::before {content: "\f133"; }
 .fa-chart-line::before {content: "\f201"; }
+.fa-ellipsis::before {content: "\f141"; }
+.fa-ellipsis-vertical::before {content: "\f142"; }
 
 :root, :host {
   --fa-font-regular: normal 400 1em/1 "Font Awesome 6 Pro";
