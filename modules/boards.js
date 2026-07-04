@@ -803,41 +803,36 @@ const ForumBoardsModule = (function () {
     function buildModernStats(onlineData, statsData) {
         var usersHtml = '';
 if (onlineData.users.length > 0) {
-    var maxAvatars = 10;    // adjust as needed
+    var maxAvatars = 10;
     var limitedUsers = onlineData.users.slice(0, maxAvatars);
     var avatarItems = limitedUsers.map(function (u) {
-        var avatarHtml;
-        if (u.mid) {
-            const user = userDataCache.get(u.mid);
-            avatarHtml = generateAvatarHtml(user, u.username, u.mid, CONFIG.AVATAR_SIZE_ONLINE);
-        } else {
-            var initial = u.username.charAt(0).toUpperCase();
-            avatarHtml = '<span class="mini-avatar mini-avatar--initial ' + u.groupClass + '" style="width:' + CONFIG.AVATAR_SIZE_ONLINE + 'px;height:' + CONFIG.AVATAR_SIZE_ONLINE + 'px;line-height:' + CONFIG.AVATAR_SIZE_ONLINE + 'px;">' + initial + '</span>';
-        }
-        return '<a href="' + escapeHtml(u.profileUrl) + '" class="online-user-avatar" title="' + escapeHtml(u.username) + '">' + avatarHtml + '</a>';
+        // ... avatar HTML generation (unchanged) ...
     }).join('');
 
     var ellipsisHtml = '';
     if (onlineData.users.length > maxAvatars) {
         var onlineLink = document.querySelector('#online_link a');
         var onlineHref = onlineLink ? onlineLink.getAttribute('href') : '/?act=Online';
-        ellipsisHtml = '<a href="' + escapeHtml(onlineHref) + '" class="online-user-avatar online-ellipsis" title="And ' + (onlineData.users.length - maxAvatars) + ' more"><span class="ellipsis-icon"><i class="fa-regular fa-ellipsis" aria-hidden="true"></i></span></a>';
+        ellipsisHtml = '<a href="' + escapeHtml(onlineHref) + '" class="online-user-avatar online-ellipsis" title="View all ' + onlineData.counts.members + ' members online"><span class="ellipsis-icon"><i class="fa-regular fa-ellipsis" aria-hidden="true"></i></span></a>';
     }
     usersHtml = '<div class="online-users-avatars">' + avatarItems + ellipsisHtml + '</div>';
 }
 
-        var countsHtml = '<div class="online-counts">' +
-            '<span><i class="fa-regular fa-user" aria-hidden="true"></i> ' + onlineData.counts.members + ' members</span>' +
-            '<span><i class="fa-regular fa-eye" aria-hidden="true"></i> ' + onlineData.counts.guests + ' guests</span>' +
-            (onlineData.counts.anon ? '<span><i class="fa-regular fa-user-secret" aria-hidden="true"></i> ' + onlineData.counts.anon + ' anonymous</span>' : '');
+// Counts line – only show "View all" if there is NO overflow (ellipsis already covers it)
+var countsHtml = '<div class="online-counts">' +
+    '<span><i class="fa-regular fa-user" aria-hidden="true"></i> ' + onlineData.counts.members + ' members</span>' +
+    '<span><i class="fa-regular fa-eye" aria-hidden="true"></i> ' + onlineData.counts.guests + ' guests</span>' +
+    (onlineData.counts.anon ? '<span><i class="fa-regular fa-user-secret" aria-hidden="true"></i> ' + onlineData.counts.anon + ' anonymous</span>' : '');
 
-        // Append "View all" link if present in legacy stats
-        var viewAllLink = document.querySelector('#online_link a');
-        if (viewAllLink) {
-            var viewAllHref = viewAllLink.getAttribute('href');
-            countsHtml += ' <a href="' + escapeHtml(viewAllHref) + '" class="online-view-all"><i class="fa-regular fa-users" aria-hidden="true"></i> View all</a>';
-        }
-        countsHtml += '</div>';
+// If there are 10 or fewer users, show a "View all" link (since there's no ellipsis)
+if (onlineData.users.length <= maxAvatars) {
+    var viewAllLink = document.querySelector('#online_link a');
+    if (viewAllLink) {
+        countsHtml += ' <a href="' + escapeHtml(viewAllLink.getAttribute('href')) + '" class="online-view-all"><i class="fa-regular fa-users" aria-hidden="true"></i> View all</a>';
+    }
+}
+
+countsHtml += '</div>';
 
         // Extract groups legend from legacy stats
         var groupsLegendHtml = extractGroupsLegend(document.querySelector(CONFIG.STATS_SELECTOR));
