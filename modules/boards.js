@@ -826,7 +826,7 @@ const ForumBoardsModule = (function () {
         var viewAllLink = document.querySelector('#online_link a');
         if (viewAllLink) {
             var viewAllHref = viewAllLink.getAttribute('href');
-            countsHtml += ' · <a href="' + escapeHtml(viewAllHref) + '" class="online-view-all">View all</a>';
+            countsHtml += ' <a href="' + escapeHtml(viewAllHref) + '" class="online-view-all"><i class="fa-regular fa-users" aria-hidden="true"></i> View all</a>';
         }
         countsHtml += '</div>';
 
