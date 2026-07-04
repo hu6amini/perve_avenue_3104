@@ -802,20 +802,29 @@ const ForumBoardsModule = (function () {
 
     function buildModernStats(onlineData, statsData) {
         var usersHtml = '';
-        if (onlineData.users.length > 0) {
-            var avatarItems = onlineData.users.map(function (u) {
-                var avatarHtml;
-                if (u.mid) {
-                    const user = userDataCache.get(u.mid);
-                    avatarHtml = generateAvatarHtml(user, u.username, u.mid, CONFIG.AVATAR_SIZE_ONLINE);
-                } else {
-                    var initial = u.username.charAt(0).toUpperCase();
-                    avatarHtml = '<span class="mini-avatar mini-avatar--initial ' + u.groupClass + '" style="width:' + CONFIG.AVATAR_SIZE_ONLINE + 'px;height:' + CONFIG.AVATAR_SIZE_ONLINE + 'px;line-height:' + CONFIG.AVATAR_SIZE_ONLINE + 'px;">' + initial + '</span>';
-                }
-                return '<a href="' + escapeHtml(u.profileUrl) + '" class="online-user-avatar" title="' + escapeHtml(u.username) + '">' + avatarHtml + '</a>';
-            }).join('');
-            usersHtml = '<div class="online-users-avatars">' + avatarItems + '</div>';
+if (onlineData.users.length > 0) {
+    var maxAvatars = 10;    // adjust as needed
+    var limitedUsers = onlineData.users.slice(0, maxAvatars);
+    var avatarItems = limitedUsers.map(function (u) {
+        var avatarHtml;
+        if (u.mid) {
+            const user = userDataCache.get(u.mid);
+            avatarHtml = generateAvatarHtml(user, u.username, u.mid, CONFIG.AVATAR_SIZE_ONLINE);
+        } else {
+            var initial = u.username.charAt(0).toUpperCase();
+            avatarHtml = '<span class="mini-avatar mini-avatar--initial ' + u.groupClass + '" style="width:' + CONFIG.AVATAR_SIZE_ONLINE + 'px;height:' + CONFIG.AVATAR_SIZE_ONLINE + 'px;line-height:' + CONFIG.AVATAR_SIZE_ONLINE + 'px;">' + initial + '</span>';
         }
+        return '<a href="' + escapeHtml(u.profileUrl) + '" class="online-user-avatar" title="' + escapeHtml(u.username) + '">' + avatarHtml + '</a>';
+    }).join('');
+
+    var ellipsisHtml = '';
+    if (onlineData.users.length > maxAvatars) {
+        var onlineLink = document.querySelector('#online_link a');
+        var onlineHref = onlineLink ? onlineLink.getAttribute('href') : '/?act=Online';
+        ellipsisHtml = '<a href="' + escapeHtml(onlineHref) + '" class="online-user-avatar online-ellipsis" title="And ' + (onlineData.users.length - maxAvatars) + ' more"><span class="ellipsis-icon"><i class="fa-regular fa-ellipsis" aria-hidden="true"></i></span></a>';
+    }
+    usersHtml = '<div class="online-users-avatars">' + avatarItems + ellipsisHtml + '</div>';
+}
 
         var countsHtml = '<div class="online-counts">' +
             '<span><i class="fa-regular fa-user" aria-hidden="true"></i> ' + onlineData.counts.members + ' members</span>' +
