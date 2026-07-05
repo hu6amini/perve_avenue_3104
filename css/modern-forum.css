@@ -2977,8 +2977,9 @@ input[type="radio"]:checked::before {
 }
 
 .last-post-author {margin-left: auto;}
-
-.last-post-author, .latest-post-author {
+.last-post-author, .latest-post-author{display: flex;
+    align-items: center;}
+.last-post-author a, .latest-post-author a {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
