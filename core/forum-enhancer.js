@@ -26,7 +26,8 @@
             posts: true,
             modals: true,
             messenger: true,
-            'slick-carousel': true,       // NEW – hero carousel module
+            'slick-carousel': true,
+            boards: true,               // ← new
             navigation: false,
             sidebar: false,
             footer: false
@@ -244,52 +245,60 @@
     }
     
     // ============================================================================
-    // REGISTER MODULES (all modules now exposed globally)
+    // REGISTER MODULES (with boards added)
     // ============================================================================
-function registerAllModules() {
-    if (typeof MediaDimensionsModule !== 'undefined') {
-        registerModule('media-dimensions', MediaDimensionsModule, ['forumObserver']);
-    } else {
-        log('MediaDimensionsModule not found, media dimensions disabled', 'warn');
-        ENHANCER_CONFIG.modules['media-dimensions'] = false;
-    }
+    function registerAllModules() {
+        if (typeof MediaDimensionsModule !== 'undefined') {
+            registerModule('media-dimensions', MediaDimensionsModule, ['forumObserver']);
+        } else {
+            log('MediaDimensionsModule not found, media dimensions disabled', 'warn');
+            ENHANCER_CONFIG.modules['media-dimensions'] = false;
+        }
 
-    if (typeof TwemojiModule !== 'undefined') {
-        registerModule('twemoji', TwemojiModule, ['twemojiLib', 'forumObserver']);
-    } else {
-        log('TwemojiModule not found, emoji replacement disabled', 'warn');
-        ENHANCER_CONFIG.modules.twemoji = false;
-    }
+        if (typeof TwemojiModule !== 'undefined') {
+            registerModule('twemoji', TwemojiModule, ['twemojiLib', 'forumObserver']);
+        } else {
+            log('TwemojiModule not found, emoji replacement disabled', 'warn');
+            ENHANCER_CONFIG.modules.twemoji = false;
+        }
 
-    if (typeof ForumPostsModule !== 'undefined') {
-        registerModule('posts', ForumPostsModule, ['domUtils', 'eventBus']);
-    } else {
-        log('ForumPostsModule not found, posts enhancement disabled', 'warn');
-        ENHANCER_CONFIG.modules.posts = false;
-    }
+        if (typeof ForumPostsModule !== 'undefined') {
+            registerModule('posts', ForumPostsModule, ['domUtils', 'eventBus']);
+        } else {
+            log('ForumPostsModule not found, posts enhancement disabled', 'warn');
+            ENHANCER_CONFIG.modules.posts = false;
+        }
 
-    if (typeof ModalsModule !== 'undefined') {
-        registerModule('modals', ModalsModule, ['forumObserver']);
-    } else {
-        log('ModalsModule not found, modern modals disabled', 'warn');
-        ENHANCER_CONFIG.modules.modals = false;
-    }
+        if (typeof ModalsModule !== 'undefined') {
+            registerModule('modals', ModalsModule, ['forumObserver']);
+        } else {
+            log('ModalsModule not found, modern modals disabled', 'warn');
+            ENHANCER_CONFIG.modals.modals = false;
+        }
 
-    // --- MESSENGER MODULE (ADD THIS) ---
-    if (typeof MessengerModule !== 'undefined') {
-        registerModule('messenger', MessengerModule, ['domUtils', 'eventBus']);
-    } else {
-        log('MessengerModule not found, messenger enhancement disabled', 'warn');
-        ENHANCER_CONFIG.modules.messenger = false;
-    }
+        // --- MESSENGER MODULE ---
+        if (typeof MessengerModule !== 'undefined') {
+            registerModule('messenger', MessengerModule, ['domUtils', 'eventBus']);
+        } else {
+            log('MessengerModule not found, messenger enhancement disabled', 'warn');
+            ENHANCER_CONFIG.modules.messenger = false;
+        }
 
-    // Slick Carousel module registration
-    if (typeof SlickCarouselModule !== 'undefined') {
-        registerModule('slick-carousel', SlickCarouselModule, ['forumObserver']);
-    } else {
-        log('SlickCarouselModule not found, carousels will not be active', 'warn');
+        // Slick Carousel module registration
+        if (typeof SlickCarouselModule !== 'undefined') {
+            registerModule('slick-carousel', SlickCarouselModule, ['forumObserver']);
+        } else {
+            log('SlickCarouselModule not found, carousels will not be active', 'warn');
+        }
+
+        // --- BOARDS MODULE (NEW) ---
+        if (typeof ForumBoardsModule !== 'undefined') {
+            registerModule('boards', ForumBoardsModule, ['forumObserver']);
+        } else {
+            log('ForumBoardsModule not found, boards enhancement disabled', 'warn');
+            ENHANCER_CONFIG.modules.boards = false;
+        }
     }
-}
     
     // ============================================================================
     // PUBLIC API
