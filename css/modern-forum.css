@@ -1,3 +1,7 @@
+/* =============================================
+   COMPLETE NON-CRITICAL CSS (with stats/online integrated)
+   ============================================= */
+
 /*--------------------------------------------
  5. layout containers
 --------------------------------------------*/
@@ -1597,6 +1601,11 @@ img,
         margin-left: 0;
         align-self: flex-end;
     }
+
+    /* Stats cards stack vertically on small screens */
+    .stats-card {
+        grid-template-columns: 1fr;
+    }
 }
 
 /*--------------------------------------------
@@ -2757,7 +2766,7 @@ input[type="radio"]:checked::before {
     align-items: center;
     gap: var(--space-sm);
     padding: var(--pad-4);
-    max-width: none;           /* no max‑width restriction for the horizontal card */
+    max-width: none;
 }
 .modern-card:hover,
 .latest-post-card:hover {
@@ -2984,10 +2993,6 @@ input[type="radio"]:checked::before {
     overflow: hidden;
     text-overflow: ellipsis;
 }
-.last-post-author a,
-.latest-post-author a {
-    color: var(--text-secondary);
-}
 .last-post-author a {
     min-width: 0;
     overflow: hidden;
@@ -3057,10 +3062,284 @@ input[type="radio"]:checked::before {
 .mini-avatar.group-member           { border-color: var(--primary-color) !important; }
 .mini-avatar.group-guest            { border-color: #6B7280 !important; }
 
-
 #board table[width="100%"][cellpadding="0"][cellspacing="0"], #board .stats.List, body#forum .navsub.bottom.Justify {
     display: none !important;
     visibility: hidden !important;
     opacity: 0 !important;
     pointer-events: none !important;
+}
+
+/* ==========================================================================
+   MODERN STATS, ONLINE PAGE & GROUPS LEGEND
+   ========================================================================== */
+
+/* Modern Stats Section */
+section.modern-stats {
+    flex-direction: column;
+    width: 100%;
+}
+
+.stats-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-md);
+    width: 100%;
+}
+
+.stats-section {
+    background: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    padding: var(--pad-5);
+}
+
+.stats-section-title {
+    font-family: var(--font-heading);
+    font-size: var(--text-md);
+    color: var(--text-primary);
+    margin: 0 0 var(--space-sm) 0;
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+}
+
+.stats-section-title i {
+    color: var(--primary-light);
+}
+
+/* Online users avatars */
+.online-users-avatars {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+    margin-bottom: var(--space-sm);
+}
+
+.online-user-avatar {
+    text-decoration: none;
+}
+
+/* Online counts */
+.online-counts {
+    display: flex;
+    gap: var(--space-md);
+    font-size: var(--text-xs);
+    color: var(--text-secondary);
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.online-counts i {
+    margin-right: 4px;
+    color: var(--primary-light);
+}
+
+/* Statistics grid */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: var(--space-sm);
+}
+
+.stat-item {
+    background: var(--bg-color);
+    border-radius: var(--radius-sm);
+    padding: var(--pad-3);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+}
+
+.stat-item i {
+    font-size: 1.2rem;
+    color: var(--primary-light);
+    margin-bottom: 2px;
+}
+
+.stat-value {
+    font-weight: 600;
+    font-size: var(--text-sm);
+    color: var(--text-primary);
+}
+
+.stat-value a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.stat-label {
+    font-size: var(--text-xs);
+    color: var(--text-tertiary);
+}
+
+/* "View all" link in stats section */
+.online-view-all {
+    font-size: var(--text-xs);
+    color: var(--primary-light);
+    text-decoration: none;
+    margin-left: var(--space-xs);
+}
+
+.online-view-all:hover {
+    text-decoration: underline;
+}
+
+/* Groups legend */
+.groups-legend {
+    margin-top: var(--space-md);
+    padding-top: var(--space-sm);
+    border-top: 1px solid var(--border-color);
+}
+
+.groups-legend-title {
+    color: var(--text-tertiary);
+    margin: 0 0 var(--space-xs) 0;
+    display: flex;
+}
+
+.groups-legend-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+}
+
+.group-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: var(--radius-full);
+    font-size: var(--text-xs);
+    font-weight: 500;
+    text-decoration: none;
+    color: white;
+    background: var(--primary-color);
+    transition: opacity 0.2s;
+}
+
+.group-badge:hover {
+    opacity: 0.85;
+}
+
+.group-badge.amministratore { background: var(--admin-color); }
+.group-badge.gruppo1 { background: var(--global-mod-color); }
+.group-badge.moderatore { background: var(--mod-color); }
+.group-badge.gruppo2 { background: var(--game-dev-color); }
+.group-badge.gruppo4 { background: var(--member-color); }
+.group-badge.gruppo5 { background: var(--fan-color); }
+.group-badge.utente { background: var(--text-muted); }
+.group-badge.topmembers { background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); }
+
+/* Voting button positioned at the right end of the stats header */
+.stats-header {
+    position: relative;
+}
+
+#modern-vote-btn {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translatey(-50%);
+}
+
+/* Online Users Page */
+.online-list-section {
+    margin-top: var(--space-xl);
+}
+
+.online-list-header {
+    padding-bottom: var(--space-sm);
+    border-bottom: 2px solid var(--primary-color);
+    margin-bottom: var(--space-md);
+}
+
+.online-list-title {
+    font-family: var(--font-heading);
+    font-size: var(--text-xl);
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+}
+
+.online-list-title i {
+    color: var(--primary-light);
+}
+
+.online-users-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--space-md);
+}
+
+.online-user-card {
+    background: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    padding: var(--pad-4);
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+.online-user-card:hover {
+    border-color: var(--primary-color);
+    box-shadow: var(--shadow-sm);
+}
+
+.online-user-avatar-col {
+    flex-shrink: 0;
+}
+
+.online-user-info {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.online-user-name {
+    font-weight: 600;
+    font-size: var(--text-sm);
+    color: var(--text-primary);
+    text-decoration: none;
+}
+
+.online-user-name:hover {
+    color: var(--primary-light);
+    text-decoration: underline;
+}
+
+.online-user-activity {
+    font-size: var(--text-xs);
+    color: var(--text-secondary);
+}
+
+.online-user-time {
+    font-size: var(--text-xs);
+    color: var(--text-tertiary);
+    display: block;
+}
+
+/* Ellipsis icon for overflow online users */
+.online-ellipsis {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--surface-light);
+    color: var(--text-tertiary);
+    text-decoration: none;
+    transition: background 0.2s;
+}
+.online-ellipsis:hover {
+    background: var(--hover-color);
+    color: var(--text-primary);
+}
+.ellipsis-icon {
+    font-size: 0.9rem;
+    line-height: 1;
 }
