@@ -2988,6 +2988,12 @@ input[type="radio"]:checked::before {
 .latest-post-author a {
     color: var(--text-secondary);
 }
+.last-post-author a {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
 .last-post-author a:hover,
 .latest-post-author a:hover {
     color: var(--primary-light);
@@ -3014,7 +3020,13 @@ input[type="radio"]:checked::before {
     height: 20px;
     border: 1px solid var(--border-color);
 }
-.latest-post-author {color: var(--text-secondary)}
+.latest-post-author {color: var(--text-secondary);
+    display: inline-block;
+    min-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;}
 /* Latest‑posts avatar (bigger, 32px) */
 .latest-posts-grid .mini-avatar {
     width: 32px;
