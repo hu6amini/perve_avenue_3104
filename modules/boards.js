@@ -205,15 +205,27 @@ const ForumBoardsModule = (function () {
         }
     }
 
+    // Improved: uses AbortController so the request is properly cancelled on timeout
     async function fetchUserDataWithTimeout(mid, timeoutMs) {
         if (userDataCache.has(mid)) return userDataCache.get(mid);
         const effectiveTimeout = timeoutMs || CONFIG.API_TIMEOUT;
-        const timeoutPromise = new Promise(function (_, reject) {
-            setTimeout(function () { reject(new Error('Timeout')); }, effectiveTimeout);
-        });
+        const controller = new AbortController();
+        const timeoutId = setTimeout(function () { controller.abort(); }, effectiveTimeout);
         try {
-            return await Promise.race([fetchUserData(mid), timeoutPromise]);
+            const response = await fetch('/api.php?mid=' + encodeURIComponent(mid), {
+                signal: controller.signal
+            });
+            clearTimeout(timeoutId);
+            if (!response.ok) throw new Error('HTTP ' + response.status);
+            const data = await response.json();
+            const user = data['m' + mid] || data.info;
+            if (user && user.id) {
+                userDataCache.set(mid, user);
+                return user;
+            }
+            return null;
         } catch (e) {
+            clearTimeout(timeoutId);
             console.warn('[BoardsModule] User fetch timeout / error for MID', mid, e);
             return null;
         }
@@ -802,45 +814,44 @@ const ForumBoardsModule = (function () {
 
     function buildModernStats(onlineData, statsData) {
         var usersHtml = '';
-if (onlineData.users.length > 0) {
-    var maxAvatars = 10;
-    var limitedUsers = onlineData.users.slice(0, maxAvatars);
-    var avatarItems = limitedUsers.map(function (u) {
-    var avatarHtml;
-    if (u.mid) {
-        const user = userDataCache.get(u.mid);
-        avatarHtml = generateAvatarHtml(user, u.username, u.mid, CONFIG.AVATAR_SIZE_ONLINE);
-    } else {
-        var initial = u.username.charAt(0).toUpperCase();
-        avatarHtml = '<span class="mini-avatar mini-avatar--initial ' + u.groupClass + '" style="width:' + CONFIG.AVATAR_SIZE_ONLINE + 'px;height:' + CONFIG.AVATAR_SIZE_ONLINE + 'px;line-height:' + CONFIG.AVATAR_SIZE_ONLINE + 'px;">' + initial + '</span>';
-    }
-    return '<a href="' + escapeHtml(u.profileUrl) + '" class="online-user-avatar" title="' + escapeHtml(u.username) + '">' + avatarHtml + '</a>';
-}).join('');
+        if (onlineData.users.length > 0) {
+            var maxAvatars = 10;
+            var limitedUsers = onlineData.users.slice(0, maxAvatars);
+            var avatarItems = limitedUsers.map(function (u) {
+                var avatarHtml;
+                if (u.mid) {
+                    const user = userDataCache.get(u.mid);
+                    avatarHtml = generateAvatarHtml(user, u.username, u.mid, CONFIG.AVATAR_SIZE_ONLINE);
+                } else {
+                    var initial = u.username.charAt(0).toUpperCase();
+                    avatarHtml = '<span class="mini-avatar mini-avatar--initial ' + u.groupClass + '" style="width:' + CONFIG.AVATAR_SIZE_ONLINE + 'px;height:' + CONFIG.AVATAR_SIZE_ONLINE + 'px;line-height:' + CONFIG.AVATAR_SIZE_ONLINE + 'px;">' + initial + '</span>';
+                }
+                return '<a href="' + escapeHtml(u.profileUrl) + '" class="online-user-avatar" title="' + escapeHtml(u.username) + '">' + avatarHtml + '</a>';
+            }).join('');
 
-    var ellipsisHtml = '';
-    if (onlineData.users.length > maxAvatars) {
-        var onlineLink = document.querySelector('#online_link a');
-        var onlineHref = onlineLink ? onlineLink.getAttribute('href') : '/?act=Online';
-        ellipsisHtml = '<a href="' + escapeHtml(onlineHref) + '" class="online-user-avatar online-ellipsis" title="View all ' + onlineData.counts.members + ' members online"><span class="ellipsis-icon"><i class="fa-regular fa-ellipsis" aria-hidden="true"></i></span></a>';
-    }
-    usersHtml = '<div class="online-users-avatars">' + avatarItems + ellipsisHtml + '</div>';
-}
+            var ellipsisHtml = '';
+            if (onlineData.users.length > maxAvatars) {
+                var onlineLink = document.querySelector('#online_link a');
+                var onlineHref = onlineLink ? onlineLink.getAttribute('href') : '/?act=Online';
+                ellipsisHtml = '<a href="' + escapeHtml(onlineHref) + '" class="online-user-avatar online-ellipsis" title="View all ' + onlineData.counts.members + ' members online"><span class="ellipsis-icon"><i class="fa-regular fa-ellipsis" aria-hidden="true"></i></span></a>';
+            }
+            usersHtml = '<div class="online-users-avatars">' + avatarItems + ellipsisHtml + '</div>';
+        }
 
-// Counts line – only show "View all" if there is NO overflow (ellipsis already covers it)
-var countsHtml = '<div class="online-counts">' +
-    '<span><i class="fa-regular fa-user" aria-hidden="true"></i> ' + onlineData.counts.members + ' members</span>' +
-    '<span><i class="fa-regular fa-eye" aria-hidden="true"></i> ' + onlineData.counts.guests + ' guests</span>' +
-    (onlineData.counts.anon ? '<span><i class="fa-regular fa-user-secret" aria-hidden="true"></i> ' + onlineData.counts.anon + ' anonymous</span>' : '');
+        // Counts line – only show "View all" if there is NO overflow (ellipsis already covers it)
+        var countsHtml = '<div class="online-counts">' +
+            '<span><i class="fa-regular fa-user" aria-hidden="true"></i> ' + onlineData.counts.members + ' members</span>' +
+            '<span><i class="fa-regular fa-eye" aria-hidden="true"></i> ' + onlineData.counts.guests + ' guests</span>' +
+            (onlineData.counts.anon ? '<span><i class="fa-regular fa-user-secret" aria-hidden="true"></i> ' + onlineData.counts.anon + ' anonymous</span>' : '');
 
-// If there are 10 or fewer users, show a "View all" link (since there's no ellipsis)
-if (onlineData.users.length <= maxAvatars) {
-    var viewAllLink = document.querySelector('#online_link a');
-    if (viewAllLink) {
-        countsHtml += ' <a href="' + escapeHtml(viewAllLink.getAttribute('href')) + '" class="online-view-all"><i class="fa-regular fa-users" aria-hidden="true"></i> View all</a>';
-    }
-}
+        if (onlineData.users.length <= maxAvatars) {
+            var viewAllLink = document.querySelector('#online_link a');
+            if (viewAllLink) {
+                countsHtml += ' <a href="' + escapeHtml(viewAllLink.getAttribute('href')) + '" class="online-view-all"><i class="fa-regular fa-users" aria-hidden="true"></i> View all</a>';
+            }
+        }
 
-countsHtml += '</div>';
+        countsHtml += '</div>';
 
         // Extract groups legend from legacy stats
         var groupsLegendHtml = extractGroupsLegend(document.querySelector(CONFIG.STATS_SELECTOR));
@@ -979,8 +990,29 @@ countsHtml += '</div>';
     }
 
     // =========================================================================
-    // DATA FETCHING
+    // DATA FETCHING (with concurrency limiter)
     // =========================================================================
+    /**
+     * Runs async worker on items with a maximum concurrency.
+     * @param {Array} items
+     * @param {Function} worker - async function(item, index)
+     * @param {number} [limit=6]
+     */
+    async function mapWithConcurrencyLimit(items, worker, limit) {
+        limit = limit || 6;
+        if (items.length === 0) return [];
+        const results = new Array(items.length);
+        let index = 0;
+        const workers = new Array(limit).fill(null).map(async function () {
+            while (index < items.length) {
+                const current = index++;
+                results[current] = await worker(items[current], current);
+            }
+        });
+        await Promise.all(workers);
+        return results;
+    }
+
     async function fetchAllRelevantUsers(boardRows, topicRows) {
         const mids = new Set();
         boardRows.forEach(function (row) {
@@ -997,10 +1029,12 @@ countsHtml += '</div>';
                 if (mid) mids.add(mid);
             }
         });
+        const midsArray = Array.from(mids);
+        if (midsArray.length === 0) return;
         try {
-            await Promise.all(Array.from(mids).map(function (mid) {
-                return fetchUserDataWithTimeout(mid);
-            }));
+            await mapWithConcurrencyLimit(midsArray, async function (mid) {
+                await fetchUserDataWithTimeout(mid);
+            });
         } catch (e) {
             console.warn('[BoardsModule] User data fetch failed, using initials only');
         }
@@ -1015,10 +1049,12 @@ countsHtml += '</div>';
                 if (mid) mids.add(mid);
             }
         });
+        const midsArray = Array.from(mids);
+        if (midsArray.length === 0) return;
         try {
-            await Promise.all(Array.from(mids).map(function (mid) {
-                return fetchUserDataWithTimeout(mid);
-            }));
+            await mapWithConcurrencyLimit(midsArray, async function (mid) {
+                await fetchUserDataWithTimeout(mid);
+            });
         } catch (e) {
             console.warn('[BoardsModule] Latest post author fetch failed');
         }
@@ -1029,10 +1065,12 @@ countsHtml += '</div>';
         onlineUsers.forEach(function (u) {
             if (u.mid) mids.add(u.mid);
         });
+        const midsArray = Array.from(mids);
+        if (midsArray.length === 0) return;
         try {
-            await Promise.all(Array.from(mids).map(function (mid) {
-                return fetchUserDataWithTimeout(mid);
-            }));
+            await mapWithConcurrencyLimit(midsArray, async function (mid) {
+                await fetchUserDataWithTimeout(mid);
+            });
         } catch (e) {
             console.warn('[BoardsModule] Online user fetch failed');
         }
@@ -1303,9 +1341,9 @@ countsHtml += '</div>';
             }
 
             try {
-                await Promise.all(mids.map(function (mid) {
-                    return fetchUserDataWithTimeout(mid);
-                }));
+                await mapWithConcurrencyLimit(mids, async function (mid) {
+                    await fetchUserDataWithTimeout(mid);
+                });
             } catch (e) {
                 console.warn('[BoardsModule] Online user fetch failed');
             }
@@ -1321,65 +1359,33 @@ countsHtml += '</div>';
     }
 
     // =========================================================================
-    // OBSERVER INTEGRATION
+    // OBSERVER INTEGRATION – with duplicate prevention
     // =========================================================================
+    var registeredObserverIds = new Set();
+
     function registerObservers() {
         if (!globalThis.forumObserver) return;
 
-        try {
-            globalThis.forumObserver.register({
-                id: 'boards-module-board-list',
-                selector: CONFIG.BOARD_LIST_SELECTOR,
-                priority: 'high',
-                callback: function () { convertBoards(); }
-            });
-        } catch (e) {
-            console.error('[BoardsModule] Failed to register board list observer:', e);
+        function safeRegister(id, selector, callback) {
+            if (registeredObserverIds.has(id)) return;
+            try {
+                globalThis.forumObserver.register({
+                    id: id,
+                    selector: selector,
+                    priority: 'high',
+                    callback: callback
+                });
+                registeredObserverIds.add(id);
+            } catch (e) {
+                console.error('[BoardsModule] Failed to register observer ' + id + ':', e);
+            }
         }
 
-        try {
-            globalThis.forumObserver.register({
-                id: 'boards-module-topic-list',
-                selector: CONFIG.FORUM_WRAPPER_SELECTOR,
-                priority: 'high',
-                callback: function () { convertTopics(); }
-            });
-        } catch (e) {
-            console.error('[BoardsModule] Failed to register topic list observer:', e);
-        }
-
-        try {
-            globalThis.forumObserver.register({
-                id: 'boards-module-latest-posts',
-                selector: CONFIG.LATEST_POSTS_SELECTOR,
-                priority: 'high',
-                callback: function () { convertLatestPosts(); }
-            });
-        } catch (e) {
-            console.error('[BoardsModule] Failed to register latest posts observer:', e);
-        }
-
-        try {
-            globalThis.forumObserver.register({
-                id: 'boards-module-stats',
-                selector: CONFIG.STATS_SELECTOR,
-                priority: 'high',
-                callback: function () { convertStats(); }
-            });
-        } catch (e) {
-            console.error('[BoardsModule] Failed to register stats observer:', e);
-        }
-
-        try {
-            globalThis.forumObserver.register({
-                id: 'boards-module-online-page',
-                selector: CONFIG.ONLINE_PAGE_SELECTOR,
-                priority: 'high',
-                callback: function () { convertOnlinePage(); }
-            });
-        } catch (e) {
-            console.error('[BoardsModule] Failed to register online page observer:', e);
-        }
+        safeRegister('boards-module-board-list', CONFIG.BOARD_LIST_SELECTOR, function () { convertBoards(); });
+        safeRegister('boards-module-topic-list', CONFIG.FORUM_WRAPPER_SELECTOR, function () { convertTopics(); });
+        safeRegister('boards-module-latest-posts', CONFIG.LATEST_POSTS_SELECTOR, function () { convertLatestPosts(); });
+        safeRegister('boards-module-stats', CONFIG.STATS_SELECTOR, function () { convertStats(); });
+        safeRegister('boards-module-online-page', CONFIG.ONLINE_PAGE_SELECTOR, function () { convertOnlinePage(); });
 
         console.log('[BoardsModule] Registered with ForumCoreObserver');
     }
