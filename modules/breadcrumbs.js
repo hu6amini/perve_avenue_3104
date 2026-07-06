@@ -15,7 +15,7 @@ const BreadcrumbsModule = (function () {
         LEGACY_NAV_SELECTOR: 'ul.nav',
         MODERN_CONTAINER_ID: 'modern-breadcrumbs',
         WRAPPER_ID: 'modern-forum-wrapper',
-        INSERT_BEFORE_SELECTOR: '.carousel-wrapper'
+        INSERT_AFTER_SELECTOR: '.carousel-wrapper'
     });
 
     // =========================================================================
@@ -47,11 +47,13 @@ const BreadcrumbsModule = (function () {
         container.className = 'modern-breadcrumbs';
         container.setAttribute('aria-label', 'breadcrumb');
 
-        const referenceNode = wrapper.querySelector(CONFIG.INSERT_BEFORE_SELECTOR);
+        // Place right after the carousel
+        const referenceNode = wrapper.querySelector(CONFIG.INSERT_AFTER_SELECTOR);
         if (referenceNode) {
-            wrapper.insertBefore(container, referenceNode);
+            referenceNode.insertAdjacentElement('afterend', container);
         } else {
-            wrapper.insertBefore(container, wrapper.firstChild);
+            // Fallback: append to wrapper
+            wrapper.appendChild(container);
         }
         return container;
     }
@@ -67,15 +69,13 @@ const BreadcrumbsModule = (function () {
             const li = listItems[i];
             const link = li.querySelector('a');
             if (link) {
-                // It's a link item
                 items.push({
                     text: link.textContent.trim(),
                     url: link.getAttribute('href'),
                     isCurrent: false
                 });
             } else {
-                // Plain text item (current page)
-                const text = li.textContent.trim().replace(/^\u200B/, ''); // remove zero-width space
+                const text = li.textContent.trim().replace(/^\u200B/, '');
                 if (text) {
                     items.push({
                         text: text,
@@ -103,7 +103,6 @@ const BreadcrumbsModule = (function () {
             if (item.url && !isLast) {
                 html += '<a href="' + escapeHtml(item.url) + '" class="modern-breadcrumb-link">' + escapeHtml(item.text) + '</a>';
             } else {
-                // Current page (no link)
                 html += '<span class="modern-breadcrumb-text" aria-current="page">' + escapeHtml(item.text) + '</span>';
             }
 
@@ -132,7 +131,7 @@ const BreadcrumbsModule = (function () {
         const html = buildBreadcrumbHtml(items);
         container.innerHTML = html;
 
-        // Hide the legacy nav
+        // Hide legacy
         legacyNav.style.display = 'none';
 
         console.log('[BreadcrumbsModule] Breadcrumb modernised');
