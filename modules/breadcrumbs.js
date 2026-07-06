@@ -107,7 +107,7 @@ const BreadcrumbsModule = (function () {
             }
 
             if (!isLast) {
-                html += '<i class="fa-regular fa-chevron-right modern-breadcrumb-separator" aria-hidden="true"></i>';
+                html += '<i class="fa-regular fa-angle-right modern-breadcrumb-separator" aria-hidden="true"></i>';
             }
 
             html += '</li>';
