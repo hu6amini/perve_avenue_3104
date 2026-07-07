@@ -131,9 +131,6 @@ const BreadcrumbsModule = (function () {
         const html = buildBreadcrumbHtml(items);
         container.innerHTML = html;
 
-        // Hide legacy
-        legacyNav.style.display = 'none';
-
         console.log('[BreadcrumbsModule] Breadcrumb modernised');
     }
 
