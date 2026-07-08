@@ -1517,11 +1517,6 @@ img,
         margin-left: 0;
         align-self: flex-end;
     }
-
-    /* Stats cards stack vertically on small screens */
-    .stats-card {
-        grid-template-rows: 1fr 1fr !important;
-    }
 }
 
 /*--------------------------------------------
