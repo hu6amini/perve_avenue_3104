@@ -345,66 +345,75 @@ const ForumBoardsModule = (function () {
     // =========================================================================
     // BOARD LIST EXTRACTION & GENERATION
     // =========================================================================
-    function extractForumData(row) {
-        const id = row.id;
-        const forumId = id ? id.replace('f', '') : '';
+function extractForumData(row) {
+    const id = row.id;
+    const forumId = id ? id.replace('f', '') : '';
 
-        const nameEl = row.querySelector('.bb h3 a');
-        const forumName = nameEl ? nameEl.textContent.trim() : 'Unknown Forum';
-        const forumUrl = nameEl ? nameEl.getAttribute('href') : '#';
+    const nameEl = row.querySelector('.bb h3 a');
+    const forumName = nameEl ? nameEl.textContent.trim() : 'Unknown Forum';
+    const forumUrl = nameEl ? nameEl.getAttribute('href') : '#';
 
-        const thumbImg = row.querySelector('.bb img');
-        var thumbnailUrl = null;
-        if (thumbImg) {
-            const style = thumbImg.getAttribute('style') || '';
-            const bgMatch = style.match(/background-image:\s*url\(['"]?([^'")\s]+)['"]?\)/i);
-            if (bgMatch && bgMatch[1]) thumbnailUrl = bgMatch[1];
-        }
-
-        const topicsEm = row.querySelector('.yy .topics em');
-        const repliesEm = row.querySelector('.yy .replies em');
-        const topicsCount = topicsEm ? parseInt(topicsEm.textContent, 10) || 0 : 0;
-        const repliesCount = repliesEm ? parseInt(repliesEm.textContent, 10) || 0 : 0;
-
-        const whenEl = row.querySelector('.zz .when');
-        const lastPostDateStr = whenEl ? whenEl.textContent.trim() : '';
-        const lastPostDate = parseDateFromTitle(lastPostDateStr);
-        const lastPostRelative = lastPostDate ? getRelativeTimeString(lastPostDate) : '';
-
-        const whereEl = row.querySelector('.zz .where');
-        let lastTopicUrl = '', lastTopicHTML = '', subForumUrl = '', subForumName = '';
-        if (whereEl) {
-            const links = whereEl.querySelectorAll('a');
-            if (links.length === 1) {
-                lastTopicUrl = links[0].getAttribute('href') || '';
-                lastTopicHTML = links[0].innerHTML;
-            } else if (links.length >= 2) {
-                subForumUrl = links[0].getAttribute('href') || '';
-                subForumName = links[0].textContent.trim();
-                lastTopicUrl = links[1].getAttribute('href') || '';
-                lastTopicHTML = links[1].innerHTML;
+    const thumbImg = row.querySelector('.bb img');
+    var thumbnailUrl = null;
+    if (thumbImg) {
+        // 1) Try background-image from inline style (legacy spacer GIF)
+        const style = thumbImg.getAttribute('style') || '';
+        const bgMatch = style.match(/background-image:\s*url\(['"]?([^'")\s]+)['"]?\)/i);
+        if (bgMatch && bgMatch[1]) {
+            thumbnailUrl = bgMatch[1];
+        } else {
+            // 2) Fallback to normal src (but skip spacer.gif)
+            var src = thumbImg.getAttribute('src');
+            if (src && src.indexOf('spacer.gif') === -1) {
+                thumbnailUrl = src;
             }
         }
-
-        const whoLink = row.querySelector('.zz .who a');
-        const lastPostAuthor = whoLink ? whoLink.textContent.trim() : '';
-        const lastPostAuthorUrl = whoLink ? whoLink.getAttribute('href') : '';
-        const lastPostAuthorMid = extractMidFromUrl(lastPostAuthorUrl);
-
-        const iconEl = row.querySelector('.aa i');
-        const iconClass = iconEl ? iconEl.className : 'fa-regular fa-folder';
-        const isUnread = row.classList.contains('on');
-
-        return {
-            forumId, forumName, forumUrl,
-            thumbnailUrl, topicsCount, repliesCount,
-            lastPostRelative, lastPostDateStr,
-            lastTopicUrl, lastTopicHTML,
-            subForumUrl, subForumName,
-            lastPostAuthor, lastPostAuthorUrl, lastPostAuthorMid,
-            iconClass, isUnread
-        };
     }
+
+    const topicsEm = row.querySelector('.yy .topics em');
+    const repliesEm = row.querySelector('.yy .replies em');
+    const topicsCount = topicsEm ? parseInt(topicsEm.textContent, 10) || 0 : 0;
+    const repliesCount = repliesEm ? parseInt(repliesEm.textContent, 10) || 0 : 0;
+
+    const whenEl = row.querySelector('.zz .when');
+    const lastPostDateStr = whenEl ? whenEl.textContent.trim() : '';
+    const lastPostDate = parseDateFromTitle(lastPostDateStr);
+    const lastPostRelative = lastPostDate ? getRelativeTimeString(lastPostDate) : '';
+
+    const whereEl = row.querySelector('.zz .where');
+    let lastTopicUrl = '', lastTopicHTML = '', subForumUrl = '', subForumName = '';
+    if (whereEl) {
+        const links = whereEl.querySelectorAll('a');
+        if (links.length === 1) {
+            lastTopicUrl = links[0].getAttribute('href') || '';
+            lastTopicHTML = links[0].innerHTML;
+        } else if (links.length >= 2) {
+            subForumUrl = links[0].getAttribute('href') || '';
+            subForumName = links[0].textContent.trim();
+            lastTopicUrl = links[1].getAttribute('href') || '';
+            lastTopicHTML = links[1].innerHTML;
+        }
+    }
+
+    const whoLink = row.querySelector('.zz .who a');
+    const lastPostAuthor = whoLink ? whoLink.textContent.trim() : '';
+    const lastPostAuthorUrl = whoLink ? whoLink.getAttribute('href') : '';
+    const lastPostAuthorMid = extractMidFromUrl(lastPostAuthorUrl);
+
+    const iconEl = row.querySelector('.aa i');
+    const iconClass = iconEl ? iconEl.className : 'fa-regular fa-folder';
+    const isUnread = row.classList.contains('on');
+
+    return {
+        forumId, forumName, forumUrl,
+        thumbnailUrl, topicsCount, repliesCount,
+        lastPostRelative, lastPostDateStr,
+        lastTopicUrl, lastTopicHTML,
+        subForumUrl, subForumName,
+        lastPostAuthor, lastPostAuthorUrl, lastPostAuthorMid,
+        iconClass, isUnread
+    };
+}
 
     function extractCategoryData(catLi) {
         const id = catLi.id;
