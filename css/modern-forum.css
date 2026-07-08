@@ -1520,7 +1520,7 @@ img,
 
     /* Stats cards stack vertically on small screens */
     .stats-card {
-        grid-template-rows: 1fr 1fr;
+        grid-template-rows: 1fr 1fr !important;
     }
 }
 
