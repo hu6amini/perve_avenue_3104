@@ -2794,6 +2794,11 @@ input[type="radio"]:checked::before {
 .latest-post-title a {
     color: var(--text-primary);
     text-decoration: none;
+    min-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
 }
 .latest-post-title a:hover {
     color: var(--primary-light);
