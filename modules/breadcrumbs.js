@@ -229,28 +229,16 @@ const BreadcrumbsModule = (function () {
             actionsHtml += escapeHtml(actionText) + '</a>';
         }
 
-        // "current_forum" link (bottom bar only)
-        var currentForumLink = legacyBar.querySelector('.left.Sub .current_forum');
-        var currentForumHtml = '';
-        if (currentForumLink) {
-            currentForumHtml = '<a href="' + escapeHtml(currentForumLink.getAttribute('href')) + '" class="modern-current-forum">' +
-                '<i class="fa-regular fa-folder" aria-hidden="true"></i> ' + escapeHtml(currentForumLink.textContent.trim()) + '</a>';
-        }
+        // current_forum link intentionally skipped
 
         return {
             pageItems: pageItems,
-            actionsHtml: actionsHtml,
-            currentForumHtml: currentForumHtml
+            actionsHtml: actionsHtml
         };
     }
 
     function buildPaginationHtml(data) {
         var html = '<div class="modern-pagination-bar">';
-
-        // Current forum link (left)
-        if (data.currentForumHtml) {
-            html += '<div class="modern-pagination-forum">' + data.currentForumHtml + '</div>';
-        }
 
         // Page numbers / jump
         if (data.pageItems.length > 0) {
@@ -309,7 +297,6 @@ const BreadcrumbsModule = (function () {
     function convertPagination(legacyBar) {
         if (!legacyBar) return;
 
-        // Determine insertion point: after posts on topic pages, else after board/topic list
         var insertAfter = null;
         var postsContainer = document.getElementById(CONFIG.POSTS_CONTAINER_ID);
         if (postsContainer) {
@@ -328,7 +315,6 @@ const BreadcrumbsModule = (function () {
         var data = extractPaginationData(legacyBar);
         container.innerHTML = buildPaginationHtml(data);
 
-        // Attach jump form behaviour
         var jumpForm = container.querySelector('.modern-jump-form');
         if (jumpForm) {
             var jumpInput = jumpForm.querySelector('.modern-jump-input');
@@ -355,7 +341,6 @@ const BreadcrumbsModule = (function () {
     function convertAllPagination() {
         var topBar = document.querySelector(CONFIG.LEGACY_PAGINATION_SELECTOR_TOP);
         var bottomBar = document.querySelector(CONFIG.LEGACY_PAGINATION_SELECTOR_BOTTOM);
-        // Prefer bottom bar if both exist (topic pages usually have both)
         var legacyBar = bottomBar || topBar;
         if (legacyBar) convertPagination(legacyBar);
     }
