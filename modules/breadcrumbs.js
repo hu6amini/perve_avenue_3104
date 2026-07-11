@@ -17,9 +17,7 @@ const BreadcrumbsModule = (function () {
         LEGACY_PAGINATION_SELECTOR: '.navsub.top.Justify',
         MODERN_PAGINATION_ID: 'modern-pagination',
         WRAPPER_ID: 'modern-forum-wrapper',
-        INSERT_AFTER_SELECTOR: '.carousel-wrapper',
-        BOARD_LIST_ID: 'modern-board-list',
-        TOPIC_LIST_ID: 'modern-topic-list'
+        INSERT_AFTER_SELECTOR: '.carousel-wrapper'
     });
 
     // =========================================================================
@@ -33,7 +31,6 @@ const BreadcrumbsModule = (function () {
     };
 
     function extractPageJumpParams(hrefOrOnclick) {
-        // Legacy uses href="javascript:page_jump('...',2,30)" or onclick="page_jump(...)"
         if (!hrefOrOnclick) return null;
         var match = hrefOrOnclick.match(/page_jump\('([^']+)'\s*,\s*(\d+)\s*,\s*(\d+)\)/);
         if (match) {
@@ -53,7 +50,7 @@ const BreadcrumbsModule = (function () {
         return document.getElementById(CONFIG.WRAPPER_ID);
     }
 
-    function getOrCreateContainer(id, tagName, className, insertAfterSelector) {
+    function getOrCreateContainer(id, tagName, className, appendToWrapper) {
         const wrapper = getWrapper();
         if (!wrapper) return null;
 
@@ -64,11 +61,16 @@ const BreadcrumbsModule = (function () {
         container.id = id;
         container.className = className || id;
 
-        const referenceNode = wrapper.querySelector(insertAfterSelector);
-        if (referenceNode) {
-            referenceNode.insertAdjacentElement('afterend', container);
-        } else {
+        if (appendToWrapper) {
             wrapper.appendChild(container);
+        } else {
+            // Insert after carousel for breadcrumb
+            const referenceNode = wrapper.querySelector(CONFIG.INSERT_AFTER_SELECTOR);
+            if (referenceNode) {
+                referenceNode.insertAdjacentElement('afterend', container);
+            } else {
+                wrapper.appendChild(container);
+            }
         }
         return container;
     }
@@ -133,7 +135,7 @@ const BreadcrumbsModule = (function () {
         var legacyNav = document.querySelector(CONFIG.LEGACY_NAV_SELECTOR);
         if (!legacyNav) return;
 
-        var container = getOrCreateContainer(CONFIG.MODERN_BREADCRUMB_ID, 'nav', 'modern-breadcrumbs', CONFIG.INSERT_AFTER_SELECTOR);
+        var container = getOrCreateContainer(CONFIG.MODERN_BREADCRUMB_ID, 'nav', 'modern-breadcrumbs', false);
         if (!container) return;
 
         var items = extractBreadcrumbItems(legacyNav);
@@ -254,17 +256,8 @@ const BreadcrumbsModule = (function () {
         var legacyBar = document.querySelector(CONFIG.LEGACY_PAGINATION_SELECTOR);
         if (!legacyBar) return;
 
-        // Insert after the board/topic list if present, else after carousel
-        var boardList = document.getElementById(CONFIG.BOARD_LIST_ID);
-        var topicList = document.getElementById(CONFIG.TOPIC_LIST_ID);
-        var insertAfterSelector = CONFIG.INSERT_AFTER_SELECTOR;
-        if (topicList) {
-            insertAfterSelector = '#' + CONFIG.TOPIC_LIST_ID;
-        } else if (boardList) {
-            insertAfterSelector = '#' + CONFIG.BOARD_LIST_ID;
-        }
-
-        var container = getOrCreateContainer(CONFIG.MODERN_PAGINATION_ID, 'div', 'modern-pagination', insertAfterSelector);
+        // Simply append to wrapper – ForumBoardsModule will reorder it later
+        var container = getOrCreateContainer(CONFIG.MODERN_PAGINATION_ID, 'div', 'modern-pagination', true);
         if (!container) return;
 
         var data = extractPaginationData(legacyBar);
@@ -275,7 +268,6 @@ const BreadcrumbsModule = (function () {
         if (jumpForm) {
             var jumpInput = jumpForm.querySelector('.modern-jump-input');
             var jumpBtn = jumpForm.querySelector('.modern-jump-btn');
-            // Get jump params from the first page item with type 'jump'
             var jumpParams = null;
             data.pageItems.forEach(function (item) {
                 if (item.type === 'jump') jumpParams = item;
