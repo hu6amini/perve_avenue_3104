@@ -1,12 +1,13 @@
 /* =============================================
    Breadcrumbs & Pagination Module – Emerald Theme
-   Modernises legacy .nav list AND .navsub.top.Justify
-   into accessible breadcrumb + bottom action bar.
+   Modernises legacy .nav, .navsub.top.Justify,
+   and .navsub.bottom.Justify into accessible
+   breadcrumb + bottom action bar.
    ============================================= */
 'use strict';
 
 const BreadcrumbsModule = (function () {
-    console.log('🔥 BreadcrumbsModule loaded (breadcrumbs + pagination)');
+    console.log('🔥 BreadcrumbsModule loaded (breadcrumbs + pagination + first/last)');
 
     // =========================================================================
     // CONFIGURATION
@@ -14,10 +15,14 @@ const BreadcrumbsModule = (function () {
     const CONFIG = Object.freeze({
         LEGACY_NAV_SELECTOR: 'ul.nav',
         MODERN_BREADCRUMB_ID: 'modern-breadcrumbs',
-        LEGACY_PAGINATION_SELECTOR: '.navsub.top.Justify',
+        LEGACY_PAGINATION_SELECTOR_TOP: '.navsub.top.Justify',
+        LEGACY_PAGINATION_SELECTOR_BOTTOM: '.navsub.bottom.Justify',
         MODERN_PAGINATION_ID: 'modern-pagination',
         WRAPPER_ID: 'modern-forum-wrapper',
-        INSERT_AFTER_SELECTOR: '.carousel-wrapper'
+        INSERT_AFTER_SELECTOR: '.carousel-wrapper',
+        BOARD_LIST_ID: 'modern-board-list',
+        TOPIC_LIST_ID: 'modern-topic-list',
+        POSTS_CONTAINER_ID: 'posts-container'
     });
 
     // =========================================================================
@@ -50,7 +55,7 @@ const BreadcrumbsModule = (function () {
         return document.getElementById(CONFIG.WRAPPER_ID);
     }
 
-    function getOrCreateContainer(id, tagName, className, appendToWrapper) {
+    function getOrCreateContainer(id, tagName, className, insertAfterSelector, appendToWrapper) {
         const wrapper = getWrapper();
         if (!wrapper) return null;
 
@@ -63,14 +68,15 @@ const BreadcrumbsModule = (function () {
 
         if (appendToWrapper) {
             wrapper.appendChild(container);
-        } else {
-            // Insert after carousel for breadcrumb
-            const referenceNode = wrapper.querySelector(CONFIG.INSERT_AFTER_SELECTOR);
+        } else if (insertAfterSelector) {
+            const referenceNode = wrapper.querySelector(insertAfterSelector);
             if (referenceNode) {
                 referenceNode.insertAdjacentElement('afterend', container);
             } else {
                 wrapper.appendChild(container);
             }
+        } else {
+            wrapper.appendChild(container);
         }
         return container;
     }
@@ -135,7 +141,7 @@ const BreadcrumbsModule = (function () {
         var legacyNav = document.querySelector(CONFIG.LEGACY_NAV_SELECTOR);
         if (!legacyNav) return;
 
-        var container = getOrCreateContainer(CONFIG.MODERN_BREADCRUMB_ID, 'nav', 'modern-breadcrumbs', false);
+        var container = getOrCreateContainer(CONFIG.MODERN_BREADCRUMB_ID, 'nav', 'modern-breadcrumbs', CONFIG.INSERT_AFTER_SELECTOR);
         if (!container) return;
 
         var items = extractBreadcrumbItems(legacyNav);
@@ -156,17 +162,37 @@ const BreadcrumbsModule = (function () {
                 var li = lis[i];
                 var link = li.querySelector('a');
                 var isCurrent = li.classList.contains('current');
+                var isFirst = li.classList.contains('first');
+                var isLastPost = li.classList.contains('lastpost');
+                var isBreak = li.classList.contains('break');
+
+                if (isBreak) {
+                    pageItems.push({ type: 'ellipsis' });
+                    continue;
+                }
 
                 if (link) {
                     var href = link.getAttribute('href') || '';
                     var jumpParams = extractPageJumpParams(href);
+
                     if (jumpParams) {
                         pageItems.push({
                             type: 'jump',
                             totalPages: jumpParams.totalPages,
                             entriesPerPage: jumpParams.entriesPerPage,
-                            baseUrl: jumpParams.baseUrl,
-                            text: link.textContent.trim()
+                            baseUrl: jumpParams.baseUrl
+                        });
+                    } else if (isFirst) {
+                        pageItems.push({
+                            type: 'first',
+                            url: href,
+                            text: 'First page'
+                        });
+                    } else if (isLastPost) {
+                        pageItems.push({
+                            type: 'lastpost',
+                            url: href,
+                            text: 'First unread post'
                         });
                     } else {
                         pageItems.push({
@@ -186,30 +212,45 @@ const BreadcrumbsModule = (function () {
             }
         }
 
-        // Extract action button (e.g., "New Topic")
-        var actionBtn = legacyBar.querySelector('.right.Sub .buttons a');
-        var actionHtml = '';
-        if (actionBtn) {
+        // Action buttons (Reply / New Topic)
+        var actionButtons = legacyBar.querySelectorAll('.right.Sub .buttons a');
+        var actionsHtml = '';
+        for (var j = 0; j < actionButtons.length; j++) {
+            var actionBtn = actionButtons[j];
             var actionSpan = actionBtn.querySelector('span');
             var actionIcon = actionSpan ? actionSpan.querySelector('i') : null;
             var iconClass = actionIcon ? actionIcon.className : '';
             var actionText = actionSpan ? actionSpan.textContent.trim() : actionBtn.textContent.trim();
             var actionHref = actionBtn.getAttribute('href');
-            actionHtml = '<a href="' + escapeHtml(actionHref) + '" class="modern-btn modern-btn-primary modern-pagination-action">';
+            actionsHtml += '<a href="' + escapeHtml(actionHref) + '" class="modern-btn modern-btn-primary modern-pagination-action">';
             if (iconClass) {
-                actionHtml += '<i class="' + escapeHtml(iconClass) + '" aria-hidden="true"></i> ';
+                actionsHtml += '<i class="' + escapeHtml(iconClass) + '" aria-hidden="true"></i> ';
             }
-            actionHtml += escapeHtml(actionText) + '</a>';
+            actionsHtml += escapeHtml(actionText) + '</a>';
+        }
+
+        // "current_forum" link (bottom bar only)
+        var currentForumLink = legacyBar.querySelector('.left.Sub .current_forum');
+        var currentForumHtml = '';
+        if (currentForumLink) {
+            currentForumHtml = '<a href="' + escapeHtml(currentForumLink.getAttribute('href')) + '" class="modern-current-forum">' +
+                '<i class="fa-regular fa-folder" aria-hidden="true"></i> ' + escapeHtml(currentForumLink.textContent.trim()) + '</a>';
         }
 
         return {
             pageItems: pageItems,
-            actionHtml: actionHtml
+            actionsHtml: actionsHtml,
+            currentForumHtml: currentForumHtml
         };
     }
 
     function buildPaginationHtml(data) {
         var html = '<div class="modern-pagination-bar">';
+
+        // Current forum link (left)
+        if (data.currentForumHtml) {
+            html += '<div class="modern-pagination-forum">' + data.currentForumHtml + '</div>';
+        }
 
         // Page numbers / jump
         if (data.pageItems.length > 0) {
@@ -217,13 +258,26 @@ const BreadcrumbsModule = (function () {
             html += '<ol class="modern-page-list">';
 
             data.pageItems.forEach(function (item) {
-                if (item.type === 'jump') {
-                    // Modern inline page-jump form
+                if (item.type === 'ellipsis') {
+                    html += '<li class="modern-page-item modern-page-ellipsis"><span>…</span></li>';
+                } else if (item.type === 'jump') {
                     html += '<li class="modern-page-item modern-page-jump">';
                     html += '<form class="modern-jump-form" onsubmit="return false;">';
                     html += '<input type="number" class="modern-jump-input" min="1" max="' + item.totalPages + '" value="" placeholder="Pg" aria-label="Jump to page">';
                     html += '<button type="submit" class="modern-jump-btn modern-btn modern-btn-secondary">Go</button>';
                     html += '</form>';
+                    html += '</li>';
+                } else if (item.type === 'first') {
+                    html += '<li class="modern-page-item modern-page-first">';
+                    html += '<a href="' + escapeHtml(item.url) + '" class="modern-page-link modern-page-icon-link" title="' + escapeHtml(item.text) + '" aria-label="' + escapeHtml(item.text) + '">';
+                    html += '<i class="fa-regular fa-angles-left" aria-hidden="true"></i>';
+                    html += '</a>';
+                    html += '</li>';
+                } else if (item.type === 'lastpost') {
+                    html += '<li class="modern-page-item modern-page-lastpost">';
+                    html += '<a href="' + escapeHtml(item.url) + '" class="modern-page-link modern-page-icon-link" title="' + escapeHtml(item.text) + '" aria-label="' + escapeHtml(item.text) + '">';
+                    html += '<i class="fa-regular fa-arrow-down-to-line" aria-hidden="true"></i>';
+                    html += '</a>';
                     html += '</li>';
                 } else if (item.type === 'current') {
                     html += '<li class="modern-page-item modern-page-current"><span aria-current="page">' + escapeHtml(item.text) + '</span></li>';
@@ -243,21 +297,32 @@ const BreadcrumbsModule = (function () {
             html += '</nav>';
         }
 
-        // Action button (e.g., "New Topic")
-        if (data.actionHtml) {
-            html += '<div class="modern-pagination-action-wrap">' + data.actionHtml + '</div>';
+        // Action buttons (right)
+        if (data.actionsHtml) {
+            html += '<div class="modern-pagination-action-wrap">' + data.actionsHtml + '</div>';
         }
 
         html += '</div>';
         return html;
     }
 
-    function convertPagination() {
-        var legacyBar = document.querySelector(CONFIG.LEGACY_PAGINATION_SELECTOR);
+    function convertPagination(legacyBar) {
         if (!legacyBar) return;
 
-        // Simply append to wrapper – ForumBoardsModule will reorder it later
-        var container = getOrCreateContainer(CONFIG.MODERN_PAGINATION_ID, 'div', 'modern-pagination', true);
+        // Determine insertion point: after posts on topic pages, else after board/topic list
+        var insertAfter = null;
+        var postsContainer = document.getElementById(CONFIG.POSTS_CONTAINER_ID);
+        if (postsContainer) {
+            insertAfter = '#' + CONFIG.POSTS_CONTAINER_ID;
+        } else {
+            var topicList = document.getElementById(CONFIG.TOPIC_LIST_ID);
+            var boardList = document.getElementById(CONFIG.BOARD_LIST_ID);
+            if (topicList) insertAfter = '#' + CONFIG.TOPIC_LIST_ID;
+            else if (boardList) insertAfter = '#' + CONFIG.BOARD_LIST_ID;
+            else insertAfter = CONFIG.INSERT_AFTER_SELECTOR;
+        }
+
+        var container = getOrCreateContainer(CONFIG.MODERN_PAGINATION_ID, 'div', 'modern-pagination', insertAfter);
         if (!container) return;
 
         var data = extractPaginationData(legacyBar);
@@ -287,6 +352,14 @@ const BreadcrumbsModule = (function () {
         console.log('[BreadcrumbsModule] Pagination modernised');
     }
 
+    function convertAllPagination() {
+        var topBar = document.querySelector(CONFIG.LEGACY_PAGINATION_SELECTOR_TOP);
+        var bottomBar = document.querySelector(CONFIG.LEGACY_PAGINATION_SELECTOR_BOTTOM);
+        // Prefer bottom bar if both exist (topic pages usually have both)
+        var legacyBar = bottomBar || topBar;
+        if (legacyBar) convertPagination(legacyBar);
+    }
+
     // =========================================================================
     // OBSERVER INTEGRATION
     // =========================================================================
@@ -306,13 +379,24 @@ const BreadcrumbsModule = (function () {
 
         try {
             globalThis.forumObserver.register({
-                id: 'pagination-module',
-                selector: CONFIG.LEGACY_PAGINATION_SELECTOR,
+                id: 'pagination-module-top',
+                selector: CONFIG.LEGACY_PAGINATION_SELECTOR_TOP,
                 priority: 'high',
-                callback: function () { convertPagination(); }
+                callback: function () { convertAllPagination(); }
             });
         } catch (e) {
-            console.error('[BreadcrumbsModule] Pagination observer registration failed:', e);
+            console.error('[BreadcrumbsModule] Top pagination observer registration failed:', e);
+        }
+
+        try {
+            globalThis.forumObserver.register({
+                id: 'pagination-module-bottom',
+                selector: CONFIG.LEGACY_PAGINATION_SELECTOR_BOTTOM,
+                priority: 'high',
+                callback: function () { convertAllPagination(); }
+            });
+        } catch (e) {
+            console.error('[BreadcrumbsModule] Bottom pagination observer registration failed:', e);
         }
 
         console.log('[BreadcrumbsModule] Registered with ForumCoreObserver');
@@ -325,8 +409,9 @@ const BreadcrumbsModule = (function () {
         if (document.querySelector(CONFIG.LEGACY_NAV_SELECTOR)) {
             convertBreadcrumb();
         }
-        if (document.querySelector(CONFIG.LEGACY_PAGINATION_SELECTOR)) {
-            convertPagination();
+        if (document.querySelector(CONFIG.LEGACY_PAGINATION_SELECTOR_TOP) ||
+            document.querySelector(CONFIG.LEGACY_PAGINATION_SELECTOR_BOTTOM)) {
+            convertAllPagination();
         }
         registerObserver();
         console.log('[BreadcrumbsModule] Initialised');
@@ -339,7 +424,7 @@ const BreadcrumbsModule = (function () {
         initialize: initialize,
         refresh: function () {
             convertBreadcrumb();
-            convertPagination();
+            convertAllPagination();
         }
     };
 })();
