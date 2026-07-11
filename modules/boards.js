@@ -57,6 +57,7 @@ const ForumBoardsModule = (function () {
             'modern-latest-posts',
             'modern-board-list',
             'modern-topic-list',
+            'modern-pagination',
             'modern-stats',
             'modern-online-list'
         ],
