@@ -313,23 +313,27 @@ const ForumBoardsModule = (function () {
     // =========================================================================
     function getWrapper() { return document.getElementById(CONFIG.WRAPPER_ID); }
 
-    function getOrCreateContainer(containerId) {
-        const wrapper = getWrapper();
-        if (!wrapper) return null;
-        let container = document.getElementById(containerId);
-        if (container) return container;
+function getOrCreateContainer(containerId) {
+    const wrapper = getWrapper();
+    if (!wrapper) return null;
+    let container = document.getElementById(containerId);
+    if (container) return container;
 
-        container = document.createElement('div');
-        container.id = containerId;
-        container.className = containerId;
-        const afterEl = wrapper.querySelector(CONFIG.INSERT_AFTER_SELECTOR);
-        if (afterEl) {
-            afterEl.insertAdjacentElement('afterend', container);
-        } else {
-            wrapper.appendChild(container);
-        }
-        return container;
+    container = document.createElement('div');
+    container.id = containerId;
+    container.className = containerId;
+
+    // Prefer inserting after the modern breadcrumb if it exists,
+    // otherwise fall back to after the carousel
+    const breadcrumb = document.getElementById('modern-breadcrumbs');
+    const afterEl = breadcrumb || wrapper.querySelector(CONFIG.INSERT_AFTER_SELECTOR);
+    if (afterEl) {
+        afterEl.insertAdjacentElement('afterend', container);
+    } else {
+        wrapper.appendChild(container);
     }
+    return container;
+}
 
     function reorderContainers() {
         const wrapper = getWrapper();
