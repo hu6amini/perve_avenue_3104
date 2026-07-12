@@ -159,37 +159,37 @@ const BreadcrumbsModule = (function () {
     // =========================================================================
     // TOPIC HEADER (only on body#topic)
     // =========================================================================
-    function extractTopicHeaderData() {
-        var titleEl = document.querySelector(CONFIG.LEGACY_TITLE_SELECTOR);
-        var topicTitle = titleEl ? titleEl.textContent.trim() : '';
+function extractTopicHeaderData() {
+    var titleEl = document.querySelector(CONFIG.LEGACY_TITLE_SELECTOR);
+    var topicTitle = titleEl ? titleEl.textContent.trim() : '';
 
-        var statsEl = document.querySelector(CONFIG.LEGACY_STATS_SELECTOR);
-        var replyCount = '';
-        var viewCount = '';
-        if (statsEl) {
-            var leftSub = statsEl.querySelector('.left.Sub');
-            if (leftSub) {
-                var text = leftSub.textContent || '';
-                var replyMatch = text.match(/(\d+)\s*repl(?:y|ies)/i);
-                if (replyMatch) replyCount = replyMatch[1];
-                var viewsSpan = leftSub.querySelector('.views');
-                if (viewsSpan) {
-                    var viewMatch = viewsSpan.textContent.match(/(\d+)/);
-                    if (viewMatch) viewCount = viewMatch[1];
-                }
+    var statsEl = document.querySelector(CONFIG.LEGACY_STATS_SELECTOR);
+    var replyCount = '';
+    var viewCount = '';
+    if (statsEl) {
+        var leftSub = statsEl.querySelector('.left.Sub');
+        if (leftSub) {
+            var text = leftSub.textContent || '';
+            var replyMatch = text.match(/(\d+)\s*repl(?:y|ies)/i);
+            if (replyMatch) replyCount = replyMatch[1];
+            var viewsSpan = leftSub.querySelector('.views');
+            if (viewsSpan) {
+                var viewMatch = viewsSpan.textContent.match(/([\d,]+)/);
+                if (viewMatch) viewCount = viewMatch[1];
             }
         }
-
-        // Share link (AddToAny)
-        var shareLink = statsEl ? statsEl.querySelector('a.a2a_dd') : null;
-
-        return {
-            topicTitle: topicTitle,
-            replyCount: replyCount,
-            viewCount: viewCount,
-            shareLink: shareLink
-        };
     }
+
+    // Share link (AddToAny)
+    var shareLink = statsEl ? statsEl.querySelector('a.a2a_dd') : null;
+
+    return {
+        topicTitle: topicTitle,
+        replyCount: replyCount,
+        viewCount: viewCount,
+        shareLink: shareLink
+    };
+}
 
     function buildTopicHeaderHtml(data) {
         if (!data.topicTitle) return '';
