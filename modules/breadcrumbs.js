@@ -224,27 +224,60 @@ function extractTopicHeaderData() {
     }
 
 function convertTopicHeader() {
-    if (document.body.id !== 'topic') return;
+    // Force a debug message so we know the function is called
+    console.log('[BreadcrumbsModule] convertTopicHeader called, body.id:', document.body.id);
 
-    var data = extractTopicHeaderData();
-
-    // Fallback: if no title was extracted from the legacy mtitle, use the breadcrumb
-    if (!data.topicTitle) {
-        var breadcrumb = document.getElementById(CONFIG.MODERN_BREADCRUMB_ID);
-        if (breadcrumb) {
-            var currentEl = breadcrumb.querySelector('.modern-breadcrumb-item--current .modern-breadcrumb-text');
-            if (currentEl) {
-                data.topicTitle = currentEl.textContent.trim();
-            }
-        }
+    if (document.body.id !== 'topic') {
+        console.log('[BreadcrumbsModule] Skipping – not a topic page');
+        return;
     }
 
+    var data = extractTopicHeaderData();
+    console.log('[BreadcrumbsModule] extractTopicHeaderData result:', JSON.stringify(data));
+
+    // If no title, wait a moment and try again (legacy DOM may be hidden by CSS)
+    if (!data.topicTitle) {
+        console.log('[BreadcrumbsModule] No title on first try – retrying in 100ms');
+        setTimeout(function () {
+            var retryData = extractTopicHeaderData();
+            console.log('[BreadcrumbsModule] Retry data:', JSON.stringify(retryData));
+            if (retryData.topicTitle) {
+                renderTopicHeader(retryData);
+            } else {
+                // Last resort: use breadcrumb
+                var breadcrumb = document.getElementById(CONFIG.MODERN_BREADCRUMB_ID);
+                if (breadcrumb) {
+                    var currentEl = breadcrumb.querySelector('.modern-breadcrumb-item--current .modern-breadcrumb-text');
+                    if (currentEl) {
+                        retryData.topicTitle = currentEl.textContent.trim();
+                        console.log('[BreadcrumbsModule] Using breadcrumb title:', retryData.topicTitle);
+                        renderTopicHeader(retryData);
+                    }
+                }
+            }
+        }, 100);
+        return;
+    }
+
+    renderTopicHeader(data);
+}
+
+function renderTopicHeader(data) {
     if (!data.topicTitle) return;
 
-    var container = getOrCreateContainer(CONFIG.MODERN_TOPIC_HEADER_ID, 'div', 'modern-topic-header', '#' + CONFIG.MODERN_BREADCRUMB_ID);
-    if (!container) return;
+    var container = getOrCreateContainer(
+        CONFIG.MODERN_TOPIC_HEADER_ID,
+        'div',
+        'modern-topic-header',
+        '#' + CONFIG.MODERN_BREADCRUMB_ID
+    );
+    if (!container) {
+        console.log('[BreadcrumbsModule] Could not create topic header container');
+        return;
+    }
 
     container.innerHTML = buildTopicHeaderHtml(data);
+    console.log('[BreadcrumbsModule] Topic header rendered');
 
     if (data.shareLink) {
         var shareBtn = container.querySelector('.modern-share-topic-btn');
@@ -254,8 +287,6 @@ function convertTopicHeader() {
             });
         }
     }
-
-    console.log('[BreadcrumbsModule] Topic header modernised');
 }
 
     // =========================================================================
