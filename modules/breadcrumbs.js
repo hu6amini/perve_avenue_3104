@@ -24,7 +24,7 @@ const BreadcrumbsModule = (function () {
         TOPIC_LIST_ID: 'modern-topic-list',
         POSTS_CONTAINER_ID: 'posts-container',
 
-        // Topic header
+        // Topic header (only on body#topic)
         LEGACY_TITLE_SELECTOR: 'h2.mtitle',
         LEGACY_STATS_SELECTOR: '.title.bottom.Item.Justify',
         MODERN_TOPIC_HEADER_ID: 'modern-topic-header',
@@ -157,7 +157,7 @@ const BreadcrumbsModule = (function () {
     }
 
     // =========================================================================
-    // TOPIC HEADER
+    // TOPIC HEADER (only on body#topic)
     // =========================================================================
     function extractTopicHeaderData() {
         var titleEl = document.querySelector(CONFIG.LEGACY_TITLE_SELECTOR);
@@ -198,7 +198,6 @@ const BreadcrumbsModule = (function () {
         html += '<div class="topic-title-content">';
         html += '<h1 class="topic-title">' + escapeHtml(data.topicTitle) + '</h1>';
 
-        // Stats line: views and replies
         if (data.viewCount || data.replyCount) {
             html += '<div class="topic-meta">';
             if (data.viewCount) {
@@ -210,9 +209,8 @@ const BreadcrumbsModule = (function () {
             html += '</div>';
         }
 
-        html += '</div>'; // topic-title-content
+        html += '</div>';
 
-        // Share button (only if legacy share link exists)
         if (data.shareLink) {
             html += '<div class="topic-actions">';
             html += '<button class="btn btn-icon modern-share-topic-btn" data-action="share-topic" title="Share topic" aria-label="Share topic">';
@@ -221,21 +219,22 @@ const BreadcrumbsModule = (function () {
             html += '</div>';
         }
 
-        html += '</div>'; // topic-header
+        html += '</div>';
         return html;
     }
 
     function convertTopicHeader() {
+        // Only run on topic pages
+        if (document.body.id !== 'topic') return;
+
         var data = extractTopicHeaderData();
         if (!data.topicTitle) return;
 
-        // Insert right after the breadcrumbs
         var container = getOrCreateContainer(CONFIG.MODERN_TOPIC_HEADER_ID, 'div', 'modern-topic-header', '#' + CONFIG.MODERN_BREADCRUMB_ID);
         if (!container) return;
 
         container.innerHTML = buildTopicHeaderHtml(data);
 
-        // Share button click → trigger legacy AddToAny
         if (data.shareLink) {
             var shareBtn = container.querySelector('.modern-share-topic-btn');
             if (shareBtn) {
@@ -455,11 +454,13 @@ const BreadcrumbsModule = (function () {
             console.error('[BreadcrumbsModule] Breadcrumb observer registration failed:', e);
         }
 
+        // Topic header – only activate on topic pages
         try {
             globalThis.forumObserver.register({
                 id: 'topic-header-module',
-                selector: CONFIG.LEGACY_TITLE_SELECTOR + ', ' + CONFIG.LEGACY_STATS_SELECTOR,
+                selector: CONFIG.LEGACY_TITLE_SELECTOR,
                 priority: 'high',
+                pageTypes: ['topic'],   // ← only fires on body#topic
                 callback: function () { convertTopicHeader(); }
             });
         } catch (e) {
@@ -498,13 +499,19 @@ const BreadcrumbsModule = (function () {
         if (document.querySelector(CONFIG.LEGACY_NAV_SELECTOR)) {
             convertBreadcrumb();
         }
-        if (document.querySelector(CONFIG.LEGACY_TITLE_SELECTOR) || document.querySelector(CONFIG.LEGACY_STATS_SELECTOR)) {
-            convertTopicHeader();
+
+        // Topic header only on topic pages
+        if (document.body.id === 'topic') {
+            if (document.querySelector(CONFIG.LEGACY_TITLE_SELECTOR)) {
+                convertTopicHeader();
+            }
         }
+
         if (document.querySelector(CONFIG.LEGACY_PAGINATION_SELECTOR_TOP) ||
             document.querySelector(CONFIG.LEGACY_PAGINATION_SELECTOR_BOTTOM)) {
             convertAllPagination();
         }
+
         registerObserver();
         console.log('[BreadcrumbsModule] Initialised');
     }
@@ -516,7 +523,7 @@ const BreadcrumbsModule = (function () {
         initialize: initialize,
         refresh: function () {
             convertBreadcrumb();
-            convertTopicHeader();
+            if (document.body.id === 'topic') convertTopicHeader();
             convertAllPagination();
         }
     };
