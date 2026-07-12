@@ -1,6 +1,8 @@
 /* =============================================
-   Breadcrumbs, Pagination & Topic Header Module
-   Emerald Theme
+   Breadcrumbs, Pagination & Topic Header Module – Emerald Theme
+   Modernises legacy .nav, .navsub.*.Justify,
+   h2.mtitle and .title.bottom.Item.Justify
+   into accessible breadcrumb, pagination and topic header.
    ============================================= */
 'use strict';
 
@@ -13,20 +15,20 @@ const BreadcrumbsModule = (function () {
     const CONFIG = Object.freeze({
         LEGACY_NAV_SELECTOR: 'ul.nav',
         MODERN_BREADCRUMB_ID: 'modern-breadcrumbs',
-
         LEGACY_PAGINATION_SELECTOR_TOP: '.navsub.top.Justify',
         LEGACY_PAGINATION_SELECTOR_BOTTOM: '.navsub.bottom.Justify',
         MODERN_PAGINATION_ID: 'modern-pagination',
-
-        LEGACY_TITLE_TABLE_SELECTOR: 'table.mback',
-        LEGACY_STATS_BAR_SELECTOR: '.title.bottom.Item.Justify',
-        MODERN_TOPIC_HEADER_ID: 'modern-topic-header',
-
         WRAPPER_ID: 'modern-forum-wrapper',
         INSERT_AFTER_SELECTOR: '.carousel-wrapper',
         BOARD_LIST_ID: 'modern-board-list',
         TOPIC_LIST_ID: 'modern-topic-list',
-        POSTS_CONTAINER_ID: 'posts-container'
+        POSTS_CONTAINER_ID: 'posts-container',
+
+        // Topic header
+        LEGACY_TITLE_SELECTOR: 'h2.mtitle',
+        LEGACY_STATS_SELECTOR: '.title.bottom.Item.Justify',
+        MODERN_TOPIC_HEADER_ID: 'modern-topic-header',
+        MODERN_BREADCRUMB_ID: 'modern-breadcrumbs' // header goes right after this
     });
 
     // =========================================================================
@@ -59,7 +61,7 @@ const BreadcrumbsModule = (function () {
         return document.getElementById(CONFIG.WRAPPER_ID);
     }
 
-    function getOrCreateContainer(id, tagName, className, insertAfterSelector) {
+    function getOrCreateContainer(id, tagName, className, insertAfterSelector, appendToWrapper) {
         const wrapper = getWrapper();
         if (!wrapper) return null;
 
@@ -70,9 +72,15 @@ const BreadcrumbsModule = (function () {
         container.id = id;
         container.className = className || id;
 
-        const referenceNode = wrapper.querySelector(insertAfterSelector);
-        if (referenceNode) {
-            referenceNode.insertAdjacentElement('afterend', container);
+        if (appendToWrapper) {
+            wrapper.appendChild(container);
+        } else if (insertAfterSelector) {
+            const referenceNode = wrapper.querySelector(insertAfterSelector);
+            if (referenceNode) {
+                referenceNode.insertAdjacentElement('afterend', container);
+            } else {
+                wrapper.appendChild(container);
+            }
         } else {
             wrapper.appendChild(container);
         }
@@ -113,19 +121,24 @@ const BreadcrumbsModule = (function () {
         if (items.length === 0) return '';
 
         var html = '<ol class="modern-breadcrumb-list">';
+
         items.forEach(function (item, index) {
             var isLast = index === items.length - 1;
             html += '<li class="modern-breadcrumb-item' + (isLast ? ' modern-breadcrumb-item--current' : '') + '">';
+
             if (item.url && !isLast) {
                 html += '<a href="' + escapeHtml(item.url) + '" class="modern-breadcrumb-link">' + escapeHtml(item.text) + '</a>';
             } else {
                 html += '<span class="modern-breadcrumb-text" aria-current="page">' + escapeHtml(item.text) + '</span>';
             }
+
             if (!isLast) {
                 html += '<i class="fa-regular fa-angle-right modern-breadcrumb-separator" aria-hidden="true"></i>';
             }
+
             html += '</li>';
         });
+
         html += '</ol>';
         return html;
     }
@@ -139,7 +152,100 @@ const BreadcrumbsModule = (function () {
 
         var items = extractBreadcrumbItems(legacyNav);
         container.innerHTML = buildBreadcrumbHtml(items);
+
         console.log('[BreadcrumbsModule] Breadcrumb modernised');
+    }
+
+    // =========================================================================
+    // TOPIC HEADER
+    // =========================================================================
+    function extractTopicHeaderData() {
+        var titleEl = document.querySelector(CONFIG.LEGACY_TITLE_SELECTOR);
+        var topicTitle = titleEl ? titleEl.textContent.trim() : '';
+
+        var statsEl = document.querySelector(CONFIG.LEGACY_STATS_SELECTOR);
+        var replyCount = '';
+        var viewCount = '';
+        if (statsEl) {
+            var leftSub = statsEl.querySelector('.left.Sub');
+            if (leftSub) {
+                var text = leftSub.textContent || '';
+                var replyMatch = text.match(/(\d+)\s*repl(?:y|ies)/i);
+                if (replyMatch) replyCount = replyMatch[1];
+                var viewsSpan = leftSub.querySelector('.views');
+                if (viewsSpan) {
+                    var viewMatch = viewsSpan.textContent.match(/(\d+)/);
+                    if (viewMatch) viewCount = viewMatch[1];
+                }
+            }
+        }
+
+        // Share link (AddToAny)
+        var shareLink = statsEl ? statsEl.querySelector('a.a2a_dd') : null;
+
+        return {
+            topicTitle: topicTitle,
+            replyCount: replyCount,
+            viewCount: viewCount,
+            shareLink: shareLink
+        };
+    }
+
+    function buildTopicHeaderHtml(data) {
+        if (!data.topicTitle) return '';
+
+        var html = '<div class="topic-header">';
+        html += '<div class="topic-title-content">';
+        html += '<h1 class="topic-title">' + escapeHtml(data.topicTitle) + '</h1>';
+
+        // Stats line: views and replies
+        if (data.viewCount || data.replyCount) {
+            html += '<div class="topic-meta">';
+            if (data.viewCount) {
+                html += '<span class="topic-stats"><i class="fa-regular fa-eye" aria-hidden="true"></i><span>Views: ' + escapeHtml(data.viewCount) + '</span></span>';
+            }
+            if (data.replyCount) {
+                html += '<span class="topic-stats"><i class="fa-regular fa-comment" aria-hidden="true"></i><span>Replies: ' + escapeHtml(data.replyCount) + '</span></span>';
+            }
+            html += '</div>';
+        }
+
+        html += '</div>'; // topic-title-content
+
+        // Share button (only if legacy share link exists)
+        if (data.shareLink) {
+            html += '<div class="topic-actions">';
+            html += '<button class="btn btn-icon modern-share-topic-btn" data-action="share-topic" title="Share topic" aria-label="Share topic">';
+            html += '<i class="fa-regular fa-share-nodes" aria-hidden="true"></i>';
+            html += '</button>';
+            html += '</div>';
+        }
+
+        html += '</div>'; // topic-header
+        return html;
+    }
+
+    function convertTopicHeader() {
+        var data = extractTopicHeaderData();
+        if (!data.topicTitle) return;
+
+        // Insert right after the breadcrumbs
+        var container = getOrCreateContainer(CONFIG.MODERN_TOPIC_HEADER_ID, 'div', 'modern-topic-header', '#' + CONFIG.MODERN_BREADCRUMB_ID);
+        if (!container) return;
+
+        container.innerHTML = buildTopicHeaderHtml(data);
+
+        // Share button click → trigger legacy AddToAny
+        if (data.shareLink) {
+            var shareBtn = container.querySelector('.modern-share-topic-btn');
+            if (shareBtn) {
+                shareBtn.addEventListener('click', function () {
+                    data.shareLink.click();
+                });
+            }
+        }
+
+        console.log('[BreadcrumbsModule] Topic header modernised');
     }
 
     // =========================================================================
@@ -333,111 +439,54 @@ const BreadcrumbsModule = (function () {
     }
 
     // =========================================================================
-    // TOPIC HEADER
-    // =========================================================================
-    function extractTopicHeaderData() {
-        var titleEl = document.querySelector(CONFIG.LEGACY_TITLE_TABLE_SELECTOR + ' h2.mtitle');
-        var titleText = titleEl ? titleEl.textContent.trim() : '';
-
-        var statsBar = document.querySelector(CONFIG.LEGACY_STATS_BAR_SELECTOR);
-        var viewsCount = '';
-        var repliesCount = '';
-
-        if (statsBar) {
-            var text = statsBar.textContent || '';
-            var repliesMatch = text.match(/(\d[\d,]*)\s*replies/i);
-            var viewsMatch = text.match(/(\d[\d,]*)\s*views/i);
-            repliesCount = repliesMatch ? repliesMatch[1] : '';
-            viewsCount = viewsMatch ? viewsMatch[1] : '';
-        }
-
-        return {
-            title: titleText,
-            views: viewsCount,
-            replies: repliesCount
-        };
-    }
-
-    function buildTopicHeaderHtml(data) {
-        if (!data.title) return '';
-
-        var html = '<div class="topic-header">';
-        html += '<div class="topic-title-content">';
-        html += '<h1 class="topic-title">' + escapeHtml(data.title) + '</h1>';
-        html += '<div class="topic-meta">';
-        if (data.replies) {
-            html += '<span class="topic-stats"><i class="fa-regular fa-comment" aria-hidden="true"></i><span>Replies: ' + escapeHtml(data.replies) + '</span></span>';
-        }
-        if (data.views) {
-            html += '<span class="topic-stats"><i class="fa-regular fa-eye" aria-hidden="true"></i><span>Views: ' + escapeHtml(data.views) + '</span></span>';
-        }
-        html += '</div>';
-        html += '</div>';
-
-        html += '<div class="topic-actions">';
-        html += '<button class="btn btn-icon" id="modern-topic-share-btn" title="Share Topic"><i class="fa-regular fa-share-nodes" aria-hidden="true"></i></button>';
-        html += '</div>';
-
-        html += '</div>';
-        return html;
-    }
-
-    function convertTopicHeader() {
-        var data = extractTopicHeaderData();
-        if (!data.title) return;
-
-        var insertAfter = '#' + CONFIG.MODERN_BREADCRUMB_ID;
-        if (!document.getElementById(CONFIG.MODERN_BREADCRUMB_ID)) {
-            insertAfter = CONFIG.INSERT_AFTER_SELECTOR;
-        }
-
-        var container = getOrCreateContainer(CONFIG.MODERN_TOPIC_HEADER_ID, 'div', 'modern-topic-header', insertAfter);
-        if (!container) return;
-
-        container.innerHTML = buildTopicHeaderHtml(data);
-
-        var shareBtn = document.getElementById('modern-topic-share-btn');
-        if (shareBtn) {
-            shareBtn.addEventListener('click', function () {
-                var legacyShareLink = document.querySelector(CONFIG.LEGACY_STATS_BAR_SELECTOR + ' .a2a_dd');
-                if (legacyShareLink) {
-                    legacyShareLink.click();
-                } else {
-                    navigator.clipboard.writeText(window.location.href).then(function () {
-                        alert('Link copied to clipboard!');
-                    });
-                }
-            });
-        }
-
-        console.log('[BreadcrumbsModule] Topic header modernised');
-    }
-
-    // =========================================================================
     // OBSERVER INTEGRATION
     // =========================================================================
     function registerObserver() {
         if (!globalThis.forumObserver) return;
 
-        var observers = [
-            { id: 'breadcrumbs-module', selector: CONFIG.LEGACY_NAV_SELECTOR, callback: convertBreadcrumb },
-            { id: 'pagination-module-top', selector: CONFIG.LEGACY_PAGINATION_SELECTOR_TOP, callback: convertAllPagination },
-            { id: 'pagination-module-bottom', selector: CONFIG.LEGACY_PAGINATION_SELECTOR_BOTTOM, callback: convertAllPagination },
-            { id: 'topic-header-module', selector: CONFIG.LEGACY_TITLE_TABLE_SELECTOR, callback: convertTopicHeader }
-        ];
+        try {
+            globalThis.forumObserver.register({
+                id: 'breadcrumbs-module',
+                selector: CONFIG.LEGACY_NAV_SELECTOR,
+                priority: 'high',
+                callback: function () { convertBreadcrumb(); }
+            });
+        } catch (e) {
+            console.error('[BreadcrumbsModule] Breadcrumb observer registration failed:', e);
+        }
 
-        observers.forEach(function (obs) {
-            try {
-                globalThis.forumObserver.register({
-                    id: obs.id,
-                    selector: obs.selector,
-                    priority: 'high',
-                    callback: obs.callback
-                });
-            } catch (e) {
-                console.error('[BreadcrumbsModule] Observer registration failed for ' + obs.id, e);
-            }
-        });
+        try {
+            globalThis.forumObserver.register({
+                id: 'topic-header-module',
+                selector: CONFIG.LEGACY_TITLE_SELECTOR + ', ' + CONFIG.LEGACY_STATS_SELECTOR,
+                priority: 'high',
+                callback: function () { convertTopicHeader(); }
+            });
+        } catch (e) {
+            console.error('[BreadcrumbsModule] Topic header observer registration failed:', e);
+        }
+
+        try {
+            globalThis.forumObserver.register({
+                id: 'pagination-module-top',
+                selector: CONFIG.LEGACY_PAGINATION_SELECTOR_TOP,
+                priority: 'high',
+                callback: function () { convertAllPagination(); }
+            });
+        } catch (e) {
+            console.error('[BreadcrumbsModule] Top pagination observer registration failed:', e);
+        }
+
+        try {
+            globalThis.forumObserver.register({
+                id: 'pagination-module-bottom',
+                selector: CONFIG.LEGACY_PAGINATION_SELECTOR_BOTTOM,
+                priority: 'high',
+                callback: function () { convertAllPagination(); }
+            });
+        } catch (e) {
+            console.error('[BreadcrumbsModule] Bottom pagination observer registration failed:', e);
+        }
 
         console.log('[BreadcrumbsModule] Registered with ForumCoreObserver');
     }
@@ -446,21 +495,29 @@ const BreadcrumbsModule = (function () {
     // INITIALIZATION
     // =========================================================================
     function initialize() {
-        if (document.querySelector(CONFIG.LEGACY_NAV_SELECTOR)) convertBreadcrumb();
+        if (document.querySelector(CONFIG.LEGACY_NAV_SELECTOR)) {
+            convertBreadcrumb();
+        }
+        if (document.querySelector(CONFIG.LEGACY_TITLE_SELECTOR) || document.querySelector(CONFIG.LEGACY_STATS_SELECTOR)) {
+            convertTopicHeader();
+        }
         if (document.querySelector(CONFIG.LEGACY_PAGINATION_SELECTOR_TOP) ||
-            document.querySelector(CONFIG.LEGACY_PAGINATION_SELECTOR_BOTTOM)) convertAllPagination();
-        if (document.querySelector(CONFIG.LEGACY_TITLE_TABLE_SELECTOR + ' h2.mtitle')) convertTopicHeader();
-
+            document.querySelector(CONFIG.LEGACY_PAGINATION_SELECTOR_BOTTOM)) {
+            convertAllPagination();
+        }
         registerObserver();
         console.log('[BreadcrumbsModule] Initialised');
     }
 
+    // =========================================================================
+    // PUBLIC API
+    // =========================================================================
     return {
         initialize: initialize,
         refresh: function () {
             convertBreadcrumb();
-            convertAllPagination();
             convertTopicHeader();
+            convertAllPagination();
         }
     };
 })();
