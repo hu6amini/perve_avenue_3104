@@ -223,29 +223,40 @@ function extractTopicHeaderData() {
         return html;
     }
 
-    function convertTopicHeader() {
-        // Only run on topic pages
-        if (document.body.id !== 'topic') return;
+function convertTopicHeader() {
+    if (document.body.id !== 'topic') return;
 
-        var data = extractTopicHeaderData();
-        if (!data.topicTitle) return;
+    var data = extractTopicHeaderData();
 
-        var container = getOrCreateContainer(CONFIG.MODERN_TOPIC_HEADER_ID, 'div', 'modern-topic-header', '#' + CONFIG.MODERN_BREADCRUMB_ID);
-        if (!container) return;
-
-        container.innerHTML = buildTopicHeaderHtml(data);
-
-        if (data.shareLink) {
-            var shareBtn = container.querySelector('.modern-share-topic-btn');
-            if (shareBtn) {
-                shareBtn.addEventListener('click', function () {
-                    data.shareLink.click();
-                });
+    // Fallback: if no title was extracted from the legacy mtitle, use the breadcrumb
+    if (!data.topicTitle) {
+        var breadcrumb = document.getElementById(CONFIG.MODERN_BREADCRUMB_ID);
+        if (breadcrumb) {
+            var currentEl = breadcrumb.querySelector('.modern-breadcrumb-item--current .modern-breadcrumb-text');
+            if (currentEl) {
+                data.topicTitle = currentEl.textContent.trim();
             }
         }
-
-        console.log('[BreadcrumbsModule] Topic header modernised');
     }
+
+    if (!data.topicTitle) return;
+
+    var container = getOrCreateContainer(CONFIG.MODERN_TOPIC_HEADER_ID, 'div', 'modern-topic-header', '#' + CONFIG.MODERN_BREADCRUMB_ID);
+    if (!container) return;
+
+    container.innerHTML = buildTopicHeaderHtml(data);
+
+    if (data.shareLink) {
+        var shareBtn = container.querySelector('.modern-share-topic-btn');
+        if (shareBtn) {
+            shareBtn.addEventListener('click', function () {
+                data.shareLink.click();
+            });
+        }
+    }
+
+    console.log('[BreadcrumbsModule] Topic header modernised');
+}
 
     // =========================================================================
     // PAGINATION & ACTION BAR
