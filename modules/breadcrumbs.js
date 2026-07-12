@@ -25,7 +25,7 @@ const BreadcrumbsModule = (function () {
         POSTS_CONTAINER_ID: 'posts-container',
 
         // Topic header (only on body#topic)
-        LEGACY_TITLE_SELECTOR: 'h2.mtitle',
+        LEGACY_TITLE_SELECTOR: 'div.mtitle h1, h1.mtitle, h2.mtitle',
         LEGACY_STATS_SELECTOR: '.title.bottom.Item.Justify',
         MODERN_TOPIC_HEADER_ID: 'modern-topic-header',
         MODERN_BREADCRUMB_ID: 'modern-breadcrumbs' // header goes right after this
