@@ -18,7 +18,6 @@ const BreadcrumbsModule = (function () {
         MODERN_BREADCRUMB_ID: 'modern-breadcrumbs',
         LEGACY_PAGINATION_SELECTOR_TOP: '.navsub.top.Justify',
         LEGACY_PAGINATION_SELECTOR_BOTTOM: '.navsub.bottom.Justify',
-        // Additional selectors for pages without action buttons (member posts)
         LEGACY_PAGINATION_PLAIN_TOP: '.navsub.top:not(.Justify)',
         LEGACY_PAGINATION_PLAIN_BOTTOM: '.navsub.bottom:not(.Justify)',
         MODERN_PAGINATION_ID: 'modern-pagination',
@@ -27,13 +26,9 @@ const BreadcrumbsModule = (function () {
         BOARD_LIST_ID: 'modern-board-list',
         TOPIC_LIST_ID: 'modern-topic-list',
         POSTS_CONTAINER_ID: 'posts-container',
-
-        // Topic header (body#topic)
         LEGACY_TITLE_SELECTOR: 'div.mtitle h1, h1.mtitle, h2.mtitle',
         LEGACY_STATS_SELECTOR: '.title.bottom.Item.Justify',
         MODERN_TOPIC_HEADER_ID: 'modern-topic-header',
-
-        // Member posts header (body#search .topic.member_posts)
         MEMBER_POSTS_SELECTOR: '.topic.member_posts'
     });
 
@@ -72,38 +67,36 @@ const BreadcrumbsModule = (function () {
         return document.getElementById(CONFIG.WRAPPER_ID);
     }
 
-function getOrCreateContainer(id, tagName, className, insertAfterSelector, appendToWrapper) {
-    const wrapper = getWrapper();
-    if (!wrapper) return null;
+    function getOrCreateContainer(id, tagName, className, insertAfterSelector, appendToWrapper) {
+        const wrapper = getWrapper();
+        if (!wrapper) return null;
 
-    let container = document.getElementById(id);
-    if (container) return container;
+        let container = document.getElementById(id);
+        if (container) return container;
 
-    container = document.createElement(tagName || 'div');
-    container.id = id;
-    container.className = className || id;
+        container = document.createElement(tagName || 'div');
+        container.id = id;
+        container.className = className || id;
 
-    if (appendToWrapper) {
-        wrapper.appendChild(container);
-    } else if (insertAfterSelector) {
-        const referenceNode = wrapper.querySelector(insertAfterSelector);
-        if (referenceNode) {
-            // Insert after the reference node, but BEFORE its next sibling
-            // This ensures breadcrumb stays right after carousel, before anything else
-            const nextSibling = referenceNode.nextElementSibling;
-            if (nextSibling && nextSibling !== container) {
-                wrapper.insertBefore(container, nextSibling);
+        if (appendToWrapper) {
+            wrapper.appendChild(container);
+        } else if (insertAfterSelector) {
+            const referenceNode = wrapper.querySelector(insertAfterSelector);
+            if (referenceNode) {
+                const nextSibling = referenceNode.nextElementSibling;
+                if (nextSibling && nextSibling !== container) {
+                    wrapper.insertBefore(container, nextSibling);
+                } else {
+                    referenceNode.insertAdjacentElement('afterend', container);
+                }
             } else {
-                referenceNode.insertAdjacentElement('afterend', container);
+                wrapper.appendChild(container);
             }
         } else {
             wrapper.appendChild(container);
         }
-    } else {
-        wrapper.appendChild(container);
+        return container;
     }
-    return container;
-}
 
     // =========================================================================
     // BREADCRUMB
@@ -116,20 +109,10 @@ function getOrCreateContainer(id, tagName, className, insertAfterSelector, appen
             var li = listItems[i];
             var link = li.querySelector('a');
             if (link) {
-                items.push({
-                    text: link.textContent.trim(),
-                    url: link.getAttribute('href'),
-                    isCurrent: false
-                });
+                items.push({ text: link.textContent.trim(), url: link.getAttribute('href'), isCurrent: false });
             } else {
                 var text = li.textContent.trim().replace(/^\u200B/, '');
-                if (text) {
-                    items.push({
-                        text: text,
-                        url: null,
-                        isCurrent: true
-                    });
-                }
+                if (text) items.push({ text: text, url: null, isCurrent: true });
             }
         }
         return items;
@@ -137,28 +120,19 @@ function getOrCreateContainer(id, tagName, className, insertAfterSelector, appen
 
     function buildBreadcrumbHtml(items) {
         if (items.length === 0) return '';
-
         var html = '<ol class="modern-breadcrumb-list">';
-
         items.forEach(function (item, index) {
             var isLast = index === items.length - 1;
-            // An item is the current page only if it has no URL
             var isCurrent = !item.url;
             html += '<li class="modern-breadcrumb-item' + (isCurrent ? ' modern-breadcrumb-item--current' : '') + '">';
-
             if (item.url) {
                 html += '<a href="' + escapeHtml(item.url) + '" class="modern-breadcrumb-link">' + escapeHtml(item.text) + '</a>';
             } else {
                 html += '<span class="modern-breadcrumb-text" aria-current="page">' + escapeHtml(item.text) + '</span>';
             }
-
-            if (!isLast) {
-                html += '<i class="fa-regular fa-angle-right modern-breadcrumb-separator" aria-hidden="true"></i>';
-            }
-
+            if (!isLast) html += '<i class="fa-regular fa-angle-right modern-breadcrumb-separator" aria-hidden="true"></i>';
             html += '</li>';
         });
-
         html += '</ol>';
         return html;
     }
@@ -166,26 +140,20 @@ function getOrCreateContainer(id, tagName, className, insertAfterSelector, appen
     function convertBreadcrumb() {
         var legacyNav = document.querySelector(CONFIG.LEGACY_NAV_SELECTOR);
         if (!legacyNav) return;
-
         var container = getOrCreateContainer(CONFIG.MODERN_BREADCRUMB_ID, 'nav', 'modern-breadcrumbs', CONFIG.INSERT_AFTER_SELECTOR);
         if (!container) return;
-
-        var items = extractBreadcrumbItems(legacyNav);
-        container.innerHTML = buildBreadcrumbHtml(items);
-
+        container.innerHTML = buildBreadcrumbHtml(extractBreadcrumbItems(legacyNav));
         console.log('[BreadcrumbsModule] Breadcrumb modernised');
     }
 
     // =========================================================================
-    // TOPIC HEADER (body#topic)
+    // TOPIC HEADER
     // =========================================================================
     function extractTopicHeaderData() {
         var titleEl = document.querySelector(CONFIG.LEGACY_TITLE_SELECTOR);
         var topicTitle = titleEl ? titleEl.textContent.trim() : '';
-
         var statsEl = document.querySelector(CONFIG.LEGACY_STATS_SELECTOR);
-        var replyCount = '';
-        var viewCount = '';
+        var replyCount = '', viewCount = '';
         if (statsEl) {
             var leftSub = statsEl.querySelector('.left.Sub');
             if (leftSub) {
@@ -199,52 +167,29 @@ function getOrCreateContainer(id, tagName, className, insertAfterSelector, appen
                 }
             }
         }
-
         var shareLink = statsEl ? statsEl.querySelector('a.a2a_dd') : null;
-
-        return {
-            topicTitle: topicTitle,
-            replyCount: replyCount,
-            viewCount: viewCount,
-            shareLink: shareLink
-        };
+        return { topicTitle, replyCount, viewCount, shareLink };
     }
 
     function buildTopicHeaderHtml(data) {
         if (!data.topicTitle) return '';
-
-        var html = '<div class="topic-header">';
-        html += '<div class="topic-title-content">';
-        html += '<h1 class="topic-title">' + escapeHtml(data.topicTitle) + '</h1>';
-
+        var html = '<div class="topic-header"><div class="topic-title-content"><h1 class="topic-title">' + escapeHtml(data.topicTitle) + '</h1>';
         if (data.viewCount || data.replyCount) {
             html += '<div class="topic-meta">';
-            if (data.viewCount) {
-                html += '<span class="topic-stats"><i class="fa-regular fa-eye" aria-hidden="true"></i><span>Views: ' + escapeHtml(data.viewCount) + '</span></span>';
-            }
-            if (data.replyCount) {
-                html += '<span class="topic-stats"><i class="fa-regular fa-comment" aria-hidden="true"></i><span>Replies: ' + escapeHtml(data.replyCount) + '</span></span>';
-            }
+            if (data.viewCount) html += '<span class="topic-stats"><i class="fa-regular fa-eye" aria-hidden="true"></i><span>Views: ' + escapeHtml(data.viewCount) + '</span></span>';
+            if (data.replyCount) html += '<span class="topic-stats"><i class="fa-regular fa-comment" aria-hidden="true"></i><span>Replies: ' + escapeHtml(data.replyCount) + '</span></span>';
             html += '</div>';
         }
-
         html += '</div>';
-
         if (data.shareLink) {
-            html += '<div class="topic-actions">';
-            html += '<button class="btn btn-icon modern-share-topic-btn" data-action="share-topic" title="Share topic" aria-label="Share topic">';
-            html += '<i class="fa-regular fa-share-nodes" aria-hidden="true"></i>';
-            html += '</button>';
-            html += '</div>';
+            html += '<div class="topic-actions"><button class="btn btn-icon modern-share-topic-btn" data-action="share-topic" title="Share topic" aria-label="Share topic"><i class="fa-regular fa-share-nodes" aria-hidden="true"></i></button></div>';
         }
-
         html += '</div>';
         return html;
     }
 
     function convertTopicHeader() {
         if (document.body.id !== 'topic') return;
-
         var data = extractTopicHeaderData();
         if (!data.topicTitle) {
             setTimeout(function () {
@@ -260,34 +205,23 @@ function getOrCreateContainer(id, tagName, className, insertAfterSelector, appen
             }, 100);
             return;
         }
-
         renderTopicHeader(data);
     }
 
     function renderTopicHeader(data) {
         if (!data.topicTitle) return;
-
-        var container = getOrCreateContainer(
-            CONFIG.MODERN_TOPIC_HEADER_ID,
-            'div',
-            'modern-topic-header',
-            '#' + CONFIG.MODERN_BREADCRUMB_ID
-        );
+        var container = getOrCreateContainer(CONFIG.MODERN_TOPIC_HEADER_ID, 'div', 'modern-topic-header', '#' + CONFIG.MODERN_BREADCRUMB_ID);
         if (!container) return;
-
         container.innerHTML = buildTopicHeaderHtml(data);
-        console.log('[BreadcrumbsModule] Topic header rendered');
-
         if (data.shareLink) {
             var shareBtn = container.querySelector('.modern-share-topic-btn');
-            if (shareBtn) {
-                shareBtn.addEventListener('click', function () { data.shareLink.click(); });
-            }
+            if (shareBtn) shareBtn.addEventListener('click', function () { data.shareLink.click(); });
         }
+        console.log('[BreadcrumbsModule] Topic header rendered');
     }
 
     // =========================================================================
-    // MEMBER POSTS HEADER (body#search .topic.member_posts)
+    // MEMBER POSTS HEADER
     // =========================================================================
     function extractMemberPostsHeaderData(container) {
         var mtitleEl = container.querySelector('.mback .mtitle');
@@ -295,35 +229,20 @@ function getOrCreateContainer(id, tagName, className, insertAfterSelector, appen
         var memberName = '';
         var match = rawText.match(/Posts written by\s+(.+)/i);
         if (match) memberName = match[1].trim();
-
         var statsEl = container.querySelector('.title.bottom.Item.Justify .left.Sub');
         var postCount = '';
         if (statsEl) {
             var countMatch = statsEl.textContent.match(/(\d+)\s*repl(?:y|ies)/i);
             if (countMatch) postCount = countMatch[1];
         }
-
-        return {
-            memberName: memberName,
-            postCount: postCount
-        };
+        return { memberName, postCount };
     }
 
     function buildMemberPostsHeaderHtml(data) {
         if (!data.memberName) return '';
-
-        var html = '<div class="topic-header">';
-        html += '<div class="topic-title-content">';
-        html += '<h1 class="topic-title">Posts by ' + escapeHtml(data.memberName) + '</h1>';
-
-        if (data.postCount) {
-            html += '<div class="topic-meta">';
-            html += '<span class="topic-stats"><i class="fa-regular fa-comment" aria-hidden="true"></i><span>Replies: ' + escapeHtml(data.postCount) + '</span></span>';
-            html += '</div>';
-        }
-
-        html += '</div>';
-        html += '</div>';
+        var html = '<div class="topic-header"><div class="topic-title-content"><h1 class="topic-title">Posts by ' + escapeHtml(data.memberName) + '</h1>';
+        if (data.postCount) html += '<div class="topic-meta"><span class="topic-stats"><i class="fa-regular fa-comment" aria-hidden="true"></i><span>Replies: ' + escapeHtml(data.postCount) + '</span></span></div>';
+        html += '</div></div>';
         return html;
     }
 
@@ -331,18 +250,10 @@ function getOrCreateContainer(id, tagName, className, insertAfterSelector, appen
         if (document.body.id !== 'search') return;
         var container = document.querySelector(CONFIG.MEMBER_POSTS_SELECTOR);
         if (!container) return;
-
         var data = extractMemberPostsHeaderData(container);
         if (!data.memberName) return;
-
-        var headerContainer = getOrCreateContainer(
-            CONFIG.MODERN_TOPIC_HEADER_ID,
-            'div',
-            'modern-topic-header',
-            '#' + CONFIG.MODERN_BREADCRUMB_ID
-        );
+        var headerContainer = getOrCreateContainer(CONFIG.MODERN_TOPIC_HEADER_ID, 'div', 'modern-topic-header', '#' + CONFIG.MODERN_BREADCRUMB_ID);
         if (!headerContainer) return;
-
         headerContainer.innerHTML = buildMemberPostsHeaderHtml(data);
         console.log('[BreadcrumbsModule] Member posts header rendered');
     }
@@ -362,34 +273,18 @@ function getOrCreateContainer(id, tagName, className, insertAfterSelector, appen
                 var isFirst = li.classList.contains('first');
                 var isLastPost = li.classList.contains('lastpost');
                 var isBreak = li.classList.contains('break');
-
-                if (isBreak) {
-                    pageItems.push({ type: 'ellipsis' });
-                    continue;
-                }
-
+                if (isBreak) { pageItems.push({ type: 'ellipsis' }); continue; }
                 if (link) {
                     var href = link.getAttribute('href') || '';
                     var jumpParams = extractPageJumpParams(href);
-
                     if (jumpParams) {
-                        pageItems.push({
-                            type: 'jump',
-                            totalPages: jumpParams.totalPages,
-                            entriesPerPage: jumpParams.entriesPerPage,
-                            baseUrl: jumpParams.baseUrl
-                        });
+                        pageItems.push({ type: 'jump', totalPages: jumpParams.totalPages, entriesPerPage: jumpParams.entriesPerPage, baseUrl: jumpParams.baseUrl });
                     } else if (isFirst) {
                         pageItems.push({ type: 'first', url: href, text: 'First page' });
                     } else if (isLastPost) {
                         pageItems.push({ type: 'lastpost', url: href, text: 'First unread post' });
                     } else {
-                        pageItems.push({
-                            type: 'page',
-                            url: href,
-                            text: link.textContent.trim(),
-                            isCurrent: isCurrent
-                        });
+                        pageItems.push({ type: 'page', url: href, text: link.textContent.trim(), isCurrent: isCurrent });
                     }
                 } else {
                     pageItems.push({ type: 'current', text: li.textContent.trim(), isCurrent: true });
@@ -397,7 +292,7 @@ function getOrCreateContainer(id, tagName, className, insertAfterSelector, appen
             }
         }
 
-        // Action buttons (only present on .Justify bars)
+        // Action buttons
         var actionButtons = legacyBar.querySelectorAll('.right.Sub .buttons a');
         var actionsHtml = '';
         for (var j = 0; j < actionButtons.length; j++) {
@@ -409,23 +304,29 @@ function getOrCreateContainer(id, tagName, className, insertAfterSelector, appen
             var actionText = actionSpan ? actionSpan.textContent.trim() : actionBtn.textContent.trim();
 
             var extraClass = 'modern-pagination-action';
-            if (spanClass.indexOf('reply') !== -1) extraClass += ' modern-pagination-action--reply';
-            else if (spanClass.indexOf('newpost') !== -1) extraClass += ' modern-pagination-action--new-topic';
+            var buttonBaseClass = 'modern-btn ';
+            if (spanClass.indexOf('reply') !== -1) {
+                buttonBaseClass += 'modern-btn-secondary';
+                extraClass += ' modern-pagination-action--reply';
+            } else if (spanClass.indexOf('newpost') !== -1) {
+                buttonBaseClass += 'modern-btn-primary';
+                extraClass += ' modern-pagination-action--new-topic';
+            } else {
+                buttonBaseClass += 'modern-btn-primary';
+            }
 
             var displayText = toSentenceCase(actionText);
             var actionHref = actionBtn.getAttribute('href');
-
-            actionsHtml += '<a href="' + escapeHtml(actionHref) + '" class="modern-btn modern-btn-primary ' + extraClass + '">';
+            actionsHtml += '<a href="' + escapeHtml(actionHref) + '" class="' + buttonBaseClass + ' ' + extraClass + '">';
             if (iconClass) actionsHtml += '<i class="' + escapeHtml(iconClass) + '" aria-hidden="true"></i> ';
             actionsHtml += escapeHtml(displayText) + '</a>';
         }
 
-        return { pageItems: pageItems, actionsHtml: actionsHtml };
+        return { pageItems, actionsHtml };
     }
 
     function buildPaginationHtml(data) {
         var html = '<div class="modern-pagination-bar">';
-
         if (data.pageItems.length > 0) {
             html += '<nav class="modern-pagination-pages" aria-label="pagination"><ol class="modern-page-list">';
             data.pageItems.forEach(function (item) {
@@ -457,18 +358,13 @@ function getOrCreateContainer(id, tagName, className, insertAfterSelector, appen
             });
             html += '</ol></nav>';
         }
-
-        if (data.actionsHtml) {
-            html += '<div class="modern-pagination-action-wrap">' + data.actionsHtml + '</div>';
-        }
-
+        if (data.actionsHtml) html += '<div class="modern-pagination-action-wrap">' + data.actionsHtml + '</div>';
         html += '</div>';
         return html;
     }
 
     function convertPagination(legacyBar) {
         if (!legacyBar) return;
-
         var insertAfter = null;
         var postsContainer = document.getElementById(CONFIG.POSTS_CONTAINER_ID);
         if (postsContainer) insertAfter = '#' + CONFIG.POSTS_CONTAINER_ID;
@@ -479,13 +375,10 @@ function getOrCreateContainer(id, tagName, className, insertAfterSelector, appen
             else if (boardList) insertAfter = '#' + CONFIG.BOARD_LIST_ID;
             else insertAfter = CONFIG.INSERT_AFTER_SELECTOR;
         }
-
         var container = getOrCreateContainer(CONFIG.MODERN_PAGINATION_ID, 'div', 'modern-pagination', insertAfter);
         if (!container) return;
-
         var data = extractPaginationData(legacyBar);
         container.innerHTML = buildPaginationHtml(data);
-
         var jumpForm = container.querySelector('.modern-jump-form');
         if (jumpForm) {
             var jumpInput = jumpForm.querySelector('.modern-jump-input');
@@ -497,24 +390,19 @@ function getOrCreateContainer(id, tagName, className, insertAfterSelector, appen
                     var page = parseInt(jumpInput.value, 10);
                     if (isNaN(page) || page < 1) page = 1;
                     if (page > jumpParams.totalPages) page = jumpParams.totalPages;
-                    var start = (page - 1) * jumpParams.entriesPerPage;
-                    window.location.href = jumpParams.baseUrl + '&st=' + start;
+                    window.location.href = jumpParams.baseUrl + '&st=' + (page - 1) * jumpParams.entriesPerPage;
                 });
             }
         }
-
         console.log('[BreadcrumbsModule] Pagination modernised');
     }
 
     function convertAllPagination() {
-        // Try the specific selectors first, then fallback to plain .navsub.top / .bottom that contain .pages
         var topBar = document.querySelector(CONFIG.LEGACY_PAGINATION_SELECTOR_TOP) ||
                      document.querySelector(CONFIG.LEGACY_PAGINATION_PLAIN_TOP + ' .pages')?.closest('.navsub');
         var bottomBar = document.querySelector(CONFIG.LEGACY_PAGINATION_SELECTOR_BOTTOM) ||
                         document.querySelector(CONFIG.LEGACY_PAGINATION_PLAIN_BOTTOM + ' .pages')?.closest('.navsub');
-
-        var legacyBar = bottomBar || topBar;
-        if (legacyBar) convertPagination(legacyBar);
+        if (bottomBar || topBar) convertPagination(bottomBar || topBar);
     }
 
     // =========================================================================
@@ -522,53 +410,12 @@ function getOrCreateContainer(id, tagName, className, insertAfterSelector, appen
     // =========================================================================
     function registerObserver() {
         if (!globalThis.forumObserver) return;
-
-        try {
-            globalThis.forumObserver.register({
-                id: 'breadcrumbs-module',
-                selector: CONFIG.LEGACY_NAV_SELECTOR,
-                priority: 'high',
-                callback: function () { convertBreadcrumb(); }
-            });
-        } catch (e) { console.error('[BreadcrumbsModule] Breadcrumb observer registration failed:', e); }
-
-        try {
-            globalThis.forumObserver.register({
-                id: 'topic-header-module',
-                selector: CONFIG.LEGACY_TITLE_SELECTOR,
-                priority: 'high',
-                pageTypes: ['topic'],
-                callback: function () { convertTopicHeader(); }
-            });
-        } catch (e) { console.error('[BreadcrumbsModule] Topic header observer registration failed:', e); }
-
-        try {
-            globalThis.forumObserver.register({
-                id: 'member-posts-header-module',
-                selector: CONFIG.MEMBER_POSTS_SELECTOR,
-                priority: 'high',
-                callback: function () { convertMemberPostsHeader(); }
-            });
-        } catch (e) { console.error('[BreadcrumbsModule] Member posts header observer registration failed:', e); }
-
-        // Register for all pagination variants
-        var paginationSelectors = [
-            CONFIG.LEGACY_PAGINATION_SELECTOR_TOP,
-            CONFIG.LEGACY_PAGINATION_SELECTOR_BOTTOM,
-            CONFIG.LEGACY_PAGINATION_PLAIN_TOP,
-            CONFIG.LEGACY_PAGINATION_PLAIN_BOTTOM
-        ];
-        paginationSelectors.forEach(function (sel, idx) {
-            try {
-                globalThis.forumObserver.register({
-                    id: 'pagination-module-' + idx,
-                    selector: sel,
-                    priority: 'high',
-                    callback: function () { convertAllPagination(); }
-                });
-            } catch (e) { console.error('[BreadcrumbsModule] Pagination observer registration failed:', e); }
+        try { globalThis.forumObserver.register({ id: 'breadcrumbs-module', selector: CONFIG.LEGACY_NAV_SELECTOR, priority: 'high', callback: convertBreadcrumb }); } catch (e) { console.error(e); }
+        try { globalThis.forumObserver.register({ id: 'topic-header-module', selector: CONFIG.LEGACY_TITLE_SELECTOR, priority: 'high', pageTypes: ['topic'], callback: convertTopicHeader }); } catch (e) { console.error(e); }
+        try { globalThis.forumObserver.register({ id: 'member-posts-header-module', selector: CONFIG.MEMBER_POSTS_SELECTOR, priority: 'high', callback: convertMemberPostsHeader }); } catch (e) { console.error(e); }
+        [CONFIG.LEGACY_PAGINATION_SELECTOR_TOP, CONFIG.LEGACY_PAGINATION_SELECTOR_BOTTOM, CONFIG.LEGACY_PAGINATION_PLAIN_TOP, CONFIG.LEGACY_PAGINATION_PLAIN_BOTTOM].forEach(function (sel, idx) {
+            try { globalThis.forumObserver.register({ id: 'pagination-module-' + idx, selector: sel, priority: 'high', callback: convertAllPagination }); } catch (e) { console.error(e); }
         });
-
         console.log('[BreadcrumbsModule] Registered with ForumCoreObserver');
     }
 
@@ -577,24 +424,13 @@ function getOrCreateContainer(id, tagName, className, insertAfterSelector, appen
     // =========================================================================
     function initialize() {
         if (document.querySelector(CONFIG.LEGACY_NAV_SELECTOR)) convertBreadcrumb();
-
-        if (document.body.id === 'topic' && document.querySelector(CONFIG.LEGACY_TITLE_SELECTOR)) {
-            convertTopicHeader();
-        }
-
-        if (document.body.id === 'search' && document.querySelector(CONFIG.MEMBER_POSTS_SELECTOR)) {
-            convertMemberPostsHeader();
-        }
-
+        if (document.body.id === 'topic' && document.querySelector(CONFIG.LEGACY_TITLE_SELECTOR)) convertTopicHeader();
+        if (document.body.id === 'search' && document.querySelector(CONFIG.MEMBER_POSTS_SELECTOR)) convertMemberPostsHeader();
         convertAllPagination();
-
         registerObserver();
         console.log('[BreadcrumbsModule] Initialised');
     }
 
-    // =========================================================================
-    // PUBLIC API
-    // =========================================================================
     return {
         initialize: initialize,
         refresh: function () {
@@ -606,14 +442,12 @@ function getOrCreateContainer(id, tagName, className, insertAfterSelector, appen
     };
 })();
 
-// Auto‑initialize when DOM is ready
 if (document.readyState === 'interactive' || document.readyState === 'complete') {
     setTimeout(function () { BreadcrumbsModule.initialize(); }, 0);
 } else {
     document.addEventListener('DOMContentLoaded', function () { BreadcrumbsModule.initialize(); });
 }
 
-// Expose globally
 if (typeof window !== 'undefined') {
     window.BreadcrumbsModule = BreadcrumbsModule;
     window.dispatchEvent(new CustomEvent('breadcrumbs-module-ready'));
