@@ -18,6 +18,9 @@ const BreadcrumbsModule = (function () {
         MODERN_BREADCRUMB_ID: 'modern-breadcrumbs',
         LEGACY_PAGINATION_SELECTOR_TOP: '.navsub.top.Justify',
         LEGACY_PAGINATION_SELECTOR_BOTTOM: '.navsub.bottom.Justify',
+        // Additional selectors for pages without action buttons (member posts)
+        LEGACY_PAGINATION_PLAIN_TOP: '.navsub.top:not(.Justify)',
+        LEGACY_PAGINATION_PLAIN_BOTTOM: '.navsub.bottom:not(.Justify)',
         MODERN_PAGINATION_ID: 'modern-pagination',
         WRAPPER_ID: 'modern-forum-wrapper',
         INSERT_AFTER_SELECTOR: '.carousel-wrapper',
@@ -132,9 +135,11 @@ const BreadcrumbsModule = (function () {
 
         items.forEach(function (item, index) {
             var isLast = index === items.length - 1;
-            html += '<li class="modern-breadcrumb-item' + (isLast ? ' modern-breadcrumb-item--current' : '') + '">';
+            // An item is the current page only if it has no URL
+            var isCurrent = !item.url;
+            html += '<li class="modern-breadcrumb-item' + (isCurrent ? ' modern-breadcrumb-item--current' : '') + '">';
 
-            if (item.url && !isLast) {
+            if (item.url) {
                 html += '<a href="' + escapeHtml(item.url) + '" class="modern-breadcrumb-link">' + escapeHtml(item.text) + '</a>';
             } else {
                 html += '<span class="modern-breadcrumb-text" aria-current="page">' + escapeHtml(item.text) + '</span>';
@@ -235,7 +240,6 @@ const BreadcrumbsModule = (function () {
 
         var data = extractTopicHeaderData();
         if (!data.topicTitle) {
-            // Retry after a short delay (CSS may have hidden the legacy element)
             setTimeout(function () {
                 var retryData = extractTopicHeaderData();
                 if (!retryData.topicTitle) {
@@ -281,7 +285,6 @@ const BreadcrumbsModule = (function () {
     function extractMemberPostsHeaderData(container) {
         var mtitleEl = container.querySelector('.mback .mtitle');
         var rawText = mtitleEl ? mtitleEl.textContent.trim() : '';
-        // "Posts written by Username"
         var memberName = '';
         var match = rawText.match(/Posts written by\s+(.+)/i);
         if (match) memberName = match[1].trim();
@@ -342,7 +345,7 @@ const BreadcrumbsModule = (function () {
     // =========================================================================
     function extractPaginationData(legacyBar) {
         var pageItems = [];
-        var pagesList = legacyBar.querySelector('.left.Sub ul.pages');
+        var pagesList = legacyBar.querySelector('.left.Sub ul.pages') || legacyBar.querySelector('ul.pages');
         if (pagesList) {
             var lis = pagesList.querySelectorAll('li');
             for (var i = 0; i < lis.length; i++) {
@@ -387,7 +390,7 @@ const BreadcrumbsModule = (function () {
             }
         }
 
-        // Action buttons
+        // Action buttons (only present on .Justify bars)
         var actionButtons = legacyBar.querySelectorAll('.right.Sub .buttons a');
         var actionsHtml = '';
         for (var j = 0; j < actionButtons.length; j++) {
@@ -497,9 +500,14 @@ const BreadcrumbsModule = (function () {
     }
 
     function convertAllPagination() {
-        var topBar = document.querySelector(CONFIG.LEGACY_PAGINATION_SELECTOR_TOP);
-        var bottomBar = document.querySelector(CONFIG.LEGACY_PAGINATION_SELECTOR_BOTTOM);
-        convertPagination(bottomBar || topBar);
+        // Try the specific selectors first, then fallback to plain .navsub.top / .bottom that contain .pages
+        var topBar = document.querySelector(CONFIG.LEGACY_PAGINATION_SELECTOR_TOP) ||
+                     document.querySelector(CONFIG.LEGACY_PAGINATION_PLAIN_TOP + ' .pages')?.closest('.navsub');
+        var bottomBar = document.querySelector(CONFIG.LEGACY_PAGINATION_SELECTOR_BOTTOM) ||
+                        document.querySelector(CONFIG.LEGACY_PAGINATION_PLAIN_BOTTOM + ' .pages')?.closest('.navsub');
+
+        var legacyBar = bottomBar || topBar;
+        if (legacyBar) convertPagination(legacyBar);
     }
 
     // =========================================================================
@@ -536,23 +544,23 @@ const BreadcrumbsModule = (function () {
             });
         } catch (e) { console.error('[BreadcrumbsModule] Member posts header observer registration failed:', e); }
 
-        try {
-            globalThis.forumObserver.register({
-                id: 'pagination-module-top',
-                selector: CONFIG.LEGACY_PAGINATION_SELECTOR_TOP,
-                priority: 'high',
-                callback: function () { convertAllPagination(); }
-            });
-        } catch (e) { console.error('[BreadcrumbsModule] Top pagination observer registration failed:', e); }
-
-        try {
-            globalThis.forumObserver.register({
-                id: 'pagination-module-bottom',
-                selector: CONFIG.LEGACY_PAGINATION_SELECTOR_BOTTOM,
-                priority: 'high',
-                callback: function () { convertAllPagination(); }
-            });
-        } catch (e) { console.error('[BreadcrumbsModule] Bottom pagination observer registration failed:', e); }
+        // Register for all pagination variants
+        var paginationSelectors = [
+            CONFIG.LEGACY_PAGINATION_SELECTOR_TOP,
+            CONFIG.LEGACY_PAGINATION_SELECTOR_BOTTOM,
+            CONFIG.LEGACY_PAGINATION_PLAIN_TOP,
+            CONFIG.LEGACY_PAGINATION_PLAIN_BOTTOM
+        ];
+        paginationSelectors.forEach(function (sel, idx) {
+            try {
+                globalThis.forumObserver.register({
+                    id: 'pagination-module-' + idx,
+                    selector: sel,
+                    priority: 'high',
+                    callback: function () { convertAllPagination(); }
+                });
+            } catch (e) { console.error('[BreadcrumbsModule] Pagination observer registration failed:', e); }
+        });
 
         console.log('[BreadcrumbsModule] Registered with ForumCoreObserver');
     }
@@ -571,10 +579,7 @@ const BreadcrumbsModule = (function () {
             convertMemberPostsHeader();
         }
 
-        if (document.querySelector(CONFIG.LEGACY_PAGINATION_SELECTOR_TOP) ||
-            document.querySelector(CONFIG.LEGACY_PAGINATION_SELECTOR_BOTTOM)) {
-            convertAllPagination();
-        }
+        convertAllPagination();
 
         registerObserver();
         console.log('[BreadcrumbsModule] Initialised');
