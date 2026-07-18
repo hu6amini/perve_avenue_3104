@@ -1308,54 +1308,61 @@ renderHTML({ node, HTMLAttributes }) {
     // ------------------------------------------------------------------------
     // CORE BUILDER
     // ------------------------------------------------------------------------
-    function buildModernMessenger() {
-        var wrapper = document.getElementById('modern-forum-wrapper');
-        if (!wrapper) return;
-        if (document.getElementById('modern-messenger')) return;
+function buildModernMessenger() {
+    var wrapper = document.getElementById('modern-forum-wrapper');
+    if (!wrapper) return;
+    if (document.getElementById('modern-messenger')) return;
 
-        // If a legacy .post element exists on the page, do not build the messenger
-        if (document.querySelector('.post')) {
-            console.warn('[MessengerModule] Legacy .post element found – skipping messenger');
-            return;
-        }
-
-        var carousel = wrapper.querySelector('.carousel-wrapper');
-        var messengerContainer = document.createElement('div');
-        messengerContainer.id = 'modern-messenger';
-        messengerContainer.className = 'modern-messenger';
-        var navContainer = document.createElement('nav');
-        navContainer.className = 'modern-messenger-nav';
-        var navItems = [
-            { text: 'Compose',  icon: 'fa-regular fa-pen-to-square', url: '/?act=Msg&CODE=04&c=660892', section: 'compose' },
-            { text: 'Messages', icon: 'fa-regular fa-envelope',       url: '/?act=Msg&CODE=01&c=660892', section: 'messages' },
-            { text: 'Contacts', icon: 'fa-regular fa-address-book',   url: '/?act=Msg&CODE=02&c=660892', section: 'contacts' }
-        ];
-        for (var i = 0; i < navItems.length; i++) {
-            var item = navItems[i];
-            var link = document.createElement('a');
-            link.href = item.url;
-            link.className = 'modern-nav-link' + (item.section === currentSection ? ' current' : '');
-            link.innerHTML = '<i class="' + item.icon + '" aria-hidden="true"></i><span class="modern-nav-text">' + item.text + '</span>';
-            navContainer.appendChild(link);
-        }
-        var mainContent = document.createElement('div');
-        mainContent.className = 'modern-messenger-main';
-        if (currentSection === 'compose') {
-            mainContent.appendChild(buildComposeSection());
-        } else if (currentSection === 'messages') {
-            mainContent.appendChild(buildModernMessagesSection());
-        } else {
-            mainContent.appendChild(buildModernContactsSection());
-        }
-        messengerContainer.appendChild(navContainer);
-        messengerContainer.appendChild(mainContent);
-        if (carousel) {
-            carousel.insertAdjacentElement('afterend', messengerContainer);
-        } else {
-            wrapper.appendChild(messengerContainer);
-        }
-        console.log('[MessengerModule] Built for section: ' + currentSection);
+    // If a legacy .post element exists on the page, do not build the messenger
+    if (document.querySelector('.post')) {
+        console.warn('[MessengerModule] Legacy .post element found – skipping messenger');
+        return;
     }
+
+    var carousel = wrapper.querySelector('.carousel-wrapper');
+    var breadcrumb = document.getElementById('modern-breadcrumbs');
+
+    var messengerContainer = document.createElement('div');
+    messengerContainer.id = 'modern-messenger';
+    messengerContainer.className = 'modern-messenger';
+    var navContainer = document.createElement('nav');
+    navContainer.className = 'modern-messenger-nav';
+    var navItems = [
+        { text: 'Compose',  icon: 'fa-regular fa-pen-to-square', url: '/?act=Msg&CODE=04&c=660892', section: 'compose' },
+        { text: 'Messages', icon: 'fa-regular fa-envelope',       url: '/?act=Msg&CODE=01&c=660892', section: 'messages' },
+        { text: 'Contacts', icon: 'fa-regular fa-address-book',   url: '/?act=Msg&CODE=02&c=660892', section: 'contacts' }
+    ];
+    for (var i = 0; i < navItems.length; i++) {
+        var item = navItems[i];
+        var link = document.createElement('a');
+        link.href = item.url;
+        link.className = 'modern-nav-link' + (item.section === currentSection ? ' current' : '');
+        link.innerHTML = '<i class="' + item.icon + '" aria-hidden="true"></i><span class="modern-nav-text">' + item.text + '</span>';
+        navContainer.appendChild(link);
+    }
+    var mainContent = document.createElement('div');
+    mainContent.className = 'modern-messenger-main';
+    if (currentSection === 'compose') {
+        mainContent.appendChild(buildComposeSection());
+    } else if (currentSection === 'messages') {
+        mainContent.appendChild(buildModernMessagesSection());
+    } else {
+        mainContent.appendChild(buildModernContactsSection());
+    }
+    messengerContainer.appendChild(navContainer);
+    messengerContainer.appendChild(mainContent);
+
+    // Insert after breadcrumb if it exists, otherwise after carousel
+    if (breadcrumb) {
+        breadcrumb.insertAdjacentElement('afterend', messengerContainer);
+    } else if (carousel) {
+        carousel.insertAdjacentElement('afterend', messengerContainer);
+    } else {
+        wrapper.appendChild(messengerContainer);
+    }
+
+    console.log('[MessengerModule] Built for section: ' + currentSection);
+}
 
     return {
         initialize: initialize,
