@@ -72,31 +72,38 @@ const BreadcrumbsModule = (function () {
         return document.getElementById(CONFIG.WRAPPER_ID);
     }
 
-    function getOrCreateContainer(id, tagName, className, insertAfterSelector, appendToWrapper) {
-        const wrapper = getWrapper();
-        if (!wrapper) return null;
+function getOrCreateContainer(id, tagName, className, insertAfterSelector, appendToWrapper) {
+    const wrapper = getWrapper();
+    if (!wrapper) return null;
 
-        let container = document.getElementById(id);
-        if (container) return container;
+    let container = document.getElementById(id);
+    if (container) return container;
 
-        container = document.createElement(tagName || 'div');
-        container.id = id;
-        container.className = className || id;
+    container = document.createElement(tagName || 'div');
+    container.id = id;
+    container.className = className || id;
 
-        if (appendToWrapper) {
-            wrapper.appendChild(container);
-        } else if (insertAfterSelector) {
-            const referenceNode = wrapper.querySelector(insertAfterSelector);
-            if (referenceNode) {
-                referenceNode.insertAdjacentElement('afterend', container);
+    if (appendToWrapper) {
+        wrapper.appendChild(container);
+    } else if (insertAfterSelector) {
+        const referenceNode = wrapper.querySelector(insertAfterSelector);
+        if (referenceNode) {
+            // Insert after the reference node, but BEFORE its next sibling
+            // This ensures breadcrumb stays right after carousel, before anything else
+            const nextSibling = referenceNode.nextElementSibling;
+            if (nextSibling && nextSibling !== container) {
+                wrapper.insertBefore(container, nextSibling);
             } else {
-                wrapper.appendChild(container);
+                referenceNode.insertAdjacentElement('afterend', container);
             }
         } else {
             wrapper.appendChild(container);
         }
-        return container;
+    } else {
+        wrapper.appendChild(container);
     }
+    return container;
+}
 
     // =========================================================================
     // BREADCRUMB
