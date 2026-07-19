@@ -232,6 +232,8 @@
 .fa-chart-line::before {content: "\f201"; }
 .fa-ellipsis::before {content: "\f141"; }
 .fa-ellipsis-vertical::before {content: "\f142"; }
+.fa-circle-chevron-right::before {content: "\f138"; }
+.fa-arrow-left-to-line::before {content: "\f33e"; }
 
 :root, :host {
   --fa-font-regular: normal 400 1em/1 "Font Awesome 6 Pro";
