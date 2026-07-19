@@ -345,7 +345,7 @@ const BreadcrumbsModule = (function () {
                 } else if (item.type === 'lastpost') {
                     html += '<li class="modern-page-item modern-page-lastpost">' +
                         '<a href="' + escapeHtml(item.url) + '" class="modern-page-link modern-page-icon-link" title="' + escapeHtml(item.text) + '" aria-label="' + escapeHtml(item.text) + '">' +
-                        '<i class="fa-regular fa-circle-chevron-right" aria-hidden="true"></i></a></li>';
+                        '<i class="fa-regular fa-arrow-right-to-line" aria-hidden="true"></i></a></li>';
                 } else if (item.type === 'current') {
                     html += '<li class="modern-page-item modern-page-current"><span aria-current="page">' + escapeHtml(item.text) + '</span></li>';
                 } else {
