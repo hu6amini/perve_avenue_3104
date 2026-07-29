@@ -1018,18 +1018,55 @@ function extractForumData(row) {
     }
 
     // =========================================================================
-    // MEMBERS PAGE EXTRACTION & GENERATION
+    // MEMBERS & GROUP PAGE – DYNAMIC COLUMN MAPPING
     // =========================================================================
-    function extractMemberData(row) {
-        const avatarImg = row.querySelector('.aa.thumbs img');
-        const avatarSrc = avatarImg ? avatarImg.getAttribute('src') : null;
+    /**
+     * Given the `.title.top` element, returns an object mapping column classes
+     * (e.g., '.aa', '.bb') to semantic field names.
+     */
+    function getGroupColumnMapping(titleDiv) {
+        if (!titleDiv) return null;
+        const mapping = {};
+        const children = titleDiv.children;
+        for (let i = 0; i < children.length; i++) {
+            const el = children[i];
+            const cls = el.className.trim().split(/\s+/)[0]; // e.g., 'aa'
+            const text = el.textContent.trim().toLowerCase();
+            mapping[cls] = { text, el };
+        }
+        // Determine field names based on text
+        const fields = {};
+        for (const [cls, data] of Object.entries(mapping)) {
+            const t = data.text;
+            if (t.includes('name') || t.includes('gender')) fields[cls] = 'name';
+            else if (t.includes('registration') || t.includes('joined')) fields[cls] = 'joined';
+            else if (t.includes('reputation')) fields[cls] = 'reputation';
+            else if (t.includes('friends')) fields[cls] = 'friends';
+            else if (t.includes('posts')) fields[cls] = 'posts';
+            else if (t.includes('contacts')) fields[cls] = 'contacts';
+            else if (t.includes('level')) fields[cls] = 'level';
+            else fields[cls] = 'unknown';
+        }
+        return fields;
+    }
+
+    // =========================================================================
+    // MEMBER LIST EXTRACTION & GENERATION (re‑used for members page & group members)
+    // =========================================================================
+    function extractMemberData(row, columnMapping) {
+        // Check for "No results" row
+        const noResults = row.querySelector('.aa[style*="width:98%"]');
+        if (noResults) return null;
+
+        const avatarImg = row.querySelector('.aa.thumbs img') || row.querySelector('.aa .default-avatar');
+        const avatarSrc = avatarImg ? (avatarImg.tagName === 'IMG' ? avatarImg.getAttribute('src') : null) : null;
 
         const nickLink = row.querySelector('.nick a');
         const username = nickLink ? nickLink.textContent.trim() : 'Unknown';
         const profileUrl = nickLink ? nickLink.getAttribute('href') : '#';
         const mid = extractMidFromUrl(profileUrl);
 
-        // Group: from row classes or from .bb .amministratore etc.
+        // Group: from row classes or from .bb h4
         let groupName = 'Member';
         let groupClass = 'group-member';
         const classList = row.className.split(/\s+/);
@@ -1039,30 +1076,33 @@ function extractForumData(row) {
         else if (classList.indexOf('box_gruppo2') !== -1) { groupName = 'Game Developer'; groupClass = 'group-game-dev'; }
         else if (classList.indexOf('box_gruppo3') !== -1) { groupName = 'Fan'; groupClass = 'group-fan'; }
         else if (classList.indexOf('box_gruppo4') !== -1) { groupName = 'Member'; groupClass = 'group-member'; }
+        else if (classList.indexOf('box_moderatore') !== -1) { groupName = 'Moderator'; groupClass = 'group-moderator'; }
 
-        // Level (from .cc)
-        const levelEl = row.querySelector('.cc');
-        let level = '';
-        if (levelEl) {
-            const levelText = levelEl.textContent.trim();
-            const levelMatch = levelText.match(/\b(Famous|Regular|Newbie|Member|Elite|Pro|Legend|Hero|Champion|Veteran|Master|Grand Master|Godlike|Unstoppable|Immortal|Mythic|Epic|Rare|Common)\b/i);
-            if (levelMatch) level = levelMatch[0];
+        // Default mapping for members page (standard layout)
+        const defaultMapping = { aa: 'avatar', bb: 'name', cc: 'level', xx: 'posts', yy: 'joined', zz: 'contacts' };
+        const map = columnMapping || defaultMapping;
+
+        let level = '', posts = '', joined = '', reputation = '', friends = '';
+        for (const [cls, field] of Object.entries(map)) {
+            const el = row.querySelector('.' + cls);
+            if (!el) continue;
+            const text = el.textContent.trim();
+            if (field === 'level') level = text;
+            else if (field === 'posts') posts = text.replace(/,/g, '');
+            else if (field === 'joined') joined = text;
+            else if (field === 'reputation') reputation = text;
+            else if (field === 'friends') friends = text;
         }
 
-        // Posts (from .xx)
-        const postsEl = row.querySelector('.xx a');
-        let posts = '0';
-        if (postsEl) posts = postsEl.textContent.trim().replace(/,/g, '');
-
-        // Joined (from .yy .when)
-        const joinedEl = row.querySelector('.yy .when');
-        let joined = '';
-        if (joinedEl) joined = joinedEl.textContent.trim();
+        // Fallback: if posts not found, try .xx a (from members page)
+        if (!posts) {
+            const postsEl = row.querySelector('.xx a');
+            if (postsEl) posts = postsEl.textContent.trim().replace(/,/g, '');
+        }
 
         // Contacts (PM button)
-        const contactLink = row.querySelector('.zz .mini_buttons a');
-        let contactUrl = '';
-        if (contactLink) contactUrl = contactLink.getAttribute('href');
+        const contactLink = row.querySelector('.zz .mini_buttons a:first-child');
+        let contactUrl = contactLink ? contactLink.getAttribute('href') : '';
 
         return {
             avatarSrc,
@@ -1072,8 +1112,10 @@ function extractForumData(row) {
             groupName,
             groupClass,
             level,
-            posts,
-            joined,
+            posts: posts || '0',
+            joined: joined || '',
+            reputation,
+            friends,
             contactUrl
         };
     }
@@ -1088,8 +1130,10 @@ function extractForumData(row) {
                 '" alt="' + escapeHtml(data.username) + '" width="' + CONFIG.AVATAR_SIZE_ONLINE +
                 '" height="' + CONFIG.AVATAR_SIZE_ONLINE + '" loading="lazy">';
         } else {
+            const initial = data.username ? data.username.charAt(0).toUpperCase() : '?';
             avatarHtml = '<span class="mini-avatar mini-avatar--initial ' + data.groupClass + '" style="background-color:#059669;width:' +
-                CONFIG.AVATAR_SIZE_ONLINE + 'px;height:' + CONFIG.AVATAR_SIZE_ONLINE + 'px;font-size:' + (CONFIG.AVATAR_SIZE_ONLINE * 0.618) + 'px;line-height:' + CONFIG.AVATAR_SIZE_ONLINE + 'px;">?</span>';
+                CONFIG.AVATAR_SIZE_ONLINE + 'px;height:' + CONFIG.AVATAR_SIZE_ONLINE + 'px;font-size:' + (CONFIG.AVATAR_SIZE_ONLINE * 0.618) + 'px;line-height:' + CONFIG.AVATAR_SIZE_ONLINE + 'px;">' +
+                escapeHtml(initial) + '</span>';
         }
 
         let contactHtml = '';
@@ -1097,8 +1141,18 @@ function extractForumData(row) {
             contactHtml = '<a href="' + escapeHtml(data.contactUrl) + '" class="modern-btn modern-btn-secondary modern-member-contact" title="Send PM"><i class="fa-regular fa-envelope" aria-hidden="true"></i></a>';
         }
 
-        let levelDisplay = data.level ? data.level : '—';
-        let postsDisplay = formatNumber(parseInt(data.posts, 10) || 0);
+        // Build stats row – show only fields that have content
+        let statsHtml = '';
+        if (data.level && data.level !== '—') statsHtml += '<span><i class="fa-regular fa-fire" aria-hidden="true"></i> ' + escapeHtml(data.level) + '</span>';
+        if (data.posts && data.posts !== '0') statsHtml += '<span><i class="fa-regular fa-message" aria-hidden="true"></i> ' + formatNumber(parseInt(data.posts, 10)) + ' posts</span>';
+        if (data.joined) statsHtml += '<span><i class="fa-regular fa-calendar" aria-hidden="true"></i> ' + escapeHtml(data.joined) + '</span>';
+        if (data.reputation) statsHtml += '<span><i class="fa-regular fa-star" aria-hidden="true"></i> ' + escapeHtml(data.reputation) + '</span>';
+        if (data.friends) statsHtml += '<span><i class="fa-regular fa-user-group" aria-hidden="true"></i> ' + escapeHtml(data.friends) + ' friends</span>';
+
+        if (!statsHtml) {
+            // fallback: show at least something
+            statsHtml = '<span><i class="fa-regular fa-user" aria-hidden="true"></i> Member</span>';
+        }
 
         return '<article class="online-user-card member-card">' +
             '<div class="online-user-avatar-col">' + avatarHtml + '</div>' +
@@ -1107,16 +1161,15 @@ function extractForumData(row) {
                     '<a href="' + escapeHtml(data.profileUrl) + '" class="online-user-name">' + escapeHtml(data.username) + '</a>' +
                     '<span class="role-badge ' + data.groupClass.replace('group-', '') + '">' + escapeHtml(data.groupName) + '</span>' +
                 '</div>' +
-                '<div class="member-stats-row">' +
-                    '<span><i class="fa-regular fa-fire" aria-hidden="true"></i> ' + escapeHtml(levelDisplay) + '</span>' +
-                    '<span><i class="fa-regular fa-message" aria-hidden="true"></i> ' + postsDisplay + ' posts</span>' +
-                    '<span><i class="fa-regular fa-calendar" aria-hidden="true"></i> ' + escapeHtml(data.joined) + '</span>' +
-                '</div>' +
+                '<div class="member-stats-row">' + statsHtml + '</div>' +
             '</div>' +
             (contactHtml ? '<div class="member-contact-action">' + contactHtml + '</div>' : '') +
         '</article>';
     }
 
+    // =========================================================================
+    // BUILD MODERN MEMBERS LIST (for the standard members page)
+    // =========================================================================
     function buildModernMembersList(membersWrapper) {
         const rows = membersWrapper.querySelectorAll(CONFIG.MEMBERS_ROW_SELECTOR);
         if (rows.length === 0) return '<div class="modern-empty">No members found.</div>';
@@ -1126,8 +1179,58 @@ function extractForumData(row) {
                 '<h2 class="member-list-title"><i class="fa-regular fa-users" aria-hidden="true"></i> Member List</h2>' +
             '</header>' +
             '<div class="member-list-grid">';
+
         rows.forEach(row => {
-            const data = extractMemberData(row);
+            const data = extractMemberData(row); // uses default mapping
+            if (data) html += generateMemberCard(data);
+        });
+
+        html += '</div></section>';
+        return html;
+    }
+
+    // =========================================================================
+    // BUILD MODERN GROUP MEMBERS (for the group page, with dynamic column mapping)
+    // =========================================================================
+    function buildModernGroupMembers(groupWrapper) {
+        // find the skin_tbl containing the members list (the last one with ol.big_list)
+        const skinTables = groupWrapper.querySelectorAll('.skin_tbl');
+        let membersTable = null;
+        let titleDiv = null;
+        for (let i = skinTables.length - 1; i >= 0; i--) {
+            const tbl = skinTables[i];
+            const ol = tbl.querySelector('ol.big_list');
+            if (ol) {
+                membersTable = tbl;
+                const mainbg = tbl.querySelector('.mainbg');
+                if (mainbg) {
+                    titleDiv = mainbg.querySelector('.title.top');
+                }
+                break;
+            }
+        }
+        if (!membersTable) return '<div class="modern-empty">No members in this group.</div>';
+
+        const rows = membersTable.querySelectorAll('ol.big_list > li');
+        if (rows.length === 0) return '<div class="modern-empty">No members in this group.</div>';
+
+        // Determine column mapping from titleDiv
+        const columnMapping = titleDiv ? getGroupColumnMapping(titleDiv) : null;
+
+        // Extract data, filtering out null (e.g., "No results")
+        let validData = [];
+        rows.forEach(row => {
+            const data = extractMemberData(row, columnMapping);
+            if (data) validData.push(data);
+        });
+        if (validData.length === 0) return '<div class="modern-empty">No members in this group.</div>';
+
+        let html = '<section class="member-list-section">' +
+            '<header class="member-list-header">' +
+                '<h2 class="member-list-title"><i class="fa-regular fa-users" aria-hidden="true"></i> Group Members</h2>' +
+            '</header>' +
+            '<div class="member-list-grid">';
+        validData.forEach(data => {
             html += generateMemberCard(data);
         });
         html += '</div></section>';
@@ -1135,7 +1238,7 @@ function extractForumData(row) {
     }
 
     // =========================================================================
-    // GROUP PAGE EXTRACTION & GENERATION
+    // GROUP INFO EXTRACTION & GENERATION
     // =========================================================================
     function extractGroupInfo(groupContainer) {
         const list = groupContainer.querySelector(CONFIG.GROUP_INFO_SELECTOR);
@@ -1166,7 +1269,6 @@ function extractForumData(row) {
                     const method = form.getAttribute('method') || 'POST';
                     const submit = form.querySelector('input[type="submit"]');
                     const buttonText = submit ? submit.value.trim() : 'Submit';
-                    // Determine type based on button text
                     if (buttonText.toLowerCase().includes('unsubscribe')) {
                         membership = { type: 'unsubscribe', action, method, buttonText };
                     } else if (buttonText.toLowerCase().includes('subscribe')) {
@@ -1206,35 +1308,6 @@ function extractForumData(row) {
                 '</div>' +
             '</div>' +
         '</section>';
-    }
-
-    function buildModernGroupMembers(groupWrapper) {
-        // find the second skin_tbl that contains the members list
-        const skinTables = groupWrapper.querySelectorAll('.skin_tbl');
-        let membersTable = null;
-        for (let i = 0; i < skinTables.length; i++) {
-            const tbl = skinTables[i];
-            if (tbl.querySelector('ol.big_list')) {
-                membersTable = tbl;
-                break;
-            }
-        }
-        if (!membersTable) return '<div class="modern-empty">No members in this group.</div>';
-
-        const rows = membersTable.querySelectorAll(CONFIG.GROUP_MEMBERS_ROW_SELECTOR);
-        if (rows.length === 0) return '<div class="modern-empty">No members in this group.</div>';
-
-        let html = '<section class="member-list-section">' +
-            '<header class="member-list-header">' +
-                '<h2 class="member-list-title"><i class="fa-regular fa-users" aria-hidden="true"></i> Group Members</h2>' +
-            '</header>' +
-            '<div class="member-list-grid">';
-        rows.forEach(row => {
-            const data = extractMemberData(row);
-            html += generateMemberCard(data);
-        });
-        html += '</div></section>';
-        return html;
     }
 
     // =========================================================================
@@ -1345,7 +1418,7 @@ function extractForumData(row) {
     }
 
     // =========================================================================
-    // BUILD MODERN LISTS
+    // BUILD MODERN LISTS (boards, topics, latest posts)
     // =========================================================================
     function buildModernBoardList(categories) {
         var html = '';
@@ -1670,15 +1743,8 @@ function extractForumData(row) {
             // Group members
             const membersContainer = getOrCreateContainer(CONFIG.GROUP_MEMBERS_CONTAINER_ID);
             if (membersContainer) {
-                // find rows
-                const rows = groupWrapper.querySelectorAll(CONFIG.GROUP_MEMBERS_ROW_SELECTOR);
-                if (rows.length > 0) {
-                    await fetchMemberUsers(Array.from(rows));
-                    const membersHtml = buildModernGroupMembers(groupWrapper);
-                    membersContainer.innerHTML = membersHtml;
-                } else {
-                    membersContainer.innerHTML = '<div class="modern-empty">No members in this group.</div>';
-                }
+                const membersHtml = buildModernGroupMembers(groupWrapper);
+                membersContainer.innerHTML = membersHtml;
             }
 
             console.log('[BoardsModule] Group page modernized');
