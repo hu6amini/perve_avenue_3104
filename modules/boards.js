@@ -37,8 +37,7 @@ const ForumBoardsModule = (function () {
         ONLINE_ROW_SELECTOR: 'ol.big_list > li',
         ONLINE_CONTAINER_ID: 'modern-online-list',
 
-        // Members page
-        MEMBERS_PAGE_SELECTOR: 'div.members',
+        // Members page (generic)
         MEMBERS_ROW_SELECTOR: 'ol.big_list > li',
         MEMBERS_CONTAINER_ID: 'modern-members-list',
 
@@ -64,7 +63,7 @@ const ForumBoardsModule = (function () {
         // Collapse
         COLLAPSE_STORAGE_PREFIX: 'board-cat-',
 
-        // Container order (online container only added when present)
+        // Container order
         ORDERED_CONTAINERS: [
             'modern-latest-posts',
             'modern-board-list',
@@ -328,27 +327,25 @@ const ForumBoardsModule = (function () {
     // =========================================================================
     function getWrapper() { return document.getElementById(CONFIG.WRAPPER_ID); }
 
-function getOrCreateContainer(containerId) {
-    const wrapper = getWrapper();
-    if (!wrapper) return null;
-    let container = document.getElementById(containerId);
-    if (container) return container;
+    function getOrCreateContainer(containerId) {
+        const wrapper = getWrapper();
+        if (!wrapper) return null;
+        let container = document.getElementById(containerId);
+        if (container) return container;
 
-    container = document.createElement('div');
-    container.id = containerId;
-    container.className = containerId;
+        container = document.createElement('div');
+        container.id = containerId;
+        container.className = containerId;
 
-    // Prefer inserting after the modern breadcrumb if it exists,
-    // otherwise fall back to after the carousel
-    const breadcrumb = document.getElementById('modern-breadcrumbs');
-    const afterEl = breadcrumb || wrapper.querySelector(CONFIG.INSERT_AFTER_SELECTOR);
-    if (afterEl) {
-        afterEl.insertAdjacentElement('afterend', container);
-    } else {
-        wrapper.appendChild(container);
+        const breadcrumb = document.getElementById('modern-breadcrumbs');
+        const afterEl = breadcrumb || wrapper.querySelector(CONFIG.INSERT_AFTER_SELECTOR);
+        if (afterEl) {
+            afterEl.insertAdjacentElement('afterend', container);
+        } else {
+            wrapper.appendChild(container);
+        }
+        return container;
     }
-    return container;
-}
 
     function reorderContainers() {
         const wrapper = getWrapper();
@@ -364,75 +361,73 @@ function getOrCreateContainer(containerId) {
     // =========================================================================
     // BOARD LIST EXTRACTION & GENERATION
     // =========================================================================
-function extractForumData(row) {
-    const id = row.id;
-    const forumId = id ? id.replace('f', '') : '';
+    function extractForumData(row) {
+        const id = row.id;
+        const forumId = id ? id.replace('f', '') : '';
 
-    const nameEl = row.querySelector('.bb h3 a');
-    const forumName = nameEl ? nameEl.textContent.trim() : 'Unknown Forum';
-    const forumUrl = nameEl ? nameEl.getAttribute('href') : '#';
+        const nameEl = row.querySelector('.bb h3 a');
+        const forumName = nameEl ? nameEl.textContent.trim() : 'Unknown Forum';
+        const forumUrl = nameEl ? nameEl.getAttribute('href') : '#';
 
-    const thumbImg = row.querySelector('.bb img');
-    var thumbnailUrl = null;
-    if (thumbImg) {
-        // 1) Try background-image from inline style (legacy spacer GIF)
-        const style = thumbImg.getAttribute('style') || '';
-        const bgMatch = style.match(/background-image:\s*url\(['"]?([^'")\s]+)['"]?\)/i);
-        if (bgMatch && bgMatch[1]) {
-            thumbnailUrl = bgMatch[1];
-        } else {
-            // 2) Fallback to normal src (but skip spacer.gif)
-            var src = thumbImg.getAttribute('src');
-            if (src && src.indexOf('spacer.gif') === -1) {
-                thumbnailUrl = src;
+        const thumbImg = row.querySelector('.bb img');
+        var thumbnailUrl = null;
+        if (thumbImg) {
+            const style = thumbImg.getAttribute('style') || '';
+            const bgMatch = style.match(/background-image:\s*url\(['"]?([^'")\s]+)['"]?\)/i);
+            if (bgMatch && bgMatch[1]) {
+                thumbnailUrl = bgMatch[1];
+            } else {
+                var src = thumbImg.getAttribute('src');
+                if (src && src.indexOf('spacer.gif') === -1) {
+                    thumbnailUrl = src;
+                }
             }
         }
-    }
 
-    const topicsEm = row.querySelector('.yy .topics em');
-    const repliesEm = row.querySelector('.yy .replies em');
-    const topicsCount = topicsEm ? parseInt(topicsEm.textContent, 10) || 0 : 0;
-    const repliesCount = repliesEm ? parseInt(repliesEm.textContent, 10) || 0 : 0;
+        const topicsEm = row.querySelector('.yy .topics em');
+        const repliesEm = row.querySelector('.yy .replies em');
+        const topicsCount = topicsEm ? parseInt(topicsEm.textContent, 10) || 0 : 0;
+        const repliesCount = repliesEm ? parseInt(repliesEm.textContent, 10) || 0 : 0;
 
-    const whenEl = row.querySelector('.zz .when');
-    const lastPostDateStr = whenEl ? whenEl.textContent.trim() : '';
-    const lastPostDate = parseDateFromTitle(lastPostDateStr);
-    const lastPostRelative = lastPostDate ? getRelativeTimeString(lastPostDate) : '';
+        const whenEl = row.querySelector('.zz .when');
+        const lastPostDateStr = whenEl ? whenEl.textContent.trim() : '';
+        const lastPostDate = parseDateFromTitle(lastPostDateStr);
+        const lastPostRelative = lastPostDate ? getRelativeTimeString(lastPostDate) : '';
 
-    const whereEl = row.querySelector('.zz .where');
-    let lastTopicUrl = '', lastTopicHTML = '', subForumUrl = '', subForumName = '';
-    if (whereEl) {
-        const links = whereEl.querySelectorAll('a');
-        if (links.length === 1) {
-            lastTopicUrl = links[0].getAttribute('href') || '';
-            lastTopicHTML = links[0].innerHTML;
-        } else if (links.length >= 2) {
-            subForumUrl = links[0].getAttribute('href') || '';
-            subForumName = links[0].textContent.trim();
-            lastTopicUrl = links[1].getAttribute('href') || '';
-            lastTopicHTML = links[1].innerHTML;
+        const whereEl = row.querySelector('.zz .where');
+        let lastTopicUrl = '', lastTopicHTML = '', subForumUrl = '', subForumName = '';
+        if (whereEl) {
+            const links = whereEl.querySelectorAll('a');
+            if (links.length === 1) {
+                lastTopicUrl = links[0].getAttribute('href') || '';
+                lastTopicHTML = links[0].innerHTML;
+            } else if (links.length >= 2) {
+                subForumUrl = links[0].getAttribute('href') || '';
+                subForumName = links[0].textContent.trim();
+                lastTopicUrl = links[1].getAttribute('href') || '';
+                lastTopicHTML = links[1].innerHTML;
+            }
         }
+
+        const whoLink = row.querySelector('.zz .who a');
+        const lastPostAuthor = whoLink ? whoLink.textContent.trim() : '';
+        const lastPostAuthorUrl = whoLink ? whoLink.getAttribute('href') : '';
+        const lastPostAuthorMid = extractMidFromUrl(lastPostAuthorUrl);
+
+        const iconEl = row.querySelector('.aa i');
+        const iconClass = iconEl ? iconEl.className : 'fa-regular fa-folder';
+        const isUnread = row.classList.contains('on');
+
+        return {
+            forumId, forumName, forumUrl,
+            thumbnailUrl, topicsCount, repliesCount,
+            lastPostRelative, lastPostDateStr,
+            lastTopicUrl, lastTopicHTML,
+            subForumUrl, subForumName,
+            lastPostAuthor, lastPostAuthorUrl, lastPostAuthorMid,
+            iconClass, isUnread
+        };
     }
-
-    const whoLink = row.querySelector('.zz .who a');
-    const lastPostAuthor = whoLink ? whoLink.textContent.trim() : '';
-    const lastPostAuthorUrl = whoLink ? whoLink.getAttribute('href') : '';
-    const lastPostAuthorMid = extractMidFromUrl(lastPostAuthorUrl);
-
-    const iconEl = row.querySelector('.aa i');
-    const iconClass = iconEl ? iconEl.className : 'fa-regular fa-folder';
-    const isUnread = row.classList.contains('on');
-
-    return {
-        forumId, forumName, forumUrl,
-        thumbnailUrl, topicsCount, repliesCount,
-        lastPostRelative, lastPostDateStr,
-        lastTopicUrl, lastTopicHTML,
-        subForumUrl, subForumName,
-        lastPostAuthor, lastPostAuthorUrl, lastPostAuthorMid,
-        iconClass, isUnread
-    };
-}
 
     function extractCategoryData(catLi) {
         const id = catLi.id;
@@ -866,7 +861,6 @@ function extractForumData(row) {
             usersHtml = '<div class="online-users-avatars">' + avatarItems + ellipsisHtml + '</div>';
         }
 
-        // Counts line – only show "View all" if there is NO overflow (ellipsis already covers it)
         var countsHtml = '<div class="online-counts">' +
             '<span><i class="fa-regular fa-user" aria-hidden="true"></i> ' + onlineData.counts.members + ' members</span>' +
             '<span><i class="fa-regular fa-eye" aria-hidden="true"></i> ' + onlineData.counts.guests + ' guests</span>' +
@@ -881,7 +875,6 @@ function extractForumData(row) {
 
         countsHtml += '</div>';
 
-        // Extract groups legend from legacy stats
         var groupsLegendHtml = extractGroupsLegend(document.querySelector(CONFIG.STATS_SELECTOR));
         if (groupsLegendHtml) {
             countsHtml += groupsLegendHtml;
@@ -940,7 +933,6 @@ function extractForumData(row) {
         var activityEl = row.querySelector('.what');
         var activity = activityEl ? activityEl.textContent.trim() : '';
 
-        // Time: prefer the already‑relative <time> element, else parse the absolute date
         var timeEl = row.querySelector('time.when');
         var relativeTime = '';
         if (timeEl) {
@@ -954,7 +946,6 @@ function extractForumData(row) {
             }
         }
 
-        // Group class from row classes
         var groupClass = 'group-member';
         var classList = row.className.split(/\s+/);
         if (classList.indexOf('box_amministratore') !== -1) groupClass = 'group-administrator';
@@ -1018,23 +1009,18 @@ function extractForumData(row) {
     }
 
     // =========================================================================
-    // MEMBERS & GROUP PAGE – DYNAMIC COLUMN MAPPING
+    // MEMBERS & GROUP – DYNAMIC COLUMN MAPPING
     // =========================================================================
-    /**
-     * Given the `.title.top` element, returns an object mapping column classes
-     * (e.g., '.aa', '.bb') to semantic field names.
-     */
     function getGroupColumnMapping(titleDiv) {
         if (!titleDiv) return null;
         const mapping = {};
         const children = titleDiv.children;
         for (let i = 0; i < children.length; i++) {
             const el = children[i];
-            const cls = el.className.trim().split(/\s+/)[0]; // e.g., 'aa'
+            const cls = el.className.trim().split(/\s+/)[0];
             const text = el.textContent.trim().toLowerCase();
             mapping[cls] = { text, el };
         }
-        // Determine field names based on text
         const fields = {};
         for (const [cls, data] of Object.entries(mapping)) {
             const t = data.text;
@@ -1051,22 +1037,42 @@ function extractForumData(row) {
     }
 
     // =========================================================================
-    // MEMBER LIST EXTRACTION & GENERATION (re‑used for members page & group members)
+    // MEMBER EXTRACTION – FIXED AVATAR & GROUP DETECTION
     // =========================================================================
     function extractMemberData(row, columnMapping) {
         // Check for "No results" row
         const noResults = row.querySelector('.aa[style*="width:98%"]');
         if (noResults) return null;
 
-        const avatarImg = row.querySelector('.aa.thumbs img') || row.querySelector('.aa .default-avatar');
-        const avatarSrc = avatarImg ? (avatarImg.tagName === 'IMG' ? avatarImg.getAttribute('src') : null) : null;
+        // ---- Avatar: prefer data-original, then src, then default-avatar ----
+        let avatarSrc = null;
+        const img = row.querySelector('.aa.thumbs img');
+        if (img) {
+            // Use data-original if available (avoids onerror corruption)
+            const dataOrig = img.getAttribute('data-original');
+            if (dataOrig && isValidAvatarUrl(dataOrig)) {
+                avatarSrc = dataOrig;
+            } else {
+                const src = img.getAttribute('src');
+                if (src && isValidAvatarUrl(src)) {
+                    avatarSrc = src;
+                }
+            }
+        }
+        // If no img, check for default-avatar div
+        if (!avatarSrc) {
+            const defaultAvatar = row.querySelector('.aa .default-avatar');
+            if (defaultAvatar) {
+                // We'll treat as no image, fallback to initial
+            }
+        }
 
         const nickLink = row.querySelector('.nick a');
         const username = nickLink ? nickLink.textContent.trim() : 'Unknown';
         const profileUrl = nickLink ? nickLink.getAttribute('href') : '#';
         const mid = extractMidFromUrl(profileUrl);
 
-        // Group: from row classes or from .bb h4
+        // ---- Group: detect from row classes AND from .bb h4 ----
         let groupName = 'Member';
         let groupClass = 'group-member';
         const classList = row.className.split(/\s+/);
@@ -1078,7 +1084,16 @@ function extractForumData(row) {
         else if (classList.indexOf('box_gruppo4') !== -1) { groupName = 'Member'; groupClass = 'group-member'; }
         else if (classList.indexOf('box_moderatore') !== -1) { groupName = 'Moderator'; groupClass = 'group-moderator'; }
 
-        // Default mapping for members page (standard layout)
+        // Also check the .bb h4 for group name (some pages have it)
+        const groupEl = row.querySelector('.bb h4');
+        if (groupEl) {
+            const groupText = groupEl.textContent.trim();
+            if (groupText.toLowerCase().includes('administrator')) { groupName = 'Administrator'; groupClass = 'group-administrator'; }
+            else if (groupText.toLowerCase().includes('founder')) { groupName = 'Founder'; groupClass = 'group-founder'; }
+            else if (groupText.toLowerCase().includes('moderator')) { groupName = 'Moderator'; groupClass = 'group-moderator'; }
+        }
+
+        // ---- Extract fields using column mapping ----
         const defaultMapping = { aa: 'avatar', bb: 'name', cc: 'level', xx: 'posts', yy: 'joined', zz: 'contacts' };
         const map = columnMapping || defaultMapping;
 
@@ -1094,13 +1109,13 @@ function extractForumData(row) {
             else if (field === 'friends') friends = text;
         }
 
-        // Fallback: if posts not found, try .xx a (from members page)
+        // Fallback: if posts not found, try .xx a
         if (!posts) {
             const postsEl = row.querySelector('.xx a');
             if (postsEl) posts = postsEl.textContent.trim().replace(/,/g, '');
         }
 
-        // Contacts (PM button)
+        // ---- Contacts (PM button) ----
         const contactLink = row.querySelector('.zz .mini_buttons a:first-child');
         let contactUrl = contactLink ? contactLink.getAttribute('href') : '';
 
@@ -1120,6 +1135,9 @@ function extractForumData(row) {
         };
     }
 
+    // =========================================================================
+    // GENERATE MEMBER CARD
+    // =========================================================================
     function generateMemberCard(data) {
         let avatarHtml;
         if (data.mid) {
@@ -1141,16 +1159,15 @@ function extractForumData(row) {
             contactHtml = '<a href="' + escapeHtml(data.contactUrl) + '" class="modern-btn modern-btn-secondary modern-member-contact" title="Send PM"><i class="fa-regular fa-envelope" aria-hidden="true"></i></a>';
         }
 
-        // Build stats row – show only fields that have content
+        // Build stats row – show only fields with content
         let statsHtml = '';
         if (data.level && data.level !== '—') statsHtml += '<span><i class="fa-regular fa-fire" aria-hidden="true"></i> ' + escapeHtml(data.level) + '</span>';
         if (data.posts && data.posts !== '0') statsHtml += '<span><i class="fa-regular fa-message" aria-hidden="true"></i> ' + formatNumber(parseInt(data.posts, 10)) + ' posts</span>';
         if (data.joined) statsHtml += '<span><i class="fa-regular fa-calendar" aria-hidden="true"></i> ' + escapeHtml(data.joined) + '</span>';
-        if (data.reputation) statsHtml += '<span><i class="fa-regular fa-star" aria-hidden="true"></i> ' + escapeHtml(data.reputation) + '</span>';
+        if (data.reputation) statsHtml += '<span><i class="fa-regular fa-thumbs-up" aria-hidden="true"></i> ' + escapeHtml(data.reputation) + ' rep</span>';
         if (data.friends) statsHtml += '<span><i class="fa-regular fa-user-group" aria-hidden="true"></i> ' + escapeHtml(data.friends) + ' friends</span>';
 
         if (!statsHtml) {
-            // fallback: show at least something
             statsHtml = '<span><i class="fa-regular fa-user" aria-hidden="true"></i> Member</span>';
         }
 
@@ -1168,32 +1185,101 @@ function extractForumData(row) {
     }
 
     // =========================================================================
-    // BUILD MODERN MEMBERS LIST (for the standard members page)
+    // CONVERT MEMBERS (generic – works for any list inside body#members)
     // =========================================================================
-    function buildModernMembersList(membersWrapper) {
-        const rows = membersWrapper.querySelectorAll(CONFIG.MEMBERS_ROW_SELECTOR);
-        if (rows.length === 0) return '<div class="modern-empty">No members found.</div>';
+    async function convertMembers() {
+        if (conversionInProgress) return;
+        conversionInProgress = true;
+        try {
+            const container = getOrCreateContainer(CONFIG.MEMBERS_CONTAINER_ID);
+            if (!container) return;
 
-        let html = '<section class="member-list-section">' +
-            '<header class="member-list-header">' +
-                '<h2 class="member-list-title"><i class="fa-regular fa-users" aria-hidden="true"></i> Member List</h2>' +
-            '</header>' +
-            '<div class="member-list-grid">';
+            // Find the list – it can be inside .members, .group, or directly in body
+            const list = document.querySelector('ol.big_list');
+            if (!list) return;
 
-        rows.forEach(row => {
-            const data = extractMemberData(row); // uses default mapping
-            if (data) html += generateMemberCard(data);
-        });
+            const rows = list.querySelectorAll(CONFIG.MEMBERS_ROW_SELECTOR);
+            if (rows.length === 0) return;
 
-        html += '</div></section>';
-        return html;
+            // Find the title: h2.mtitle (anywhere in the page)
+            const titleEl = document.querySelector('h2.mtitle');
+            const pageTitle = titleEl ? titleEl.textContent.trim() : 'Member List';
+
+            // Find the column header (title.top) that precedes the list
+            let titleDiv = null;
+            let parent = list.parentElement;
+            while (parent) {
+                const candidate = parent.querySelector('.title.top');
+                if (candidate) {
+                    titleDiv = candidate;
+                    break;
+                }
+                parent = parent.parentElement;
+            }
+            const columnMapping = titleDiv ? getGroupColumnMapping(titleDiv) : null;
+
+            // Fetch user data for avatars (if we have MID)
+            await fetchMemberUsers(Array.from(rows));
+
+            let html = '<section class="member-list-section">' +
+                '<header class="member-list-header">' +
+                    '<h2 class="member-list-title"><i class="fa-regular fa-users" aria-hidden="true"></i> ' + escapeHtml(pageTitle) + '</h2>' +
+                '</header>' +
+                '<div class="member-list-grid">';
+
+            rows.forEach(row => {
+                const data = extractMemberData(row, columnMapping);
+                if (data) html += generateMemberCard(data);
+            });
+
+            html += '</div></section>';
+            container.innerHTML = html;
+            console.log('[BoardsModule] Members page modernized (' + rows.length + ' members)');
+        } catch (err) {
+            console.error('[BoardsModule] Members conversion error:', err);
+        } finally {
+            conversionInProgress = false;
+        }
     }
 
     // =========================================================================
-    // BUILD MODERN GROUP MEMBERS (for the group page, with dynamic column mapping)
+    // CONVERT GROUP (only for body#group)
+    // =========================================================================
+    async function convertGroup() {
+        if (conversionInProgress) return;
+        conversionInProgress = true;
+        try {
+            const groupWrapper = document.querySelector(CONFIG.GROUP_PAGE_SELECTOR);
+            if (!groupWrapper) return;
+
+            // Group info
+            const infoContainer = getOrCreateContainer(CONFIG.GROUP_INFO_CONTAINER_ID);
+            if (infoContainer) {
+                const groupInfoData = extractGroupInfo(groupWrapper);
+                if (groupInfoData) {
+                    infoContainer.innerHTML = generateGroupInfoHtml(groupInfoData);
+                }
+            }
+
+            // Group members
+            const membersContainer = getOrCreateContainer(CONFIG.GROUP_MEMBERS_CONTAINER_ID);
+            if (membersContainer) {
+                const membersHtml = buildModernGroupMembers(groupWrapper);
+                membersContainer.innerHTML = membersHtml;
+            }
+
+            console.log('[BoardsModule] Group page modernized');
+        } catch (err) {
+            console.error('[BoardsModule] Group conversion error:', err);
+        } finally {
+            conversionInProgress = false;
+        }
+    }
+
+    // =========================================================================
+    // BUILD MODERN GROUP MEMBERS (for group page)
     // =========================================================================
     function buildModernGroupMembers(groupWrapper) {
-        // find the skin_tbl containing the members list (the last one with ol.big_list)
         const skinTables = groupWrapper.querySelectorAll('.skin_tbl');
         let membersTable = null;
         let titleDiv = null;
@@ -1214,10 +1300,7 @@ function extractForumData(row) {
         const rows = membersTable.querySelectorAll('ol.big_list > li');
         if (rows.length === 0) return '<div class="modern-empty">No members in this group.</div>';
 
-        // Determine column mapping from titleDiv
         const columnMapping = titleDiv ? getGroupColumnMapping(titleDiv) : null;
-
-        // Extract data, filtering out null (e.g., "No results")
         let validData = [];
         rows.forEach(row => {
             const data = extractMemberData(row, columnMapping);
@@ -1246,7 +1329,7 @@ function extractForumData(row) {
 
         let groupName = 'Unknown';
         let privileges = 'None';
-        let membership = null; // { type: 'subscribe'|'unsubscribe', action: url, method: 'POST', buttonText: string }
+        let membership = null;
 
         const dts = list.querySelectorAll('dt');
         const dds = list.querySelectorAll('dd');
@@ -1262,7 +1345,6 @@ function extractForumData(row) {
             } else if (label.includes('Privileges')) {
                 privileges = dd.textContent.trim();
             } else if (label.includes('Group membership')) {
-                // Check for form
                 const form = dd.querySelector('form');
                 if (form) {
                     const action = form.getAttribute('action');
@@ -1313,12 +1395,6 @@ function extractForumData(row) {
     // =========================================================================
     // DATA FETCHING (with concurrency limiter)
     // =========================================================================
-    /**
-     * Runs async worker on items with a maximum concurrency.
-     * @param {Array} items
-     * @param {Function} worker - async function(item, index)
-     * @param {number} [limit=6]
-     */
     async function mapWithConcurrencyLimit(items, worker, limit) {
         limit = limit || 6;
         if (items.length === 0) return [];
@@ -1632,7 +1708,6 @@ function extractForumData(row) {
             var modernHtml = buildModernStats(onlineData, statsData);
             container.innerHTML = modernHtml || '';
 
-            // ---- Voting button setup (after DOM is populated) ----
             setTimeout(function () {
                 var legacyForm = document.querySelector('#legacy-topbutton form.topbutton');
                 var modernBtn = document.getElementById('modern-vote-btn');
@@ -1699,64 +1774,8 @@ function extractForumData(row) {
         }
     }
 
-    async function convertMembers() {
-        if (conversionInProgress) return;
-        conversionInProgress = true;
-        try {
-            const container = getOrCreateContainer(CONFIG.MEMBERS_CONTAINER_ID);
-            if (!container) return;
-
-            const membersWrapper = document.querySelector(CONFIG.MEMBERS_PAGE_SELECTOR);
-            if (!membersWrapper) return;
-
-            const rows = membersWrapper.querySelectorAll(CONFIG.MEMBERS_ROW_SELECTOR);
-            if (rows.length === 0) return;
-
-            await fetchMemberUsers(Array.from(rows));
-
-            const modernHtml = buildModernMembersList(membersWrapper);
-            container.innerHTML = modernHtml || '';
-            console.log('[BoardsModule] Members page modernized (' + rows.length + ' members)');
-        } catch (err) {
-            console.error('[BoardsModule] Members conversion error:', err);
-        } finally {
-            conversionInProgress = false;
-        }
-    }
-
-    async function convertGroup() {
-        if (conversionInProgress) return;
-        conversionInProgress = true;
-        try {
-            const groupWrapper = document.querySelector(CONFIG.GROUP_PAGE_SELECTOR);
-            if (!groupWrapper) return;
-
-            // Group info
-            const infoContainer = getOrCreateContainer(CONFIG.GROUP_INFO_CONTAINER_ID);
-            if (infoContainer) {
-                const groupInfoData = extractGroupInfo(groupWrapper);
-                if (groupInfoData) {
-                    infoContainer.innerHTML = generateGroupInfoHtml(groupInfoData);
-                }
-            }
-
-            // Group members
-            const membersContainer = getOrCreateContainer(CONFIG.GROUP_MEMBERS_CONTAINER_ID);
-            if (membersContainer) {
-                const membersHtml = buildModernGroupMembers(groupWrapper);
-                membersContainer.innerHTML = membersHtml;
-            }
-
-            console.log('[BoardsModule] Group page modernized');
-        } catch (err) {
-            console.error('[BoardsModule] Group conversion error:', err);
-        } finally {
-            conversionInProgress = false;
-        }
-    }
-
     // =========================================================================
-    // OBSERVER INTEGRATION – with duplicate prevention
+    // OBSERVER REGISTRATION
     // =========================================================================
     var registeredObserverIds = new Set();
 
@@ -1783,8 +1802,8 @@ function extractForumData(row) {
         safeRegister('boards-module-latest-posts', CONFIG.LATEST_POSTS_SELECTOR, function () { convertLatestPosts(); });
         safeRegister('boards-module-stats', CONFIG.STATS_SELECTOR, function () { convertStats(); });
         safeRegister('boards-module-online-page', CONFIG.ONLINE_PAGE_SELECTOR, function () { convertOnlinePage(); });
-        safeRegister('boards-module-members-page', CONFIG.MEMBERS_PAGE_SELECTOR, function () { convertMembers(); });
-        safeRegister('boards-module-group-page', CONFIG.GROUP_PAGE_SELECTOR, function () { convertGroup(); });
+        safeRegister('boards-module-members-page', 'ol.big_list', function () { if (document.body.id === 'members') convertMembers(); });
+        safeRegister('boards-module-group-page', CONFIG.GROUP_PAGE_SELECTOR, function () { if (document.body.id === 'group') convertGroup(); });
 
         console.log('[BoardsModule] Registered with ForumCoreObserver');
     }
@@ -1798,8 +1817,6 @@ function extractForumData(row) {
         var hasForum = !!document.querySelector(CONFIG.FORUM_WRAPPER_SELECTOR);
         var hasStats = !!document.querySelector(CONFIG.STATS_SELECTOR);
         var hasOnline = !!document.querySelector(CONFIG.ONLINE_PAGE_SELECTOR);
-        var hasMembers = !!document.querySelector(CONFIG.MEMBERS_PAGE_SELECTOR);
-        var hasGroup = !!document.querySelector(CONFIG.GROUP_PAGE_SELECTOR);
 
         if (document.body.id === 'search') {
             if (hasForum) {
@@ -1814,8 +1831,13 @@ function extractForumData(row) {
         if (hasForum) await convertTopics();
         if (hasStats) await convertStats();
         if (hasOnline) await convertOnlinePage();
-        if (hasMembers) await convertMembers();
-        if (hasGroup) await convertGroup();
+
+        // Members or Group based on body id
+        if (document.body.id === 'members') {
+            await convertMembers();
+        } else if (document.body.id === 'group') {
+            await convertGroup();
+        }
 
         reorderContainers();
         registerObservers();
@@ -1839,7 +1861,6 @@ if (document.readyState === 'interactive' || document.readyState === 'complete')
     document.addEventListener('DOMContentLoaded', function () { ForumBoardsModule.initialize(); });
 }
 
-// Expose globally
 if (typeof window !== 'undefined') {
     window.ForumBoardsModule = ForumBoardsModule;
     window.dispatchEvent(new CustomEvent('boards-module-ready'));
