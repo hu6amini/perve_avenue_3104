@@ -2584,7 +2584,7 @@ input[type="radio"]:checked::before {
 .board-category-header,
 .topic-list-header,
 .latest-posts-header, 
-.stats-header {
+.stats-header, .online-list-header, .member-list-title {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -3161,12 +3161,6 @@ section.modern-stats {
 /* Online Users Page */
 .online-list-section {
     margin-top: var(--space-xl);
-}
-
-.online-list-header {
-    padding-bottom: var(--space-sm);
-    border-bottom: 2px solid var(--primary-color);
-    margin-bottom: var(--space-md);
 }
 
 .online-list-title {
