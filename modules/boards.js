@@ -97,6 +97,38 @@ const ForumBoardsModule = (function () {
     ];
 
     // =========================================================================
+    // GLOBAL DATE FORMAT DETECTION
+    // =========================================================================
+    let detectedDateFormat = null; // 'us' or 'eu' or null
+
+    function detectDateFormat() {
+        if (detectedDateFormat) return detectedDateFormat;
+        // Search the entire page for a timestamp.
+        const bodyText = document.body.textContent || '';
+        // Look for 12‑hour with AM/PM (US)
+        const ampmMatch = bodyText.match(/\d{1,2}:\d{2}\s*[AP]M/i);
+        if (ampmMatch) {
+            detectedDateFormat = 'us';
+            return 'us';
+        }
+        // Look for 24‑hour time (European) – at least two digits: HH:MM
+        const twentyFourMatch = bodyText.match(/\d{2}:\d{2}(?!\s*[AP]M)/i);
+        if (twentyFourMatch) {
+            detectedDateFormat = 'eu';
+            return 'eu';
+        }
+        // If nothing found, try to detect from the HTML lang attribute
+        const lang = document.documentElement.lang || '';
+        if (lang.startsWith('it') || lang.startsWith('fr') || lang.startsWith('de') || lang.startsWith('es')) {
+            detectedDateFormat = 'eu';
+            return 'eu';
+        }
+        // Default to US (common fallback)
+        detectedDateFormat = 'us';
+        return 'us';
+    }
+
+    // =========================================================================
     // UTILITIES
     // =========================================================================
     const escapeHtml = (str) => {
@@ -195,6 +227,46 @@ const ForumBoardsModule = (function () {
         if (!url) return null;
         const match = url.match(/MID=(\d+)/);
         return match ? match[1] : null;
+    }
+
+    // =========================================================================
+    // DATE FORMATTING FOR MEMBER LIST – NOW DETECTS LOCALE
+    // =========================================================================
+    function parseAndFormatDate(dateStr) {
+        if (!dateStr) return '';
+        const parts = dateStr.split('/');
+        if (parts.length !== 3) return dateStr;
+
+        let month, day, year;
+        const fmt = detectDateFormat(); // 'us' or 'eu'
+
+        if (fmt === 'us') {
+            month = parseInt(parts[0], 10);
+            day = parseInt(parts[1], 10);
+            year = parseInt(parts[2], 10);
+        } else if (fmt === 'eu') {
+            day = parseInt(parts[0], 10);
+            month = parseInt(parts[1], 10);
+            year = parseInt(parts[2], 10);
+        } else {
+            // fallback: try both (US first)
+            let d = new Date(parseInt(parts[2], 10), parseInt(parts[0], 10) - 1, parseInt(parts[1], 10));
+            if (!isNaN(d) && d.getMonth() === parseInt(parts[0], 10) - 1 && d.getDate() === parseInt(parts[1], 10)) {
+                month = parseInt(parts[0], 10);
+                day = parseInt(parts[1], 10);
+                year = parseInt(parts[2], 10);
+            } else {
+                // try European
+                month = parseInt(parts[1], 10);
+                day = parseInt(parts[0], 10);
+                year = parseInt(parts[2], 10);
+            }
+        }
+
+        // Create date and format
+        const dateObj = new Date(year, month - 1, day);
+        if (isNaN(dateObj)) return dateStr;
+        return dateObj.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
     }
 
     // =========================================================================
@@ -1037,7 +1109,7 @@ const ForumBoardsModule = (function () {
     }
 
     // =========================================================================
-    // MEMBER EXTRACTION – FIXED AVATAR & GROUP DETECTION
+    // MEMBER EXTRACTION – FIXED AVATAR, DATE FORMAT, REPUTATION
     // =========================================================================
     function extractMemberData(row, columnMapping) {
         // Check for "No results" row
@@ -1048,7 +1120,6 @@ const ForumBoardsModule = (function () {
         let avatarSrc = null;
         const img = row.querySelector('.aa.thumbs img');
         if (img) {
-            // Use data-original if available (avoids onerror corruption)
             const dataOrig = img.getAttribute('data-original');
             if (dataOrig && isValidAvatarUrl(dataOrig)) {
                 avatarSrc = dataOrig;
@@ -1059,20 +1130,13 @@ const ForumBoardsModule = (function () {
                 }
             }
         }
-        // If no img, check for default-avatar div
-        if (!avatarSrc) {
-            const defaultAvatar = row.querySelector('.aa .default-avatar');
-            if (defaultAvatar) {
-                // We'll treat as no image, fallback to initial
-            }
-        }
 
         const nickLink = row.querySelector('.nick a');
         const username = nickLink ? nickLink.textContent.trim() : 'Unknown';
         const profileUrl = nickLink ? nickLink.getAttribute('href') : '#';
         const mid = extractMidFromUrl(profileUrl);
 
-        // ---- Group: detect from row classes AND from .bb h4 ----
+        // ---- Group ----
         let groupName = 'Member';
         let groupClass = 'group-member';
         const classList = row.className.split(/\s+/);
@@ -1084,7 +1148,6 @@ const ForumBoardsModule = (function () {
         else if (classList.indexOf('box_gruppo4') !== -1) { groupName = 'Member'; groupClass = 'group-member'; }
         else if (classList.indexOf('box_moderatore') !== -1) { groupName = 'Moderator'; groupClass = 'group-moderator'; }
 
-        // Also check the .bb h4 for group name (some pages have it)
         const groupEl = row.querySelector('.bb h4');
         if (groupEl) {
             const groupText = groupEl.textContent.trim();
@@ -1105,15 +1168,21 @@ const ForumBoardsModule = (function () {
             if (field === 'level') level = text;
             else if (field === 'posts') posts = text.replace(/,/g, '');
             else if (field === 'joined') joined = text;
-            else if (field === 'reputation') reputation = text;
+            else if (field === 'reputation') {
+                // Remove leading '+' if present
+                reputation = text.replace(/^\+/, '');
+            }
             else if (field === 'friends') friends = text;
         }
 
-        // Fallback: if posts not found, try .xx a
+        // Fallback for posts
         if (!posts) {
             const postsEl = row.querySelector('.xx a');
             if (postsEl) posts = postsEl.textContent.trim().replace(/,/g, '');
         }
+
+        // ---- Format joined date using detected locale ----
+        const formattedJoined = parseAndFormatDate(joined);
 
         // ---- Contacts (PM button) ----
         const contactLink = row.querySelector('.zz .mini_buttons a:first-child');
@@ -1128,7 +1197,8 @@ const ForumBoardsModule = (function () {
             groupClass,
             level,
             posts: posts || '0',
-            joined: joined || '',
+            joined: joined,            // raw, for fallback
+            formattedJoined,           // formatted
             reputation,
             friends,
             contactUrl
@@ -1159,11 +1229,13 @@ const ForumBoardsModule = (function () {
             contactHtml = '<a href="' + escapeHtml(data.contactUrl) + '" class="modern-btn modern-btn-secondary modern-member-contact" title="Send PM"><i class="fa-regular fa-envelope" aria-hidden="true"></i></a>';
         }
 
-        // Build stats row – show only fields with content
+        // Build stats row
         let statsHtml = '';
         if (data.level && data.level !== '—') statsHtml += '<span><i class="fa-regular fa-fire" aria-hidden="true"></i> ' + escapeHtml(data.level) + '</span>';
         if (data.posts && data.posts !== '0') statsHtml += '<span><i class="fa-regular fa-message" aria-hidden="true"></i> ' + formatNumber(parseInt(data.posts, 10)) + ' posts</span>';
-        if (data.joined) statsHtml += '<span><i class="fa-regular fa-calendar" aria-hidden="true"></i> ' + escapeHtml(data.joined) + '</span>';
+        // Use formatted joined date if available, else raw
+        const joinedDisplay = data.formattedJoined || data.joined;
+        if (joinedDisplay) statsHtml += '<span><i class="fa-regular fa-calendar" aria-hidden="true"></i> ' + escapeHtml(joinedDisplay) + '</span>';
         if (data.reputation) statsHtml += '<span><i class="fa-regular fa-thumbs-up" aria-hidden="true"></i> ' + escapeHtml(data.reputation) + ' rep</span>';
         if (data.friends) statsHtml += '<span><i class="fa-regular fa-user-group" aria-hidden="true"></i> ' + escapeHtml(data.friends) + ' friends</span>';
 
@@ -1194,18 +1266,15 @@ const ForumBoardsModule = (function () {
             const container = getOrCreateContainer(CONFIG.MEMBERS_CONTAINER_ID);
             if (!container) return;
 
-            // Find the list – it can be inside .members, .group, or directly in body
             const list = document.querySelector('ol.big_list');
             if (!list) return;
 
             const rows = list.querySelectorAll(CONFIG.MEMBERS_ROW_SELECTOR);
             if (rows.length === 0) return;
 
-            // Find the title: h2.mtitle (anywhere in the page)
             const titleEl = document.querySelector('h2.mtitle');
             const pageTitle = titleEl ? titleEl.textContent.trim() : 'Member List';
 
-            // Find the column header (title.top) that precedes the list
             let titleDiv = null;
             let parent = list.parentElement;
             while (parent) {
@@ -1218,7 +1287,6 @@ const ForumBoardsModule = (function () {
             }
             const columnMapping = titleDiv ? getGroupColumnMapping(titleDiv) : null;
 
-            // Fetch user data for avatars (if we have MID)
             await fetchMemberUsers(Array.from(rows));
 
             let html = '<section class="member-list-section">' +
@@ -1252,7 +1320,6 @@ const ForumBoardsModule = (function () {
             const groupWrapper = document.querySelector(CONFIG.GROUP_PAGE_SELECTOR);
             if (!groupWrapper) return;
 
-            // Group info
             const infoContainer = getOrCreateContainer(CONFIG.GROUP_INFO_CONTAINER_ID);
             if (infoContainer) {
                 const groupInfoData = extractGroupInfo(groupWrapper);
@@ -1261,7 +1328,6 @@ const ForumBoardsModule = (function () {
                 }
             }
 
-            // Group members
             const membersContainer = getOrCreateContainer(CONFIG.GROUP_MEMBERS_CONTAINER_ID);
             if (membersContainer) {
                 const membersHtml = buildModernGroupMembers(groupWrapper);
@@ -1812,6 +1878,9 @@ const ForumBoardsModule = (function () {
     // INITIALIZATION
     // =========================================================================
     async function initialize() {
+        // Detect date format early (before parsing dates)
+        detectDateFormat();
+
         var hasLatest = !!document.querySelector(CONFIG.LATEST_POSTS_SELECTOR);
         var hasBoard = !!document.querySelector(CONFIG.BOARD_LIST_SELECTOR);
         var hasForum = !!document.querySelector(CONFIG.FORUM_WRAPPER_SELECTOR);
@@ -1832,7 +1901,6 @@ const ForumBoardsModule = (function () {
         if (hasStats) await convertStats();
         if (hasOnline) await convertOnlinePage();
 
-        // Members or Group based on body id
         if (document.body.id === 'members') {
             await convertMembers();
         } else if (document.body.id === 'group') {
