@@ -2587,10 +2587,11 @@ input[type="radio"]:checked::before {
 .stats-header, .online-list-header, .member-list-title {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
     padding-bottom: var(--space-sm);
     border-bottom: 2px solid var(--primary-color);
     margin-bottom: var(--space-md);
+    gap: var(--space-xs);
 }
 
 .board-category-title,
