@@ -2584,7 +2584,16 @@ input[type="radio"]:checked::before {
 .board-category-header,
 .topic-list-header,
 .latest-posts-header, 
-.stats-header, .online-list-header, .member-list-title {
+.stats-header, .online-list-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: var(--space-sm);
+    border-bottom: 2px solid var(--primary-color);
+    margin-bottom: var(--space-md);
+}
+
+.member-list-title {
     display: flex;
     align-items: center;
     justify-content: flex-start;
