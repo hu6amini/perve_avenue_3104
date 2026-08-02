@@ -99,31 +99,26 @@ const ForumBoardsModule = (function () {
     // =========================================================================
     // GLOBAL DATE FORMAT DETECTION
     // =========================================================================
-    let detectedDateFormat = null; // 'us' or 'eu' or null
+    let detectedDateFormat = null;
 
     function detectDateFormat() {
         if (detectedDateFormat) return detectedDateFormat;
-        // Search the entire page for a timestamp.
         const bodyText = document.body.textContent || '';
-        // Look for 12‑hour with AM/PM (US)
         const ampmMatch = bodyText.match(/\d{1,2}:\d{2}\s*[AP]M/i);
         if (ampmMatch) {
             detectedDateFormat = 'us';
             return 'us';
         }
-        // Look for 24‑hour time (European) – at least two digits: HH:MM
         const twentyFourMatch = bodyText.match(/\d{2}:\d{2}(?!\s*[AP]M)/i);
         if (twentyFourMatch) {
             detectedDateFormat = 'eu';
             return 'eu';
         }
-        // If nothing found, try to detect from the HTML lang attribute
         const lang = document.documentElement.lang || '';
         if (lang.startsWith('it') || lang.startsWith('fr') || lang.startsWith('de') || lang.startsWith('es')) {
             detectedDateFormat = 'eu';
             return 'eu';
         }
-        // Default to US (common fallback)
         detectedDateFormat = 'us';
         return 'us';
     }
@@ -230,7 +225,7 @@ const ForumBoardsModule = (function () {
     }
 
     // =========================================================================
-    // DATE FORMATTING FOR MEMBER LIST – NOW DETECTS LOCALE
+    // DATE FORMATTING FOR MEMBER LIST – DETECTS LOCALE
     // =========================================================================
     function parseAndFormatDate(dateStr) {
         if (!dateStr) return '';
@@ -238,7 +233,7 @@ const ForumBoardsModule = (function () {
         if (parts.length !== 3) return dateStr;
 
         let month, day, year;
-        const fmt = detectDateFormat(); // 'us' or 'eu'
+        const fmt = detectDateFormat();
 
         if (fmt === 'us') {
             month = parseInt(parts[0], 10);
@@ -256,14 +251,12 @@ const ForumBoardsModule = (function () {
                 day = parseInt(parts[1], 10);
                 year = parseInt(parts[2], 10);
             } else {
-                // try European
                 month = parseInt(parts[1], 10);
                 day = parseInt(parts[0], 10);
                 year = parseInt(parts[2], 10);
             }
         }
 
-        // Create date and format
         const dateObj = new Date(year, month - 1, day);
         if (isNaN(dateObj)) return dateStr;
         return dateObj.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
@@ -1200,13 +1193,13 @@ const ForumBoardsModule = (function () {
             joined: joined,            // raw, for fallback
             formattedJoined,           // formatted
             reputation,
-            friends,
+            friends,                   // kept but not displayed
             contactUrl
         };
     }
 
     // =========================================================================
-    // GENERATE MEMBER CARD
+    // GENERATE MEMBER CARD – UPDATED: no friends, rep as link
     // =========================================================================
     function generateMemberCard(data) {
         let avatarHtml;
@@ -1229,15 +1222,19 @@ const ForumBoardsModule = (function () {
             contactHtml = '<a href="' + escapeHtml(data.contactUrl) + '" class="modern-btn modern-btn-secondary modern-member-contact" title="Send PM"><i class="fa-regular fa-envelope" aria-hidden="true"></i></a>';
         }
 
-        // Build stats row
+        // Build stats row – no friends, reputation is a link
         let statsHtml = '';
         if (data.level && data.level !== '—') statsHtml += '<span><i class="fa-regular fa-fire" aria-hidden="true"></i> ' + escapeHtml(data.level) + '</span>';
         if (data.posts && data.posts !== '0') statsHtml += '<span><i class="fa-regular fa-message" aria-hidden="true"></i> ' + formatNumber(parseInt(data.posts, 10)) + ' posts</span>';
-        // Use formatted joined date if available, else raw
         const joinedDisplay = data.formattedJoined || data.joined;
         if (joinedDisplay) statsHtml += '<span><i class="fa-regular fa-calendar" aria-hidden="true"></i> ' + escapeHtml(joinedDisplay) + '</span>';
-        if (data.reputation) statsHtml += '<span><i class="fa-regular fa-thumbs-up" aria-hidden="true"></i> ' + escapeHtml(data.reputation) + ' rep</span>';
-        if (data.friends) statsHtml += '<span><i class="fa-regular fa-user-group" aria-hidden="true"></i> ' + escapeHtml(data.friends) + ' friends</span>';
+        if (data.reputation) {
+            let repLink = '#';
+            if (data.mid) {
+                repLink = '/?act=Search&MID=' + data.mid + '&CODE=votes_taken';
+            }
+            statsHtml += '<span><i class="fa-regular fa-thumbs-up" aria-hidden="true"></i> <a href="' + escapeHtml(repLink) + '" rel="nofollow">' + escapeHtml(data.reputation) + ' rep</a></span>';
+        }
 
         if (!statsHtml) {
             statsHtml = '<span><i class="fa-regular fa-user" aria-hidden="true"></i> Member</span>';
@@ -1878,7 +1875,7 @@ const ForumBoardsModule = (function () {
     // INITIALIZATION
     // =========================================================================
     async function initialize() {
-        // Detect date format early (before parsing dates)
+        // Detect date format early
         detectDateFormat();
 
         var hasLatest = !!document.querySelector(CONFIG.LATEST_POSTS_SELECTOR);
