@@ -2606,7 +2606,7 @@ input[type="radio"]:checked::before {
 .board-category-title,
 .topic-list-title,
 .latest-posts-title,
-.stats-title {
+.stats-title, .member-list-title {
     font-family: var(--font-heading);
     font-size: var(--text-xl);
     color: var(--text-primary);
