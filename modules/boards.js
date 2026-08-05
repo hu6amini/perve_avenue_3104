@@ -97,33 +97,6 @@ const ForumBoardsModule = (function () {
     ];
 
     // =========================================================================
-    // GLOBAL DATE FORMAT DETECTION
-    // =========================================================================
-    let detectedDateFormat = null;
-
-    function detectDateFormat() {
-        if (detectedDateFormat) return detectedDateFormat;
-        const bodyText = document.body.textContent || '';
-        const ampmMatch = bodyText.match(/\d{1,2}:\d{2}\s*[AP]M/i);
-        if (ampmMatch) {
-            detectedDateFormat = 'us';
-            return 'us';
-        }
-        const twentyFourMatch = bodyText.match(/\d{2}:\d{2}(?!\s*[AP]M)/i);
-        if (twentyFourMatch) {
-            detectedDateFormat = 'eu';
-            return 'eu';
-        }
-        const lang = document.documentElement.lang || '';
-        if (lang.startsWith('it') || lang.startsWith('fr') || lang.startsWith('de') || lang.startsWith('es')) {
-            detectedDateFormat = 'eu';
-            return 'eu';
-        }
-        detectedDateFormat = 'us';
-        return 'us';
-    }
-
-    // =========================================================================
     // UTILITIES
     // =========================================================================
     const escapeHtml = (str) => {
@@ -225,36 +198,42 @@ const ForumBoardsModule = (function () {
     }
 
     // =========================================================================
-    // DATE FORMATTING FOR MEMBER LIST – DETECTS LOCALE
+    // DATE FORMAT DETECTION – BASED ON BODY LANGUAGE CLASS
     // =========================================================================
+    function getBodyLanguage() {
+        const classList = document.body.className.split(/\s+/);
+        // The last class is the language code (en, it, es, fr, de, pt, etc.)
+        const lastClass = classList[classList.length - 1];
+        // European languages that use DD/MM/YYYY
+        const european = ['it', 'es', 'fr', 'de', 'pt', 'nl', 'sv', 'no', 'da', 'fi', 'pl', 'hu', 'cs', 'ro', 'bg', 'el'];
+        if (european.includes(lastClass)) {
+            return 'eu';
+        }
+        // Default to US for English and unknown
+        return 'us';
+    }
+
     function parseAndFormatDate(dateStr) {
         if (!dateStr) return '';
         const parts = dateStr.split('/');
         if (parts.length !== 3) return dateStr;
 
         let month, day, year;
-        const fmt = detectDateFormat();
+        let first = parseInt(parts[0], 10);
+        let second = parseInt(parts[1], 10);
+        let yearVal = parseInt(parts[2], 10);
+        if (yearVal < 100) yearVal += 2000;
 
-        if (fmt === 'us') {
-            month = parseInt(parts[0], 10);
-            day = parseInt(parts[1], 10);
-            year = parseInt(parts[2], 10);
-        } else if (fmt === 'eu') {
-            day = parseInt(parts[0], 10);
-            month = parseInt(parts[1], 10);
-            year = parseInt(parts[2], 10);
+        const format = getBodyLanguage();
+
+        if (format === 'eu') {
+            day = first;
+            month = second;
+            year = yearVal;
         } else {
-            // fallback: try both (US first)
-            let d = new Date(parseInt(parts[2], 10), parseInt(parts[0], 10) - 1, parseInt(parts[1], 10));
-            if (!isNaN(d) && d.getMonth() === parseInt(parts[0], 10) - 1 && d.getDate() === parseInt(parts[1], 10)) {
-                month = parseInt(parts[0], 10);
-                day = parseInt(parts[1], 10);
-                year = parseInt(parts[2], 10);
-            } else {
-                month = parseInt(parts[1], 10);
-                day = parseInt(parts[0], 10);
-                year = parseInt(parts[2], 10);
-            }
+            month = first;
+            day = second;
+            year = yearVal;
         }
 
         const dateObj = new Date(year, month - 1, day);
@@ -1174,7 +1153,7 @@ const ForumBoardsModule = (function () {
             if (postsEl) posts = postsEl.textContent.trim().replace(/,/g, '');
         }
 
-        // ---- Format joined date using detected locale ----
+        // ---- Format joined date using detected language ----
         const formattedJoined = parseAndFormatDate(joined);
 
         // ---- Contacts (PM button) ----
@@ -1199,7 +1178,7 @@ const ForumBoardsModule = (function () {
     }
 
     // =========================================================================
-    // GENERATE MEMBER CARD – UPDATED: no friends, rep as link
+    // GENERATE MEMBER CARD – no friends, rep as link
     // =========================================================================
     function generateMemberCard(data) {
         let avatarHtml;
@@ -1875,9 +1854,6 @@ const ForumBoardsModule = (function () {
     // INITIALIZATION
     // =========================================================================
     async function initialize() {
-        // Detect date format early
-        detectDateFormat();
-
         var hasLatest = !!document.querySelector(CONFIG.LATEST_POSTS_SELECTOR);
         var hasBoard = !!document.querySelector(CONFIG.BOARD_LIST_SELECTOR);
         var hasForum = !!document.querySelector(CONFIG.FORUM_WRAPPER_SELECTOR);
