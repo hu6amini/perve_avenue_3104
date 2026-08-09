@@ -104,33 +104,56 @@ const ForumPostsModule = (function () {
     // ============================================================================
     // RELATIVE TIME & DATE PARSING
     // ============================================================================
-    function parseDateFromTitle(title) {
-        if (!title) return null;
-        title = title.replace(/(\d{1,2}):(\d{2})\s*(AM|PM)?:(\d+)/i, '$1:$2 $3');
+function getBodyLanguage() {
+    const classList = document.body.className.split(/\s+/);
+    const lastClass = classList[classList.length - 1];
+    const european = ['it', 'es', 'fr', 'de', 'pt', 'nl', 'sv', 'no', 'da', 'fi', 'pl', 'hu', 'cs', 'ro', 'bg', 'el'];
+    if (european.includes(lastClass)) return 'eu';
+    if (lastClass === 'en') return 'us';
+    return null; // unknown
+}
+
+function parseDateFromTitle(title) {
+    if (!title) return null;
+    title = title.replace(/(\d{1,2}):(\d{2})\s*(AM|PM)?:(\d+)/i, '$1:$2 $3');
+    const nums = title.match(/\d+/g);
+    if (!nums || nums.length < 3) return null;
+
+    let year, month, day, hour = 0, minute = 0, second = 0;
+    const format = getBodyLanguage();
+
+    // Determine date order
+    let isUS = false;
+    if (format === 'us') isUS = true;
+    else if (format === 'eu') isUS = false;
+    else {
+        // Fallback: AM/PM detection
         const hasMeridiem = /[ap]m/i.test(title);
-        const nums = title.match(/\d+/g);
-        if (!nums || nums.length < 3) return null;
-        let year, month, day, hour, minute, second;
-        if (hasMeridiem) {
-            month = parseInt(nums[0], 10) - 1;
-            day = parseInt(nums[1], 10);
-            year = parseInt(nums[2], 10);
-            hour = parseInt(nums[3] || 0, 10);
-            minute = parseInt(nums[4] || 0, 10);
-            second = parseInt(nums[5] || 0, 10);
-            const isPM = /pm/i.test(title);
-            if (isPM && hour < 12) hour += 12;
-            if (!isPM && hour === 12) hour = 0;
-        } else {
-            day = parseInt(nums[0], 10);
-            month = parseInt(nums[1], 10) - 1;
-            year = parseInt(nums[2], 10);
-            hour = parseInt(nums[3] || 0, 10);
-            minute = parseInt(nums[4] || 0, 10);
-            second = parseInt(nums[5] || 0, 10);
-        }
-        return new Date(year, month, day, hour, minute, second);
+        isUS = hasMeridiem;
     }
+
+    if (isUS) {
+        month = parseInt(nums[0], 10) - 1;
+        day = parseInt(nums[1], 10);
+        year = parseInt(nums[2], 10);
+    } else {
+        day = parseInt(nums[0], 10);
+        month = parseInt(nums[1], 10) - 1;
+        year = parseInt(nums[2], 10);
+    }
+
+    // Time parts (if present)
+    if (nums.length >= 4) {
+        hour = parseInt(nums[3], 10);
+        minute = parseInt(nums[4] || 0, 10);
+        second = parseInt(nums[5] || 0, 10);
+        // Adjust for AM/PM only if we used the fallback
+        if (format === null && /pm/i.test(title) && hour < 12) hour += 12;
+        if (format === null && /am/i.test(title) && hour === 12) hour = 0;
+    }
+
+    return new Date(year, month, day, hour, minute, second);
+}
 
     function getRelativeTimeString(date) {
         if (!date || isNaN(date.getTime())) return 'Unknown';
