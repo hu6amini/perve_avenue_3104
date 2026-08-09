@@ -127,7 +127,7 @@ function parseDateFromTitle(title) {
     if (format === 'us') isUS = true;
     else if (format === 'eu') isUS = false;
     else {
-        // Fallback: AM/PM detection
+        // Fallback: AM/PM detection for date order
         const hasMeridiem = /[ap]m/i.test(title);
         isUS = hasMeridiem;
     }
@@ -142,14 +142,18 @@ function parseDateFromTitle(title) {
         year = parseInt(nums[2], 10);
     }
 
-    // Time parts (if present)
+    // Time parts
     if (nums.length >= 4) {
         hour = parseInt(nums[3], 10);
         minute = parseInt(nums[4] || 0, 10);
         second = parseInt(nums[5] || 0, 10);
-        // Adjust for AM/PM only if we used the fallback
-        if (format === null && /pm/i.test(title) && hour < 12) hour += 12;
-        if (format === null && /am/i.test(title) && hour === 12) hour = 0;
+    }
+
+    // ---- FIX: ALWAYS adjust for AM/PM if present ----
+    const hasMeridiem = /[ap]m/i.test(title);
+    if (hasMeridiem) {
+        if (/pm/i.test(title) && hour < 12) hour += 12;
+        if (/am/i.test(title) && hour === 12) hour = 0;
     }
 
     return new Date(year, month, day, hour, minute, second);
