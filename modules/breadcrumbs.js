@@ -261,70 +261,76 @@ const BreadcrumbsModule = (function () {
     // =========================================================================
     // PAGINATION & ACTION BAR
     // =========================================================================
-    function extractPaginationData(legacyBar) {
-        var pageItems = [];
-        var pagesList = legacyBar.querySelector('.left.Sub ul.pages') || legacyBar.querySelector('ul.pages');
-        if (pagesList) {
-            var lis = pagesList.querySelectorAll('li');
-            for (var i = 0; i < lis.length; i++) {
-                var li = lis[i];
-                var link = li.querySelector('a');
-                var isCurrent = li.classList.contains('current');
-                var isFirst = li.classList.contains('first');
-                var isLastPost = li.classList.contains('lastpost');
-                var isBreak = li.classList.contains('break');
-                if (isBreak) { pageItems.push({ type: 'ellipsis' }); continue; }
-                if (link) {
-                    var href = link.getAttribute('href') || '';
-                    var jumpParams = extractPageJumpParams(href);
-                    if (jumpParams) {
-                        pageItems.push({ type: 'jump', totalPages: jumpParams.totalPages, entriesPerPage: jumpParams.entriesPerPage, baseUrl: jumpParams.baseUrl });
-                    } else if (isFirst) {
-                        pageItems.push({ type: 'first', url: href, text: 'First page' });
-                    } else if (isLastPost) {
-                        pageItems.push({ type: 'lastpost', url: href, text: 'First unread post' });
-                    } else {
-                        pageItems.push({ type: 'page', url: href, text: link.textContent.trim(), isCurrent: isCurrent });
-                    }
+function extractPaginationData(legacyBar) {
+    var pageItems = [];
+    var pagesList = legacyBar.querySelector('.left.Sub ul.pages') || legacyBar.querySelector('ul.pages');
+    if (pagesList) {
+        var lis = pagesList.querySelectorAll('li');
+        for (var i = 0; i < lis.length; i++) {
+            var li = lis[i];
+            var link = li.querySelector('a');
+            var isCurrent = li.classList.contains('current');
+            var isFirst = li.classList.contains('first');
+            var isLastPost = li.classList.contains('lastpost');
+            var isBreak = li.classList.contains('break');
+            if (isBreak) { pageItems.push({ type: 'ellipsis' }); continue; }
+            if (link) {
+                var href = link.getAttribute('href') || '';
+                var jumpParams = extractPageJumpParams(href);
+                if (jumpParams) {
+                    pageItems.push({ type: 'jump', totalPages: jumpParams.totalPages, entriesPerPage: jumpParams.entriesPerPage, baseUrl: jumpParams.baseUrl });
+                } else if (isFirst) {
+                    pageItems.push({ type: 'first', url: href, text: 'First page' });
+                } else if (isLastPost) {
+                    pageItems.push({ type: 'lastpost', url: href, text: 'First unread post' });
                 } else {
-                    pageItems.push({ type: 'current', text: li.textContent.trim(), isCurrent: true });
+                    pageItems.push({ type: 'page', url: href, text: link.textContent.trim(), isCurrent: isCurrent });
                 }
-            }
-        }
-
-        // Action buttons
-        var actionButtons = legacyBar.querySelectorAll('.right.Sub .buttons a');
-        var actionsHtml = '';
-        for (var j = 0; j < actionButtons.length; j++) {
-            var actionBtn = actionButtons[j];
-            var actionSpan = actionBtn.querySelector('span');
-            var spanClass = actionSpan ? actionSpan.className : '';
-            var actionIcon = actionSpan ? actionSpan.querySelector('i') : null;
-            var iconClass = actionIcon ? actionIcon.className : '';
-            var actionText = actionSpan ? actionSpan.textContent.trim() : actionBtn.textContent.trim();
-
-            var extraClass = 'modern-pagination-action';
-            var buttonBaseClass = 'modern-btn ';
-            if (spanClass.indexOf('reply') !== -1) {
-                buttonBaseClass += 'modern-btn-secondary';
-                extraClass += ' modern-pagination-action--reply';
-            } else if (spanClass.indexOf('newpost') !== -1) {
-                buttonBaseClass += 'modern-btn-primary';
-                extraClass += ' modern-pagination-action--new-topic';
             } else {
-                buttonBaseClass += 'modern-btn-primary';
+                pageItems.push({ type: 'current', text: li.textContent.trim(), isCurrent: true });
             }
-
-            var displayText = toSentenceCase(actionText);
-            var actionHref = actionBtn.getAttribute('href');
-            actionsHtml += '<a href="' + escapeHtml(actionHref) + '" class="' + buttonBaseClass + ' ' + extraClass + '">';
-            if (iconClass) actionsHtml += '<i class="' + escapeHtml(iconClass) + '" aria-hidden="true"></i> ';
-            actionsHtml += escapeHtml(displayText) + '</a>';
         }
-
-        return { pageItems, actionsHtml };
     }
 
+    // ---- Action buttons ----
+    var actionButtons = legacyBar.querySelectorAll('.right.Sub .buttons a');
+    var actionsHtml = '';
+    for (var j = 0; j < actionButtons.length; j++) {
+        var actionBtn = actionButtons[j];
+        var actionSpan = actionBtn.querySelector('span');
+        var spanClass = actionSpan ? actionSpan.className : '';
+        var actionIcon = actionSpan ? actionSpan.querySelector('i') : null;
+        var iconClass = actionIcon ? actionIcon.className : '';
+
+        // ---- Determine button class and fixed English text ----
+        var extraClass = 'modern-pagination-action';
+        var buttonBaseClass = 'modern-btn ';
+        var actionText = '';
+
+        if (spanClass.indexOf('reply') !== -1) {
+            buttonBaseClass += 'modern-btn-secondary';
+            extraClass += ' modern-pagination-action--reply';
+            actionText = 'Reply';
+        } else if (spanClass.indexOf('newpost') !== -1) {
+            buttonBaseClass += 'modern-btn-primary';
+            extraClass += ' modern-pagination-action--new-topic';
+            actionText = 'New Topic';
+        } else {
+            // Fallback: use original text and capitalise
+            buttonBaseClass += 'modern-btn-primary';
+            var rawText = actionSpan ? actionSpan.textContent.trim() : actionBtn.textContent.trim();
+            actionText = toSentenceCase(rawText);
+        }
+
+        var actionHref = actionBtn.getAttribute('href');
+        actionsHtml += '<a href="' + escapeHtml(actionHref) + '" class="' + buttonBaseClass + ' ' + extraClass + '">';
+        if (iconClass) actionsHtml += '<i class="' + escapeHtml(iconClass) + '" aria-hidden="true"></i> ';
+        actionsHtml += escapeHtml(actionText) + '</a>';
+    }
+
+    return { pageItems, actionsHtml };
+}
+   
     function buildPaginationHtml(data) {
         var html = '<div class="modern-pagination-bar">';
         if (data.pageItems.length > 0) {
