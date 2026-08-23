@@ -314,7 +314,7 @@ function extractPaginationData(legacyBar) {
         } else if (spanClass.indexOf('newpost') !== -1) {
             buttonBaseClass += 'modern-btn-primary';
             extraClass += ' modern-pagination-action--new-topic';
-            actionText = 'New Topic';
+            actionText = 'New topic';
         } else {
             // Fallback: use original text and capitalise
             buttonBaseClass += 'modern-btn-primary';
