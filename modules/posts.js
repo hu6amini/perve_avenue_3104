@@ -858,8 +858,9 @@ function parseDateFromTitle(title) {
                 quoteHtml += `<button class="quote-jump-btn" data-anchor-id="${anchorId}" data-is-cross-page="false" data-target-url="${escapeHtml(targetUrl)}" title="Jump to quoted post" aria-label="Jump to quoted post" type="button"><i class="fa-regular fa-angle-up"></i></button>`;
             }
             quoteHtml += `</div><div class="quote-content">${innerHtml}</div>`;
+            // UPDATED: use a span for the text so we can update it without touching the <i>
             quoteHtml += `<button class="quote-expand-btn" type="button" aria-expanded="false" aria-label="Show full quote">
-    <i class="fa-regular fa-angle-down"></i> Show more
+    <i class="fa-regular fa-angle-down"></i> <span class="expand-text">Show more</span>
 </button>`;
             quoteHtml += `</div>`;
             return createElementFromHTML(quoteHtml);
@@ -925,14 +926,15 @@ function initQuotesAndSpoilers() {
                 icon.className = 'fa-regular fa-angle-down';
                 expandBtn.prepend(icon);
             }
-            // Update the text node only (preserving the <i>)
-            const textNode = expandBtn.childNodes[1];
-            if (textNode) {
-                textNode.textContent = ' Show more';
-            } else {
-                // Fallback: if no text node, append one
-                expandBtn.appendChild(document.createTextNode(' Show more'));
+            // Make sure the <span> exists and has the right text
+            let textSpan = expandBtn.querySelector('.expand-text');
+            if (!textSpan) {
+                textSpan = document.createElement('span');
+                textSpan.className = 'expand-text';
+                expandBtn.appendChild(textSpan);
             }
+            textSpan.textContent = 'Show more';
+
             // Start collapsed (if not already)
             if (quote.classList.contains('expanded')) {
                 quote.classList.remove('expanded');
@@ -1507,21 +1509,16 @@ function initQuotesAndSpoilers() {
         return null;
     }
 function handleQuoteExpand(btn) {
-    // Get the parent quote container
     const quote = btn.closest('.modern-quote');
     if (!quote) return;
 
-    // Toggle the 'expanded' class on the container (this shows/hides the content)
     quote.classList.toggle('expanded');
     const isExpanded = quote.classList.contains('expanded');
-
-    // Update the button's aria-expanded for accessibility and CSS rotation
     btn.setAttribute('aria-expanded', String(isExpanded));
 
-    // Update the button text without touching the <i> element
-    const textNode = btn.childNodes[1];
-    if (textNode) {
-        textNode.textContent = isExpanded ? ' Show less' : ' Show more';
+    const textSpan = btn.querySelector('.expand-text');
+    if (textSpan) {
+        textSpan.textContent = isExpanded ? 'Show less' : 'Show more';
     }
 }
     function handleQuoteJump(btn) {
