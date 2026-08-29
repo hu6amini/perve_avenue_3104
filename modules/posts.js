@@ -858,7 +858,9 @@ function parseDateFromTitle(title) {
                 quoteHtml += `<button class="quote-jump-btn" data-anchor-id="${anchorId}" data-is-cross-page="false" data-target-url="${escapeHtml(targetUrl)}" title="Jump to quoted post" aria-label="Jump to quoted post" type="button"><i class="fa-regular fa-angle-up"></i></button>`;
             }
             quoteHtml += `</div><div class="quote-content">${innerHtml}</div>`;
-            quoteHtml += `<button class="quote-expand-btn" type="button" aria-label="Show full quote"><i class="fa-regular fa-angle-down"></i> Show more</button>`;
+            quoteHtml += `<button class="quote-expand-btn" type="button" aria-expanded="false" aria-label="Show full quote">
+    <i class="fa-regular fa-angle-down"></i> Show more
+</button>`;
             quoteHtml += `</div>`;
             return createElementFromHTML(quoteHtml);
         } catch (e) { return null; }
