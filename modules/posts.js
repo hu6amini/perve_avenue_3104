@@ -1477,13 +1477,21 @@ function parseDateFromTitle(title) {
         return null;
     }
 function handleQuoteExpand(btn) {
-    const isExpanded = btn.getAttribute('aria-expanded') === 'true';
-    // Toggle the state
-    btn.setAttribute('aria-expanded', String(!isExpanded));
-    // Update only the text node (the second child after the <i>)
+    // Get the parent quote container
+    const quote = btn.closest('.modern-quote');
+    if (!quote) return;
+
+    // Toggle the 'expanded' class on the container (this shows/hides the content)
+    quote.classList.toggle('expanded');
+    const isExpanded = quote.classList.contains('expanded');
+
+    // Update the button's aria-expanded for accessibility and CSS rotation
+    btn.setAttribute('aria-expanded', String(isExpanded));
+
+    // Update the button text without touching the <i> element
     const textNode = btn.childNodes[1];
     if (textNode) {
-        textNode.textContent = !isExpanded ? ' Show less' : ' Show more';
+        textNode.textContent = isExpanded ? ' Show less' : ' Show more';
     }
 }
     function handleQuoteJump(btn) {
