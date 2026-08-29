@@ -1476,14 +1476,16 @@ function parseDateFromTitle(title) {
         if (linkWithMsid) return linkWithMsid.closest('.post');
         return null;
     }
-    function handleQuoteExpand(btn) {
-        const quote = btn.closest('.modern-quote');
-        if (quote) {
-            quote.classList.toggle('expanded');
-            const isExpanded = quote.classList.contains('expanded');
-            btn.innerHTML = isExpanded ? '<i class="fa-regular fa-angle-down"></i> Show less' : '<i class="fa-regular fa-angle-down"></i> Show more';
-        }
+function handleQuoteExpand(btn) {
+    const isExpanded = btn.getAttribute('aria-expanded') === 'true';
+    // Toggle the state
+    btn.setAttribute('aria-expanded', String(!isExpanded));
+    // Update only the text node (the second child after the <i>)
+    const textNode = btn.childNodes[1];
+    if (textNode) {
+        textNode.textContent = !isExpanded ? ' Show less' : ' Show more';
     }
+}
     function handleQuoteJump(btn) {
         const targetUrl = btn.getAttribute('data-target-url');
         if (targetUrl) window.location.href = targetUrl;
