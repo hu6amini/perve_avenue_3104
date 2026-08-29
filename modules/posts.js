@@ -890,60 +890,90 @@ function parseDateFromTitle(title) {
     // ============================================================================
     // POST-PROCESSING: remove expand button if content fits (image-aware)
     // ============================================================================
-    function initQuotesAndSpoilers() {
-        const quotes = document.querySelectorAll('.modern-quote.long-quote');
-        const checkQuote = (quote) => {
-            const content = quote.querySelector('.quote-content');
-            const expandBtn = quote.querySelector('.quote-expand-btn');
-            if (!content || !expandBtn) return;
-            const maxHeight = parseFloat(getComputedStyle(content).maxHeight);
-            if (isNaN(maxHeight)) return;
-            const actualHeight = content.getBoundingClientRect().height;
-            let anyImageTall = false;
-            const images = content.querySelectorAll('img');
-            images.forEach(img => {
-                const imgHeight = img.getBoundingClientRect().height;
-                if (imgHeight > maxHeight + 2) anyImageTall = true;
-            });
-            const overflows = (content.scrollHeight > maxHeight + 2) || (actualHeight > maxHeight + 2) || anyImageTall;
-            if (!overflows) {
-                expandBtn.remove();
-                quote.classList.remove('long-quote');
+function initQuotesAndSpoilers() {
+    const quotes = document.querySelectorAll('.modern-quote.long-quote');
+
+    const checkQuote = (quote) => {
+        const content = quote.querySelector('.quote-content');
+        const expandBtn = quote.querySelector('.quote-expand-btn');
+        if (!content || !expandBtn) return;
+
+        const maxHeight = parseFloat(getComputedStyle(content).maxHeight);
+        if (isNaN(maxHeight)) return;
+
+        // Wait for layout to settle
+        const actualHeight = content.getBoundingClientRect().height;
+        let anyImageTall = false;
+        const images = content.querySelectorAll('img');
+        images.forEach(img => {
+            const imgHeight = img.getBoundingClientRect().height;
+            if (imgHeight > maxHeight + 2) anyImageTall = true;
+        });
+
+        const overflows = (content.scrollHeight > maxHeight + 2) || (actualHeight > maxHeight + 2) || anyImageTall;
+
+        if (!overflows) {
+            // No overflow: remove the button and the 'long-quote' class
+            expandBtn.remove();
+            quote.classList.remove('long-quote');
+        } else {
+            // Overflow exists: ensure the button has the correct text and icon
+            // Make sure the <i> exists (if not, create it)
+            let icon = expandBtn.querySelector('i');
+            if (!icon) {
+                icon = document.createElement('i');
+                icon.className = 'fa-regular fa-angle-down';
+                expandBtn.prepend(icon);
+            }
+            // Update the text node only (preserving the <i>)
+            const textNode = expandBtn.childNodes[1];
+            if (textNode) {
+                textNode.textContent = ' Show more';
             } else {
-                expandBtn.innerHTML = '<i class="fa-regular fa-angle-down"></i> Show more';
+                // Fallback: if no text node, append one
+                expandBtn.appendChild(document.createTextNode(' Show more'));
+            }
+            // Start collapsed (if not already)
+            if (quote.classList.contains('expanded')) {
                 quote.classList.remove('expanded');
+                expandBtn.setAttribute('aria-expanded', 'false');
             }
-        };
-        quotes.forEach(quote => {
-            const content = quote.querySelector('.quote-content');
-            if (!content) return;
-            const images = content.querySelectorAll('img');
-            if (images.length === 0) {
-                checkQuote(quote);
-            } else {
-                let pending = images.length;
-                const onLoadOrError = () => {
-                    pending--;
-                    if (pending === 0) {
-                        requestAnimationFrame(() => {
-                            setTimeout(() => checkQuote(quote), 50);
-                        });
-                    }
-                };
-                images.forEach(img => {
-                    if (img.complete && img.naturalHeight !== 0) {
-                        onLoadOrError();
-                    } else {
-                        img.addEventListener('load', onLoadOrError);
-                        img.addEventListener('error', onLoadOrError);
-                    }
-                });
-            }
-        });
-        document.querySelectorAll('.modern-spoiler .spoiler-content').forEach(content => {
-            if (!content.hasAttribute('hidden')) content.setAttribute('hidden', '');
-        });
-    }
+        }
+    };
+
+    quotes.forEach(quote => {
+        const content = quote.querySelector('.quote-content');
+        if (!content) return;
+
+        const images = content.querySelectorAll('img');
+        if (images.length === 0) {
+            checkQuote(quote);
+        } else {
+            let pending = images.length;
+            const onLoadOrError = () => {
+                pending--;
+                if (pending === 0) {
+                    requestAnimationFrame(() => {
+                        setTimeout(() => checkQuote(quote), 50);
+                    });
+                }
+            };
+            images.forEach(img => {
+                if (img.complete && img.naturalHeight !== 0) {
+                    onLoadOrError();
+                } else {
+                    img.addEventListener('load', onLoadOrError);
+                    img.addEventListener('error', onLoadOrError);
+                }
+            });
+        }
+    });
+
+    // Spoilers start hidden
+    document.querySelectorAll('.modern-spoiler .spoiler-content').forEach(content => {
+        if (!content.hasAttribute('hidden')) content.setAttribute('hidden', '');
+    });
+}
 
     // ============================================================================
     // FIX MISSING IMAGE DIMENSIONS
