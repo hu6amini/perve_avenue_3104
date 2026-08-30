@@ -1,4 +1,4 @@
-// Forum Modernizer - Posts Module v2.4 (with anchor ID for scrolling)
+// Forum Modernizer - Posts Module v2.4 (with anchor ID for scrolling) + Poll Conversion
 'use strict';
 
 const ForumPostsModule = (function () {
@@ -858,7 +858,6 @@ function parseDateFromTitle(title) {
                 quoteHtml += `<button class="quote-jump-btn" data-anchor-id="${anchorId}" data-is-cross-page="false" data-target-url="${escapeHtml(targetUrl)}" title="Jump to quoted post" aria-label="Jump to quoted post" type="button"><i class="fa-regular fa-angle-up"></i></button>`;
             }
             quoteHtml += `</div><div class="quote-content">${innerHtml}</div>`;
-            // UPDATED: use a span for the text so we can update it without touching the <i>
             quoteHtml += `<button class="quote-expand-btn" type="button" aria-expanded="false" aria-label="Show full quote">
     <i class="fa-regular fa-angle-down"></i> <span class="expand-text">Show more</span>
 </button>`;
@@ -1633,6 +1632,346 @@ function handleQuoteExpand(btn) {
     }
 
     // ============================================================================
+    // POLL CONVERSION
+    // ============================================================================
+
+    function convertPoll() {
+        // Only run on topic pages and if a poll exists
+        if (document.body.id !== 'topic') return;
+        const legacyPoll = document.querySelector('div.poll');
+        if (!legacyPoll) return;
+
+        // Avoid double conversion
+        if (legacyPoll.dataset.converted === 'true') return;
+        legacyPoll.dataset.converted = 'true';
+
+        // Extract poll data
+        const pollData = parseLegacyPoll(legacyPoll);
+        if (!pollData) return;
+
+        // Build modern poll HTML
+        const modernHtml = buildModernPoll(pollData);
+        const modernPoll = createElementFromHTML(modernHtml);
+        if (!modernPoll) return;
+
+        // Hide the legacy poll
+        legacyPoll.style.display = 'none';
+
+        // Insert modern poll before the first modern post
+        const container = getPostsContainer();
+        const firstPost = container.querySelector('.post-card');
+        if (firstPost) {
+            container.insertBefore(modernPoll, firstPost);
+        } else {
+            container.prepend(modernPoll);
+        }
+
+        // Attach event handlers to modern poll
+        attachPollHandlers(modernPoll, legacyPoll, pollData);
+    }
+
+    function parseLegacyPoll(legacyPoll) {
+        try {
+            // Get title
+            const titleEl = legacyPoll.querySelector('.sunbar.top.Item');
+            const title = titleEl ? titleEl.textContent.trim() : 'Poll';
+
+            // Determine state
+            const hasRadio = legacyPoll.querySelector('input[name="poll_vote"]') !== null;
+            const hasBar = legacyPoll.querySelector('.bar') !== null;
+            const hasDelVote = legacyPoll.querySelector('input[name="delvote"]') !== null;
+            const hasNullVote = legacyPoll.querySelector('input[name="nullvote"]') !== null;
+            const hasYouVoted = legacyPoll.textContent.includes('You have voted');
+
+            let state = 'vote'; // default
+            if (hasYouVoted && hasDelVote) {
+                state = 'voted';
+            } else if (hasBar && !hasRadio) {
+                state = 'results';
+            } else if (hasRadio && !hasBar) {
+                state = 'vote';
+            } else if (hasBar && hasRadio) {
+                if (hasDelVote) state = 'voted';
+                else state = 'results';
+            }
+
+            // Extract choices
+            let choices = [];
+            let totalVotes = 0;
+            let userVoteIndex = -1; // 0-based
+
+            if (state === 'vote') {
+                // Radio buttons: each li contains a label with text
+                const items = legacyPoll.querySelectorAll('li.Item');
+                for (const li of items) {
+                    const label = li.querySelector('label');
+                    if (label) {
+                        const text = label.textContent.trim();
+                        const input = label.querySelector('input');
+                        let choiceText = text;
+                        if (input) {
+                            choiceText = text.replace(input.value || '', '').trim();
+                        }
+                        choices.push({ label: choiceText, votes: 0, percentage: 0 });
+                    }
+                }
+                totalVotes = 0;
+            } else {
+                // Results or voted: each li has .left.Sub.Item (choice), .center.Sub.Item (bar & percentage), .right.Sub.Item (votes)
+                const items = legacyPoll.querySelectorAll('li');
+                for (const li of items) {
+                    const left = li.querySelector('.left.Sub.Item');
+                    const center = li.querySelector('.center.Sub.Item .bar');
+                    const right = li.querySelector('.right.Sub.Item');
+                    if (!left || !center || !right) continue;
+                    let label = left.textContent.trim();
+                    const strong = left.querySelector('strong');
+                    if (strong) label = strong.textContent.trim();
+
+                    const barSpan = center.querySelector('span');
+                    let percentage = 0;
+                    if (barSpan) {
+                        const percText = barSpan.textContent.trim().replace('%', '');
+                        percentage = parseFloat(percText) || 0;
+                    }
+                    let votesText = right.textContent.trim();
+                    votesText = votesText.replace(/[^0-9]/g, '');
+                    const votes = parseInt(votesText, 10) || 0;
+
+                    choices.push({ label, votes, percentage });
+                    totalVotes += votes;
+                }
+
+                // If voted, find user's choice: the one with 'max' class or strong in left
+                if (state === 'voted') {
+                    const itemsWithMax = legacyPoll.querySelectorAll('li.max');
+                    if (itemsWithMax.length === 1) {
+                        const li = itemsWithMax[0];
+                        const left = li.querySelector('.left.Sub.Item');
+                        if (left) {
+                            const strong = left.querySelector('strong');
+                            if (strong) {
+                                const label = strong.textContent.trim();
+                                for (let i = 0; i < choices.length; i++) {
+                                    if (choices[i].label === label) {
+                                        userVoteIndex = i;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                // Recalculate percentages based on totalVotes
+                if (totalVotes > 0) {
+                    for (let c of choices) {
+                        c.percentage = (c.votes / totalVotes) * 100;
+                    }
+                }
+            }
+
+            // Get voter count
+            let voters = 0;
+            const votersMatch = legacyPoll.textContent.match(/\(Voters:\s*(\d+)\)/);
+            if (votersMatch) voters = parseInt(votersMatch[1], 10);
+
+            // Find the form that contains the poll
+            const form = legacyPoll.closest('form');
+
+            return {
+                title,
+                choices,
+                totalVotes,
+                voters,
+                state,
+                userVoteIndex,
+                form
+            };
+        } catch (e) {
+            console.warn('[PostsModule] Failed to parse poll:', e);
+            return null;
+        }
+    }
+
+    function buildModernPoll(data) {
+        const { title, choices, totalVotes, voters, state, userVoteIndex } = data;
+
+        let pollState = state;
+        let headerStats = '';
+        let footerMessage = '';
+        let actionsHtml = '';
+
+        if (pollState === 'vote') {
+            headerStats = '';
+            footerMessage = 'Select your choice and click Vote';
+            actionsHtml = `
+                <button type="button" class="poll-btn vote-btn"><i class="fa-regular fa-check" aria-hidden="true"></i>Vote</button>
+                <button type="button" class="poll-btn secondary view-results-btn"><i class="fa-regular fa-chart-bar" aria-hidden="true"></i>View Results</button>
+            `;
+        } else if (pollState === 'results') {
+            headerStats = `<i class="fa-regular fa-users" aria-hidden="true"></i><span>${voters} ${voters === 1 ? 'voter' : 'voters'}</span>`;
+            footerMessage = `Poll results • ${voters} ${voters === 1 ? 'voter' : 'voters'}`;
+            actionsHtml = `
+                <button type="button" class="poll-btn secondary" onclick="location.reload()"><i class="fa-regular fa-rotate" aria-hidden="true"></i>Refresh</button>
+            `;
+        } else if (pollState === 'voted') {
+            headerStats = `<i class="fa-regular fa-users" aria-hidden="true"></i><span>${voters} ${voters === 1 ? 'voter' : 'voters'}</span>`;
+            const votedChoice = (userVoteIndex >= 0 && userVoteIndex < choices.length) ? choices[userVoteIndex].label : 'unknown';
+            footerMessage = `You voted for option <strong>${userVoteIndex + 1}</strong>: <span class="poll-choice-name">${escapeHtml(votedChoice)}</span>`;
+            actionsHtml = `
+                <button type="button" class="poll-btn delete cancel-vote-btn"><i class="fa-regular fa-xmark" aria-hidden="true"></i>Cancel vote</button>
+            `;
+        }
+
+        // Build choices HTML
+        let choicesHtml = '';
+        const maxVotes = choices.length ? Math.max(...choices.map(c => c.votes)) : 0;
+
+        for (let i = 0; i < choices.length; i++) {
+            const choice = choices[i];
+            const isMax = pollState !== 'vote' && choice.votes === maxVotes && maxVotes > 0;
+            const isSelected = (pollState === 'vote' && false) || (pollState === 'voted' && i === userVoteIndex);
+            const choiceClasses = ['poll-choice'];
+            if (isMax) choiceClasses.push('max');
+            if (isSelected) choiceClasses.push('selected');
+
+            let radioHtml = '';
+            if (pollState === 'vote') {
+                radioHtml = `<input type="radio" class="choice-radio" id="modern_poll_vote${i}" name="poll_vote" value="${i}" onclick="event.stopPropagation()">`;
+            } else if (pollState === 'voted' && isSelected) {
+                radioHtml = `<input type="radio" class="choice-radio" checked disabled>`;
+            }
+
+            let labelText = choice.label;
+            if (pollState === 'voted' && isSelected) {
+                labelText += ' <strong>(Your vote)</strong>';
+            }
+
+            const percentageDisplay = choice.percentage.toFixed(2);
+            const votesDisplay = choice.votes + (choice.votes === 1 ? ' vote' : ' votes');
+
+            let statsHtml = '';
+            if (pollState !== 'vote') {
+                statsHtml = `
+                    <div class="choice-stats">
+                        <div class="choice-bar"><div class="choice-fill" style="width: ${percentageDisplay}%;"></div></div>
+                        <span class="choice-percentage">${percentageDisplay}%</span>
+                        <span class="choice-votes">${votesDisplay}</span>
+                    </div>
+                `;
+            }
+
+            choicesHtml += `
+                <div class="${choiceClasses.join(' ')}" data-choice-index="${i}">
+                    ${radioHtml}
+                    <span class="choice-label">${escapeHtml(labelText)}</span>
+                    ${statsHtml}
+                </div>
+            `;
+        }
+
+        return `
+            <div class="modern-poll" data-poll-state="${pollState}">
+                <div class="poll-header">
+                    <div class="poll-icon"><i class="fa-regular fa-chart-bar" aria-hidden="true"></i></div>
+                    <h3 class="poll-title">${escapeHtml(title)}</h3>
+                    <div class="poll-stats">${headerStats}</div>
+                </div>
+                <div class="poll-choices">${choicesHtml}</div>
+                <div class="poll-footer">
+                    <p class="poll-message">${footerMessage}</p>
+                    <div class="poll-actions">${actionsHtml}</div>
+                </div>
+            </div>
+        `;
+    }
+
+    function attachPollHandlers(modernPoll, legacyPoll, pollData) {
+        const form = pollData.form;
+        if (!form) return;
+
+        function submitForm(params) {
+            for (const [name, value] of Object.entries(params)) {
+                let input = form.querySelector(`input[name="${name}"]`);
+                if (!input) {
+                    input = document.createElement('input');
+                    input.type = 'hidden';
+                    input.name = name;
+                    form.appendChild(input);
+                }
+                input.value = value;
+            }
+            form.submit();
+        }
+
+        // Vote button
+        const voteBtn = modernPoll.querySelector('.vote-btn');
+        if (voteBtn) {
+            voteBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                const selectedRadio = modernPoll.querySelector('input[name="poll_vote"]:checked');
+                if (!selectedRadio) {
+                    alert('Please select an option first.');
+                    return;
+                }
+                const value = selectedRadio.value;
+                const originalRadio = form.querySelector(`input[name="poll_vote"][value="${value}"]`);
+                if (originalRadio) originalRadio.checked = true;
+                submitForm({ submit: ' Vote! ' });
+            });
+        }
+
+        // View Results button
+        const viewResultsBtn = modernPoll.querySelector('.view-results-btn');
+        if (viewResultsBtn) {
+            viewResultsBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                submitForm({ nullvote: '1' });
+            });
+        }
+
+        // Cancel Vote button
+        const cancelVoteBtn = modernPoll.querySelector('.cancel-vote-btn');
+        if (cancelVoteBtn) {
+            cancelVoteBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                if (confirm('Are you sure you want to cancel your vote?')) {
+                    submitForm({ delvote: '1' });
+                }
+            });
+        }
+
+        // Click on choice row: select the radio (if in vote state)
+        const choiceRows = modernPoll.querySelectorAll('.poll-choice');
+        choiceRows.forEach(row => {
+            row.addEventListener('click', function(e) {
+                if (e.target.closest('input, label')) return;
+                const radio = this.querySelector('input[type="radio"]');
+                if (radio && !radio.disabled) {
+                    radio.checked = true;
+                    choiceRows.forEach(r => r.classList.remove('selected'));
+                    this.classList.add('selected');
+                }
+            });
+        });
+
+        // Also handle label clicks to toggle selected class
+        modernPoll.querySelectorAll('.choice-label').forEach(label => {
+            label.addEventListener('click', function(e) {
+                const row = this.closest('.poll-choice');
+                if (!row) return;
+                const radio = row.querySelector('input[type="radio"]');
+                if (radio && !radio.disabled) {
+                    radio.checked = true;
+                    choiceRows.forEach(r => r.classList.remove('selected'));
+                    row.classList.add('selected');
+                }
+            });
+        });
+    }
+
+    // ============================================================================
     // CONVERSION FUNCTIONS
     // ============================================================================
     async function convertMessages() {
@@ -1692,6 +2031,11 @@ function handleQuoteExpand(btn) {
             setSanitizedHTML(container, '');
             convertedPostIds.clear();
             postReactions.clear();
+
+            // ---- Convert legacy poll ----
+            convertPoll();
+
+            // ---- Blog articles ----
             const blogArticles = document.querySelectorAll('.blog .article');
             let blogCount = 0;
             const allMids = [];
@@ -1709,6 +2053,8 @@ function handleQuoteExpand(btn) {
                 if (blogData.postId) convertedPostIds.add(blogData.postId);
                 blogCount++;
             }
+
+            // ---- Topic posts ----
             const posts = document.querySelectorAll(CONFIG.POST_SELECTOR);
             const validPosts = Array.from(posts).filter(isValidPost);
             let globalMid = null, globalUsername = null, isMemberPostsPage = false;
