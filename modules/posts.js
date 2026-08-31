@@ -1654,9 +1654,6 @@ function handleQuoteExpand(btn) {
         const modernPoll = createElementFromHTML(modernHtml);
         if (!modernPoll) return;
 
-        // Hide the legacy poll
-        legacyPoll.style.display = 'none';
-
         // Insert modern poll before the first modern post
         const container = getPostsContainer();
         const firstPost = container.querySelector('.post-card');
