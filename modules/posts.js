@@ -1928,16 +1928,17 @@ function handleQuoteExpand(btn) {
             });
         }
 
-        // Cancel Vote button
-        const cancelVoteBtn = modernPoll.querySelector('.cancel-vote-btn');
-        if (cancelVoteBtn) {
-            cancelVoteBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                if (confirm('Are you sure you want to cancel your vote?')) {
-                    submitForm({ delvote: '1' });
-                }
-            });
+// Cancel Vote button
+const cancelVoteBtn = modernPoll.querySelector('.cancel-vote-btn');
+if (cancelVoteBtn) {
+    cancelVoteBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        if (confirm('Are you sure you want to cancel your vote?')) {
+            // Use the exact value from the legacy submit button
+            submitForm({ delvote: 'Annulla' });
         }
+    });
+}
 
         // Click on choice row: select the radio (if in vote state)
         const choiceRows = modernPoll.querySelectorAll('.poll-choice');
