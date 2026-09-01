@@ -1884,90 +1884,105 @@ function handleQuoteExpand(btn) {
         `;
     }
 
-    function attachPollHandlers(modernPoll, legacyPoll, pollData) {
-        const form = pollData.form;
-        if (!form) return;
+function attachPollHandlers(modernPoll, legacyPoll, pollData) {
+    const form = pollData.form;
+    if (!form) return;
 
-        function submitForm(params) {
-            for (const [name, value] of Object.entries(params)) {
-                let input = form.querySelector(`input[name="${name}"]`);
-                if (!input) {
-                    input = document.createElement('input');
-                    input.type = 'hidden';
-                    input.name = name;
-                    form.appendChild(input);
+    // Helper: click the original submit button by name and value
+    function clickOriginalButton(name, value) {
+        const btn = form.querySelector(`input[type="submit"][name="${name}"][value="${value}"]`);
+        if (btn) {
+            btn.click();
+        } else {
+            // Fallback: try to find any button with that name and value (could be button element)
+            const fallbackBtn = form.querySelector(`button[name="${name}"][value="${value}"], input[name="${name}"][value="${value}"]`);
+            if (fallbackBtn) {
+                fallbackBtn.click();
+            } else {
+                // Last resort: add hidden inputs and submit
+                for (const [n, v] of Object.entries({[name]: value})) {
+                    let input = form.querySelector(`input[name="${n}"]`);
+                    if (!input) {
+                        input = document.createElement('input');
+                        input.type = 'hidden';
+                        input.name = n;
+                        form.appendChild(input);
+                    }
+                    input.value = v;
                 }
-                input.value = value;
+                form.submit();
             }
-            form.submit();
         }
+    }
 
-        // Vote button
-        const voteBtn = modernPoll.querySelector('.vote-btn');
-        if (voteBtn) {
-            voteBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                const selectedRadio = modernPoll.querySelector('input[name="poll_vote"]:checked');
-                if (!selectedRadio) {
-                    alert('Please select an option first.');
-                    return;
-                }
-                const value = selectedRadio.value;
-                const originalRadio = form.querySelector(`input[name="poll_vote"][value="${value}"]`);
-                if (originalRadio) originalRadio.checked = true;
-                submitForm({ submit: ' Vote! ' });
-            });
-        }
-
-        // View Results button
-        const viewResultsBtn = modernPoll.querySelector('.view-results-btn');
-        if (viewResultsBtn) {
-            viewResultsBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                submitForm({ nullvote: '1' });
-            });
-        }
-
-// Cancel Vote button
-const cancelVoteBtn = modernPoll.querySelector('.cancel-vote-btn');
-if (cancelVoteBtn) {
-    cancelVoteBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        if (confirm('Are you sure you want to cancel your vote?')) {
-            // Use the exact value from the legacy submit button
-            submitForm({ delvote: 'Annulla' });
-        }
-    });
-}
-
-        // Click on choice row: select the radio (if in vote state)
-        const choiceRows = modernPoll.querySelectorAll('.poll-choice');
-        choiceRows.forEach(row => {
-            row.addEventListener('click', function(e) {
-                if (e.target.closest('input, label')) return;
-                const radio = this.querySelector('input[type="radio"]');
-                if (radio && !radio.disabled) {
-                    radio.checked = true;
-                    choiceRows.forEach(r => r.classList.remove('selected'));
-                    this.classList.add('selected');
-                }
-            });
-        });
-
-        // Also handle label clicks to toggle selected class
-        modernPoll.querySelectorAll('.choice-label').forEach(label => {
-            label.addEventListener('click', function(e) {
-                const row = this.closest('.poll-choice');
-                if (!row) return;
-                const radio = row.querySelector('input[type="radio"]');
-                if (radio && !radio.disabled) {
-                    radio.checked = true;
-                    choiceRows.forEach(r => r.classList.remove('selected'));
-                    row.classList.add('selected');
-                }
-            });
+    // ---- Vote button ----
+    const voteBtn = modernPoll.querySelector('.vote-btn');
+    if (voteBtn) {
+        voteBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const selectedRadio = modernPoll.querySelector('input[name="poll_vote"]:checked');
+            if (!selectedRadio) {
+                alert('Please select an option first.');
+                return;
+            }
+            const value = selectedRadio.value;
+            // Sync the original radio
+            const originalRadio = form.querySelector(`input[name="poll_vote"][value="${value}"]`);
+            if (originalRadio) originalRadio.checked = true;
+            // Click the original "Vote!" button
+            clickOriginalButton('submit', ' Vote! ');
         });
     }
+
+    // ---- View Results button ----
+    const viewResultsBtn = modernPoll.querySelector('.view-results-btn');
+    if (viewResultsBtn) {
+        viewResultsBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            clickOriginalButton('nullvote', '1');
+        });
+    }
+
+    // ---- Cancel Vote button ----
+    const cancelVoteBtn = modernPoll.querySelector('.cancel-vote-btn');
+    if (cancelVoteBtn) {
+        cancelVoteBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            // If you want to keep the confirm, leave it; otherwise remove the if
+            if (confirm('Are you sure you want to cancel your vote?')) {
+                clickOriginalButton('delvote', 'Annulla');
+            }
+        });
+    }
+
+    // ---- Click on choice row to select radio ----
+    const choiceRows = modernPoll.querySelectorAll('.poll-choice');
+    choiceRows.forEach(row => {
+        row.addEventListener('click', function(e) {
+            if (e.target.closest('input, label')) return;
+            const radio = this.querySelector('input[type="radio"]');
+            if (radio && !radio.disabled) {
+                radio.checked = true;
+                choiceRows.forEach(r => r.classList.remove('selected'));
+                this.classList.add('selected');
+            }
+        });
+    });
+
+    // ---- Label clicks ----
+    modernPoll.querySelectorAll('.choice-label').forEach(label => {
+        label.addEventListener('click', function(e) {
+            const row = this.closest('.poll-choice');
+            if (!row) return;
+            const radio = row.querySelector('input[type="radio"]');
+            if (radio && !radio.disabled) {
+                radio.checked = true;
+                choiceRows.forEach(r => r.classList.remove('selected'));
+                row.classList.add('selected');
+            }
+        });
+    });
+}
 
     // ============================================================================
     // CONVERSION FUNCTIONS
