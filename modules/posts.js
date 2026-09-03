@@ -1894,7 +1894,7 @@ function attachPollHandlers(modernPoll, legacyPoll, pollData) {
         if (btn) {
             btn.click();
         } else {
-            // Fallback: try to find any button with that name and value (could be button element)
+            // Fallback: try to find any button with that name and value
             const fallbackBtn = form.querySelector(`button[name="${name}"][value="${value}"], input[name="${name}"][value="${value}"]`);
             if (fallbackBtn) {
                 fallbackBtn.click();
@@ -1915,21 +1915,18 @@ function attachPollHandlers(modernPoll, legacyPoll, pollData) {
         }
     }
 
-    // ---- Vote button ----
+    // ---- Vote button (no alert) ----
     const voteBtn = modernPoll.querySelector('.vote-btn');
     if (voteBtn) {
         voteBtn.addEventListener('click', function(e) {
             e.preventDefault();
             const selectedRadio = modernPoll.querySelector('input[name="poll_vote"]:checked');
-            if (!selectedRadio) {
-                alert('Please select an option first.');
-                return;
+            if (selectedRadio) {
+                const value = selectedRadio.value;
+                const originalRadio = form.querySelector(`input[name="poll_vote"][value="${value}"]`);
+                if (originalRadio) originalRadio.checked = true;
             }
-            const value = selectedRadio.value;
-            // Sync the original radio
-            const originalRadio = form.querySelector(`input[name="poll_vote"][value="${value}"]`);
-            if (originalRadio) originalRadio.checked = true;
-            // Click the original "Vote!" button
+            // Always submit – server will handle missing selection
             clickOriginalButton('submit', ' Vote! ');
         });
     }
@@ -1943,15 +1940,12 @@ function attachPollHandlers(modernPoll, legacyPoll, pollData) {
         });
     }
 
-    // ---- Cancel Vote button ----
+    // ---- Cancel Vote button (no confirm) ----
     const cancelVoteBtn = modernPoll.querySelector('.cancel-vote-btn');
     if (cancelVoteBtn) {
         cancelVoteBtn.addEventListener('click', function(e) {
             e.preventDefault();
-            // If you want to keep the confirm, leave it; otherwise remove the if
-            if (confirm('Are you sure you want to cancel your vote?')) {
-                clickOriginalButton('delvote', 'Annulla');
-            }
+            clickOriginalButton('delvote', 'Annulla');
         });
     }
 
@@ -1983,7 +1977,7 @@ function attachPollHandlers(modernPoll, legacyPoll, pollData) {
         });
     });
 }
-
+    
     // ============================================================================
     // CONVERSION FUNCTIONS
     // ============================================================================
