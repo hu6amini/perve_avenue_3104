@@ -1791,98 +1791,99 @@ function handleQuoteExpand(btn) {
         }
     }
 
-    function buildModernPoll(data) {
-        const { title, choices, totalVotes, voters, state, userVoteIndex } = data;
+function buildModernPoll(data) {
+    const { title, choices, totalVotes, voters, state, userVoteIndex } = data;
 
-        let pollState = state;
-        let headerStats = '';
-        let footerMessage = '';
-        let actionsHtml = '';
+    let pollState = state;
+    let headerStats = '';
+    let footerMessage = '';
+    let actionsHtml = '';
 
+    if (pollState === 'vote') {
+        headerStats = '';
+        footerMessage = 'Select your choice and click Vote';
+        actionsHtml = `
+            <button type="button" class="poll-btn vote-btn"><i class="fa-regular fa-check" aria-hidden="true"></i>Vote</button>
+            <button type="button" class="poll-btn secondary view-results-btn"><i class="fa-regular fa-chart-bar" aria-hidden="true"></i>View Results</button>
+        `;
+    } else if (pollState === 'results') {
+        headerStats = `<i class="fa-regular fa-users" aria-hidden="true"></i><span>${voters} ${voters === 1 ? 'voter' : 'voters'}</span>`;
+        footerMessage = `Poll results • ${voters} ${voters === 1 ? 'voter' : 'voters'}`;
+        actionsHtml = `
+            <button type="button" class="poll-btn secondary" onclick="location.reload()"><i class="fa-regular fa-rotate" aria-hidden="true"></i>Refresh</button>
+        `;
+    } else if (pollState === 'voted') {
+        headerStats = `<i class="fa-regular fa-users" aria-hidden="true"></i><span>${voters} ${voters === 1 ? 'voter' : 'voters'}</span>`;
+        const votedChoice = (userVoteIndex >= 0 && userVoteIndex < choices.length) ? choices[userVoteIndex].label : 'unknown';
+        footerMessage = `You voted for option <strong>${userVoteIndex + 1}</strong>: <span class="poll-choice-name">${escapeHtml(votedChoice)}</span>`;
+        actionsHtml = `
+            <button type="button" class="poll-btn delete cancel-vote-btn"><i class="fa-regular fa-xmark" aria-hidden="true"></i>Cancel vote</button>
+        `;
+    }
+
+    // Build choices HTML
+    let choicesHtml = '';
+    const maxVotes = choices.length ? Math.max(...choices.map(c => c.votes)) : 0;
+
+    for (let i = 0; i < choices.length; i++) {
+        const choice = choices[i];
+        const isMax = pollState !== 'vote' && choice.votes === maxVotes && maxVotes > 0;
+        const isSelected = (pollState === 'vote' && false) || (pollState === 'voted' && i === userVoteIndex);
+        const choiceClasses = ['poll-choice'];
+        if (isMax) choiceClasses.push('max');
+        if (isSelected) choiceClasses.push('selected');
+
+        let radioHtml = '';
         if (pollState === 'vote') {
-            headerStats = '';
-            footerMessage = 'Select your choice and click Vote';
-            actionsHtml = `
-                <button type="button" class="poll-btn vote-btn"><i class="fa-regular fa-check" aria-hidden="true"></i>Vote</button>
-                <button type="button" class="poll-btn secondary view-results-btn"><i class="fa-regular fa-chart-bar" aria-hidden="true"></i>View Results</button>
-            `;
-        } else if (pollState === 'results') {
-            headerStats = `<i class="fa-regular fa-users" aria-hidden="true"></i><span>${voters} ${voters === 1 ? 'voter' : 'voters'}</span>`;
-            footerMessage = `Poll results • ${voters} ${voters === 1 ? 'voter' : 'voters'}`;
-            actionsHtml = `
-                <button type="button" class="poll-btn secondary" onclick="location.reload()"><i class="fa-regular fa-rotate" aria-hidden="true"></i>Refresh</button>
-            `;
-        } else if (pollState === 'voted') {
-            headerStats = `<i class="fa-regular fa-users" aria-hidden="true"></i><span>${voters} ${voters === 1 ? 'voter' : 'voters'}</span>`;
-            const votedChoice = (userVoteIndex >= 0 && userVoteIndex < choices.length) ? choices[userVoteIndex].label : 'unknown';
-            footerMessage = `You voted for option <strong>${userVoteIndex + 1}</strong>: <span class="poll-choice-name">${escapeHtml(votedChoice)}</span>`;
-            actionsHtml = `
-                <button type="button" class="poll-btn delete cancel-vote-btn"><i class="fa-regular fa-xmark" aria-hidden="true"></i>Cancel vote</button>
-            `;
+            radioHtml = `<input type="radio" class="choice-radio" id="modern_poll_vote${i}" name="poll_vote" value="${i}" onclick="event.stopPropagation()">`;
+        } else if (pollState === 'voted' && isSelected) {
+            radioHtml = `<input type="radio" class="choice-radio" checked disabled>`;
         }
 
-        // Build choices HTML
-        let choicesHtml = '';
-        const maxVotes = choices.length ? Math.max(...choices.map(c => c.votes)) : 0;
+        // --- FIX: allow <strong> in label, sanitize the rest ---
+        let labelHtml = sanitizeHTML(choice.label);
+        if (pollState === 'voted' && isSelected) {
+            labelHtml += ' <strong>(Your vote)</strong>';
+        }
 
-        for (let i = 0; i < choices.length; i++) {
-            const choice = choices[i];
-            const isMax = pollState !== 'vote' && choice.votes === maxVotes && maxVotes > 0;
-            const isSelected = (pollState === 'vote' && false) || (pollState === 'voted' && i === userVoteIndex);
-            const choiceClasses = ['poll-choice'];
-            if (isMax) choiceClasses.push('max');
-            if (isSelected) choiceClasses.push('selected');
+        const percentageDisplay = choice.percentage.toFixed(2);
+        const votesDisplay = choice.votes + (choice.votes === 1 ? ' vote' : ' votes');
 
-            let radioHtml = '';
-            if (pollState === 'vote') {
-                radioHtml = `<input type="radio" class="choice-radio" id="modern_poll_vote${i}" name="poll_vote" value="${i}" onclick="event.stopPropagation()">`;
-            } else if (pollState === 'voted' && isSelected) {
-                radioHtml = `<input type="radio" class="choice-radio" checked disabled>`;
-            }
-
-            let labelText = choice.label;
-            if (pollState === 'voted' && isSelected) {
-                labelText += ' <strong>(Your vote)</strong>';
-            }
-
-            const percentageDisplay = choice.percentage.toFixed(2);
-            const votesDisplay = choice.votes + (choice.votes === 1 ? ' vote' : ' votes');
-
-            let statsHtml = '';
-            if (pollState !== 'vote') {
-                statsHtml = `
-                    <div class="choice-stats">
-                        <div class="choice-bar"><div class="choice-fill" style="width: ${percentageDisplay}%;"></div></div>
-                        <span class="choice-percentage">${percentageDisplay}%</span>
-                        <span class="choice-votes">${votesDisplay}</span>
-                    </div>
-                `;
-            }
-
-            choicesHtml += `
-                <div class="${choiceClasses.join(' ')}" data-choice-index="${i}">
-                    ${radioHtml}
-                    <span class="choice-label">${escapeHtml(labelText)}</span>
-                    ${statsHtml}
+        let statsHtml = '';
+        if (pollState !== 'vote') {
+            statsHtml = `
+                <div class="choice-stats">
+                    <div class="choice-bar"><div class="choice-fill" style="width: ${percentageDisplay}%;"></div></div>
+                    <span class="choice-percentage">${percentageDisplay}%</span>
+                    <span class="choice-votes">${votesDisplay}</span>
                 </div>
             `;
         }
 
-        return `
-            <div class="modern-poll" data-poll-state="${pollState}">
-                <div class="poll-header">
-                    <div class="poll-icon"><i class="fa-regular fa-chart-bar" aria-hidden="true"></i></div>
-                    <h3 class="poll-title">${escapeHtml(title)}</h3>
-                    <div class="poll-stats">${headerStats}</div>
-                </div>
-                <div class="poll-choices">${choicesHtml}</div>
-                <div class="poll-footer">
-                    <p class="poll-message">${footerMessage}</p>
-                    <div class="poll-actions">${actionsHtml}</div>
-                </div>
+        choicesHtml += `
+            <div class="${choiceClasses.join(' ')}" data-choice-index="${i}">
+                ${radioHtml}
+                <span class="choice-label">${labelHtml}</span>
+                ${statsHtml}
             </div>
         `;
     }
+
+    return `
+        <div class="modern-poll" data-poll-state="${pollState}">
+            <div class="poll-header">
+                <div class="poll-icon"><i class="fa-regular fa-chart-bar" aria-hidden="true"></i></div>
+                <h3 class="poll-title">${escapeHtml(title)}</h3>
+                <div class="poll-stats">${headerStats}</div>
+            </div>
+            <div class="poll-choices">${choicesHtml}</div>
+            <div class="poll-footer">
+                <p class="poll-message">${footerMessage}</p>
+                <div class="poll-actions">${actionsHtml}</div>
+            </div>
+        </div>
+    `;
+}
 
 function attachPollHandlers(modernPoll, legacyPoll, pollData) {
     const form = pollData.form;
