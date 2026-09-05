@@ -1888,34 +1888,22 @@ function attachPollHandlers(modernPoll, legacyPoll, pollData) {
     const form = pollData.form;
     if (!form) return;
 
-    // Helper: click the original submit button by name and value
-    function clickOriginalButton(name, value) {
-        const btn = form.querySelector(`input[type="submit"][name="${name}"][value="${value}"]`);
+    // Helper: find and click the original submit button by its name
+    function clickOriginalButton(name) {
+        const btn = form.querySelector(`input[type="submit"][name="${name}"]`);
         if (btn) {
             btn.click();
         } else {
-            // Fallback: try to find any button with that name and value
-            const fallbackBtn = form.querySelector(`button[name="${name}"][value="${value}"], input[name="${name}"][value="${value}"]`);
-            if (fallbackBtn) {
-                fallbackBtn.click();
-            } else {
-                // Last resort: add hidden inputs and submit
-                for (const [n, v] of Object.entries({[name]: value})) {
-                    let input = form.querySelector(`input[name="${n}"]`);
-                    if (!input) {
-                        input = document.createElement('input');
-                        input.type = 'hidden';
-                        input.name = n;
-                        form.appendChild(input);
-                    }
-                    input.value = v;
-                }
-                form.submit();
-            }
+            // Fallback: add a hidden input with that name and submit
+            const input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = name;
+            form.appendChild(input);
+            form.submit();
         }
     }
 
-    // ---- Vote button (no alert) ----
+    // ---- Vote button ----
     const voteBtn = modernPoll.querySelector('.vote-btn');
     if (voteBtn) {
         voteBtn.addEventListener('click', function(e) {
@@ -1926,8 +1914,8 @@ function attachPollHandlers(modernPoll, legacyPoll, pollData) {
                 const originalRadio = form.querySelector(`input[name="poll_vote"][value="${value}"]`);
                 if (originalRadio) originalRadio.checked = true;
             }
-            // Always submit – server will handle missing selection
-            clickOriginalButton('submit', ' Vote! ');
+            // Click the original "Vote!" button (name="submit")
+            clickOriginalButton('submit');
         });
     }
 
@@ -1936,16 +1924,16 @@ function attachPollHandlers(modernPoll, legacyPoll, pollData) {
     if (viewResultsBtn) {
         viewResultsBtn.addEventListener('click', function(e) {
             e.preventDefault();
-            clickOriginalButton('nullvote', '1');
+            clickOriginalButton('nullvote');
         });
     }
 
-    // ---- Cancel Vote button (no confirm) ----
+    // ---- Cancel Vote button ----
     const cancelVoteBtn = modernPoll.querySelector('.cancel-vote-btn');
     if (cancelVoteBtn) {
         cancelVoteBtn.addEventListener('click', function(e) {
             e.preventDefault();
-            clickOriginalButton('delvote', 'Annulla');
+            clickOriginalButton('delvote');
         });
     }
 
