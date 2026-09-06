@@ -1641,50 +1641,106 @@ function handleQuoteExpand(btn) {
     // ATTACHMENT CONVERSION
     // ============================================================================
 
-function buildModernImageAttachment(imageUrl, alt, width, height, previewSrc) {
-    // Extract filename from URL (last part of path)
-    let filename = alt || 'image';
-    try {
-        const urlObj = new URL(imageUrl);
-        const pathname = urlObj.pathname;
-        const parts = pathname.split('/');
-        const lastPart = parts[parts.length - 1];
-        if (lastPart && lastPart.includes('.')) {
-            filename = lastPart;
-        } else {
-            // Fallback: use alt if no extension found
-            filename = alt || 'image';
-        }
-    } catch (e) {
-        filename = alt || 'image';
+    function getFileIcon(extension) {
+        const ext = extension.toLowerCase();
+        const map = {
+            // Archives
+            'zip': 'fa-file-zipper',
+            'rar': 'fa-file-zipper',
+            '7z': 'fa-file-zipper',
+            'gz': 'fa-file-zipper',
+            'tar': 'fa-file-zipper',
+            // Documents
+            'pdf': 'fa-file-pdf',
+            'doc': 'fa-file-word',
+            'docx': 'fa-file-word',
+            'odt': 'fa-file-word',
+            'rtf': 'fa-file-word',
+            // Spreadsheets
+            'xls': 'fa-file-excel',
+            'xlsx': 'fa-file-excel',
+            'ods': 'fa-file-excel',
+            'csv': 'fa-file-excel',
+            // Presentations
+            'ppt': 'fa-file-powerpoint',
+            'pptx': 'fa-file-powerpoint',
+            'odp': 'fa-file-powerpoint',
+            // Images (shouldn't hit this branch, but just in case)
+            'jpg': 'fa-file-image',
+            'jpeg': 'fa-file-image',
+            'png': 'fa-file-image',
+            'gif': 'fa-file-image',
+            'svg': 'fa-file-image',
+            'webp': 'fa-file-image',
+            // Code / Text
+            'txt': 'fa-file-lines',
+            'log': 'fa-file-lines',
+            'js': 'fa-file-code',
+            'css': 'fa-file-code',
+            'html': 'fa-file-code',
+            'xml': 'fa-file-code',
+            'json': 'fa-file-code',
+            // Audio
+            'mp3': 'fa-file-audio',
+            'wav': 'fa-file-audio',
+            'flac': 'fa-file-audio',
+            // Video
+            'mp4': 'fa-file-video',
+            'avi': 'fa-file-video',
+            'mkv': 'fa-file-video',
+            // Fallback
+            'default': 'fa-file'
+        };
+        return map[ext] || map['default'];
     }
 
-    const title = 'Attached Image';
-    const details = filename + ' • IMAGE FILE';
-    const previewHtml = previewSrc ? `<div class="attachment-preview"><a href="${escapeHtml(imageUrl)}" class="attachment-image-link" title="${escapeHtml(title)}" target="_blank" rel="nofollow"><img src="${escapeHtml(previewSrc)}" alt="${escapeHtml(title)}" loading="lazy" decoding="async" style="max-width:100%;display:block;"${width ? ` width="${escapeHtml(width)}"` : ''}${height ? ` height="${escapeHtml(height)}"` : ''}></a></div>` : '';
+    function buildModernImageAttachment(imageUrl, alt, width, height, previewSrc) {
+        // Extract filename from URL (last part of path)
+        let filename = alt || 'image';
+        try {
+            const urlObj = new URL(imageUrl);
+            const pathname = urlObj.pathname;
+            const parts = pathname.split('/');
+            const lastPart = parts[parts.length - 1];
+            if (lastPart && lastPart.includes('.')) {
+                filename = lastPart;
+            } else {
+                // Fallback: use alt if no extension found
+                filename = alt || 'image';
+            }
+        } catch (e) {
+            filename = alt || 'image';
+        }
 
-    return `<div class="modern-attachment image-attachment">
-        <div class="attachment-header">
-            <div class="attachment-icon"><i class="fa-regular fa-image" aria-hidden="true"></i></div>
-            <div class="attachment-info">
-                <span class="attachment-title">${escapeHtml(title)}</span>
-                <span class="attachment-details">${escapeHtml(details)}</span>
+        const title = 'Attached Image';
+        const details = filename + ' • IMAGE FILE';
+        const previewHtml = previewSrc ? `<div class="attachment-preview"><a href="${escapeHtml(imageUrl)}" class="attachment-image-link" title="${escapeHtml(title)}" target="_blank" rel="nofollow"><img src="${escapeHtml(previewSrc)}" alt="${escapeHtml(title)}" loading="lazy" decoding="async" style="max-width:100%;display:block;"${width ? ` width="${escapeHtml(width)}"` : ''}${height ? ` height="${escapeHtml(height)}"` : ''}></a></div>` : '';
+
+        return `<div class="modern-attachment image-attachment">
+            <div class="attachment-header">
+                <div class="attachment-icon"><i class="fa-regular fa-image" aria-hidden="true"></i></div>
+                <div class="attachment-info">
+                    <span class="attachment-title">${escapeHtml(title)}</span>
+                    <span class="attachment-details">${escapeHtml(details)}</span>
+                </div>
+                <div class="attachment-actions">
+                    <a href="${escapeHtml(imageUrl)}" class="attachment-download-btn" download="${escapeHtml(filename)}" title="Download image" target="_blank" rel="nofollow"><i class="fa-regular fa-download" aria-hidden="true"></i></a>
+                    <a href="${escapeHtml(imageUrl)}" class="attachment-view-btn" title="View full size" target="_blank" rel="nofollow"><i class="fa-regular fa-expand" aria-hidden="true"></i></a>
+                </div>
             </div>
-            <div class="attachment-actions">
-                <a href="${escapeHtml(imageUrl)}" class="attachment-download-btn" download="${escapeHtml(filename)}" title="Download image" target="_blank" rel="nofollow"><i class="fa-regular fa-download" aria-hidden="true"></i></a>
-                <a href="${escapeHtml(imageUrl)}" class="attachment-view-btn" title="View full size" target="_blank" rel="nofollow"><i class="fa-regular fa-expand" aria-hidden="true"></i></a>
-            </div>
-        </div>
-        ${previewHtml}
-    </div>`;
-}
+            ${previewHtml}
+        </div>`;
+    }
 
     function buildModernFileAttachment(filename, downloadUrl, downloads, fileType) {
         const title = 'Attached File';
         const details = filename + ' • ' + fileType;
         const downloadsLabel = downloads === 1 ? '1 download' : `${downloads} downloads`;
-        // Use a generic file icon – you can extend with extension-based icons if needed
-        const iconHtml = '<i class="fa-regular fa-file-zipper" aria-hidden="true"></i>';
+        
+        // Get extension from filename
+        const extension = filename.split('.').pop() || '';
+        const iconClass = 'fa-regular ' + getFileIcon(extension);
+        const iconHtml = `<i class="${iconClass}" aria-hidden="true"></i>`;
 
         return `<div class="modern-attachment file-attachment">
             <div class="attachment-header">
