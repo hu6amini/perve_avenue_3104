@@ -2158,6 +2158,134 @@ input[type="radio"]:checked::before {
   font-size: var(--text-sm);
 }
 
+/*============================================
+ modern attachment styles - harmonized
+============================================*/
+.modern-attachment {
+  background: var(--surface-color);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  margin: var(--space-md) 0;
+  overflow: hidden;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.modern-attachment:hover {
+  box-shadow: var(--shadow);
+  transform: translateY(calc(var(--phi-inverse) * -1px));
+}
+.attachment-header {
+  align-items: center;
+  background: var(--bg-color);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  gap: var(--space-md);
+  justify-content: space-between;
+  padding: var(--space-md);
+}
+.attachment-icon {
+  align-items: center;
+  background: var(--accent-color);
+  border-radius: var(--radius-sm);
+  display: flex;
+  flex-shrink: 0;
+  height: 28px;
+  justify-content: center;
+  width: 28px;
+}
+.attachment-icon i {
+  color: #FFF;
+  font-size: var(--text-sm);
+}
+.attachment-info {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+.attachment-title {
+  color: var(--text-primary);
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+.attachment-details {
+  color: var(--text-tertiary);
+  font-size: var(--text-xs);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.attachment-actions {
+  display: flex;
+  gap: 8px;
+}
+.attachment-download-btn,
+.attachment-view-btn {
+  align-items: center;
+  background: transparent;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  color: var(--text-secondary);
+  cursor: pointer;
+  display: flex;
+  height: var(--btn-height);
+  justify-content: center;
+  text-decoration: none;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  width: var(--btn-height);
+}
+.attachment-download-btn:hover {
+  background: rgba(16, 185, 129, 0.1);
+  border-color: var(--success-color);
+  color: var(--success-color);
+}
+.attachment-view-btn:hover {
+  background: rgba(14, 165, 233, 0.1);
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+}
+.attachment-preview {
+  background: var(--bg-color);
+  padding: var(--space-md);
+  text-align: center;
+}
+.attachment-preview img {
+  border-radius: var(--radius);
+  display: block;
+  object-fit: contain;
+  margin: 3px;
+}
+.attachment-image-link {
+  display: block;
+  max-width: 800px;
+}
+.attachment-stats {
+  background: var(--bg-color);
+  display: flex;
+  gap: var(--space-lg);
+  justify-content: center;
+  padding: var(--space-sm);
+}
+.stat-item {
+  align-items: center;
+  color: var(--text-tertiary);
+  display: flex;
+  font-size: var(--text-xs);
+  gap: 6px;
+  margin: 0;
+}
+.stat-item i {
+  color: var(--primary-color);
+  font-size: var(--text-xs);
+}
+.modern-attachment.image-attachment .attachment-icon {
+  background: var(--primary-color);
+}
+.modern-attachment.file-attachment .attachment-icon {
+  background: var(--secondary-color);
+}
+
 /* ==========================================================================
    MODERN MESSENGER – TipTap WYSIWYG + Messages & Contacts (Emerald Theme)
    ========================================================================== */
