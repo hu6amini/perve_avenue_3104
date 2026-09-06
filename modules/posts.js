@@ -1843,7 +1843,7 @@ function buildModernPoll(data) {
         // --- FIX: allow <strong> in label, sanitize the rest ---
         let labelHtml = sanitizeHTML(choice.label);
         if (pollState === 'voted' && isSelected) {
-            labelHtml += ' <strong>(Your vote)</strong>';
+            labelHtml += '&nbsp;<strong>(Your vote)</strong>';
         }
 
         const percentageDisplay = choice.percentage.toFixed(2);
