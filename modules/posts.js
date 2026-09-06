@@ -1,4 +1,4 @@
-// Forum Modernizer - Posts Module v2.4 (with anchor ID for scrolling) + Poll Conversion
+// Forum Modernizer - Posts Module v2.4 (with anchor ID for scrolling) + Poll Conversion + Attachment Conversion
 'use strict';
 
 const ForumPostsModule = (function () {
@@ -429,6 +429,7 @@ function parseDateFromTitle(title) {
         html = html.trim();
         html = transformEmbeddedLinks(html);
         html = transformLegacyQuotesAndSpoilers(html);
+        html = transformLegacyAttachments(html); // <-- NEW
         return html;
     }
 
@@ -565,6 +566,7 @@ function parseDateFromTitle(title) {
         html = html.trim();
         html = transformEmbeddedLinks(html);
         html = transformLegacyQuotesAndSpoilers(html);
+        html = transformLegacyAttachments(html); // <-- NEW
         return html;
     }
     function getMessagePostDate($post) {
@@ -623,6 +625,7 @@ function parseDateFromTitle(title) {
             contentHtml = clone.innerHTML.trim();
             contentHtml = transformEmbeddedLinks(contentHtml);
             contentHtml = transformLegacyQuotesAndSpoilers(contentHtml);
+            contentHtml = transformLegacyAttachments(contentHtml); // <-- NEW
         }
         const pointsPos = articleLi.querySelector('.points_pos');
         const likes = pointsPos ? parseInt(pointsPos.textContent.replace(/[^0-9]/g, '')) || 0 : 0;
@@ -1632,6 +1635,128 @@ function handleQuoteExpand(btn) {
     }
 
     // ============================================================================
+    // ATTACHMENT CONVERSION
+    // ============================================================================
+
+    function buildModernImageAttachment(imageUrl, alt, width, height, previewSrc) {
+        const title = alt || 'Attached Image';
+        const dims = (width && height) ? `${width}×${height}` : '';
+        const details = dims ? ` • ${dims}` : '';
+        const fileSize = ''; // we don't have size info from legacy
+        const sizeLabel = fileSize ? ` • ${fileSize}` : '';
+        const previewHtml = previewSrc ? `<div class="attachment-preview"><a href="${escapeHtml(imageUrl)}" class="attachment-image-link" title="${escapeHtml(title)}" target="_blank" rel="nofollow"><img src="${escapeHtml(previewSrc)}" alt="${escapeHtml(title)}" loading="lazy" decoding="async" style="max-width:100%;display:block;"${width ? ` width="${escapeHtml(width)}"` : ''}${height ? ` height="${escapeHtml(height)}"` : ''}></a></div>` : '';
+
+        return `<div class="modern-attachment image-attachment">
+            <div class="attachment-header">
+                <div class="attachment-icon"><i class="fa-regular fa-image" aria-hidden="true"></i></div>
+                <div class="attachment-info">
+                    <span class="attachment-title">${escapeHtml(title)}</span>
+                    <span class="attachment-details">${escapeHtml(title)}${details}</span>
+                </div>
+                <div class="attachment-actions">
+                    <a href="${escapeHtml(imageUrl)}" class="attachment-download-btn" download="${escapeHtml(title)}" title="Download image" target="_blank" rel="nofollow"><i class="fa-regular fa-download" aria-hidden="true"></i></a>
+                    <a href="${escapeHtml(imageUrl)}" class="attachment-view-btn" title="View full size" target="_blank" rel="nofollow"><i class="fa-regular fa-expand" aria-hidden="true"></i></a>
+                </div>
+            </div>
+            ${previewHtml}
+        </div>`;
+    }
+
+    function buildModernFileAttachment(filename, downloadUrl, downloads, fileType, mimeIcon) {
+        const downloadsLabel = downloads === 1 ? '1 download' : `${downloads} downloads`;
+        const fileTypeLabel = fileType || 'FILE';
+        const iconClass = mimeIcon ? '' : 'fa-regular fa-file-zipper';
+        const iconHtml = mimeIcon ? `<img src="${escapeHtml(mimeIcon)}" alt="" style="width:16px;height:16px;">` : `<i class="${iconClass}" aria-hidden="true"></i>`;
+
+        return `<div class="modern-attachment file-attachment">
+            <div class="attachment-header">
+                <div class="attachment-icon">${iconHtml}</div>
+                <div class="attachment-info">
+                    <span class="attachment-title">${escapeHtml(filename)}</span>
+                    <span class="attachment-details">${escapeHtml(filename)} • ${escapeHtml(fileTypeLabel)}</span>
+                </div>
+                <div class="attachment-actions">
+                    <a href="${escapeHtml(downloadUrl)}" class="attachment-download-btn" download="${escapeHtml(filename)}" title="Download file" target="_blank" rel="nofollow"><i class="fa-regular fa-download" aria-hidden="true"></i></a>
+                </div>
+            </div>
+            <div class="attachment-stats">
+                <div class="stat-item"><i class="fa-regular fa-download" aria-hidden="true"></i><span>${downloadsLabel}</span></div>
+                <div class="stat-item"><i class="fa-regular fa-file" aria-hidden="true"></i><span>${escapeHtml(fileTypeLabel)}</span></div>
+            </div>
+        </div>`;
+    }
+
+    function transformLegacyAttachments(htmlContent) {
+        if (!htmlContent || typeof htmlContent !== 'string') return htmlContent;
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = htmlContent;
+        const fancyTops = tempDiv.querySelectorAll('.fancytop');
+        fancyTops.forEach(fancyTop => {
+            let container = null;
+            let isImage = false;
+            let next = fancyTop.nextElementSibling;
+
+            // Check for image pattern: <div align="center"><a class="fancyborder"...>
+            if (next && next.tagName === 'DIV' && next.hasAttribute('align') && next.getAttribute('align') === 'center') {
+                const link = next.querySelector('a.fancyborder');
+                if (link && link.querySelector('img')) {
+                    container = next;
+                    isImage = true;
+                }
+            }
+            // If not image, check for file pattern: <div class="fancyborder"> (direct sibling)
+            if (!container && next && next.classList && next.classList.contains('fancyborder')) {
+                const fileLink = next.querySelector('a[title="Download attachment"]');
+                if (fileLink) {
+                    container = next;
+                    isImage = false;
+                }
+            }
+            if (!container) return;
+
+            let modernHtml = '';
+            if (isImage) {
+                const link = container.querySelector('a.fancyborder');
+                const img = link ? link.querySelector('img') : null;
+                if (!link || !img) return;
+                const imageUrl = link.getAttribute('href');
+                const previewSrc = img.getAttribute('src') || imageUrl;
+                const alt = img.getAttribute('alt') || '';
+                const width = img.getAttribute('width') || '';
+                const height = img.getAttribute('height') || '';
+                modernHtml = buildModernImageAttachment(imageUrl, alt, width, height, previewSrc);
+            } else {
+                const fileLink = container.querySelector('a[title="Download attachment"]');
+                if (!fileLink) return;
+                const filename = fileLink.textContent.trim();
+                const downloadUrl = fileLink.getAttribute('href') || '#';
+                const small = container.querySelector('small');
+                let downloads = 0;
+                if (small) {
+                    const match = small.textContent.match(/\(Number of downloads:\s*(\d+)\)/i);
+                    if (match) downloads = parseInt(match[1], 10) || 0;
+                }
+                const mimeImg = container.querySelector('img');
+                const mimeSrc = mimeImg ? mimeImg.getAttribute('src') : '';
+                const extension = filename.split('.').pop().toLowerCase();
+                const fileType = extension.toUpperCase() + ' FILE';
+                modernHtml = buildModernFileAttachment(filename, downloadUrl, downloads, fileType, mimeSrc);
+            }
+
+            if (modernHtml) {
+                const parent = fancyTop.parentNode;
+                const modernNode = createElementFromHTML(modernHtml);
+                if (modernNode) {
+                    parent.insertBefore(modernNode, fancyTop);
+                    fancyTop.remove();
+                    container.remove();
+                }
+            }
+        });
+        return tempDiv.innerHTML;
+    }
+
+    // ============================================================================
     // POLL CONVERSION
     // ============================================================================
 
@@ -2169,6 +2294,7 @@ function attachPollHandlers(modernPoll, legacyPoll, pollData) {
                 clone.querySelector('.edit')?.remove();
                 contentHtml = transformEmbeddedLinks(clone.innerHTML);
                 contentHtml = transformLegacyQuotesAndSpoilers(contentHtml);
+                contentHtml = transformLegacyAttachments(contentHtml); // <-- NEW
             }
             postsData.push({
                 postId: 'summary_' + i, mid, username, groupText: groupName, contentHtml,
