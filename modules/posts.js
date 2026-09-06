@@ -1641,27 +1641,43 @@ function handleQuoteExpand(btn) {
     // ATTACHMENT CONVERSION
     // ============================================================================
 
-    function buildModernImageAttachment(imageUrl, alt, width, height, previewSrc) {
-        const filename = alt || 'image';
-        const title = 'Attached Image';
-        const details = filename + ' • IMAGE FILE';
-        const previewHtml = previewSrc ? `<div class="attachment-preview"><a href="${escapeHtml(imageUrl)}" class="attachment-image-link" title="${escapeHtml(title)}" target="_blank" rel="nofollow"><img src="${escapeHtml(previewSrc)}" alt="${escapeHtml(title)}" loading="lazy" decoding="async" style="max-width:100%;display:block;"${width ? ` width="${escapeHtml(width)}"` : ''}${height ? ` height="${escapeHtml(height)}"` : ''}></a></div>` : '';
-
-        return `<div class="modern-attachment image-attachment">
-            <div class="attachment-header">
-                <div class="attachment-icon"><i class="fa-regular fa-image" aria-hidden="true"></i></div>
-                <div class="attachment-info">
-                    <span class="attachment-title">${escapeHtml(title)}</span>
-                    <span class="attachment-details">${escapeHtml(details)}</span>
-                </div>
-                <div class="attachment-actions">
-                    <a href="${escapeHtml(imageUrl)}" class="attachment-download-btn" download="${escapeHtml(filename)}" title="Download image" target="_blank" rel="nofollow"><i class="fa-regular fa-download" aria-hidden="true"></i></a>
-                    <a href="${escapeHtml(imageUrl)}" class="attachment-view-btn" title="View full size" target="_blank" rel="nofollow"><i class="fa-regular fa-expand" aria-hidden="true"></i></a>
-                </div>
-            </div>
-            ${previewHtml}
-        </div>`;
+function buildModernImageAttachment(imageUrl, alt, width, height, previewSrc) {
+    // Extract filename from URL (last part of path)
+    let filename = alt || 'image';
+    try {
+        const urlObj = new URL(imageUrl);
+        const pathname = urlObj.pathname;
+        const parts = pathname.split('/');
+        const lastPart = parts[parts.length - 1];
+        if (lastPart && lastPart.includes('.')) {
+            filename = lastPart;
+        } else {
+            // Fallback: use alt if no extension found
+            filename = alt || 'image';
+        }
+    } catch (e) {
+        filename = alt || 'image';
     }
+
+    const title = 'Attached Image';
+    const details = filename + ' • IMAGE FILE';
+    const previewHtml = previewSrc ? `<div class="attachment-preview"><a href="${escapeHtml(imageUrl)}" class="attachment-image-link" title="${escapeHtml(title)}" target="_blank" rel="nofollow"><img src="${escapeHtml(previewSrc)}" alt="${escapeHtml(title)}" loading="lazy" decoding="async" style="max-width:100%;display:block;"${width ? ` width="${escapeHtml(width)}"` : ''}${height ? ` height="${escapeHtml(height)}"` : ''}></a></div>` : '';
+
+    return `<div class="modern-attachment image-attachment">
+        <div class="attachment-header">
+            <div class="attachment-icon"><i class="fa-regular fa-image" aria-hidden="true"></i></div>
+            <div class="attachment-info">
+                <span class="attachment-title">${escapeHtml(title)}</span>
+                <span class="attachment-details">${escapeHtml(details)}</span>
+            </div>
+            <div class="attachment-actions">
+                <a href="${escapeHtml(imageUrl)}" class="attachment-download-btn" download="${escapeHtml(filename)}" title="Download image" target="_blank" rel="nofollow"><i class="fa-regular fa-download" aria-hidden="true"></i></a>
+                <a href="${escapeHtml(imageUrl)}" class="attachment-view-btn" title="View full size" target="_blank" rel="nofollow"><i class="fa-regular fa-expand" aria-hidden="true"></i></a>
+            </div>
+        </div>
+        ${previewHtml}
+    </div>`;
+}
 
     function buildModernFileAttachment(filename, downloadUrl, downloads, fileType) {
         const title = 'Attached File';
