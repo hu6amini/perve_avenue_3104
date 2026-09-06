@@ -1,4 +1,4 @@
-// Forum Modernizer - Posts Module v2.4 (with anchor ID for scrolling) + Poll Conversion + Attachment Conversion
+// Forum Modernizer - Posts Module v2.4 (with anchor ID for scrolling) + Poll + Attachment Conversion
 'use strict';
 
 const ForumPostsModule = (function () {
@@ -429,7 +429,7 @@ function parseDateFromTitle(title) {
         html = html.trim();
         html = transformEmbeddedLinks(html);
         html = transformLegacyQuotesAndSpoilers(html);
-        html = transformLegacyAttachments(html); // <-- NEW
+        html = transformLegacyAttachments(html);
         return html;
     }
 
@@ -566,7 +566,7 @@ function parseDateFromTitle(title) {
         html = html.trim();
         html = transformEmbeddedLinks(html);
         html = transformLegacyQuotesAndSpoilers(html);
-        html = transformLegacyAttachments(html); // <-- NEW
+        html = transformLegacyAttachments(html);
         return html;
     }
     function getMessagePostDate($post) {
@@ -625,7 +625,7 @@ function parseDateFromTitle(title) {
             contentHtml = clone.innerHTML.trim();
             contentHtml = transformEmbeddedLinks(contentHtml);
             contentHtml = transformLegacyQuotesAndSpoilers(contentHtml);
-            contentHtml = transformLegacyAttachments(contentHtml); // <-- NEW
+            contentHtml = transformLegacyAttachments(contentHtml);
         }
         const pointsPos = articleLi.querySelector('.points_pos');
         const likes = pointsPos ? parseInt(pointsPos.textContent.replace(/[^0-9]/g, '')) || 0 : 0;
@@ -1309,6 +1309,9 @@ function initQuotesAndSpoilers() {
         if (!container) return;
         const links = container.querySelectorAll('.post-message a[href]:not(.has-favicon)');
         for (const link of links) {
+            // Skip attachment action buttons
+            if (link.closest('.attachment-actions')) continue;
+            if (link.classList.contains('attachment-download-btn') || link.classList.contains('attachment-view-btn')) continue;
             if (link.querySelector('img')) continue;
             try {
                 const urlObj = new URL(link.href);
@@ -1639,11 +1642,9 @@ function handleQuoteExpand(btn) {
     // ============================================================================
 
     function buildModernImageAttachment(imageUrl, alt, width, height, previewSrc) {
-        const title = alt || 'Attached Image';
-        const dims = (width && height) ? `${width}×${height}` : '';
-        const details = dims ? ` • ${dims}` : '';
-        const fileSize = ''; // we don't have size info from legacy
-        const sizeLabel = fileSize ? ` • ${fileSize}` : '';
+        const filename = alt || 'image';
+        const title = 'Attached Image';
+        const details = filename + ' • IMAGE FILE';
         const previewHtml = previewSrc ? `<div class="attachment-preview"><a href="${escapeHtml(imageUrl)}" class="attachment-image-link" title="${escapeHtml(title)}" target="_blank" rel="nofollow"><img src="${escapeHtml(previewSrc)}" alt="${escapeHtml(title)}" loading="lazy" decoding="async" style="max-width:100%;display:block;"${width ? ` width="${escapeHtml(width)}"` : ''}${height ? ` height="${escapeHtml(height)}"` : ''}></a></div>` : '';
 
         return `<div class="modern-attachment image-attachment">
@@ -1651,10 +1652,10 @@ function handleQuoteExpand(btn) {
                 <div class="attachment-icon"><i class="fa-regular fa-image" aria-hidden="true"></i></div>
                 <div class="attachment-info">
                     <span class="attachment-title">${escapeHtml(title)}</span>
-                    <span class="attachment-details">${escapeHtml(title)}${details}</span>
+                    <span class="attachment-details">${escapeHtml(details)}</span>
                 </div>
                 <div class="attachment-actions">
-                    <a href="${escapeHtml(imageUrl)}" class="attachment-download-btn" download="${escapeHtml(title)}" title="Download image" target="_blank" rel="nofollow"><i class="fa-regular fa-download" aria-hidden="true"></i></a>
+                    <a href="${escapeHtml(imageUrl)}" class="attachment-download-btn" download="${escapeHtml(filename)}" title="Download image" target="_blank" rel="nofollow"><i class="fa-regular fa-download" aria-hidden="true"></i></a>
                     <a href="${escapeHtml(imageUrl)}" class="attachment-view-btn" title="View full size" target="_blank" rel="nofollow"><i class="fa-regular fa-expand" aria-hidden="true"></i></a>
                 </div>
             </div>
@@ -1662,18 +1663,19 @@ function handleQuoteExpand(btn) {
         </div>`;
     }
 
-    function buildModernFileAttachment(filename, downloadUrl, downloads, fileType, mimeIcon) {
+    function buildModernFileAttachment(filename, downloadUrl, downloads, fileType) {
+        const title = 'Attached File';
+        const details = filename + ' • ' + fileType;
         const downloadsLabel = downloads === 1 ? '1 download' : `${downloads} downloads`;
-        const fileTypeLabel = fileType || 'FILE';
-        const iconClass = mimeIcon ? '' : 'fa-regular fa-file-zipper';
-        const iconHtml = mimeIcon ? `<img src="${escapeHtml(mimeIcon)}" alt="" style="width:16px;height:16px;">` : `<i class="${iconClass}" aria-hidden="true"></i>`;
+        // Use a generic file icon – you can extend with extension-based icons if needed
+        const iconHtml = '<i class="fa-regular fa-file-zipper" aria-hidden="true"></i>';
 
         return `<div class="modern-attachment file-attachment">
             <div class="attachment-header">
                 <div class="attachment-icon">${iconHtml}</div>
                 <div class="attachment-info">
-                    <span class="attachment-title">${escapeHtml(filename)}</span>
-                    <span class="attachment-details">${escapeHtml(filename)} • ${escapeHtml(fileTypeLabel)}</span>
+                    <span class="attachment-title">${escapeHtml(title)}</span>
+                    <span class="attachment-details">${escapeHtml(details)}</span>
                 </div>
                 <div class="attachment-actions">
                     <a href="${escapeHtml(downloadUrl)}" class="attachment-download-btn" download="${escapeHtml(filename)}" title="Download file" target="_blank" rel="nofollow"><i class="fa-regular fa-download" aria-hidden="true"></i></a>
@@ -1681,7 +1683,7 @@ function handleQuoteExpand(btn) {
             </div>
             <div class="attachment-stats">
                 <div class="stat-item"><i class="fa-regular fa-download" aria-hidden="true"></i><span>${downloadsLabel}</span></div>
-                <div class="stat-item"><i class="fa-regular fa-file" aria-hidden="true"></i><span>${escapeHtml(fileTypeLabel)}</span></div>
+                <div class="stat-item"><i class="fa-regular fa-file" aria-hidden="true"></i><span>${escapeHtml(fileType)}</span></div>
             </div>
         </div>`;
     }
@@ -1736,11 +1738,10 @@ function handleQuoteExpand(btn) {
                     const match = small.textContent.match(/\(Number of downloads:\s*(\d+)\)/i);
                     if (match) downloads = parseInt(match[1], 10) || 0;
                 }
-                const mimeImg = container.querySelector('img');
-                const mimeSrc = mimeImg ? mimeImg.getAttribute('src') : '';
+                // Extract file type from extension
                 const extension = filename.split('.').pop().toLowerCase();
                 const fileType = extension.toUpperCase() + ' FILE';
-                modernHtml = buildModernFileAttachment(filename, downloadUrl, downloads, fileType, mimeSrc);
+                modernHtml = buildModernFileAttachment(filename, downloadUrl, downloads, fileType);
             }
 
             if (modernHtml) {
@@ -2294,7 +2295,7 @@ function attachPollHandlers(modernPoll, legacyPoll, pollData) {
                 clone.querySelector('.edit')?.remove();
                 contentHtml = transformEmbeddedLinks(clone.innerHTML);
                 contentHtml = transformLegacyQuotesAndSpoilers(contentHtml);
-                contentHtml = transformLegacyAttachments(contentHtml); // <-- NEW
+                contentHtml = transformLegacyAttachments(contentHtml);
             }
             postsData.push({
                 postId: 'summary_' + i, mid, username, groupText: groupName, contentHtml,
