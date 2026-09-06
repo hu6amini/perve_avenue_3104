@@ -1815,7 +1815,7 @@ function buildModernPoll(data) {
     } else if (pollState === 'voted') {
         headerStats = `<i class="fa-regular fa-users" aria-hidden="true"></i><span>${voters} ${voters === 1 ? 'voter' : 'voters'}</span>`;
         const votedChoice = (userVoteIndex >= 0 && userVoteIndex < choices.length) ? choices[userVoteIndex].label : 'unknown';
-        footerMessage = `You voted for option <strong>${userVoteIndex + 1}</strong>: <span class="poll-choice-name">${escapeHtml(votedChoice)}</span>`;
+        footerMessage = `You voted for option&nbsp;<strong>${userVoteIndex + 1}</strong>&nbsp;: <span class="poll-choice-name">${escapeHtml(votedChoice)}</span>`;
         actionsHtml = `
             <button type="button" class="poll-btn delete cancel-vote-btn"><i class="fa-regular fa-xmark" aria-hidden="true"></i>Cancel vote</button>
         `;
