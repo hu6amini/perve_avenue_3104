@@ -2279,12 +2279,6 @@ input[type="radio"]:checked::before {
   color: var(--primary-color);
   font-size: var(--text-xs);
 }
-.modern-attachment.image-attachment .attachment-icon {
-  background: var(--primary-color);
-}
-.modern-attachment.file-attachment .attachment-icon {
-  background: var(--secondary-color);
-}
 
 /* ==========================================================================
    MODERN MESSENGER – TipTap WYSIWYG + Messages & Contacts (Emerald Theme)
