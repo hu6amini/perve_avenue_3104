@@ -1,4 +1,4 @@
-// Forum Modernizer - Posts Module v2.4 (with anchor ID for scrolling) + Poll + Attachment Conversion
+// Forum Modernizer - Posts Module v2.4 (with anchor ID for scrolling) + Poll + Attachment + Code Block Conversion
 'use strict';
 
 const ForumPostsModule = (function () {
@@ -430,6 +430,7 @@ function parseDateFromTitle(title) {
         html = transformEmbeddedLinks(html);
         html = transformLegacyQuotesAndSpoilers(html);
         html = transformLegacyAttachments(html);
+        html = transformLegacyCodeBlocks(html); // <-- NEW
         return html;
     }
 
@@ -567,6 +568,7 @@ function parseDateFromTitle(title) {
         html = transformEmbeddedLinks(html);
         html = transformLegacyQuotesAndSpoilers(html);
         html = transformLegacyAttachments(html);
+        html = transformLegacyCodeBlocks(html);
         return html;
     }
     function getMessagePostDate($post) {
@@ -626,6 +628,7 @@ function parseDateFromTitle(title) {
             contentHtml = transformEmbeddedLinks(contentHtml);
             contentHtml = transformLegacyQuotesAndSpoilers(contentHtml);
             contentHtml = transformLegacyAttachments(contentHtml);
+            contentHtml = transformLegacyCodeBlocks(contentHtml);
         }
         const pointsPos = articleLi.querySelector('.points_pos');
         const likes = pointsPos ? parseInt(pointsPos.textContent.replace(/[^0-9]/g, '')) || 0 : 0;
@@ -1546,6 +1549,44 @@ function handleQuoteExpand(btn) {
         }
     }
 
+    // ---- Copy code button ----
+    function handleCodeCopy(btn) {
+        const codeBlock = btn.closest('.modern-code');
+        if (!codeBlock) return;
+        const codeContent = codeBlock.querySelector('.code-content code');
+        if (!codeContent) return;
+        const text = codeContent.textContent;
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(() => {
+                // Visual feedback
+                const icon = btn.querySelector('i');
+                if (icon) {
+                    const originalClass = icon.className;
+                    icon.className = 'fa-regular fa-check';
+                    setTimeout(() => { icon.className = originalClass; }, 1500);
+                }
+            }).catch(err => console.error('Copy failed:', err));
+        } else {
+            // Fallback
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            document.body.appendChild(textarea);
+            textarea.select();
+            try {
+                document.execCommand('copy');
+                const icon = btn.querySelector('i');
+                if (icon) {
+                    const originalClass = icon.className;
+                    icon.className = 'fa-regular fa-check';
+                    setTimeout(() => { icon.className = originalClass; }, 1500);
+                }
+            } catch (e) {
+                console.error('Copy failed:', e);
+            }
+            document.body.removeChild(textarea);
+        }
+    }
+
     function attachEventHandlers() {
         document.addEventListener('click', function (e) {
             const btn = e.target.closest('.action-icon[data-action="quote"]');
@@ -1629,12 +1670,61 @@ function handleQuoteExpand(btn) {
             const spoilerHeader = e.target.closest('.spoiler-header');
             if (spoilerHeader) { e.preventDefault(); handleSpoilerToggle(spoilerHeader); }
         });
+        // ---- Code copy button ----
+        document.addEventListener('click', function (e) {
+            const btn = e.target.closest('.code-copy-btn');
+            if (btn) { e.preventDefault(); handleCodeCopy(btn); }
+        });
         document.addEventListener('keydown', function (e) {
             if (e.key === 'Escape' && activePopup) {
                 activePopup.remove();
                 activePopup = null;
             }
         });
+    }
+
+    // ============================================================================
+    // CODE BLOCK CONVERSION
+    // ============================================================================
+
+    function transformLegacyCodeBlocks(htmlContent) {
+        if (!htmlContent || typeof htmlContent !== 'string') return htmlContent;
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = htmlContent;
+        const codeTops = tempDiv.querySelectorAll('.code_top');
+        codeTops.forEach(codeTop => {
+            // Find the next sibling with class .code
+            let codeBody = codeTop.nextElementSibling;
+            while (codeBody && !codeBody.classList.contains('code')) {
+                codeBody = codeBody.nextElementSibling;
+            }
+            if (!codeBody) return;
+
+            // Extract title from .code_top <b> tag
+            const titleTag = codeTop.querySelector('b');
+            const title = titleTag ? titleTag.textContent.trim() : 'CODE';
+
+            // Extract code content (preserve HTML as is)
+            const codeContent = codeBody.innerHTML;
+
+            // Build modern HTML
+            const modernHtml = `<div class="modern-code">
+                <div class="code-header" style="cursor: default;">
+                    <div class="code-icon"><i class="fa-regular fa-code" aria-hidden="true"></i></div>
+                    <div class="code-info"><span class="code-title">${escapeHtml(title)}</span></div>
+                    <button class="code-copy-btn" type="button" aria-label="Copy code" tabindex="0"><i class="fa-regular fa-copy" aria-hidden="true"></i></button>
+                </div>
+                <div class="code-content"><pre><code>${codeContent}</code></pre></div>
+            </div>`;
+
+            const modernNode = createElementFromHTML(modernHtml);
+            if (modernNode) {
+                codeTop.parentNode.insertBefore(modernNode, codeTop);
+                codeTop.remove();
+                codeBody.remove();
+            }
+        });
+        return tempDiv.innerHTML;
     }
 
     // ============================================================================
@@ -2368,6 +2458,7 @@ function attachPollHandlers(modernPoll, legacyPoll, pollData) {
                 contentHtml = transformEmbeddedLinks(clone.innerHTML);
                 contentHtml = transformLegacyQuotesAndSpoilers(contentHtml);
                 contentHtml = transformLegacyAttachments(contentHtml);
+                contentHtml = transformLegacyCodeBlocks(contentHtml);
             }
             postsData.push({
                 postId: 'summary_' + i, mid, username, groupText: groupName, contentHtml,
