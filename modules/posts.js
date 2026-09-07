@@ -430,7 +430,7 @@ function parseDateFromTitle(title) {
         html = transformEmbeddedLinks(html);
         html = transformLegacyQuotesAndSpoilers(html);
         html = transformLegacyAttachments(html);
-        html = transformLegacyCodeBlocks(html); // <-- NEW
+        html = transformLegacyCodeBlocks(html);
         return html;
     }
 
@@ -1719,9 +1719,31 @@ function handleQuoteExpand(btn) {
 
             const modernNode = createElementFromHTML(modernHtml);
             if (modernNode) {
-                codeTop.parentNode.insertBefore(modernNode, codeTop);
-                codeTop.remove();
-                codeBody.remove();
+                // Check if the codeTop is inside a <div align="center"> wrapper
+                const parent = codeTop.parentNode;
+                let wrapper = null;
+                if (parent && parent.tagName === 'DIV' && parent.getAttribute('align') === 'center') {
+                    wrapper = parent;
+                }
+                // If there's a wrapper, replace that, else replace codeTop
+                const target = wrapper || codeTop;
+                target.parentNode.insertBefore(modernNode, target);
+                target.remove();
+                // Also remove codeBody (it was inside the wrapper or next sibling, but we remove the wrapper or codeTop,
+                // and codeBody is already gone if we remove the wrapper, but if we removed codeTop only, we need to remove codeBody separately)
+                // Since we replaced the wrapper or codeTop, the codeBody might still be present if we replaced only codeTop.
+                // We need to ensure codeBody is removed.
+                if (!wrapper) {
+                    // codeBody is a sibling of codeTop, we removed codeTop, but codeBody remains.
+                    // Since codeBody is the next sibling of the removed node? Actually codeBody is after codeTop.
+                    // After removal, codeBody is still there; we need to remove it.
+                    // We can find it by checking if it's still in the DOM.
+                    if (codeBody.parentNode) {
+                        codeBody.remove();
+                    }
+                } else {
+                    // If we removed the wrapper, codeBody was inside it, so it's already gone.
+                }
             }
         });
         return tempDiv.innerHTML;
