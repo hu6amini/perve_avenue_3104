@@ -1008,7 +1008,8 @@ function initQuotesAndSpoilers() {
     // ============================================================================
 function wrapImagesWithDimensions(container) {
     if (!container) return;
-    const images = container.querySelectorAll('.post-message img');
+    // Include both post content images and signature images
+    const images = container.querySelectorAll('.post-message img, .post-signature img');
     images.forEach(img => {
         // Skip if already wrapped or inside attachment/embed
         if (img.closest('.attachment-preview, .modern-embedded-link, .image-wrapper')) return;
