@@ -1020,7 +1020,7 @@ function wrapImagesWithDimensions(container) {
         const height = img.getAttribute('height');
         if (!width || !height || isNaN(width) || isNaN(height) || parseInt(width) <= 0 || parseInt(height) <= 0) return;
 
-        // Determine original source for fallback
+        // --- Determine original source (for fallback) ---
         let originalSrc = img.getAttribute('data-original');
         if (!originalSrc) {
             const src = img.src;
@@ -1034,26 +1034,35 @@ function wrapImagesWithDimensions(container) {
             if (!originalSrc) originalSrc = img.src;
         }
 
-        // If current src is a weserv URL and originalSrc is different, set fallback
         const currentSrc = img.src;
-        if (currentSrc.indexOf('weserv.nl') !== -1 || currentSrc.indexOf('wsrv.nl') !== -1) {
-            // Set onerror handler to revert to original if it fails
-            img.onerror = function() {
-                if (this.src !== originalSrc) {
-                    this.src = originalSrc;
-                    // Mark as failed to prevent re-optimization
-                    this.setAttribute('data-optimized', 'failed');
-                }
-            };
-            // If already failed, revert immediately
+        const isWeserv = currentSrc.indexOf('weserv.nl') !== -1 || currentSrc.indexOf('wsrv.nl') !== -1;
+
+        // --- Handle broken weserv images immediately ---
+        if (isWeserv && originalSrc && originalSrc !== currentSrc) {
+            // If already failed, revert now
             if (img.complete && img.naturalWidth === 0) {
                 img.src = originalSrc;
                 img.setAttribute('data-optimized', 'failed');
-                img.onerror = null; // avoid loop
+                // Prevent further processing
+                img.onerror = null;
+                img.removeEventListener('error', fallbackHandler);
+            } else {
+                // Set a robust error handler using both onerror and addEventListener
+                function fallbackHandler() {
+                    if (img.src !== originalSrc) {
+                        img.src = originalSrc;
+                        img.setAttribute('data-optimized', 'failed');
+                        img.onerror = null;
+                        img.removeEventListener('error', fallbackHandler);
+                    }
+                }
+                img.onerror = fallbackHandler;
+                img.addEventListener('error', fallbackHandler);
+                // Also, if the image is still loading, the error will fire.
             }
         }
 
-        // Wrap in div
+        // --- Wrap in a div ---
         const wrapper = document.createElement('div');
         wrapper.className = 'image-wrapper';
         wrapper.style.width = width + 'px';
