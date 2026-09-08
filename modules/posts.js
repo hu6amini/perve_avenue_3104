@@ -1,4 +1,4 @@
-// Forum Modernizer - Posts Module v2.4 (with anchor ID for scrolling) + Poll + Attachments + Code Blocks + Image Wrapper + Broken Image Fix
+// Forum Modernizer - Posts Module v2.4 (with anchor ID for scrolling) + Poll + Attachments + Code Blocks + Image Wrapper + Global Broken Image Fix
 'use strict';
 
 const ForumPostsModule = (function () {
@@ -2435,6 +2435,8 @@ function attachPollHandlers(modernPoll, legacyPoll, pollData) {
             }
             attachEventHandlers();
             initQuotesAndSpoilers();
+            // Fix any remaining broken images globally
+            setTimeout(fixBrokenWeservImages, 300);
             console.log('[PostsModule] Messages ready - ' + postsData.length + ' messages converted');
         } catch (err) { console.error('[PostsModule] Messages conversion error:', err); }
         finally { conversionInProgress = false; if (conversionPending) convertMessages(); }
@@ -2542,6 +2544,8 @@ function attachPollHandlers(modernPoll, legacyPoll, pollData) {
             }
             attachEventHandlers();
             initQuotesAndSpoilers();
+            // Fix any remaining broken images globally
+            setTimeout(fixBrokenWeservImages, 300);
             console.log('[PostsModule] Ready - ' + (postsData.length + blogCount) + ' posts converted');
         } catch (err) { console.error('[PostsModule] Conversion error:', err); }
         finally { conversionInProgress = false; if (conversionPending) convertAllPosts(); }
@@ -2617,6 +2621,8 @@ function attachPollHandlers(modernPoll, legacyPoll, pollData) {
             wrapImagesWithDimensions(card);
         }
         initQuotesAndSpoilers();
+        // Fix any remaining broken images globally
+        setTimeout(fixBrokenWeservImages, 300);
         console.log('[PostsModule] Summary conversion ready - ' + postsData.length + ' posts');
     }
 
@@ -2695,6 +2701,7 @@ function attachPollHandlers(modernPoll, legacyPoll, pollData) {
         refreshLikeDisplay,
         getPostsContainer,
         isValidPost,
+        fixBrokenWeservImages, // <-- Exposed
         reset: function () {
             convertedPostIds.clear();
             postReactions.clear();
@@ -2719,13 +2726,16 @@ if (typeof window !== 'undefined') {
     }
 }
 
-// ---- Run the global broken‑image fix after the page loads ----
+// ---- Global fix after page load and also when DOM is ready ----
 (function() {
+    function runFix() {
+        if (window.ForumPostsModule && typeof window.ForumPostsModule.fixBrokenWeservImages === 'function') {
+            setTimeout(window.ForumPostsModule.fixBrokenWeservImages, 100);
+        }
+    }
     if (document.readyState === 'complete') {
-        setTimeout(ForumPostsModule.fixBrokenWeservImages, 500);
+        runFix();
     } else {
-        window.addEventListener('load', function() {
-            setTimeout(ForumPostsModule.fixBrokenWeservImages, 500);
-        });
+        window.addEventListener('load', runFix);
     }
 })();
