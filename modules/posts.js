@@ -1,4 +1,4 @@
-// Forum Modernizer - Posts Module v2.4 (with anchor ID for scrolling) + Poll + Attachments + Code Blocks + Image Wrapper with fallback
+// Forum Modernizer - Posts Module v2.4 (with anchor ID for scrolling) + Poll + Attachments + Code Blocks + Image Wrapper + Broken Image Fix
 'use strict';
 
 const ForumPostsModule = (function () {
@@ -1004,79 +1004,111 @@ function initQuotesAndSpoilers() {
     }
 
     // ============================================================================
-    // WRAP IMAGES WITH DIMENSIONS TO PREVENT CLS + FALLBACK
+    // WRAP IMAGES WITH DIMENSIONS TO PREVENT CLS + BROKEN IMAGE FALLBACK
     // ============================================================================
-function wrapImagesWithDimensions(container) {
-    if (!container) return;
-    const images = container.querySelectorAll('.post-message img, .post-signature img, .attachment-preview img');
-    images.forEach(img => {
-        // Skip if already wrapped or inside embed
-        if (img.closest('.modern-embedded-link, .image-wrapper')) return;
-        if (img.classList.contains('twemoji')) return;
-        const alt = img.getAttribute('alt');
-        if (alt && alt.startsWith(':') && alt.endsWith(':')) return;
+    function wrapImagesWithDimensions(container) {
+        if (!container) return;
+        const images = container.querySelectorAll('.post-message img, .post-signature img, .attachment-preview img');
+        images.forEach(img => {
+            // Skip if already wrapped or inside embed
+            if (img.closest('.modern-embedded-link, .image-wrapper')) return;
+            if (img.classList.contains('twemoji')) return;
+            const alt = img.getAttribute('alt');
+            if (alt && alt.startsWith(':') && alt.endsWith(':')) return;
 
-        const width = img.getAttribute('width');
-        const height = img.getAttribute('height');
-        if (!width || !height || isNaN(width) || isNaN(height) || parseInt(width) <= 0 || parseInt(height) <= 0) return;
+            const currentSrc = img.src;
+            const isWeserv = currentSrc.indexOf('weserv.nl') !== -1 || currentSrc.indexOf('wsrv.nl') !== -1;
 
-        // --- Determine original source (for fallback) ---
-        let originalSrc = img.getAttribute('data-original');
-        if (!originalSrc) {
-            const src = img.src;
-            if (src.indexOf('weserv.nl') !== -1 || src.indexOf('wsrv.nl') !== -1) {
+            // --- Extract original source for fallback ---
+            let originalSrc = img.getAttribute('data-original');
+            if (!originalSrc && isWeserv) {
                 try {
-                    const url = new URL(src);
+                    const url = new URL(currentSrc);
                     const param = url.searchParams.get('url');
                     if (param) originalSrc = decodeURIComponent(param);
                 } catch (e) {}
             }
-            if (!originalSrc) originalSrc = img.src;
-        }
+            if (!originalSrc) originalSrc = currentSrc;
 
-        const currentSrc = img.src;
-        const isWeserv = currentSrc.indexOf('weserv.nl') !== -1 || currentSrc.indexOf('wsrv.nl') !== -1;
-
-        // --- Handle broken weserv images immediately ---
-        if (isWeserv && originalSrc && originalSrc !== currentSrc) {
-            // If already failed, revert now
-            if (img.complete && img.naturalWidth === 0) {
-                img.src = originalSrc;
-                img.setAttribute('data-optimized', 'failed');
-                // Prevent further processing
-                img.onerror = null;
-                img.removeEventListener('error', fallbackHandler);
-            } else {
-                // Set a robust error handler using both onerror and addEventListener
-                function fallbackHandler() {
-                    if (img.src !== originalSrc) {
-                        img.src = originalSrc;
-                        img.setAttribute('data-optimized', 'failed');
-                        img.onerror = null;
-                        img.removeEventListener('error', fallbackHandler);
-                    }
+            // --- BROKEN WESERV IMAGES: revert immediately ---
+            if (isWeserv && img.complete && img.naturalWidth === 0) {
+                if (originalSrc && originalSrc !== currentSrc) {
+                    img.src = originalSrc;
+                    img.setAttribute('data-optimized', 'failed');
+                    img.onerror = null;
+                    // Remove any leftover listeners
+                    img.removeEventListener('error', () => {});
                 }
+                // Do NOT wrap; skip further processing
+                return;
+            }
+
+            // --- Only wrap if image has width/height attributes ---
+            const width = img.getAttribute('width');
+            const height = img.getAttribute('height');
+            if (!width || !height || isNaN(width) || isNaN(height) || parseInt(width) <= 0 || parseInt(height) <= 0) {
+                return;
+            }
+
+            // --- Wrap in a div for CLS prevention ---
+            const wrapper = document.createElement('div');
+            wrapper.className = 'image-wrapper';
+            wrapper.style.width = width + 'px';
+            wrapper.style.aspectRatio = width + '/' + height;
+            wrapper.style.maxWidth = '100%';
+            wrapper.style.position = 'relative';
+            wrapper.style.overflow = 'hidden';
+            img.style.width = '100%';
+            img.style.height = '100%';
+            img.style.objectFit = 'contain';
+            img.parentNode.insertBefore(wrapper, img);
+            wrapper.appendChild(img);
+
+            // --- Set fallback for images that might fail later ---
+            if (isWeserv && originalSrc && originalSrc !== currentSrc) {
+                const fallbackHandler = function() {
+                    if (this.src !== originalSrc) {
+                        this.src = originalSrc;
+                        this.setAttribute('data-optimized', 'failed');
+                        this.onerror = null;
+                        this.removeEventListener('error', fallbackHandler);
+                    }
+                };
                 img.onerror = fallbackHandler;
                 img.addEventListener('error', fallbackHandler);
-                // Also, if the image is still loading, the error will fire.
             }
-        }
+        });
+    }
 
-        // --- Wrap in a div ---
-        const wrapper = document.createElement('div');
-        wrapper.className = 'image-wrapper';
-        wrapper.style.width = width + 'px';
-        wrapper.style.aspectRatio = width + '/' + height;
-        wrapper.style.maxWidth = '100%';
-        wrapper.style.position = 'relative';
-        wrapper.style.overflow = 'hidden';
-        img.style.width = '100%';
-        img.style.height = '100%';
-        img.style.objectFit = 'contain';
-        img.parentNode.insertBefore(wrapper, img);
-        wrapper.appendChild(img);
-    });
-}
+    // ============================================================================
+    // GLOBAL BROKEN IMAGE FIXER (runs after page load)
+    // ============================================================================
+    function fixBrokenWeservImages() {
+        const images = document.querySelectorAll('img');
+        let fixed = 0;
+        images.forEach(img => {
+            const src = img.src;
+            if (!src || (src.indexOf('weserv.nl') === -1 && src.indexOf('wsrv.nl') === -1)) return;
+            if (img.complete && img.naturalWidth === 0) {
+                // Extract original
+                let originalSrc = img.getAttribute('data-original');
+                if (!originalSrc) {
+                    try {
+                        const url = new URL(src);
+                        const param = url.searchParams.get('url');
+                        if (param) originalSrc = decodeURIComponent(param);
+                    } catch (e) {}
+                }
+                if (originalSrc && originalSrc !== src) {
+                    img.src = originalSrc;
+                    img.setAttribute('data-optimized', 'failed');
+                    img.onerror = null;
+                    fixed++;
+                }
+            }
+        });
+        if (fixed > 0) console.log('[PostsModule] Fixed ' + fixed + ' broken weserv images on page load.');
+    }
 
     // ============================================================================
     // REACTION POPUP (unchanged)
@@ -2686,3 +2718,14 @@ if (typeof window !== 'undefined') {
         try { performance.measure('posts-module-load-time', 'posts-module-start', 'posts-module-ready'); } catch (e) {}
     }
 }
+
+// ---- Run the global broken‑image fix after the page loads ----
+(function() {
+    if (document.readyState === 'complete') {
+        setTimeout(ForumPostsModule.fixBrokenWeservImages, 500);
+    } else {
+        window.addEventListener('load', function() {
+            setTimeout(ForumPostsModule.fixBrokenWeservImages, 500);
+        });
+    }
+})();
