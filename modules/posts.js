@@ -1008,11 +1008,11 @@ function initQuotesAndSpoilers() {
     // ============================================================================
 function wrapImagesWithDimensions(container) {
     if (!container) return;
-    // Include both post content images and signature images
-    const images = container.querySelectorAll('.post-message img, .post-signature img');
+    // Include post content, signatures, and attachment preview images
+    const images = container.querySelectorAll('.post-message img, .post-signature img, .attachment-preview img');
     images.forEach(img => {
-        // Skip if already wrapped or inside attachment/embed
-        if (img.closest('.attachment-preview, .modern-embedded-link, .image-wrapper')) return;
+        // Skip if already wrapped or inside embed (but not attachment preview)
+        if (img.closest('.modern-embedded-link, .image-wrapper')) return;
 
         // Skip twemoji images
         if (img.classList.contains('twemoji')) return;
