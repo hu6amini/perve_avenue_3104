@@ -1006,58 +1006,68 @@ function initQuotesAndSpoilers() {
     // ============================================================================
     // WRAP IMAGES WITH DIMENSIONS TO PREVENT CLS + FALLBACK
     // ============================================================================
-    function wrapImagesWithDimensions(container) {
-        if (!container) return;
-        const images = container.querySelectorAll('.post-message img, .post-signature img, .attachment-preview img');
-        images.forEach(img => {
-            // Skip if already wrapped or inside embed
-            if (img.closest('.modern-embedded-link, .image-wrapper')) return;
-            if (img.classList.contains('twemoji')) return;
-            const alt = img.getAttribute('alt');
-            if (alt && alt.startsWith(':') && alt.endsWith(':')) return;
+function wrapImagesWithDimensions(container) {
+    if (!container) return;
+    const images = container.querySelectorAll('.post-message img, .post-signature img, .attachment-preview img');
+    images.forEach(img => {
+        // Skip if already wrapped or inside embed
+        if (img.closest('.modern-embedded-link, .image-wrapper')) return;
+        if (img.classList.contains('twemoji')) return;
+        const alt = img.getAttribute('alt');
+        if (alt && alt.startsWith(':') && alt.endsWith(':')) return;
 
-            const width = img.getAttribute('width');
-            const height = img.getAttribute('height');
-            if (!width || !height || isNaN(width) || isNaN(height) || parseInt(width) <= 0 || parseInt(height) <= 0) return;
+        const width = img.getAttribute('width');
+        const height = img.getAttribute('height');
+        if (!width || !height || isNaN(width) || isNaN(height) || parseInt(width) <= 0 || parseInt(height) <= 0) return;
 
-            // Determine original source (for fallback)
-            let originalSrc = img.getAttribute('data-original');
-            if (!originalSrc) {
-                const src = img.src;
-                if (src.indexOf('weserv.nl') !== -1 || src.indexOf('wsrv.nl') !== -1) {
-                    try {
-                        const url = new URL(src);
-                        const param = url.searchParams.get('url');
-                        if (param) originalSrc = decodeURIComponent(param);
-                    } catch (e) {}
+        // Determine original source for fallback
+        let originalSrc = img.getAttribute('data-original');
+        if (!originalSrc) {
+            const src = img.src;
+            if (src.indexOf('weserv.nl') !== -1 || src.indexOf('wsrv.nl') !== -1) {
+                try {
+                    const url = new URL(src);
+                    const param = url.searchParams.get('url');
+                    if (param) originalSrc = decodeURIComponent(param);
+                } catch (e) {}
+            }
+            if (!originalSrc) originalSrc = img.src;
+        }
+
+        // If current src is a weserv URL and originalSrc is different, set fallback
+        const currentSrc = img.src;
+        if (currentSrc.indexOf('weserv.nl') !== -1 || currentSrc.indexOf('wsrv.nl') !== -1) {
+            // Set onerror handler to revert to original if it fails
+            img.onerror = function() {
+                if (this.src !== originalSrc) {
+                    this.src = originalSrc;
+                    // Mark as failed to prevent re-optimization
+                    this.setAttribute('data-optimized', 'failed');
                 }
-                if (!originalSrc) originalSrc = img.src;
+            };
+            // If already failed, revert immediately
+            if (img.complete && img.naturalWidth === 0) {
+                img.src = originalSrc;
+                img.setAttribute('data-optimized', 'failed');
+                img.onerror = null; // avoid loop
             }
+        }
 
-            const wrapper = document.createElement('div');
-            wrapper.className = 'image-wrapper';
-            wrapper.style.width = width + 'px';
-            wrapper.style.aspectRatio = width + '/' + height;
-            wrapper.style.maxWidth = '100%';
-            wrapper.style.position = 'relative';
-            wrapper.style.overflow = 'hidden';
-            img.style.width = '100%';
-            img.style.height = '100%';
-            img.style.objectFit = 'contain';
-            img.parentNode.insertBefore(wrapper, img);
-            wrapper.appendChild(img);
-
-            // Set onerror to revert to original source if the weserv URL fails
-            if (originalSrc && originalSrc !== img.src) {
-                img.onerror = function() {
-                    if (this.src !== originalSrc) {
-                        this.src = originalSrc;
-                        // Optionally remove wrapper styles? Not needed.
-                    }
-                };
-            }
-        });
-    }
+        // Wrap in div
+        const wrapper = document.createElement('div');
+        wrapper.className = 'image-wrapper';
+        wrapper.style.width = width + 'px';
+        wrapper.style.aspectRatio = width + '/' + height;
+        wrapper.style.maxWidth = '100%';
+        wrapper.style.position = 'relative';
+        wrapper.style.overflow = 'hidden';
+        img.style.width = '100%';
+        img.style.height = '100%';
+        img.style.objectFit = 'contain';
+        img.parentNode.insertBefore(wrapper, img);
+        wrapper.appendChild(img);
+    });
+}
 
     // ============================================================================
     // REACTION POPUP (unchanged)
