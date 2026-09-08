@@ -1,4 +1,4 @@
-// Forum Modernizer - Posts Module v2.4 (with anchor ID for scrolling) + Poll + Attachments + Code Blocks + Image Wrapper
+// Forum Modernizer - Posts Module v2.4 (with anchor ID for scrolling) + Poll + Attachments + Code Blocks + Image Wrapper with fallback
 'use strict';
 
 const ForumPostsModule = (function () {
@@ -1004,26 +1004,36 @@ function initQuotesAndSpoilers() {
     }
 
     // ============================================================================
-    // WRAP IMAGES WITH DIMENSIONS TO PREVENT CLS
+    // WRAP IMAGES WITH DIMENSIONS TO PREVENT CLS + FALLBACK
     // ============================================================================
-function wrapImagesWithDimensions(container) {
-    if (!container) return;
-    // Include post content, signatures, and attachment preview images
-    const images = container.querySelectorAll('.post-message img, .post-signature img, .attachment-preview img');
-    images.forEach(img => {
-        // Skip if already wrapped or inside embed (but not attachment preview)
-        if (img.closest('.modern-embedded-link, .image-wrapper')) return;
+    function wrapImagesWithDimensions(container) {
+        if (!container) return;
+        const images = container.querySelectorAll('.post-message img, .post-signature img, .attachment-preview img');
+        images.forEach(img => {
+            // Skip if already wrapped or inside embed
+            if (img.closest('.modern-embedded-link, .image-wrapper')) return;
+            if (img.classList.contains('twemoji')) return;
+            const alt = img.getAttribute('alt');
+            if (alt && alt.startsWith(':') && alt.endsWith(':')) return;
 
-        // Skip twemoji images
-        if (img.classList.contains('twemoji')) return;
+            const width = img.getAttribute('width');
+            const height = img.getAttribute('height');
+            if (!width || !height || isNaN(width) || isNaN(height) || parseInt(width) <= 0 || parseInt(height) <= 0) return;
 
-        // Skip emoji images: alt starts and ends with ":"
-        const alt = img.getAttribute('alt');
-        if (alt && alt.startsWith(':') && alt.endsWith(':')) return;
+            // Determine original source (for fallback)
+            let originalSrc = img.getAttribute('data-original');
+            if (!originalSrc) {
+                const src = img.src;
+                if (src.indexOf('weserv.nl') !== -1 || src.indexOf('wsrv.nl') !== -1) {
+                    try {
+                        const url = new URL(src);
+                        const param = url.searchParams.get('url');
+                        if (param) originalSrc = decodeURIComponent(param);
+                    } catch (e) {}
+                }
+                if (!originalSrc) originalSrc = img.src;
+            }
 
-        const width = img.getAttribute('width');
-        const height = img.getAttribute('height');
-        if (width && height && !isNaN(width) && !isNaN(height) && parseInt(width) > 0 && parseInt(height) > 0) {
             const wrapper = document.createElement('div');
             wrapper.className = 'image-wrapper';
             wrapper.style.width = width + 'px';
@@ -1031,15 +1041,23 @@ function wrapImagesWithDimensions(container) {
             wrapper.style.maxWidth = '100%';
             wrapper.style.position = 'relative';
             wrapper.style.overflow = 'hidden';
-            // Set image to fill wrapper
             img.style.width = '100%';
             img.style.height = '100%';
             img.style.objectFit = 'contain';
             img.parentNode.insertBefore(wrapper, img);
             wrapper.appendChild(img);
-        }
-    });
-}
+
+            // Set onerror to revert to original source if the weserv URL fails
+            if (originalSrc && originalSrc !== img.src) {
+                img.onerror = function() {
+                    if (this.src !== originalSrc) {
+                        this.src = originalSrc;
+                        // Optionally remove wrapper styles? Not needed.
+                    }
+                };
+            }
+        });
+    }
 
     // ============================================================================
     // REACTION POPUP (unchanged)
@@ -2362,7 +2380,7 @@ function attachPollHandlers(modernPoll, legacyPoll, pollData) {
                 container.appendChild(card);
                 fixMissingImageDimensions(card);
                 applyFaviconsToMessageLinks(card);
-                wrapImagesWithDimensions(card); // <-- NEW
+                wrapImagesWithDimensions(card);
             }
             attachEventHandlers();
             initQuotesAndSpoilers();
@@ -2399,7 +2417,7 @@ function attachPollHandlers(modernPoll, legacyPoll, pollData) {
                 container.appendChild(blogCard);
                 fixMissingImageDimensions(blogCard);
                 applyFaviconsToMessageLinks(blogCard);
-                wrapImagesWithDimensions(blogCard); // <-- NEW
+                wrapImagesWithDimensions(blogCard);
                 if (blogData.postId) convertedPostIds.add(blogData.postId);
                 blogCount++;
             }
@@ -2469,7 +2487,7 @@ function attachPollHandlers(modernPoll, legacyPoll, pollData) {
                 container.appendChild(card);
                 fixMissingImageDimensions(card);
                 applyFaviconsToMessageLinks(card);
-                wrapImagesWithDimensions(card); // <-- NEW
+                wrapImagesWithDimensions(card);
             }
             attachEventHandlers();
             initQuotesAndSpoilers();
@@ -2545,7 +2563,7 @@ function attachPollHandlers(modernPoll, legacyPoll, pollData) {
             container.appendChild(card);
             fixMissingImageDimensions(card);
             applyFaviconsToMessageLinks(card);
-            wrapImagesWithDimensions(card); // <-- NEW
+            wrapImagesWithDimensions(card);
         }
         initQuotesAndSpoilers();
         console.log('[PostsModule] Summary conversion ready - ' + postsData.length + ' posts');
