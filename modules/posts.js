@@ -1,4 +1,4 @@
-// Forum Modernizer - Posts Module v2.4 (with anchor ID for scrolling) + Poll + Attachment + Code Block Conversion
+// Forum Modernizer - Posts Module v2.4 (with anchor ID for scrolling) + Poll + Attachments + Code Blocks + Image Wrapper
 'use strict';
 
 const ForumPostsModule = (function () {
@@ -999,6 +999,35 @@ function initQuotesAndSpoilers() {
                     img.setAttribute('height', img.naturalHeight);
                     img.style.aspectRatio = img.naturalWidth + '/' + img.naturalHeight;
                 }, { once: true });
+            }
+        });
+    }
+
+    // ============================================================================
+    // WRAP IMAGES WITH DIMENSIONS TO PREVENT CLS
+    // ============================================================================
+    function wrapImagesWithDimensions(container) {
+        if (!container) return;
+        const images = container.querySelectorAll('.post-message img');
+        images.forEach(img => {
+            // Skip if already wrapped or if it's inside an attachment preview or embedded link
+            if (img.closest('.attachment-preview, .modern-embedded-link, .image-wrapper')) return;
+            const width = img.getAttribute('width');
+            const height = img.getAttribute('height');
+            if (width && height && !isNaN(width) && !isNaN(height) && parseInt(width) > 0 && parseInt(height) > 0) {
+                const wrapper = document.createElement('div');
+                wrapper.className = 'image-wrapper';
+                wrapper.style.width = width + 'px';
+                wrapper.style.aspectRatio = width + '/' + height;
+                wrapper.style.maxWidth = '100%';
+                wrapper.style.position = 'relative';
+                wrapper.style.overflow = 'hidden';
+                // Set image to fill wrapper
+                img.style.width = '100%';
+                img.style.height = '100%';
+                img.style.objectFit = 'contain';
+                img.parentNode.insertBefore(wrapper, img);
+                wrapper.appendChild(img);
             }
         });
     }
@@ -2324,6 +2353,7 @@ function attachPollHandlers(modernPoll, legacyPoll, pollData) {
                 container.appendChild(card);
                 fixMissingImageDimensions(card);
                 applyFaviconsToMessageLinks(card);
+                wrapImagesWithDimensions(card); // <-- NEW
             }
             attachEventHandlers();
             initQuotesAndSpoilers();
@@ -2360,6 +2390,7 @@ function attachPollHandlers(modernPoll, legacyPoll, pollData) {
                 container.appendChild(blogCard);
                 fixMissingImageDimensions(blogCard);
                 applyFaviconsToMessageLinks(blogCard);
+                wrapImagesWithDimensions(blogCard); // <-- NEW
                 if (blogData.postId) convertedPostIds.add(blogData.postId);
                 blogCount++;
             }
@@ -2429,6 +2460,7 @@ function attachPollHandlers(modernPoll, legacyPoll, pollData) {
                 container.appendChild(card);
                 fixMissingImageDimensions(card);
                 applyFaviconsToMessageLinks(card);
+                wrapImagesWithDimensions(card); // <-- NEW
             }
             attachEventHandlers();
             initQuotesAndSpoilers();
@@ -2504,6 +2536,7 @@ function attachPollHandlers(modernPoll, legacyPoll, pollData) {
             container.appendChild(card);
             fixMissingImageDimensions(card);
             applyFaviconsToMessageLinks(card);
+            wrapImagesWithDimensions(card); // <-- NEW
         }
         initQuotesAndSpoilers();
         console.log('[PostsModule] Summary conversion ready - ' + postsData.length + ' posts');
