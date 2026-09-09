@@ -1,4 +1,4 @@
-// Forum Modernizer - Posts Module v2.4 (with anchor ID for scrolling) + Poll + Attachments + Code Blocks + Image Wrapper + Global Broken Image Fix
+// Forum Modernizer - Posts Module v2.4 (with anchor ID for scrolling) + Poll + Attachments + Code Blocks + Image Wrapper + Global Broken Image Fix + Event Listener
 'use strict';
 
 const ForumPostsModule = (function () {
@@ -1108,6 +1108,36 @@ function initQuotesAndSpoilers() {
             }
         });
         if (fixed > 0) console.log('[PostsModule] Fixed ' + fixed + ' broken weserv images on page load.');
+    }
+
+    // ============================================================================
+    // GLOBAL ERROR LISTENER FOR LAZY‑LOADED IMAGES
+    // ============================================================================
+    function setupGlobalImageErrorHandler() {
+        document.addEventListener('error', function(e) {
+            const target = e.target;
+            if (target.tagName !== 'IMG') return;
+            const src = target.src;
+            if (!src || (src.indexOf('weserv.nl') === -1 && src.indexOf('wsrv.nl') === -1)) return;
+            // Check if already failed
+            if (target.complete && target.naturalWidth === 0) {
+                let originalSrc = target.getAttribute('data-original');
+                if (!originalSrc) {
+                    try {
+                        const url = new URL(src);
+                        const param = url.searchParams.get('url');
+                        if (param) originalSrc = decodeURIComponent(param);
+                    } catch (e) {}
+                }
+                if (originalSrc && originalSrc !== src) {
+                    target.src = originalSrc;
+                    target.setAttribute('data-optimized', 'failed');
+                    target.onerror = null;
+                    target.removeEventListener('error', arguments.callee);
+                    console.log('[PostsModule] Global error handler fixed lazy image:', originalSrc);
+                }
+            }
+        }, true); // Use capture phase to catch errors early
     }
 
     // ============================================================================
@@ -2644,6 +2674,10 @@ function attachPollHandlers(modernPoll, legacyPoll, pollData) {
         return depsReady.then(() => {
             if (isInitialized) return;
             isInitialized = true;
+
+            // Set up global image error handler
+            setupGlobalImageErrorHandler();
+
             if (!isValidPage()) {
                 if (document.body.id === 'send' && document.querySelector('.summary')) convertSummaryPosts().catch(err => console.error('[PostsModule] Summary conversion error', err));
                 return;
@@ -2701,7 +2735,7 @@ function attachPollHandlers(modernPoll, legacyPoll, pollData) {
         refreshLikeDisplay,
         getPostsContainer,
         isValidPost,
-        fixBrokenWeservImages, // <-- Exposed
+        fixBrokenWeservImages,
         reset: function () {
             convertedPostIds.clear();
             postReactions.clear();
